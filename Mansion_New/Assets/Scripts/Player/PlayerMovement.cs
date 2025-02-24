@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 gravity;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         gravity = new();
         InputActionMap inputMap = asset.actionMaps[0];

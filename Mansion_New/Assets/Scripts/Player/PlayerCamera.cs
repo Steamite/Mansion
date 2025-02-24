@@ -1,12 +1,9 @@
 using System;
 using Unity.Cinemachine;
 using Unity.Collections;
-using UnityEditor.VersionControl;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using UnityEngine.Windows;
+using UnityEngine.SceneManagement;
 
 public class PlayerCamera : MonoBehaviour
 {
@@ -21,6 +18,8 @@ public class PlayerCamera : MonoBehaviour
 
     [SerializeField][ReadOnly()] GameObject item;
 
+    Texture2D destinationTexture;
+
     CinemachineCamera topCam;
     CinemachineCamera bottomCam;
 
@@ -32,7 +31,19 @@ public class PlayerCamera : MonoBehaviour
     int lastFrame;
     bool standing = true;
 
-    void Start()
+
+    Ray cameraRay 
+    { 
+        get 
+        {
+            Transform t = standing ? topCam.transform : bottomCam.transform;
+            return new Ray(
+                t.position,
+                t.TransformDirection(0, 0, 1));
+        } 
+    } 
+
+    void Awake()
     {
         xRotation = 0;
         InputActionMap inputMap = asset.actionMaps[0];
@@ -48,10 +59,10 @@ public class PlayerCamera : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Vector3 startPos = transform.position + transform.TransformDirection(0, 0, 0.5f);
-        Gizmos.DrawLine(
-            startPos,
-            startPos + transform.TransformDirection(0, 0, range));
+        if (topCam == null)
+            Awake();
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(cameraRay.origin, cameraRay.GetPoint(range));
     }
 
 
@@ -63,11 +74,7 @@ public class PlayerCamera : MonoBehaviour
             targetImage.EndHold();
 
         if (interactAction.triggered)
-        {
-            targetImage.Exit();
-            interactAction.Disable();
-            GameObject.Destroy(item);
-        }
+            Interact();
 
 
         Vector2 input = lookAction.ReadValue<Vector2>();
@@ -108,10 +115,8 @@ public class PlayerCamera : MonoBehaviour
         if (lastFrame == Time.frameCount)
             return;
         lastFrame = Time.frameCount;
-        Ray ray = new(transform.position + transform.TransformDirection(0, 0, 0.5f),
-            transform.TransformDirection(0, 0, 1));
         RaycastHit hit;
-        Physics.Raycast(ray, out hit, range);
+        Physics.Raycast(cameraRay, out hit, range);
         if (hit.transform)
         {
             if (!item)
@@ -127,4 +132,13 @@ public class PlayerCamera : MonoBehaviour
             item = null;
         }
     }
+
+    async void Interact()
+    {
+        asset.actionMaps[0].Disable();
+        await SceneManager.LoadSceneAsync("Interact", LoadSceneMode.Additive);
+        GameObject.FindAnyObjectByType<ItemInteract>().Init(item.transform, asset);
+    }
+
+    
 }
