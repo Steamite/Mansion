@@ -54,9 +54,9 @@ public class GaussianBlur
         Parallel.For(0, colors.Length, _pOptions, i =>
         {
             colors[i] = new Color32(
-                (byte)Mathf.Clamp(newRed[i], 0, 255),
-                (byte)Mathf.Clamp(newGreen[i], 0, 255),
-                (byte)Mathf.Clamp(newBlue[i], 0, 255),
+                (byte)Mathf.Clamp(newRed[i]-10, 0, 255),
+                (byte)Mathf.Clamp(newGreen[i]-10, 0, 255),
+                (byte)Mathf.Clamp(newBlue[i]-10, 0, 255),
                 (byte)Mathf.Clamp(newAlpha[i], 0, 255)
             );
         });
