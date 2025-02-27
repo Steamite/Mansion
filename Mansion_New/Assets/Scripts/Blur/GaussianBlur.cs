@@ -11,7 +11,7 @@ public class GaussianBlur
     static int width;
     static int height;
 
-    public static async Task<Sprite> Blur()
+    public static Sprite Blur()
     {
         width = Screen.width;
         height = Screen.height;
@@ -93,12 +93,12 @@ public class GaussianBlur
         return Sprite.Create(blurredTex, new Rect(0, 0, width, height), new Vector2(0.5f, 0.5f));
     }
 
-    static void gaussBlur_4(int[] source, int[] dest, int r)
+    static async void gaussBlur_4(int[] source, int[] dest, int r)
     {
         var bxs = boxesForGauss(r, 3);
-        boxBlur_4(source, dest, width, height, (bxs[0] - 1) / 2);
-        boxBlur_4(dest, source, width, height, (bxs[1] - 1) / 2);
-        boxBlur_4(source, dest, width, height, (bxs[2] - 1) / 2);
+        await Task.Run(() => boxBlur_4(source, dest, width, height, (bxs[0] - 1) / 2));
+        await Task.Run(() => boxBlur_4(dest, source, width, height, (bxs[1] - 1) / 2));
+        await Task.Run(() => boxBlur_4(source, dest, width, height, (bxs[2] - 1) / 2));
     }
 
     static int[] boxesForGauss(int sigma, int n)

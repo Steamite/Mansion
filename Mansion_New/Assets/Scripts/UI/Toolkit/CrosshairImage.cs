@@ -31,8 +31,7 @@ namespace UI
         public static void Toggle()
         {
             instance.ToggleInClassList("Disabled");
-            if(instance.ClassListContains("Active"))
-                Exit();
+            EndHold();
         }
     }
 }
