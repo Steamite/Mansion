@@ -1,10 +1,34 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Mansion_New\\",
+  "WorkspaceRootPath": "D:\\Development\\Mansion\\Mansion_New\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|d:\\mansion_new\\assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|d:\\development\\mansion\\mansion_new\\assets\\scripts\\interactable items\\interactableitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interactable items\\interactableitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|d:\\development\\mansion\\mansion_new\\assets\\scripts\\utils\\webutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\utils\\webutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|D:\\Development\\Mansion\\Mansion_New\\assets\\scripts\\ui\\inspectmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\inspectmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|D:\\Development\\Mansion\\Mansion_New\\assets\\scripts\\ui\\toolkit\\crosshairimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\toolkit\\crosshairimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|D:\\Development\\Mansion\\Mansion_New\\assets\\scripts\\ui\\iteminteract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\iteminteract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|D:\\Development\\Mansion\\Mansion_New\\assets\\scripts\\player\\playercamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playercamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|D:\\Development\\Mansion\\Mansion_New\\assets\\scripts\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -17,21 +41,97 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "InspectMenu.cs",
+              "DocumentMoniker": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\InspectMenu.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\InspectMenu.cs",
+              "ToolTip": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\InspectMenu.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\InspectMenu.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAADwv2gAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T08:07:55.885Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "InteractableItem.cs",
+              "DocumentMoniker": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\Interactable Items\\InteractableItem.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Interactable Items\\InteractableItem.cs",
+              "ToolTip": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\Interactable Items\\InteractableItem.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Interactable Items\\InteractableItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwA8AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T08:33:56.728Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WebUtil.cs",
+              "DocumentMoniker": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\Utils\\WebUtil.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Utils\\WebUtil.cs",
+              "ToolTip": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\Utils\\WebUtil.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Utils\\WebUtil.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-27T18:14:19.98Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Player.cs",
-              "DocumentMoniker": "D:\\Mansion_New\\Assets\\Scripts\\Player.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Player.cs",
-              "ToolTip": "D:\\Mansion_New\\Assets\\Scripts\\Player.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Player.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAgwCgAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "CrosshairImage.cs",
+              "DocumentMoniker": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\Toolkit\\CrosshairImage.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Toolkit\\CrosshairImage.cs",
+              "ToolTip": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\Toolkit\\CrosshairImage.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\Toolkit\\CrosshairImage.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAtwB0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-11T16:14:40.257Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-27T16:00:59.378Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PlayerCamera.cs",
+              "DocumentMoniker": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerCamera.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerCamera.cs",
+              "ToolTip": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerCamera.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerCamera.cs",
+              "ViewState": "AgIAAH8AAAAAAAAAAADgv5cAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T10:45:49.956Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlayerMovement.cs",
+              "DocumentMoniker": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerMovement.cs",
+              "ToolTip": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerMovement.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerMovement.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAApwBQAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-26T10:45:48.878Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ItemInteract.cs",
+              "DocumentMoniker": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\ItemInteract.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\ItemInteract.cs",
+              "ToolTip": "D:\\Development\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\ItemInteract.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\ItemInteract.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAUwDsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-25T09:02:01.584Z"
             }
           ]
         }
