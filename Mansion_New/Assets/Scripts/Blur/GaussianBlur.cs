@@ -11,7 +11,7 @@ public class GaussianBlur
     static int width;
     static int height;
 
-    public static Sprite Blur()
+    public static async Task<Sprite> Blur()
     {
         width = Screen.width;
         height = Screen.height;
@@ -20,38 +20,63 @@ public class GaussianBlur
         tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
         tex.Apply(); // Apply texture changes before reading pixels
 
+
+        /*
+                Texture2D tex = new Texture2D(width, height, TextureFormat.RGBA32, false);
+                tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+                tex.Apply(); // Apply texture changes before reading pixels*/
+
         Color32[] source = tex.GetPixels32();
 
         // Initialize color channels
-        int[] _alpha = new int[source.Length];
         int[] _red = new int[source.Length];
         int[] _green = new int[source.Length];
         int[] _blue = new int[source.Length];
 
-        Parallel.For(0, source.Length, _pOptions, i =>
+        for (int i = 0; i < source.Length; i++)
         {
-            _alpha[i] = source[i].a; // No bit shift needed
             _red[i] = source[i].r;
             _green[i] = source[i].g;
             _blue[i] = source[i].b;
-        });
+        }/*
+        Parallel.For(0, source.Length, _pOptions, i =>
+        {
+            _alpha[i] = source[i].a;
+            _red[i] = source[i].r;
+            _green[i] = source[i].g;
+            _blue[i] = source[i].b;
+        });*/
 
         // Process blurring
-        int[] newAlpha = new int[source.Length];
         int[] newRed = new int[source.Length];
         int[] newGreen = new int[source.Length];
         int[] newBlue = new int[source.Length];
 
+        gaussBlur_4(_red, newRed, RADIAL);
+        gaussBlur_4(_green, newGreen, RADIAL);
+        gaussBlur_4(_blue, newBlue, RADIAL);
+        /*
         Parallel.Invoke(
             () => gaussBlur_4(_alpha, newAlpha, RADIAL),
             () => gaussBlur_4(_red, newRed, RADIAL),
             () => gaussBlur_4(_green, newGreen, RADIAL),
             () => gaussBlur_4(_blue, newBlue, RADIAL)
-        );
+        );*/
 
         Color32[] colors = new Color32[source.Length];
 
-        Parallel.For(0, colors.Length, _pOptions, i =>
+        for (int i = 0; i < source.Length; i++)
+        {
+            colors[i] = new Color32(
+                (byte)Mathf.Clamp(newRed[i] - 10, 0, 255),
+                (byte)Mathf.Clamp(newGreen[i] - 10, 0, 255),
+                (byte)Mathf.Clamp(newBlue[i] - 10, 0, 255),
+                255
+            );
+        }
+
+
+        /*Parallel.For(0, colors.Length, _pOptions, i =>
         {
             colors[i] = new Color32(
                 (byte)Mathf.Clamp(newRed[i]-10, 0, 255),
@@ -59,7 +84,7 @@ public class GaussianBlur
                 (byte)Mathf.Clamp(newBlue[i]-10, 0, 255),
                 (byte)Mathf.Clamp(newAlpha[i], 0, 255)
             );
-        });
+        });*/
 
         Texture2D blurredTex = new Texture2D(width, height, TextureFormat.RGBA32, false);
         blurredTex.SetPixels32(colors);
@@ -93,7 +118,7 @@ public class GaussianBlur
 
     static void boxBlur_4(int[] scl, int[] tcl, int w, int h, int r)
     {
-        for (var i = 0; i < scl.Length; i++) tcl[i] = scl[i];
+        Array.Copy(scl, tcl, scl.Length);
         boxBlurH_4(tcl, scl, w, h, r);
         boxBlurT_4(scl, tcl, w, h, r);
     }

@@ -6,6 +6,7 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 namespace Player
 {
@@ -13,7 +14,7 @@ namespace Player
     {
         [Header("Assign")]
         [SerializeField] InputActionAsset asset;
-        [SerializeField] CrosshairImage targetImage;
+        
 
         [SerializeField][Range(0.5f, 1.5f)] float range = 1;
         [SerializeField][Range(0, 10)] float lookSpeed;
@@ -21,6 +22,7 @@ namespace Player
         [SerializeField][Range(0, 60)] float lookLockMin;
 
         [SerializeField][ReadOnly()] GameObject item;
+        bool hasItem;
 
         Texture2D destinationTexture;
 
@@ -54,8 +56,8 @@ namespace Player
             interactAction = inputMap.FindAction("Interact");
             lookAction = inputMap.FindAction("Look");
             crouchAction = inputMap.FindAction("Crouch");
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
 
             topCam = transform.GetChild(0).GetComponent<CinemachineCamera>();
             bottomCam = transform.GetChild(1).GetComponent<CinemachineCamera>();
@@ -73,9 +75,9 @@ namespace Player
         private void Update()
         {
             if (interactAction.WasPressedThisFrame())
-                targetImage.StartHold();
+                CrosshairImage.StartHold();
             else if (interactAction.WasReleasedThisFrame())
-                targetImage.EndHold();
+                CrosshairImage.EndHold();
 
             if (interactAction.triggered)
                 Interact();
@@ -120,18 +122,26 @@ namespace Player
                 return;
             lastFrame = Time.frameCount;
             RaycastHit hit;
-            Physics.Raycast(cameraRay, out hit, range);
+            Physics.Raycast(cameraRay, out hit, range, 128);
             if (hit.transform)
             {
-                if (!item)
-                    targetImage.Enter();
+                Debug.Log("hit");
+                if (!hasItem)
+                {
+                    CrosshairImage.Enter();
+                    hasItem = true;
+                }
                 item = hit.transform.gameObject;
                 interactAction.Enable();
             }
             else
             {
-                if (item)
-                    targetImage.Exit();
+                Debug.Log("miss");
+                if (hasItem)
+                {
+                    CrosshairImage.Exit();
+                    hasItem = false;
+                }
                 interactAction.Disable();
                 item = null;
             }
@@ -139,6 +149,7 @@ namespace Player
 
         async void Interact()
         {
+            CrosshairImage.Toggle();
             asset.actionMaps[0].Disable();
             await SceneManager.LoadSceneAsync("Interact", LoadSceneMode.Additive);
             GameObject.FindAnyObjectByType<ItemInteract>().Init(item.transform, asset);

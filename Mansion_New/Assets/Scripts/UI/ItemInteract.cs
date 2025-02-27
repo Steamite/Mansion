@@ -2,11 +2,8 @@
 using System;
 using System.Collections;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI.Inspect
@@ -21,11 +18,12 @@ namespace UI.Inspect
         public void Init(Transform _item, InputActionAsset _asset)
         {
             transform.position = _item.position;
-
             _item.parent = transform;
             _item.localPosition = new(0, 0, 0);
             _item.localRotation = Quaternion.identity;
-            _item.gameObject.layer = 6;
+            foreach (Transform trans in _item.GetComponentsInChildren<Transform>(true))
+                trans.gameObject.layer = 6;
+
             Camera.main.cullingMask = 183;
 
             _asset.actionMaps[2].Disable();
@@ -58,7 +56,7 @@ namespace UI.Inspect
             CinemachineBrain brain = Camera.main.GetComponent<CinemachineBrain>();
             while (brain.ActiveBlend == null)
                 yield return null;
-            yield return new WaitForSecondsRealtime(brain.ActiveBlend.Duration);
+            yield return new WaitUntil(() => brain.ActiveBlend == null);
             canvas.GetComponent<InspectMenu>().Init(_asset, _item);
         }
         #endregion

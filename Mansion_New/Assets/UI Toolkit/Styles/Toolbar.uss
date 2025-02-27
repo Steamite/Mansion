@@ -1,0 +1,88 @@
+#Bar > VisualElement {
+    flex-grow: 0;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 35px;
+    padding-left: 35px;
+    -unity-text-outline-width: 2px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    font-size: 50px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+#Bar #Icon {
+    flex-grow: 1;
+    background-color: rgb(255, 255, 255);
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
+    border-top-width: 5px;
+    border-right-width: 5px;
+    border-bottom-width: 5px;
+    border-left-width: 5px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    min-width: 100px;
+    max-width: 100px;
+    min-height: 100px;
+    max-height: 100px;
+    background-image: url("project://database/Assets/Sprites/Shortcut_Icon.png?fileID=21300000&guid=658cd35d788af46489726e1322cc904e&type=3#Shortcut_Icon");
+}
+
+#Bar #Spacer {
+    flex-grow: 1;
+    width: 20px;
+    height: 100%;
+}
+
+#Bar #Selection {
+    -unity-text-align: middle-center;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-text-outline-width: 0.5px;
+}
+
+#Icon > #Letter {
+    flex-grow: 1;
+    -unity-text-align: middle-center;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    -unity-font-style: bold;
+}
+
+Label {
+    color: rgb(255, 132, 30);
+}
+
+.Description #Exit-Option {
+    display: none;
+}
+
+.Description #Take-Option {
+    display: none;
+}
+
+.Description {
+    background-color: rgba(0, 0, 0, 0.67);
+}
+
+.Inspect {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0);
+}
