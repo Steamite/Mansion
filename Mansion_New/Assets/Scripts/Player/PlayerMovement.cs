@@ -1,9 +1,12 @@
+using System;
+using Unity.Properties;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 namespace Player
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour, INotifyBindablePropertyChanged
     {
         [Header("Assets")]
         [SerializeField] InputActionAsset asset;
@@ -17,9 +20,11 @@ namespace Player
 
         InputAction moveAction;
 
+        [CreateProperty] public Vector2 Position;
 
         Vector3 gravity;
 
+        public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Awake()
         {
@@ -41,6 +46,10 @@ namespace Player
                 Vector3 moveDir = transform.TransformDirection(Vector3.forward) * input.y + transform.TransformDirection(Vector3.right) * input.x;
                 controller.Move((playerCamera.crouchAction.inProgress ? 0.5f : 1) * moveSpeed * Time.deltaTime * new Vector3(moveDir.x, 0, moveDir.z));
                 playerCamera.RayCastUpdate();
+
+                Position.x = -transform.position.x;
+                Position.y = transform.position.z;
+                propertyChanged?.Invoke(this, new(nameof(Position)));
             }
         }
 

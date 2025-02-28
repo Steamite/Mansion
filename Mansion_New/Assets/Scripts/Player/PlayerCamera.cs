@@ -3,6 +3,7 @@ using UI;
 using UI.Inspect;
 using Unity.Cinemachine;
 using Unity.Collections;
+using Unity.Properties;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,7 @@ using UnityEngine.UIElements;
 
 namespace Player
 {
-    public class PlayerCamera : MonoBehaviour
+    public class PlayerCamera : MonoBehaviour, INotifyBindablePropertyChanged
     {
         [Header("Assign")]
         [SerializeField] InputActionAsset asset;
@@ -37,7 +38,8 @@ namespace Player
         int lastFrame;
         bool standing = true;
 
-
+        public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
+        [CreateProperty] public float yRotation;
         Ray cameraRay
         {
             get
@@ -83,19 +85,23 @@ namespace Player
                 Interact();
 
 
-            Vector2 input = lookAction.ReadValue<Vector2>();
-            if (input.x != 0 || input.y != 0)
+            Vector2 input = lookAction.ReadValue<Vector2>()*lookSpeed;
+            if (input.y != 0)
             {
-                input *= lookSpeed;
-                transform.parent.Rotate(Vector3.up, input.x);
-
-
                 xRotation -= input.y;
                 xRotation = Mathf.Clamp(xRotation, -60, 60);
                 if (standing)
                     topCam.transform.localRotation = Quaternion.Euler(new(xRotation, 0, 0));
                 else
                     bottomCam.transform.localRotation = Quaternion.Euler(new(xRotation, 0, 0));
+                RayCastUpdate();
+            }
+            if (input.x != 0)
+            {
+                transform.parent.Rotate(Vector3.up, input.x);
+                yRotation = transform.parent.rotation.eulerAngles.y;
+                Debug.Log(yRotation);
+                propertyChanged?.Invoke(this, new(nameof(yRotation)));
                 RayCastUpdate();
             }
 

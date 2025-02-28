@@ -78,7 +78,7 @@ namespace UI.Inspect
                     trans.gameObject.layer = 7;
                 item.transform.SetParent(GameObject.Find("World").transform);
             }
-            Camera.main.transform.SetParent(GameObject.Find("EventSystem").transform);
+            Camera.main.transform.SetParent(GameObject.Find("UI").transform);
             Camera.main.transform.SetParent(null);
 
             doc.enabled = false;

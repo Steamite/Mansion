@@ -9,6 +9,7 @@ public static class WebUtil
     {
         using (UnityWebRequest request = UnityWebRequest.Get(Path.Combine(Application.streamingAssetsPath, path)))
         {
+            request.timeout = 2;
             await request.SendWebRequest();
 
             if (request.result != UnityWebRequest.Result.Success)
