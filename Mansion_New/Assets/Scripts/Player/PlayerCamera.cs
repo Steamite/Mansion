@@ -100,7 +100,7 @@ namespace Player
             {
                 transform.parent.Rotate(Vector3.up, input.x);
                 yRotation = transform.parent.rotation.eulerAngles.y;
-                Debug.Log(yRotation);
+                //Debug.Log(yRotation);
                 propertyChanged?.Invoke(this, new(nameof(yRotation)));
                 RayCastUpdate();
             }
@@ -131,7 +131,7 @@ namespace Player
             Physics.Raycast(cameraRay, out hit, range, 128);
             if (hit.transform)
             {
-                Debug.Log("hit");
+                //Debug.Log("hit");
                 if (!hasItem)
                 {
                     CrosshairImage.Enter();
@@ -142,7 +142,7 @@ namespace Player
             }
             else
             {
-                Debug.Log("miss");
+                //Debug.Log("miss");
                 if (hasItem)
                 {
                     CrosshairImage.Exit();

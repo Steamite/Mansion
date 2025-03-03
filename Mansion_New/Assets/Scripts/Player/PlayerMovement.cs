@@ -1,3 +1,4 @@
+using Rooms;
 using System;
 using Unity.Properties;
 using UnityEngine;
@@ -17,15 +18,17 @@ namespace Player
 
         [Header("Configures")]
         [SerializeField][Range(0, 10)] float moveSpeed = 5f;
+        Vector3 gravity;
 
         InputAction moveAction;
 
         [CreateProperty] public Vector2 Position;
+        [CreateProperty] public Room ActiveRoom;
 
-        Vector3 gravity;
 
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+
         void Awake()
         {
             gravity = new();
@@ -53,9 +56,18 @@ namespace Player
             }
         }
 
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            if(hit.gameObject.tag == "Entrance")
+            {
+                ActiveRoom = hit.transform.parent.parent.GetComponent<Room>().EnterRoom(ActiveRoom);
+                propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
+            }
+        }
+
         private void FixedUpdate()
         {
-            /*if (Physics.Raycast(groundPos.position, Vector3.down, 0.1f))
+            if (Physics.Raycast(groundPos.position, Vector3.down, 0.1f))
             {
                 gravity.y = 0;
             }
@@ -63,7 +75,7 @@ namespace Player
             {
                 gravity.y -= 9.8f * Time.fixedDeltaTime;
                 controller.Move(gravity);
-            }*/
+            }
         }
     }
 }
