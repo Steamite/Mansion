@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class GaussianBlur
+public static class GaussianBlur
 {
     const int RADIAL = 5;
     static ParallelOptions _pOptions = new ParallelOptions { MaxDegreeOfParallelism = 16 };

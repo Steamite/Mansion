@@ -265,6 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 281999664}
   - component: {fileID: 281999665}
+  - component: {fileID: 281999666}
   m_Layer: 6
   m_Name: Interacter
   m_TagString: Untagged
@@ -302,6 +303,18 @@ MonoBehaviour:
   cam: {fileID: 1639729656}
   backgroundImage: {fileID: 1177118101}
   canvas: {fileID: 226472483}
+--- !u!114 &281999666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281999663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6de20f662b01c8f4d99c9172a8021c65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1177118099
 GameObject:
   m_ObjectHideFlags: 0

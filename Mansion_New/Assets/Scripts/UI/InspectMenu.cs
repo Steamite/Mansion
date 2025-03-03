@@ -111,7 +111,7 @@ namespace UI.Inspect
                 doc.rootVisualElement.RemoveFromClassList("Inspect");
                 
                 ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Close Description";
-                doc.rootVisualElement.Q<Label>(DESCRIPTION).text = item.Text;
+                item.GetText(doc.rootVisualElement.Q<Label>(DESCRIPTION));
 
                 isDescriptionOpened = true;
                 endAction.Disable();
