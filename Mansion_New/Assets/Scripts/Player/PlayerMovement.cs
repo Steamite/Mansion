@@ -1,8 +1,10 @@
 using Rooms;
 using System;
 using Unity.Properties;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace Player
@@ -18,18 +20,19 @@ namespace Player
 
         [Header("Configures")]
         [SerializeField][Range(0, 10)] float moveSpeed = 5f;
+        [SerializeField] SceneAsset startingScene;
         Vector3 gravity;
 
         InputAction moveAction;
 
-        [CreateProperty] public Vector2 Position;
+        [CreateProperty] public Vector2 Position = new();
         [CreateProperty] public Room ActiveRoom;
 
 
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
 
 
-        void Awake()
+        async void Awake()
         {
             gravity = new();
             InputActionMap inputMap = asset.actionMaps[0];
@@ -38,7 +41,21 @@ namespace Player
             controller = GetComponent<CharacterController>();
             groundPos = transform.GetChild(1);
             playerCamera = transform.GetChild(0).GetComponent<PlayerCamera>();
+            if(SceneManager.sceneCount == 1)
+            {
+                await SceneManager.LoadSceneAsync(startingScene.name, LoadSceneMode.Additive);
+                ActiveRoom = FindFirstObjectByType<Room>().EnterRoom(null);
+                propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
+            }
         }
+
+        void Start()
+        {
+            Position.x = -transform.position.x;
+            Position.y = transform.position.z;
+            propertyChanged?.Invoke(this, new(nameof(Position)));
+        }
+
 
         // Update is called once per frame
         void Update()

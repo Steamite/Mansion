@@ -64,6 +64,11 @@ namespace Player
             topCam = transform.GetChild(0).GetComponent<CinemachineCamera>();
             bottomCam = transform.GetChild(1).GetComponent<CinemachineCamera>();
         }
+        void Start()
+        {
+            yRotation = transform.parent.rotation.eulerAngles.y;
+            propertyChanged?.Invoke(this, new(nameof(yRotation)));
+        }
 
         private void OnDrawGizmos()
         {
