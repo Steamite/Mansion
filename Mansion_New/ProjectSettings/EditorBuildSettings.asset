@@ -23,6 +23,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Room Scenes/Room D.unity
     guid: 449d7d1081207324fbfb010e37ccda20
+  - enabled: 1
+    path: Assets/Scenes/Room Scenes/Room TEST A.unity
+    guid: cc35f32cf33b3d3408ca7eb1d67816f6
+  - enabled: 1
+    path: Assets/Scenes/Room Scenes/Room TEST B.unity
+    guid: bdf2d3768fa21904b875d337ece3c54f
+  - enabled: 1
+    path: Assets/Scenes/Room Scenes/Room TEST C.unity
+    guid: 86f3b54f6503b8742b469f821826e700
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
   m_UseUCBPForAssetBundles: 0

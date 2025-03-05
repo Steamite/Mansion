@@ -14,21 +14,21 @@
                     <ui:Label text="E" name="Letter" class="a" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Spacer" class="spacer" />
-                <ui:Label text="Exit" name="Selection" class="sel" />
+                <ui:Label text="Zavřít" name="Selection" class="sel" />
             </ui:VisualElement>
             <ui:VisualElement name="Description-Option" style="flex-grow: 0; flex-direction: row; align-items: center;">
                 <ui:VisualElement name="Icon">
                     <ui:Label text="D" name="Letter" class="a" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Spacer" />
-                <ui:Label text="Description" name="Selection" style="-unity-text-outline-width: 1px;" />
+                <ui:Label text="Popis" name="Selection" style="-unity-text-outline-width: 1px;" />
             </ui:VisualElement>
             <ui:VisualElement name="Take-Option" style="flex-grow: 0; flex-direction: row; align-items: center; padding-right: 0;">
                 <ui:VisualElement name="Icon">
                     <ui:Label text="T" name="Letter" class="a" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Spacer" />
-                <ui:Label text="Take" name="Selection" />
+                <ui:Label text="Vzít" name="Selection" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

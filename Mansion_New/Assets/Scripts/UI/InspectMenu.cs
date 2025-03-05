@@ -1,4 +1,4 @@
-using Items;
+﻿using Items;
 using Player;
 using System.Collections;
 using System.IO;
@@ -110,7 +110,7 @@ namespace UI.Inspect
                 doc.rootVisualElement.AddToClassList("Description");
                 doc.rootVisualElement.RemoveFromClassList("Inspect");
                 
-                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Close Description";
+                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Zavřít popis";
                 item.GetText(doc.rootVisualElement.Q<Label>(DESCRIPTION));
 
                 isDescriptionOpened = true;
@@ -127,7 +127,7 @@ namespace UI.Inspect
                 doc.rootVisualElement.AddToClassList("Inspect");
                 
                 doc.rootVisualElement.Q<Label>(DESCRIPTION).text = "";
-                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Description";
+                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Popis";
                 
                 isDescriptionOpened = false;
                 endAction.Enable();

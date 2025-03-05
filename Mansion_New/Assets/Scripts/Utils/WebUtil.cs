@@ -16,10 +16,10 @@ public class WebUtil : MonoBehaviour
     {
         if (instance == null)
             throw new NotImplementedException("Add webUtil to scene");
-        instance.StartCoroutine(instance.DownloadText(path, action));
+        instance.StartCoroutine(instance.DownloadText(path, action, 0));
     }
 
-    IEnumerator DownloadText(string path, Action<string> action)
+    IEnumerator DownloadText(string path, Action<string> action, int tryI)
     {
         using UnityWebRequest request = UnityWebRequest.Get(Path.Combine(Application.streamingAssetsPath, path));
         
@@ -28,7 +28,10 @@ public class WebUtil : MonoBehaviour
 
         if (request.result != UnityWebRequest.Result.Success)
         {
-            action(request.result.ToString());
+            if(tryI < 3)
+                StartCoroutine(DownloadText(path, action, tryI++));
+            else
+                action("ERROR");
         }
         else
         {

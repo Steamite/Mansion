@@ -20,7 +20,7 @@ namespace Items
         {
             if (TextPath == "")
                 _text.text = "";
-            else if (content == null)
+            else if (content == null || content == "ERROR")
             {
                 _text.text = "Downloading text...";
                 WebUtil.GetTextFromServer(
