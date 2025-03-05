@@ -6,7 +6,6 @@ using UnityEngine;
 public static class GaussianBlur
 {
     const int RADIAL = 5;
-    static ParallelOptions _pOptions = new ParallelOptions { MaxDegreeOfParallelism = 16 };
 
     static int width;
     static int height;
@@ -21,11 +20,6 @@ public static class GaussianBlur
         tex.Apply(); // Apply texture changes before reading pixels
 
 
-        /*
-                Texture2D tex = new Texture2D(width, height, TextureFormat.RGBA32, false);
-                tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
-                tex.Apply(); // Apply texture changes before reading pixels*/
-
         Color32[] source = tex.GetPixels32();
 
         // Initialize color channels
@@ -38,14 +32,7 @@ public static class GaussianBlur
             _red[i] = source[i].r;
             _green[i] = source[i].g;
             _blue[i] = source[i].b;
-        }/*
-        Parallel.For(0, source.Length, _pOptions, i =>
-        {
-            _alpha[i] = source[i].a;
-            _red[i] = source[i].r;
-            _green[i] = source[i].g;
-            _blue[i] = source[i].b;
-        });*/
+        }
 
         // Process blurring
         int[] newRed = new int[source.Length];
@@ -55,13 +42,6 @@ public static class GaussianBlur
         gaussBlur_4(_red, newRed, RADIAL);
         gaussBlur_4(_green, newGreen, RADIAL);
         gaussBlur_4(_blue, newBlue, RADIAL);
-        /*
-        Parallel.Invoke(
-            () => gaussBlur_4(_alpha, newAlpha, RADIAL),
-            () => gaussBlur_4(_red, newRed, RADIAL),
-            () => gaussBlur_4(_green, newGreen, RADIAL),
-            () => gaussBlur_4(_blue, newBlue, RADIAL)
-        );*/
 
         Color32[] colors = new Color32[source.Length];
 
@@ -75,17 +55,6 @@ public static class GaussianBlur
             );
         }
 
-
-        /*Parallel.For(0, colors.Length, _pOptions, i =>
-        {
-            colors[i] = new Color32(
-                (byte)Mathf.Clamp(newRed[i]-10, 0, 255),
-                (byte)Mathf.Clamp(newGreen[i]-10, 0, 255),
-                (byte)Mathf.Clamp(newBlue[i]-10, 0, 255),
-                (byte)Mathf.Clamp(newAlpha[i], 0, 255)
-            );
-        });*/
-
         Texture2D blurredTex = new Texture2D(width, height, TextureFormat.RGBA32, false);
         blurredTex.SetPixels32(colors);
         blurredTex.Apply();
@@ -96,9 +65,9 @@ public static class GaussianBlur
     static async void gaussBlur_4(int[] source, int[] dest, int r)
     {
         var bxs = boxesForGauss(r, 3);
-        await Task.Run(() => boxBlur_4(source, dest, width, height, (bxs[0] - 1) / 2));
-        await Task.Run(() => boxBlur_4(dest, source, width, height, (bxs[1] - 1) / 2));
-        await Task.Run(() => boxBlur_4(source, dest, width, height, (bxs[2] - 1) / 2));
+        /*await Task.Run(() => */boxBlur_4(source, dest, width, height, (bxs[0] - 1) / 2);
+        /*await Task.Run(() => */boxBlur_4(dest, source, width, height, (bxs[1] - 1) / 2);
+        /*await Task.Run(() => */boxBlur_4(source, dest, width, height, (bxs[2] - 1) / 2);
     }
 
     static int[] boxesForGauss(int sigma, int n)
