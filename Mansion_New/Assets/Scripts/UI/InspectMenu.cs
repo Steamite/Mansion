@@ -94,7 +94,7 @@ namespace UI.Inspect
             gameObject.SetActive(false);
             SceneManager.UnloadSceneAsync(1);
             asset.actionMaps[0].Enable();
-            GameObject.FindFirstObjectByType<PlayerCamera>().RayCastUpdate();
+            GameObject.FindFirstObjectByType<PlayerCamera>().EndIteract();
         }
         #endregion
 

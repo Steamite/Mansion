@@ -9,24 +9,24 @@ namespace Rooms
 {
     public class Room : MonoBehaviour
     {
-        //[SerializeField] RoomData data;
-        [SerializeField] List<SceneAsset> AdjacentRooms;
+        [SerializeField] public List<string> AdjacentRooms;
+
 
         public Room EnterRoom(Room lastRoom)
         {
             if (lastRoom)
             {
-                lastRoom.ExitRoom(lastRoom.AdjacentRooms.Where(unloadRoom => !AdjacentRooms.Contains(unloadRoom) && unloadRoom.name != gameObject.scene.name));
-                foreach (SceneAsset asset in AdjacentRooms.Where(loadRoom => !lastRoom.AdjacentRooms.Contains(loadRoom) && loadRoom.name != lastRoom.gameObject.scene.name).ToList())
+                lastRoom.ExitRoom(lastRoom.AdjacentRooms.Where(unloadRoom => !AdjacentRooms.Contains(unloadRoom) && unloadRoom != gameObject.scene.name));
+                foreach (string asset in AdjacentRooms.Where(loadRoom => !lastRoom.AdjacentRooms.Contains(loadRoom) && loadRoom != lastRoom.gameObject.scene.name).ToList())
                 {
-                    SceneManager.LoadSceneAsync(asset.name, LoadSceneMode.Additive);
+                    SceneManager.LoadSceneAsync(asset, LoadSceneMode.Additive);
                 }
             }
             else
             {
-                foreach (SceneAsset asset in AdjacentRooms)
+                foreach (string asset in AdjacentRooms)
                 {
-                    SceneManager.LoadSceneAsync(asset.name, LoadSceneMode.Additive);
+                    SceneManager.LoadSceneAsync(asset, LoadSceneMode.Additive);
                 }
             }
 
@@ -36,11 +36,11 @@ namespace Rooms
             //Disable all entrances and wall enable colliders
         }
 
-        public void ExitRoom(IEnumerable<SceneAsset> enumerable)
+        public void ExitRoom(IEnumerable<string> enumerable)
         {
-            foreach (SceneAsset room in enumerable)
+            foreach (string room in enumerable)
             {
-                SceneManager.UnloadSceneAsync(room.name);
+                SceneManager.UnloadSceneAsync(room);
             }
             ToggleEntrances(true);
         }

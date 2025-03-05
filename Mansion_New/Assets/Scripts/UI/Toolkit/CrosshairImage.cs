@@ -8,6 +8,7 @@ namespace UI
     public partial class CrosshairImage : VisualElement
     {
         static CrosshairImage instance;
+        static VisualTreeAsset document = null;
         public CrosshairImage()
         {
             Add(new());
@@ -30,8 +31,17 @@ namespace UI
 
         public static void Toggle()
         {
-            instance.ToggleInClassList("Disabled");
-            EndHold();
+            if(document == null)
+            {
+                EndHold();
+                document = GameObject.Find("UI").GetComponent<UIDocument>().visualTreeAsset;
+                GameObject.Find("UI").GetComponent<UIDocument>().visualTreeAsset = null;
+            }
+            else
+            {
+                GameObject.Find("UI").GetComponent<UIDocument>().visualTreeAsset = document;
+                document = null;
+            }
         }
     }
 }

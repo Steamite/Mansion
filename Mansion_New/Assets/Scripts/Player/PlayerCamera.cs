@@ -165,6 +165,16 @@ namespace Player
             await SceneManager.LoadSceneAsync("Interact", LoadSceneMode.Additive);
             GameObject.FindAnyObjectByType<ItemInteract>().Init(item.transform, asset);
         }
+
+        internal void EndIteract()
+        {
+            if(standing == false){
+                standing = true;
+                bottomCam.Priority = 0;
+                topCam.transform.rotation = bottomCam.transform.rotation;
+            }
+            RayCastUpdate();
+        }
     }
 
 }

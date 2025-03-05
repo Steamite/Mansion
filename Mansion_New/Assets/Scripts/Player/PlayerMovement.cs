@@ -20,7 +20,7 @@ namespace Player
 
         [Header("Configures")]
         [SerializeField][Range(0, 10)] float moveSpeed = 5f;
-        [SerializeField] SceneAsset startingScene;
+        [SerializeField] string startingScene;
         Vector3 gravity;
 
         InputAction moveAction;
@@ -32,7 +32,7 @@ namespace Player
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
 
 
-        async void Awake()
+        void Awake()
         {
             gravity = new();
             InputActionMap inputMap = asset.actionMaps[0];
@@ -41,16 +41,22 @@ namespace Player
             controller = GetComponent<CharacterController>();
             groundPos = transform.GetChild(1);
             playerCamera = transform.GetChild(0).GetComponent<PlayerCamera>();
-            if(SceneManager.sceneCount == 1)
-            {
-                await SceneManager.LoadSceneAsync(startingScene.name, LoadSceneMode.Additive);
-                ActiveRoom = FindFirstObjectByType<Room>().EnterRoom(null);
-                propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
-            }
+            
         }
 
-        void Start()
+        async void Start()
         {
+            if (SceneManager.sceneCount > 1)
+            {
+                for (int i = SceneManager.sceneCount - 1; i > 0; i--)
+                {
+                    await SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i).name);
+                }
+            }
+            await SceneManager.LoadSceneAsync(startingScene, LoadSceneMode.Additive);
+            ActiveRoom = FindFirstObjectByType<Room>().EnterRoom(null);
+            propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
+
             Position.x = -transform.position.x;
             Position.y = transform.position.z;
             propertyChanged?.Invoke(this, new(nameof(Position)));
