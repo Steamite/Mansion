@@ -20,7 +20,6 @@ namespace UI.Inspect
             transform.position = _item.position;
             _item.parent = transform;
             _item.localPosition = new(0, 0, 0);
-            _item.localRotation = Quaternion.identity;
             foreach (Transform trans in _item.GetComponentsInChildren<Transform>(true))
                 trans.gameObject.layer = 6;
 
@@ -46,8 +45,34 @@ namespace UI.Inspect
 
             // rotate camera to match current player rotation
             CinemachineOrbitalFollow orbit = cam.GetComponent<CinemachineOrbitalFollow>();
+
+            CapsuleCollider capsuleCollider;
+            if (capsuleCollider = _item.GetComponent<CapsuleCollider>())
+            {
+                if(_item.transform.rotation.x != 0)
+                {
+                    orbit.TargetOffset.z = _item.transform.eulerAngles.x < 0 ? capsuleCollider.center.y : -capsuleCollider.center.y;
+                    orbit.GetComponent<CinemachineRotationComposer>()
+                        .TargetOffset.z = orbit.TargetOffset.z;
+                    orbit.Orbits.Top.Height = capsuleCollider.radius*2;
+                    orbit.Orbits.Center.Height = capsuleCollider.radius;
+                    orbit.Orbits.Bottom.Height = -capsuleCollider.radius;
+                }
+                else
+                {
+                    orbit.GetComponent<CinemachineRotationComposer>()
+                        .TargetOffset.y = capsuleCollider.center.y;
+                    orbit.Orbits.Top.Height = capsuleCollider.center.y + capsuleCollider.height / 2;
+                    orbit.Orbits.Center.Height = capsuleCollider.center.y;
+                    orbit.Orbits.Bottom.Height = capsuleCollider.center.y - capsuleCollider.height / 2;
+                }
+            }
+
             orbit.HorizontalAxis.Value = Camera.main.transform.rotation.eulerAngles.y;
             orbit.RadialAxis.Range = _item.radiusRange;
+
+            
+
 
 
             cam.Priority = 3;

@@ -1,4 +1,4 @@
-using Items;
+﻿using Items;
 using Player;
 using System.Collections;
 using System.IO;
@@ -78,7 +78,7 @@ namespace UI.Inspect
                     trans.gameObject.layer = 7;
                 item.transform.SetParent(GameObject.Find("World").transform);
             }
-            Camera.main.transform.SetParent(GameObject.Find("EventSystem").transform);
+            Camera.main.transform.SetParent(GameObject.Find("UI").transform);
             Camera.main.transform.SetParent(null);
 
             doc.enabled = false;
@@ -94,7 +94,7 @@ namespace UI.Inspect
             gameObject.SetActive(false);
             SceneManager.UnloadSceneAsync(1);
             asset.actionMaps[0].Enable();
-            GameObject.FindFirstObjectByType<PlayerCamera>().RayCastUpdate();
+            GameObject.FindFirstObjectByType<PlayerCamera>().EndIteract();
         }
         #endregion
 
@@ -110,8 +110,8 @@ namespace UI.Inspect
                 doc.rootVisualElement.AddToClassList("Description");
                 doc.rootVisualElement.RemoveFromClassList("Inspect");
                 
-                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Close Description";
-                doc.rootVisualElement.Q<Label>(DESCRIPTION).text = item.Text;
+                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Zavřít popis";
+                item.GetText(doc.rootVisualElement.Q<Label>(DESCRIPTION));
 
                 isDescriptionOpened = true;
                 endAction.Disable();
@@ -127,7 +127,7 @@ namespace UI.Inspect
                 doc.rootVisualElement.AddToClassList("Inspect");
                 
                 doc.rootVisualElement.Q<Label>(DESCRIPTION).text = "";
-                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Description";
+                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Popis";
                 
                 isDescriptionOpened = false;
                 endAction.Enable();

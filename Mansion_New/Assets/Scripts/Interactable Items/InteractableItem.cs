@@ -1,8 +1,10 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UIElements;
 
 namespace Items
 {
@@ -13,21 +15,25 @@ namespace Items
         [SerializeField][MinMaxRangeSlider(0.5f, 5)] public Vector2 radiusRange;
         [SerializeField] public string TextPath = "";
 
-        string text;
-        [SerializeField] public string Text 
+        string content = null;
+        public void GetText(TextElement _text)
         {
-            get
+            if (TextPath == "")
+                _text.text = "";
+            else if (content == null || content == "ERROR")
             {
-                if (TextPath == "")
-                    return "";
-                if (text == null)
-                    text = WebUtil.DowloadText(TextPath).Result;
-                return text;
+                _text.text = "Downloading text...";
+                WebUtil.GetTextFromServer(
+                    TextPath,
+                    (s) =>
+                    {
+                        content = s;
+                        _text.text = s;
+                    });
+
             }
+            else
+                _text.text = content;
         }
-
-
-
     }
-
 }
