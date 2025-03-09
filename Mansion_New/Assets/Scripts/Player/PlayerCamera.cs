@@ -58,6 +58,8 @@ namespace Player
             interactAction = inputMap.FindAction("Interact");
             lookAction = inputMap.FindAction("Look");
             crouchAction = inputMap.FindAction("Crouch");
+            
+            
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
 
@@ -81,6 +83,7 @@ namespace Player
 
         private void Update()
         {
+            #region Interaction
             if (interactAction.WasPressedThisFrame())
                 CrosshairImage.StartHold();
             else if (interactAction.WasReleasedThisFrame())
@@ -88,9 +91,13 @@ namespace Player
 
             if (interactAction.triggered)
                 Interact();
+            #endregion
 
 
-            Vector2 input = lookAction.ReadValue<Vector2>()*lookSpeed;
+            bool checkRayCast = false;
+            
+            #region Camera
+            Vector2 input = lookAction.ReadValue<Vector2>() * lookSpeed;
             if (input.y != 0)
             {
                 xRotation -= input.y;
@@ -99,7 +106,7 @@ namespace Player
                     topCam.transform.localRotation = Quaternion.Euler(new(xRotation, 0, 0));
                 else
                     bottomCam.transform.localRotation = Quaternion.Euler(new(xRotation, 0, 0));
-                RayCastUpdate();
+                checkRayCast = true;
             }
             if (input.x != 0)
             {
@@ -107,21 +114,29 @@ namespace Player
                 yRotation = transform.parent.rotation.eulerAngles.y;
                 //Debug.Log(yRotation);
                 propertyChanged?.Invoke(this, new(nameof(yRotation)));
-                RayCastUpdate();
+                checkRayCast = true;
             }
+            #endregion
 
+            #region Crouch
             if (crouchAction.WasPressedThisFrame())
             {
                 standing = false;
                 bottomCam.Priority = 2;
                 bottomCam.transform.rotation = topCam.transform.rotation;
-                RayCastUpdate();
+                checkRayCast = true;
             }
             else if (crouchAction.WasReleasedThisFrame())
             {
                 standing = true;
                 bottomCam.Priority = 0;
                 topCam.transform.rotation = bottomCam.transform.rotation;
+                checkRayCast = true;
+            }
+            #endregion
+
+            if (checkRayCast)
+            {
                 RayCastUpdate();
             }
         }
@@ -166,7 +181,7 @@ namespace Player
             GameObject.FindAnyObjectByType<ItemInteract>().Init(item.transform, asset);
         }
 
-        internal void EndIteract()
+        public void EndIteract()
         {
             if(standing == false){
                 standing = true;

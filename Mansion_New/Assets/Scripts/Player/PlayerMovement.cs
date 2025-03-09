@@ -1,5 +1,6 @@
 using Rooms;
 using System;
+using Unity.Cinemachine;
 using Unity.Properties;
 using UnityEditor;
 using UnityEngine;
@@ -20,14 +21,16 @@ namespace Player
 
         [Header("Configures")]
         [SerializeField][Range(0, 10)] float moveSpeed = 5f;
+        [SerializeField][MinMaxRangeSlider(0, 10)] Vector2 mapZoomLimit;
         [SerializeField] string startingScene;
         Vector3 gravity;
 
         InputAction moveAction;
+        InputAction mapZoomAction;
 
         [CreateProperty] public Vector2 Position = new();
         [CreateProperty] public Room ActiveRoom;
-
+        [CreateProperty] public float mapZoom = 1;
 
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
 
@@ -37,11 +40,12 @@ namespace Player
             gravity = new();
             InputActionMap inputMap = asset.actionMaps[0];
             moveAction = inputMap.FindAction("Move");
+            mapZoomAction = asset.actionMaps[1].FindAction("MapZoom");
 
             controller = GetComponent<CharacterController>();
             groundPos = transform.GetChild(1);
             playerCamera = transform.GetChild(0).GetComponent<PlayerCamera>();
-            
+
         }
 
         async void Start()
@@ -77,6 +81,22 @@ namespace Player
                 Position.y = transform.position.z;
                 propertyChanged?.Invoke(this, new(nameof(Position)));
             }
+
+            #region Map resize
+            if (mapZoomAction.ReadValue<float>() != 0)
+            {
+                mapZoom -= mapZoomAction.ReadValue<float>() * Time.deltaTime;
+                float zoom = Mathf.Clamp(mapZoom, mapZoomLimit.x, mapZoomLimit.y);
+                if (zoom == mapZoom)
+                {
+                    mapZoom = zoom;
+                    propertyChanged?.Invoke(this, new(nameof(mapZoom)));
+                    propertyChanged?.Invoke(this, new(nameof(Position)));
+                }
+                else
+                    mapZoom = zoom;
+            }
+            #endregion
         }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)

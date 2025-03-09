@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UIElements;
 
 namespace UI
@@ -20,39 +21,53 @@ namespace UI
             set 
             { 
                 _map = value;
-                if(childCount > 0)
+                if(childCount > 0 && _map != null)
                 {
                     VisualElement element = this.Q<VisualElement>("MapImage");
                     
                     element.style.backgroundImage = new(_map);
                     element.style.minWidth = _map.rect.width;
                     element.style.minHeight = _map.rect.height;
-                    // DO NOT TOUCH OR MAP WILL BREAK!!! A magic value for scale
-                    scale = 8.6847826086956521739130434782609f;
+                    ratio = 10f;
                 }
             } 
         }
 
-        float scale = 0;
+        float ratio;
+        float scale;
         Label locationLabel;
-
 
         public Minimap()
         {
+            PlayerCamera cam = GameObject.FindFirstObjectByType<PlayerCamera>();
+            PlayerMovement movement = GameObject.FindFirstObjectByType<PlayerMovement>();
             VisualElement map = new();
             map.name = "Minimap";
             Add(map);
 
+            #region Image
             VisualElement element = new();
             element.name = "MapImage";
-            PlayerMovement movement;
-            if (movement = GameObject.FindFirstObjectByType<PlayerMovement>())
+            if (movement)
             {
+                #region Map Zoom
+                DataBinding binding = BindingUtil.CreateBinding(nameof(PlayerMovement.mapZoom));
+                binding.sourceToUiConverters.AddConverter((ref float f) => 
+                {
+                    StyleScale _scale = new StyleScale(new Vector2(f, f));
+                    //Debug.Log(_scale.keyword + " " + _scale.value);
+                    scale = f * ratio;
+                    return _scale; 
+                });
+                element.SetBinding("style.scale", binding);
+                #endregion
+
                 #region Map Position
-                DataBinding binding = BindingUtil.CreateBinding(nameof(PlayerMovement.Position));
+                binding = BindingUtil.CreateBinding(nameof(PlayerMovement.Position));
                 binding.sourceToUiConverters.AddConverter((ref Vector2 pos) =>
                 {
                     pos *= scale;
+                    //Debug.Log(pos);
                     return new StyleTranslate(new Translate(pos.x, pos.y));
                 });
 
@@ -60,7 +75,7 @@ namespace UI
                 element.dataSource = movement;
                 #endregion
 
-                #region Room Labeel
+                #region Room Label
                 locationLabel = new();
                 binding = BindingUtil.CreateBinding(nameof(PlayerMovement.ActiveRoom));
                 binding.sourceToUiConverters.AddConverter((ref Room r) => r?.name);
@@ -68,17 +83,21 @@ namespace UI
                 locationLabel.SetBinding("text", binding);
                 locationLabel.dataSource = movement;
                 Add(locationLabel);
+
+                Label keyBindLabel = new(
+                    "[ ] - zoom");
+                Add(keyBindLabel);
                 #endregion
             }
             map.Add(element);
+            #endregion
 
             #region Visor
             element = new();
             element.name = "VisorContainer";
             element.Add(new());
             element.ElementAt(0).name = "Visor";
-            PlayerCamera cam;
-            if ((cam = GameObject.FindFirstObjectByType<PlayerCamera>()) != null)
+            if (cam)
             {
                 DataBinding binding = BindingUtil.CreateBinding(nameof(PlayerCamera.yRotation));
                 binding.sourceToUiConverters.AddConverter((ref float f) => new StyleRotate(new Rotate(f)));
@@ -87,6 +106,7 @@ namespace UI
             }
             map.Add(element);
             #endregion
+
 
             element = new();
             element.name = "Center";
