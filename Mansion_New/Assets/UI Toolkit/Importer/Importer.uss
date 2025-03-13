@@ -1,0 +1,16 @@
+#unity-tab-view__content-container {
+    flex-grow: 1;
+}
+
+#unity-tab__header {
+    font-size: 20px;
+}
+
+#unity-tab__content-container {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+#unity-text-input > .unity-text-element--inner-input-field-component {
+    -unity-text-align: upper-left;
+}

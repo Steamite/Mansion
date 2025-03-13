@@ -1,18 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\Risak- Nemazat\\Mansion\\Mansion_New\\",
+  "WorkspaceRootPath": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|f:\\risak- nemazat\\mansion\\mansion_new\\assets\\scripts\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|c:\\users\\spravce\\rk\\mansion\\mansion_new\\assets\\scripts\\interactable items\\interactableitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interactable items\\interactableitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|f:\\risak- nemazat\\mansion\\mansion_new\\assets\\scripts\\player\\playercamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playercamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|c:\\users\\spravce\\rk\\mansion\\mansion_new\\assets\\scripts\\ui\\inspectmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\inspectmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|F:\\Risak- Nemazat\\Mansion\\Mansion_New\\assets\\scripts\\ui\\toolkit\\minimap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\toolkit\\minimap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|c:\\users\\spravce\\rk\\mansion\\mansion_new\\assets\\ui toolkit\\importer\\importer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\ui toolkit\\importer\\importer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,40 +27,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PlayerMovement.cs",
-              "DocumentMoniker": "F:\\Risak- Nemazat\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerMovement.cs",
-              "ToolTip": "F:\\Risak- Nemazat\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerMovement.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerMovement.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAAAowFEAAAAAAAAAAAAAAA==",
+              "Title": "InteractableItem.cs",
+              "DocumentMoniker": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\Scripts\\Interactable Items\\InteractableItem.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Interactable Items\\InteractableItem.cs",
+              "ToolTip": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\Scripts\\Interactable Items\\InteractableItem.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Interactable Items\\InteractableItem.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABkAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T13:07:08.537Z",
+              "WhenOpened": "2025-03-13T16:12:30.989Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PlayerCamera.cs",
-              "DocumentMoniker": "F:\\Risak- Nemazat\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerCamera.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerCamera.cs",
-              "ToolTip": "F:\\Risak- Nemazat\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerCamera.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerCamera.cs",
-              "ViewState": "AgIAADoAAAAAAAAAAAAjwGEAAAAMAAAAAAAAAA==",
+              "Title": "InspectMenu.cs",
+              "DocumentMoniker": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\InspectMenu.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\InspectMenu.cs",
+              "ToolTip": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\InspectMenu.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\InspectMenu.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAQwGIAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T12:24:56.943Z",
+              "WhenOpened": "2025-03-13T16:12:21.479Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Minimap.cs",
-              "DocumentMoniker": "F:\\Risak- Nemazat\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\Toolkit\\Minimap.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\Toolkit\\Minimap.cs",
-              "ToolTip": "F:\\Risak- Nemazat\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\Toolkit\\Minimap.cs",
-              "RelativeToolTip": "Assets\\Scripts\\UI\\Toolkit\\Minimap.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAQwFwAAAAWAAAAAAAAAA==",
+              "Title": "Importer.cs",
+              "DocumentMoniker": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\UI Toolkit\\Importer\\Importer.cs",
+              "RelativeDocumentMoniker": "Assets\\UI Toolkit\\Importer\\Importer.cs",
+              "ToolTip": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\UI Toolkit\\Importer\\Importer.cs",
+              "RelativeToolTip": "Assets\\UI Toolkit\\Importer\\Importer.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAmwCYAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-09T12:20:04.425Z",
+              "WhenOpened": "2025-03-12T17:08:37.292Z",
               "EditorCaption": ""
             }
           ]

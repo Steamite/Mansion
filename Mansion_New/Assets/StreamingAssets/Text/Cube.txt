@@ -27,4 +27,4 @@ Used Assets and files from the Resources folder, sorted by uncompressed size:
  1.3 mb	 1.7% Assets/Scenes/Level/Lightmap-0_comp_light.exr
  1.3 mb	 1.7% Assets/Scenes/Level/Lightmap-2_comp_dir.png
  1.3 mb	 1.7% Assets/Scenes/Level/Lightmap-1_comp_dir.png
- 1.3 mb	 1.7% Assets/Scenes/Level/Lightmap-0_comp_dir.png
+ 1.3 mb	 1.7% <color="blue"><b><a href="https://www.google.com">Assets/Scenes/Level/Lightmap-0_comp_dir.png</a></b></color>

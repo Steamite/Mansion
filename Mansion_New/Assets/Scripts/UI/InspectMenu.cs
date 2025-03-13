@@ -119,6 +119,7 @@ namespace UI.Inspect
             }
             else
             {
+                WebUtil.CancelDownloads();
                 UnityEngine.Cursor.visible = false;
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 cam.GetComponent<CinemachineInputAxisController>().enabled = true;

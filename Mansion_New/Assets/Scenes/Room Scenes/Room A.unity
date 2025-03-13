@@ -2815,7 +2815,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Very interesting cube
   radiusRange: {x: 1, y: 2.2}
-  TextPath: ItemDescriptions/Cube.txt
+  TextPath: Text/Cube.txt
 --- !u!43 &794059846
 Mesh:
   m_ObjectHideFlags: 0
@@ -3195,7 +3195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Very interesting cube
   radiusRange: {x: 1, y: 2.2}
-  TextPath: ItemDescriptions/Cube.txt
+  TextPath: Text/Cube.txt
 --- !u!65 &871209460
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8029,7 +8029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Very interesting cube
   radiusRange: {x: 1, y: 2.2}
-  TextPath: ItemDescriptions/Cube.txt
+  TextPath: Text/Cube.txt
 --- !u!65 &2026528712
 BoxCollider:
   m_ObjectHideFlags: 0
