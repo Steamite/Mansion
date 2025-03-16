@@ -1,20 +1,17 @@
 ﻿using Player;
 using Rooms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UIElements;
 
 namespace UI
 {
+    /// <summary>Visual representation of the players location.</summary>
     [UxmlElement("Minimap")]
     public partial class Minimap : VisualElement
     {
+        /// <summary>Map image.</summary>
         Sprite _map;
+        /// <inheritdoc cref="_map"/>
         [UxmlAttribute] Sprite mapImage 
         { 
             get => _map; 
@@ -33,11 +30,21 @@ namespace UI
             } 
         }
 
+        /// <summary>World to image ration.</summary>
         float ratio;
-        float scale;
-        Label locationLabel;
+        /// <summary>Map zoom.</summary>
+        float zoom;
+        /// <summary>Label with the location name.</summary>
+		Label locationLabel;
 
-        public Minimap()
+        /// <summary>
+        /// Inits all bindings.
+        /// <br/> rotation to <see cref="PlayerCamera.xRotation"/>
+        /// <br/> locationLabel to <see cref="PlayerMovement.ActiveRoom"/>
+        /// <br/> position to <see cref="PlayerMovement.Position"/>
+        /// <br/> zoom to <see cref="PlayerMovement.mapZoom"/>
+        /// </summary>
+		public Minimap()
         {
             PlayerCamera cam = GameObject.FindFirstObjectByType<PlayerCamera>();
             PlayerMovement movement = GameObject.FindFirstObjectByType<PlayerMovement>();
@@ -56,7 +63,7 @@ namespace UI
                 {
                     StyleScale _scale = new StyleScale(new Vector2(f, f));
                     //Debug.Log(_scale.keyword + " " + _scale.value);
-                    scale = f * ratio;
+                    zoom = f * ratio;
                     return _scale; 
                 });
                 element.SetBinding("style.scale", binding);
@@ -66,7 +73,7 @@ namespace UI
                 binding = BindingUtil.CreateBinding(nameof(PlayerMovement.Position));
                 binding.sourceToUiConverters.AddConverter((ref Vector2 pos) =>
                 {
-                    pos *= scale;
+                    pos *= zoom;
                     //Debug.Log(pos);
                     return new StyleTranslate(new Translate(pos.x, pos.y));
                 });

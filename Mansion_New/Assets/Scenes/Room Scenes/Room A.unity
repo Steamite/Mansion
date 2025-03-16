@@ -2810,12 +2810,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 723985725}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4d7b2118f9f7d42b2316edc7978a34, type: 3}
+  m_Script: {fileID: 11500000, guid: 3dcb9824e74d7344085c59ad1f53ea64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Very interesting cube
-  radiusRange: {x: 1, y: 2.2}
-  TextPath: Text/Cube.txt
+  ItemName: Very Interesting cube
+  radiusRange: {x: 1, y: 1.7164179}
+  SourcePath: pdf.pdf
 --- !u!43 &794059846
 Mesh:
   m_ObjectHideFlags: 0
@@ -3190,12 +3190,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 871209457}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4d7b2118f9f7d42b2316edc7978a34, type: 3}
+  m_Script: {fileID: 11500000, guid: fa5ccc1ab7c167a459e0f866b26f0467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Very interesting cube
-  radiusRange: {x: 1, y: 2.2}
-  TextPath: Text/Cube.txt
+  ItemName: Very Interesting cube
+  radiusRange: {x: 1, y: 1}
+  SourcePath: Text/Cube.txt
 --- !u!65 &871209460
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8024,12 +8024,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2026528709}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee4d7b2118f9f7d42b2316edc7978a34, type: 3}
+  m_Script: {fileID: 11500000, guid: fa5ccc1ab7c167a459e0f866b26f0467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemName: Very interesting cube
-  radiusRange: {x: 1, y: 2.2}
-  TextPath: Text/Cube.txt
+  ItemName: Very Interesting cube
+  radiusRange: {x: 1, y: 1}
+  SourcePath: Text/Cube.txt
 --- !u!65 &2026528712
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -14,3 +14,9 @@
 #unity-text-input > .unity-text-element--inner-input-field-component {
     -unity-text-align: upper-left;
 }
+
+#Preview > #IMG {
+    align-self: center;
+    align-items: center;
+    align-content: center;
+}

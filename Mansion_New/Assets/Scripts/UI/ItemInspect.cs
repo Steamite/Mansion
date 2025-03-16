@@ -8,14 +8,23 @@ using UnityEngine.UI;
 
 namespace UI.Inspect
 {
-    public class ItemInteract : MonoBehaviour
+    /// <summary>Handles camera events for inspecting the item.</summary>
+    public class ItemInspect : MonoBehaviour
     {
+        /// <summary>Orbital camera.</summary>
         [SerializeField] CinemachineCamera cam;
+        /// <summary>Image component that needs the image.</summary>
         [SerializeField] Image backgroundImage;
+        /// <summary>Canvas with the background Image.</summary>
         [SerializeField] Canvas canvas;
 
-        #region Init
-        public void Init(Transform _item, InputActionAsset _asset)
+		#region Init
+        /// <summary>
+        /// Disables movement actions and hides objects that are not needed for the inspection.
+        /// </summary>
+        /// <param name="_item">Item for inspection</param>
+        /// <param name="_asset">Asset containging actions.</param>
+		public void Init(Transform _item, InputActionAsset _asset)
         {
             transform.position = _item.position;
             _item.parent = transform;
@@ -26,10 +35,16 @@ namespace UI.Inspect
             Camera.main.cullingMask = 183;
 
             _asset.actionMaps[2].Disable();
-            StartCoroutine(WaitOnPostRender(_asset, _item.GetComponent<InteractableItem>()));
+            StartCoroutine(WaitOnPostRender(_item.GetComponent<InteractableItem>(), _asset));
         }
 
-        IEnumerator WaitOnPostRender(InputActionAsset _asset, InteractableItem _item)
+		/// <summary>
+		/// Creates the screenshot and sets up the orbital camera.
+		/// </summary>
+		/// <param name="_item">Item for inspection</param>
+		/// <param name="_asset">Asset containging actions.</param>
+		/// <returns></returns>
+		IEnumerator WaitOnPostRender(InteractableItem _item, InputActionAsset _asset)
         {
             // Create the picture
             yield return new WaitForEndOfFrame();
@@ -70,10 +85,6 @@ namespace UI.Inspect
 
             orbit.HorizontalAxis.Value = Camera.main.transform.rotation.eulerAngles.y;
             orbit.RadialAxis.Range = _item.radiusRange;
-
-            
-
-
 
             cam.Priority = 3;
 

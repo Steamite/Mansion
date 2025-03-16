@@ -8,32 +8,23 @@ using UnityEngine.UIElements;
 
 namespace Items
 {
+    /// <summary>
+    /// Base class for all interactable items, has data for inspection.
+    /// </summary>
     [RequireComponent(typeof(Collider))]
-    public class InteractableItem : MonoBehaviour
-    {
-        [SerializeField] public string ItemName;
+    public abstract class InteractableItem : MonoBehaviour
+	{
+		/// <summary>Display name of the item.</summary>
+		[SerializeField] public string ItemName;
+		/// <summary>Inner and Outer limits of zoom.</summary>
         [SerializeField][MinMaxRangeSlider(0.5f, 5)] public Vector2 radiusRange;
-        [SerializeField] public string TextPath = "";
+		/// <summary>Path for downloading the content.</summary>
+        [SerializeField] public string SourcePath = "";
 
-        string content = null;
-        public void GetText(TextElement _text)
-        {
-            if (TextPath == "")
-                _text.text = "";
-            else if (content == null || content == "ERROR")
-            {
-                _text.text = "Downloading text...";
-                WebUtil.GetTextFromServer(
-                    TextPath,
-                    (s) =>
-                    {
-                        content = s;
-                        _text.text = s;
-                    });
-
-            }
-            else
-                _text.text = content;
-        }
+        /// <summary>
+        /// Each type of Item must has it's own implementation for dowloading and viewing content.
+        /// </summary>
+        /// <param name="element">View element.</param>
+        public abstract void LoadContent(VisualElement element);
     }
 }

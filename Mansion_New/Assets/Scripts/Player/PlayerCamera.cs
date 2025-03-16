@@ -11,36 +11,60 @@ using UnityEngine.UIElements;
 
 namespace Player
 {
+    /// <summary>
+    /// Handles camera rotation, triggers interaction raycasts and crouch transitions.
+    /// </summary>
     public class PlayerCamera : MonoBehaviour, INotifyBindablePropertyChanged
     {
-        [Header("Assign")]
-        [SerializeField] InputActionAsset asset;
+		#region Variables
+		/// <summary>Reference to the input asset.</summary>
+		[Header("Assign")][SerializeField] InputActionAsset asset;
         
 
+        /// <summary>Intraction raycast range.</summary>
         [SerializeField][Range(0.5f, 1.5f)] float range = 1;
+        /// <summary>Speed of camera rotation.</summary>
         [SerializeField][Range(0, 10)] float lookSpeed;
+        /// <summary>Max camara angle.</summary>
         [SerializeField][Range(300, 360)] float lookLockMax;
+        /// <summary>Min camara angle.</summary>
         [SerializeField][Range(0, 60)] float lookLockMin;
 
-        [SerializeField][ReadOnly()] GameObject item;
+		/// <summary>Item that the player is currently looking at.</summary>
+		[SerializeField] GameObject item;
+		/// <summary>Ensures correct croshair transitions(Backup for when the <see cref="item"/> is destoyed).</summary>
         bool hasItem;
 
-        Texture2D destinationTexture;
-
-        CinemachineCamera topCam;
+		/// <summary>Standing camera.</summary>
+		CinemachineCamera topCam;
+		/// <summary>Crouch camera.</summary>
         CinemachineCamera bottomCam;
 
-        InputAction interactAction;
+		/// <summary>Action for interacting with <see cref="item"/>.</summary>
+		InputAction interactAction;
+		/// <summary>Vector composite for capturing mouse movement.</summary>
         InputAction lookAction;
-        [HideInInspector] public InputAction crouchAction;
+		/// <summary>Input for toggling crouch and standing state.</summary>
+		[HideInInspector] public InputAction crouchAction;
 
-        float xRotation;
-        int lastFrame;
-        bool standing = true;
+		/// <summary>Current rotation on the xAxis(up/down)</summary>
+		float xRotation;
+		/// <summary>
+        /// Number of the last frame that caused a raycast. 
+        /// <br/>(prevents multiple raycasts in one frame)
+        /// </summary>
+		int lastFrame;
+        /// <summary>If the caracter is standing or not.</summary>
+		bool standing = true;
 
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
-        [CreateProperty] public float yRotation;
-        Ray cameraRay
+
+        /// <summary>Property for minimap rotation binding.</summary>
+		[CreateProperty] public float yRotation;
+		#endregion
+
+		/// <summary>Ray constructor.</summary>
+		Ray cameraRay
         {
             get
             {
@@ -51,7 +75,8 @@ namespace Player
             }
         }
 
-        void Awake()
+		#region Init
+		void Awake()
         {
             xRotation = 0;
             InputActionMap inputMap = asset.actionMaps[0];
@@ -71,8 +96,8 @@ namespace Player
             yRotation = transform.parent.rotation.eulerAngles.y;
             propertyChanged?.Invoke(this, new(nameof(yRotation)));
         }
-
-        private void OnDrawGizmos()
+		#endregion
+		private void OnDrawGizmos()
         {
             if (topCam == null)
                 Awake();
@@ -142,6 +167,9 @@ namespace Player
         }
 
 
+        /// <summary>
+        /// If there wasn't a raycast this frame then does a raycast and updates the croshair.
+        /// </summary>
         public void RayCastUpdate()
         {
             if (lastFrame == Time.frameCount)
@@ -173,14 +201,20 @@ namespace Player
             }
         }
 
+        /// <summary>
+        /// Starts interaction process by loading the interact scene.
+        /// </summary>
         async void Interact()
         {
             CrosshairImage.Toggle();
             asset.actionMaps[0].Disable();
             await SceneManager.LoadSceneAsync("Interact", LoadSceneMode.Additive);
-            GameObject.FindAnyObjectByType<ItemInteract>().Init(item.transform, asset);
+            GameObject.FindAnyObjectByType<ItemInspect>().Init(item.transform, asset);
         }
 
+        /// <summary>
+        /// Called after ending the interaction, reset the camera if crouched and Raycast.
+        /// </summary>
         public void EndIteract()
         {
             if(standing == false){
@@ -188,6 +222,8 @@ namespace Player
                 bottomCam.Priority = 0;
                 topCam.transform.rotation = bottomCam.transform.rotation;
             }
+            if(item)
+                hasItem = false;
             RayCastUpdate();
         }
     }

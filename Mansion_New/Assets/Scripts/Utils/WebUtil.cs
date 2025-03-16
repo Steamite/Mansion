@@ -42,4 +42,9 @@ public class WebUtil : MonoBehaviour
 			}
 		}
     }
+
+	internal static void GetImagesFromServer(string sourcePath, Action<object> value)
+	{
+		throw new NotImplementedException();
+	}
 }

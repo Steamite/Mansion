@@ -7,11 +7,18 @@ using UnityEngine.SceneManagement;
 
 namespace Rooms
 {
+    /// <summary>
+    /// Handles transitions between rooms.
+    /// </summary>
     public class Room : MonoBehaviour
     {
         [SerializeField] public List<string> AdjacentRooms;
 
-
+        /// <summary>
+        /// Loads new rooms and unloads the old ones that are not needed.
+        /// </summary>
+        /// <param name="lastRoom">Previus active room.</param>
+        /// <returns>itself</returns>
         public Room EnterRoom(Room lastRoom)
         {
             if (lastRoom)
@@ -36,6 +43,10 @@ namespace Rooms
             //Disable all entrances and wall enable colliders
         }
 
+        /// <summary>
+        /// Unloads unnedded scenes and enables it's own entrances.
+        /// </summary>
+        /// <param name="enumerable">Scenes to unload</param>
         public void ExitRoom(IEnumerable<string> enumerable)
         {
             foreach (string room in enumerable)
@@ -45,6 +56,10 @@ namespace Rooms
             ToggleEntrances(true);
         }
 
+        /// <summary>
+        /// Toggles states of entrances.
+        /// </summary>
+        /// <param name="state">New state to toggle to.</param>
         void ToggleEntrances(bool state)
         {
             foreach (BoxCollider collider in transform.GetChild(1).GetComponentsInChildren<BoxCollider>())

@@ -13,26 +13,43 @@ using UnityEngine.UIElements;
 
 namespace UI.Inspect
 {
+    /// <summary>Handles input for the input menu.</summary>
     public class InspectMenu : MonoBehaviour
     {
-        const string DESCRIPTION = "Description-Label";
+        /// <summary>Path to the description text element.</summary>
+        public const string DESCRIPTION = "Description-Label";
+        /// <summary>Path to description "Button".</summary>
         const string DESCRIPTIONOPTION = "Description-Option";
+        /// <summary>Title label element.</summary>
         const string TITLE = "Title-Label";
 
-        [SerializeField] CinemachineCamera cam;
+        /// <summary>Inpect camera.</summary>
+		[SerializeField] CinemachineCamera cam;
+        /// <summary>Input holder.</summary>
         InputActionAsset asset;
 
+        /// <summary>Ends interaction.</summary>
         InputAction endAction;
-        InputAction infoAction;
-        InputAction takeAction;
+        /// <summary>Toggles interaction.</summary>
+		InputAction infoAction;
+        /// <summary>Destoys the inpected item.</summary>
+		InputAction takeAction;
 
-        InteractableItem item;
+        /// <summary>Item in inspection.</summary>
+		InteractableItem item;
 
-        UIDocument doc;
-        bool isDescriptionOpened;
+        /// <summary>Root of the document.</summary>
+		UIDocument doc;
+        /// <summary>Is the description page opened or not.</summary>
+		bool isDescriptionOpened;
 
-        #region INIT
-        public void Init(InputActionAsset _asset, InteractableItem _item)
+		#region Init
+        /// <summary>
+        /// Maps actions, and hides the description option if no file is assigned to the inspected item.
+        /// </summary>
+        /// <param name="_asset">Input asset with inpection map.</param>
+        /// <param name="_item">Inspected item.</param>
+		public void Init(InputActionAsset _asset, InteractableItem _item)
         {
             asset = _asset;
             item = _item;
@@ -46,7 +63,7 @@ namespace UI.Inspect
             doc.enabled = true;
             doc.rootVisualElement.Q<Label>(TITLE).text = _item.ItemName;
 
-            if(item.TextPath == "")
+            if(item.SourcePath == "")
             {
                 infoAction.Disable();
                 doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).style.display = DisplayStyle.None;
@@ -63,14 +80,18 @@ namespace UI.Inspect
             if (endAction.triggered)
                 EndInteract();
             else if (infoAction.triggered)
-                InfoToggle();
+                DescriptionToggle();
             else if (!isDescriptionOpened && takeAction.triggered)
                 PickupItem();
         }
 
         #region End
+        /// <summary>
+        /// Ends the interaction.
+        /// </summary>
         void EndInteract()
         {
+
             asset.actionMaps[2].Disable();
             if (item)
             {
@@ -85,7 +106,10 @@ namespace UI.Inspect
             cam.Priority = -1;
             StartCoroutine(WaitForBlend());
         }
-
+        /// <summary>
+        /// Unloads interaction scene and resets player camera.
+        /// </summary>
+        /// <returns></returns>
         IEnumerator WaitForBlend()
         {
             CrosshairImage.Toggle();
@@ -99,7 +123,10 @@ namespace UI.Inspect
         #endregion
 
         #region Descriptions
-        void InfoToggle()
+        /// <summary>
+        /// Opens or closes the description
+        /// </summary>
+        void DescriptionToggle()
         {
             if (!isDescriptionOpened)
             {
@@ -111,7 +138,7 @@ namespace UI.Inspect
                 doc.rootVisualElement.RemoveFromClassList("Inspect");
                 
                 ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Zavřít popis";
-                item.GetText(doc.rootVisualElement.Q<Label>(DESCRIPTION));
+                item.LoadContent(doc.rootVisualElement.Q<Label>(DESCRIPTION));
 
                 isDescriptionOpened = true;
                 endAction.Disable();
@@ -137,11 +164,16 @@ namespace UI.Inspect
         }
 
         #endregion
+        /// <summary>
+        /// Destroys the item and ends interaction.
+        /// </summary>
         void PickupItem()
         {
-            Destroy(item.gameObject);
-            item = null;
-            EndInteract();
+            if(!isDescriptionOpened){
+                Destroy(item.gameObject);
+                item = null;
+                EndInteract();
+            }
         }
     }
 }
