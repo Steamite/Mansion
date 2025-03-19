@@ -1,9 +1,6 @@
 ﻿using Items;
 using Player;
 using System.Collections;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,8 +13,9 @@ namespace UI.Inspect
     /// <summary>Handles input for the input menu.</summary>
     public class InspectMenu : MonoBehaviour
     {
-        /// <summary>Path to the description text element.</summary>
-        public const string DESCRIPTION = "Description-Label";
+		#region Variables
+		/// <summary>Path to the description text element.</summary>
+		public const string DESCRIPTION = "Description";
         /// <summary>Path to description "Button".</summary>
         const string DESCRIPTIONOPTION = "Description-Option";
         /// <summary>Title label element.</summary>
@@ -42,13 +40,14 @@ namespace UI.Inspect
 		UIDocument doc;
         /// <summary>Is the description page opened or not.</summary>
 		bool isDescriptionOpened;
+		#endregion
 
 		#region Init
-        /// <summary>
-        /// Maps actions, and hides the description option if no file is assigned to the inspected item.
-        /// </summary>
-        /// <param name="_asset">Input asset with inpection map.</param>
-        /// <param name="_item">Inspected item.</param>
+		/// <summary>
+		/// Maps actions, and hides the description option if no file is assigned to the inspected item.
+		/// </summary>
+		/// <param name="_asset">Input asset with inpection map.</param>
+		/// <param name="_item">Inspected item.</param>
 		public void Init(InputActionAsset _asset, InteractableItem _item)
         {
             asset = _asset;
@@ -138,7 +137,12 @@ namespace UI.Inspect
                 doc.rootVisualElement.RemoveFromClassList("Inspect");
                 
                 ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Zavřít popis";
-                item.LoadContent(doc.rootVisualElement.Q<Label>(DESCRIPTION));
+                
+                item.LoadContent(doc.rootVisualElement.Q<ScrollView>(DESCRIPTION)
+                    .Q<VisualElement>("unity-content-container"));
+
+
+
 
                 isDescriptionOpened = true;
                 endAction.Disable();
@@ -153,8 +157,10 @@ namespace UI.Inspect
 
                 doc.rootVisualElement.RemoveFromClassList("Description");
                 doc.rootVisualElement.AddToClassList("Inspect");
-                
-                doc.rootVisualElement.Q<Label>(DESCRIPTION).text = "";
+
+				item.Unload(doc.rootVisualElement.Q<ScrollView>(DESCRIPTION)
+					.Q<VisualElement>("unity-content-container"));
+
                 ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Popis";
                 
                 isDescriptionOpened = false;

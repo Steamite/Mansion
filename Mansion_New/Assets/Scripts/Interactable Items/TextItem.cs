@@ -8,6 +8,7 @@ namespace Items
 	/// </summary>
     class TextItem : InteractableItem
     {
+		const string TEXT_FOLDER = "TEXT/";
 		/// <summary>Cached string.</summary>
 		string content = null;
 
@@ -16,12 +17,12 @@ namespace Items
 			if (SourcePath == "")
 				return;
 
-			Label _text = (Label)displayElem;
+			Label _text = displayElem.Q<Label>("Label");
 			if (content == null || content == "ERROR")
 			{
 				_text.text = "Downloading text...";
 				WebUtil.GetTextFromServer(
-					SourcePath,
+					TEXT_FOLDER + SourcePath,
 					(s) =>
 					{
 						content = s;
@@ -30,6 +31,11 @@ namespace Items
 			}
 			else
 				_text.text = content;
+		}
+
+		public override void Unload(VisualElement visualElement)
+		{
+			visualElement.Q<Label>("Label").text = "";
 		}
 	}
 }

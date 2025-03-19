@@ -9,34 +9,42 @@ namespace Items
 	/// </summary>
     class PDFItem : InteractableItem
     {
-		/// <summary>
-		/// Downloaded textures.
-		/// </summary>
-        Texture2D[] sprites;
+		const string PDF_LOCATION = "PDF/";
 
+		/// <summary>Downloaded textures.</summary>
+        Texture2D[] sprites;
+		[SerializeField] int amountOfPages;
 		public override void LoadContent(VisualElement displayElem)
 		{
 			if (SourcePath == null)
 				return;
 
-			//ListView list = (ListView)displayElem;
+			VisualElement el = displayElem.Q<VisualElement>("Images");
+			Label label = displayElem.Q<Label>("Label");
+			label.text = "Downloading text...";
 
-			Application.OpenURL(Application.streamingAssetsPath +"\\"+ SourcePath);
-			/*if (sprites == null)
+			for (int i = 0; i < amountOfPages; i++)
 			{
-				_text.text = "Downloading text...";
-				WebUtil.GetImagesFromServer(
-					SourcePath,
-					(s) =>
+				WebUtil.GetImageFromServer(
+					PDF_LOCATION + SourcePath + $"/img{i}.png", 
+					(source_img) => 
 					{
-						sprites = s;
-						// CREATE
+						if (source_img == null)
+							return;
+						VisualElement element_img = new();
+						element_img.style.width = source_img.width;
+						element_img.style.height = source_img.height;
+						element_img.style.backgroundImage = source_img;
+						el.Add(element_img);
 					});
 			}
-			else
-			{
+		}
 
-			}*/
+		public override void Unload(VisualElement visualElement)
+		{
+			VisualElement el = visualElement.Q<VisualElement>("Images");
+			for (int i = el.childCount - 1; i > -1; i--)
+				el.RemoveAt(i);
 		}
 	}
 }

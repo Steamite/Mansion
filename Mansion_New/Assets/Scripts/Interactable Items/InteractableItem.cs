@@ -24,7 +24,9 @@ namespace Items
         /// <summary>
         /// Each type of Item must has it's own implementation for dowloading and viewing content.
         /// </summary>
-        /// <param name="element">View element.</param>
+        /// <param name="element">Content element.</param>
         public abstract void LoadContent(VisualElement element);
-    }
+
+        public abstract void Unload(VisualElement visualElement);
+	}
 }
