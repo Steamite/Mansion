@@ -11165,7 +11165,7 @@ GameObject:
   - component: {fileID: 7553149249308778890}
   - component: {fileID: 6880927024597298735}
   - component: {fileID: 8689979043217480421}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: "M\xEDstnost \u010D.2-jenom-strop2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -10,32 +10,46 @@ namespace UI.Inspect
 {
     /// <summary>Handles camera events for inspecting the item.</summary>
     public class ItemInspect : MonoBehaviour
-    {
-        /// <summary>Orbital camera.</summary>
-        [SerializeField] CinemachineCamera cam;
+	{
+		[Header("Canvas")]
+		/// <summary>Orbital camera.</summary>
+		[SerializeField] CinemachineCamera cam;
         /// <summary>Image component that needs the image.</summary>
         [SerializeField] Image backgroundImage;
         /// <summary>Canvas with the background Image.</summary>
         [SerializeField] Canvas canvas;
 
+        [Header("Blur")]
+		[SerializeField] Material horizontalMaterial;
+		[SerializeField] Material verticalMaterial;
+		[SerializeField] int Radial = 3;
+
+        RenderTexture screenShot;
+
+
 		#region Init
-        /// <summary>
-        /// Disables movement actions and hides objects that are not needed for the inspection.
-        /// </summary>
-        /// <param name="_item">Item for inspection</param>
-        /// <param name="_asset">Asset containging actions.</param>
+		/// <summary>
+		/// Disables movement actions and hides objects that are not needed for the inspection.
+		/// </summary>
+		/// <param name="_item">Item for inspection</param>
+		/// <param name="_asset">Asset containging actions.</param>
 		public void Init(Transform _item, InputActionAsset _asset)
-        {
-            transform.position = _item.position;
+		{
+			_asset.actionMaps[2].Disable();
+
+			transform.position = _item.position;
             _item.parent = transform;
             _item.localPosition = new(0, 0, 0);
             foreach (Transform trans in _item.GetComponentsInChildren<Transform>(true))
                 trans.gameObject.layer = 6;
 
-            Camera.main.cullingMask = 183;
+            Camera c = Camera.main.transform.GetChild(0).GetComponent<Camera>();
+            c.enabled = true;
+            screenShot = new RenderTexture(Screen.width, Screen.height, 24);
+            c.targetTexture = screenShot;
 
-            _asset.actionMaps[2].Disable();
-            StartCoroutine(WaitOnPostRender(_item.GetComponent<InteractableItem>(), _asset));
+
+			StartCoroutine(WaitOnPostRender(_item.GetComponent<InteractableItem>(), _asset));
         }
 
 		/// <summary>
@@ -48,14 +62,9 @@ namespace UI.Inspect
         {
             // Create the picture
             yield return new WaitForEndOfFrame();
-            canvas.transform.GetChild(0).GetComponent<Image>().sprite = GaussianBlur.Blur();
+            canvas.transform.GetChild(0).GetComponent<Image>().sprite = Blur();
             canvas.gameObject.SetActive(true);
-
-            // Setup camera
-            _item.gameObject.SetActive(true);
             Camera.main.cullingMask = 96;
-            Camera.main.transform.parent = transform;
-            Camera.main.transform.SetParent(null);
             canvas.worldCamera = Camera.main;
 
             // rotate camera to match current player rotation
@@ -95,6 +104,47 @@ namespace UI.Inspect
             yield return new WaitUntil(() => brain.ActiveBlend == null);
             canvas.GetComponent<InspectMenu>().Init(_asset, _item);
         }
-        #endregion
-    }
+		#endregion
+
+        /// <summary>
+        /// S
+        /// </summary>
+        /// <returns></returns>
+		public Sprite Blur()
+		{
+			int width = Screen.width;
+			int height = Screen.height;
+
+            RenderTexture.active = screenShot;
+			Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
+			tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+			tex.Apply(); // Apply texture changes before reading pixels
+            RenderTexture.active = null;
+			Camera c = Camera.main.transform.GetChild(0).GetComponent<Camera>();
+			//c.enabled = enabled;
+			//c.targetTexture = null;
+
+
+
+			RenderTexture renH = RenderTexture.GetTemporary(width, height);
+			RenderTexture renV = RenderTexture.GetTemporary(width, height);
+
+			horizontalMaterial.SetFloat("_BlurSize", Radial);
+			verticalMaterial.SetFloat("_BlurSize", Radial);
+
+			Graphics.Blit(tex, renH, horizontalMaterial);
+			Graphics.Blit(renH, renV, verticalMaterial);
+
+			RenderTexture.active = renV;
+			tex.ReadPixels(new Rect(0, 0, renV.width, renV.height), 0, 0);
+			tex.Apply();
+			RenderTexture.active = null;
+
+			RenderTexture.ReleaseTemporary(renH);
+			RenderTexture.ReleaseTemporary(renV);
+
+
+			return Sprite.Create(tex, new(0, 0, width, height), new(0, 0));
+		}
+	}
 }

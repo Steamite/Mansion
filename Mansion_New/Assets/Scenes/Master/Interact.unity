@@ -315,6 +315,9 @@ MonoBehaviour:
   cam: {fileID: 1639729656}
   backgroundImage: {fileID: 1177118101}
   canvas: {fileID: 226472483}
+  horizontalMaterial: {fileID: 2100000, guid: d04b86764426a7c4eb834dca4ef127ec, type: 2}
+  verticalMaterial: {fileID: 2100000, guid: 09bb849bfdf3df142b1d1bbbd1f880cc, type: 2}
+  Radial: 3
 --- !u!1 &1177118099
 GameObject:
   m_ObjectHideFlags: 0
