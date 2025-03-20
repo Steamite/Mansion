@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Items
@@ -9,7 +10,7 @@ namespace Items
 	/// </summary>
     class PDFItem : InteractableItem
     {
-		const string PDF_LOCATION = "PDF/";
+		public const string PDF_LOCATION = "PDF/";
 
 		/// <summary>Downloaded textures.</summary>
         Texture2D[] sprites;
@@ -19,32 +20,57 @@ namespace Items
 			if (SourcePath == null)
 				return;
 
-			VisualElement el = displayElem.Q<VisualElement>("Images");
-			Label label = displayElem.Q<Label>("Label");
-			label.text = "Downloading text...";
+			if(sprites == null)
+				sprites = new Texture2D[amountOfPages];
 
-			for (int i = 0; i < amountOfPages; i++)
+			GetImages(displayElem);
+			// Find option for button T
+			VisualElement t = displayElem.panel.visualTree.Q<VisualElement>("T");
+			t.style.display = DisplayStyle.Flex;
+			((Label)t.ElementAt(2)).text = "Otevřít pdf";
+		}
+
+		void GetImages(VisualElement displayElem)
+		{
+			VisualElement imgGroup = displayElem.Q<VisualElement>("Images");
+
+			for (int i = 0; i < sprites.Length; i++)
 			{
-				WebUtil.GetImageFromServer(
-					PDF_LOCATION + SourcePath + $"/img{i}.png", 
-					(source_img) => 
-					{
-						if (source_img == null)
-							return;
-						VisualElement element_img = new();
-						element_img.style.width = source_img.width;
-						element_img.style.height = source_img.height;
-						element_img.style.backgroundImage = source_img;
-						el.Add(element_img);
-					});
+				VisualElement elementImg = new();
+				imgGroup.Add(elementImg);
+				if (sprites[i] == null)
+				{
+					elementImg.Add(new Label($"Downloading image {i}"));
+
+					var x = i;
+					WebUtil.GetImageFromServer(
+						PDF_LOCATION + SourcePath + $"/img{i}.png",
+						(source_img) =>
+						{
+							if (source_img == null)
+								return;
+							elementImg.RemoveAt(0);
+							sprites[x] = source_img;
+							elementImg.style.width = source_img.width;
+							elementImg.style.height = source_img.height;
+							elementImg.style.backgroundImage = source_img;
+						});
+				}
+				else
+				{
+					elementImg.style.width = sprites[i].width;
+					elementImg.style.height = sprites[i].height;
+					elementImg.style.backgroundImage = sprites[i];
+				}
 			}
 		}
 
-		public override void Unload(VisualElement visualElement)
+		public override void Unload(VisualElement displayElem)
 		{
-			VisualElement el = visualElement.Q<VisualElement>("Images");
+			VisualElement el = displayElem.Q<VisualElement>("Images");
 			for (int i = el.childCount - 1; i > -1; i--)
 				el.RemoveAt(i);
+			displayElem.panel.visualTree.Q<VisualElement>("T").style.display = DisplayStyle.None;
 		}
 	}
 }

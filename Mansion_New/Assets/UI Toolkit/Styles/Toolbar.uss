@@ -72,11 +72,7 @@ Label {
     color: rgb(255, 132, 30);
 }
 
-.Description #Exit-Option {
-    display: none;
-}
-
-.Description #Take-Option {
+.Description #E {
     display: none;
 }
 

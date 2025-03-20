@@ -17,7 +17,7 @@ namespace UI.Inspect
 		/// <summary>Path to the description text element.</summary>
 		public const string DESCRIPTION = "Description";
         /// <summary>Path to description "Button".</summary>
-        const string DESCRIPTIONOPTION = "Description-Option";
+        const string DESCRIPTION_OPTION = "D";
         /// <summary>Title label element.</summary>
         const string TITLE = "Title-Label";
 
@@ -65,7 +65,7 @@ namespace UI.Inspect
             if(item.SourcePath == "")
             {
                 infoAction.Disable();
-                doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).style.display = DisplayStyle.None;
+                doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).style.display = DisplayStyle.None;
             }
             isDescriptionOpened = false;
 
@@ -80,8 +80,10 @@ namespace UI.Inspect
                 EndInteract();
             else if (infoAction.triggered)
                 DescriptionToggle();
-            else if (!isDescriptionOpened && takeAction.triggered)
-                PickupItem();
+            /*else if (!isDescriptionOpened && takeAction.triggered)
+                PickupItem();*/
+            else if (takeAction.triggered && isDescriptionOpened && item is PDFItem)
+                OpenPdfFull();
         }
 
         #region End
@@ -115,7 +117,7 @@ namespace UI.Inspect
             yield return new();
             Camera.main.cullingMask = -1;
             gameObject.SetActive(false);
-            SceneManager.UnloadSceneAsync(1);
+            SceneManager.UnloadSceneAsync("Interact");
             asset.actionMaps[0].Enable();
             GameObject.FindFirstObjectByType<PlayerCamera>().EndIteract();
         }
@@ -136,17 +138,13 @@ namespace UI.Inspect
                 doc.rootVisualElement.AddToClassList("Description");
                 doc.rootVisualElement.RemoveFromClassList("Inspect");
                 
-                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Zavřít popis";
+                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).ElementAt(2)).text = "Zavřít popis";
                 
                 item.LoadContent(doc.rootVisualElement.Q<ScrollView>(DESCRIPTION)
                     .Q<VisualElement>("unity-content-container"));
 
-
-
-
                 isDescriptionOpened = true;
                 endAction.Disable();
-                takeAction.Disable();
             }
             else
             {
@@ -161,14 +159,19 @@ namespace UI.Inspect
 				item.Unload(doc.rootVisualElement.Q<ScrollView>(DESCRIPTION)
 					.Q<VisualElement>("unity-content-container"));
 
-                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Popis";
+				((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).ElementAt(2)).text = "Popis";
                 
                 isDescriptionOpened = false;
                 endAction.Enable();
-                takeAction.Enable();
             }
         }
 
+        void OpenPdfFull()
+        {
+            string s = $"{Application.streamingAssetsPath}/{PDFItem.PDF_LOCATION}{item.SourcePath}/pdf.pdf";
+
+			Application.OpenURL(s);
+        }
         #endregion
         /// <summary>
         /// Destroys the item and ends interaction.
