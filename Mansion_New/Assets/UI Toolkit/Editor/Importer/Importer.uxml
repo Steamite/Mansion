@@ -1,0 +1,40 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Editor/Importer/Importer.uss?fileID=7433441132597879392&amp;guid=24181cf83ef9fd448b1424b2c1dea61d&amp;type=3#Importer" />
+    <engine:TabView name="TabView" enabled="true" focusable="false" reorderable="false" style="flex-grow: 1;">
+        <engine:Tab label="Text" name="Text" icon-image="project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2346436936791262179&amp;guid=d4f37c281ecc6f24ba4924d6dce859ef&amp;type=3#console.infoicon" style="flex-grow: 1;">
+            <engine:ListView show-add-remove-footer="true" header-title="Text Items" name="List" item-template="project://database/Assets/UI%20Toolkit/Editor/Importer/ImporterItem.uxml?fileID=9197481963319205126&amp;guid=d469e69f5bc71f048acf7820c60df8be&amp;type=3#ImporterItem" fixed-item-height="35" style="width: 200px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; flex-shrink: 0; min-width: 200px; max-width: 200px;" />
+            <engine:VisualElement name="Spliter" style="flex-grow: 0; background-color: rgb(147, 147, 147); width: 2px;" />
+            <engine:VisualElement name="RightPanel" style="flex-grow: 1;">
+                <engine:TextField placeholder-text="filler text" name="TextContent" password="false" select-all-on-mouse-up="false" select-all-on-focus="false" multiline="true" style="flex-grow: 1; -unity-text-align: upper-left; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; white-space: pre-wrap;" />
+                <engine:VisualElement name="ButtonLine" style="flex-grow: 0; flex-direction: row; justify-content: space-between; margin-bottom: 2px;">
+                    <engine:Button text="Create a Link" name="Link" style="flex-grow: 1;" />
+                    <engine:Button text="Save" name="Save" style="flex-grow: 1;" />
+                    <engine:Button text="Clear Links" name="ClearLinks" style="flex-grow: 1;" />
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement name="Preview" style="flex-grow: 1;">
+                <engine:Label text="Label" name="PreviewPanel" />
+                <engine:Label text="Label" name="PreviewText" style="margin-top: 50px; white-space: normal;" />
+            </engine:VisualElement>
+        </engine:Tab>
+        <engine:Tab label="PDF" name="PDF" icon-image="project://database/Assets/UI%20Toolkit/Importer/PDF_Icon.png?fileID=2800000&amp;guid=a3d9b88ddb94794428244f10c9c9fcc6&amp;type=3#PDF_Icon" enabled="true" style="flex-grow: 1;">
+            <engine:ListView show-add-remove-footer="true" header-title="Text Items" name="List" item-template="project://database/Assets/UI%20Toolkit/Editor/Importer/ImporterItem.uxml?fileID=9197481963319205126&amp;guid=d469e69f5bc71f048acf7820c60df8be&amp;type=3#ImporterItem" virtualization-method="FixedHeight" fixed-item-height="35" style="width: 30%; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;" />
+            <engine:VisualElement name="Spliter" style="flex-grow: 0; width: 2px; background-color: rgb(147, 147, 147);" />
+            <engine:VisualElement name="RightPanel" style="flex-grow: 1; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+                <engine:Button text="Show PDF" name="ShowPDF" />
+                <engine:ScrollView name="Preview" vertical-scroller-visibility="AlwaysVisible" style="flex-grow: 1; align-content: stretch; align-items: stretch; align-self: stretch;" />
+            </engine:VisualElement>
+        </engine:Tab>
+    </engine:TabView>
+    <engine:VisualElement name="Rename" style="flex-grow: 1; position: absolute; right: 0; min-width: 30px; width: 30px; height: 30px; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=7433338533053954386&amp;guid=d4f37c281ecc6f24ba4924d6dce859ef&amp;type=3#check@2x&quot;);" />
+    <engine:VisualElement name="TextDialog" style="flex-grow: 1; position: absolute; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0.57); align-self: center; justify-content: center; align-items: center; display: none; transition-duration: 0.3s;">
+        <engine:VisualElement name="DialogWIndow" style="flex-grow: 1; position: relative; width: 0; height: 0; background-color: rgb(75, 75, 75); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); max-width: 400px; max-height: 150px; min-width: 400px; min-height: 150px;">
+            <engine:Label text="Enter a name for the entry." name="Title" style="-unity-text-align: upper-center; background-color: rgb(62, 62, 62); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; color: rgb(255, 255, 255);" />
+            <engine:TextField label="New Name:" placeholder-text="filler text" name="EntryName" style="color: rgb(255, 255, 255);" />
+            <engine:VisualElement name="Buttons" style="flex-grow: 0; flex-direction: row; justify-content: space-around; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;">
+                <engine:Button text="Save" name="Save" style="width: 35%;" />
+                <engine:Button text="Cancel" name="Cancel" style="width: 35%;" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

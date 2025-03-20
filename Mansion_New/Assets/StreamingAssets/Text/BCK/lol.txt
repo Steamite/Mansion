@@ -1,0 +1,30 @@
+Build Report
+Uncompressed usage by category (Percentages based on user generated assets only):
+Textures               49.8 mb	 92.8% 
+Meshes                 90.9 kb	 0.2% 
+Animations             2.5 kb	 0.0% 
+Sounds                 0.0 kb	 0.0% 
+Shaders                2.6 mb	 4.8% 
+Other Assets           810.8 kb	 1.5% 
+Levels                 0.0 kb	 0.0% 
+File headers           117.6 kb	 0.2% 
+Total User Assets      53.7 mb	 100.0% 
+Complete build size    79.9 mb
+Used Assets and files from the Resources folder, sorted by uncompressed size:
+ 8.0 mb	 10.0% Assets/Scenes/Level/ReflectionProbe-0.exr
+ 5.3 mb	 6.7% Assets/Materials/Textures/Pavement/pavement_04_nor_gl_2k.jpg
+ 5.3 mb	 6.7% Assets/Materials/Textures/Bricks-material/Old Brick_Normal.jpg
+ 2.7 mb	 3.3% Built-in Texture2D: Splash Screen Unity Logo
+ 2.7 mb	 3.3% Assets/Materials/Textures/Bricks-material/Old Brick_Displacement.jpg
+ 2.7 mb	 3.3% Assets/Materials/Textures/Pavement/pavement_04_disp_2k.jpg
+ 2.7 mb	 3.3% Assets/Materials/Textures/Pavement/pavement_04_diff_2k.jpg
+ 2.7 mb	 3.3% Assets/Materials/Textures/Pavement/pavement_04_arm_2k.jpg
+ 2.7 mb	 3.3% Assets/Materials/Textures/Bricks-material/Old Brick_Roughness.jpg
+ 2.7 mb	 3.3% Assets/Materials/Textures/Bricks-material/Old Brick_BaseColor.jpg
+ 1.6 mb	 2.0% Packages/com.unity.render-pipelines.universal/Shaders/Lit.shader
+ 1.3 mb	 1.7% Assets/Scenes/Level/Lightmap-2_comp_light.exr
+ 1.3 mb	 1.7% Assets/Scenes/Level/Lightmap-1_comp_light.exr
+ 1.3 mb	 1.7% Assets/Scenes/Level/Lightmap-0_comp_light.exr
+ 1.3 mb	 1.7% Assets/Scenes/Level/Lightmap-2_comp_dir.png
+ 1.3 mb	 1.7% Assets/Scenes/Level/Lightmap-1_comp_dir.png
+ 1.3 mb	 1.7% <color="blue"><b><a href="https://www.google.com">Assets/Scenes/Level/Lightmap-0_comp_dir.png</a></b></color>

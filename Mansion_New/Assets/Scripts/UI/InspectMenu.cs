@@ -1,9 +1,6 @@
 ﻿using Items;
 using Player;
 using System.Collections;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,26 +10,45 @@ using UnityEngine.UIElements;
 
 namespace UI.Inspect
 {
+    /// <summary>Handles input for the input menu.</summary>
     public class InspectMenu : MonoBehaviour
     {
-        const string DESCRIPTION = "Description-Label";
-        const string DESCRIPTIONOPTION = "Description-Option";
+		#region Variables
+		/// <summary>Path to the description text element.</summary>
+		public const string DESCRIPTION = "Description";
+        /// <summary>Path to description "Button".</summary>
+        const string DESCRIPTION_OPTION = "D";
+        /// <summary>Title label element.</summary>
         const string TITLE = "Title-Label";
 
-        [SerializeField] CinemachineCamera cam;
+        /// <summary>Inpect camera.</summary>
+		[SerializeField] CinemachineCamera cam;
+        /// <summary>Input holder.</summary>
         InputActionAsset asset;
 
+        /// <summary>Ends interaction.</summary>
         InputAction endAction;
-        InputAction infoAction;
-        InputAction takeAction;
+        /// <summary>Toggles interaction.</summary>
+		InputAction infoAction;
+        /// <summary>Destoys the inpected item.</summary>
+		InputAction takeAction;
 
-        InteractableItem item;
+        /// <summary>Item in inspection.</summary>
+		InteractableItem item;
 
-        UIDocument doc;
-        bool isDescriptionOpened;
+        /// <summary>Root of the document.</summary>
+		UIDocument doc;
+        /// <summary>Is the description page opened or not.</summary>
+		bool isDescriptionOpened;
+		#endregion
 
-        #region INIT
-        public void Init(InputActionAsset _asset, InteractableItem _item)
+		#region Init
+		/// <summary>
+		/// Maps actions, and hides the description option if no file is assigned to the inspected item.
+		/// </summary>
+		/// <param name="_asset">Input asset with inpection map.</param>
+		/// <param name="_item">Inspected item.</param>
+		public void Init(InputActionAsset _asset, InteractableItem _item)
         {
             asset = _asset;
             item = _item;
@@ -46,10 +62,10 @@ namespace UI.Inspect
             doc.enabled = true;
             doc.rootVisualElement.Q<Label>(TITLE).text = _item.ItemName;
 
-            if(item.TextPath == "")
+            if(item.SourcePath == "")
             {
                 infoAction.Disable();
-                doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).style.display = DisplayStyle.None;
+                doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).style.display = DisplayStyle.None;
             }
             isDescriptionOpened = false;
 
@@ -63,14 +79,20 @@ namespace UI.Inspect
             if (endAction.triggered)
                 EndInteract();
             else if (infoAction.triggered)
-                InfoToggle();
-            else if (!isDescriptionOpened && takeAction.triggered)
-                PickupItem();
+                DescriptionToggle();
+            /*else if (!isDescriptionOpened && takeAction.triggered)
+                PickupItem();*/
+            else if (takeAction.triggered && isDescriptionOpened && item is PDFItem)
+                OpenPdfFull();
         }
 
         #region End
+        /// <summary>
+        /// Ends the interaction.
+        /// </summary>
         void EndInteract()
         {
+
             asset.actionMaps[2].Disable();
             if (item)
             {
@@ -85,21 +107,27 @@ namespace UI.Inspect
             cam.Priority = -1;
             StartCoroutine(WaitForBlend());
         }
-
+        /// <summary>
+        /// Unloads interaction scene and resets player camera.
+        /// </summary>
+        /// <returns></returns>
         IEnumerator WaitForBlend()
         {
             CrosshairImage.Toggle();
             yield return new();
             Camera.main.cullingMask = -1;
             gameObject.SetActive(false);
-            SceneManager.UnloadSceneAsync(1);
+            SceneManager.UnloadSceneAsync("Interact");
             asset.actionMaps[0].Enable();
             GameObject.FindFirstObjectByType<PlayerCamera>().EndIteract();
         }
         #endregion
 
         #region Descriptions
-        void InfoToggle()
+        /// <summary>
+        /// Opens or closes the description
+        /// </summary>
+        void DescriptionToggle()
         {
             if (!isDescriptionOpened)
             {
@@ -110,37 +138,51 @@ namespace UI.Inspect
                 doc.rootVisualElement.AddToClassList("Description");
                 doc.rootVisualElement.RemoveFromClassList("Inspect");
                 
-                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Zavřít popis";
-                item.GetText(doc.rootVisualElement.Q<Label>(DESCRIPTION));
+                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).ElementAt(2)).text = "Zavřít popis";
+                
+                item.LoadContent(doc.rootVisualElement.Q<ScrollView>(DESCRIPTION)
+                    .Q<VisualElement>("unity-content-container"));
 
                 isDescriptionOpened = true;
                 endAction.Disable();
-                takeAction.Disable();
             }
             else
             {
+                WebUtil.CancelDownloads();
                 UnityEngine.Cursor.visible = false;
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 cam.GetComponent<CinemachineInputAxisController>().enabled = true;
 
                 doc.rootVisualElement.RemoveFromClassList("Description");
                 doc.rootVisualElement.AddToClassList("Inspect");
-                
-                doc.rootVisualElement.Q<Label>(DESCRIPTION).text = "";
-                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTIONOPTION).ElementAt(2)).text = "Popis";
+
+				item.Unload(doc.rootVisualElement.Q<ScrollView>(DESCRIPTION)
+					.Q<VisualElement>("unity-content-container"));
+
+				((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).ElementAt(2)).text = "Popis";
                 
                 isDescriptionOpened = false;
                 endAction.Enable();
-                takeAction.Enable();
             }
         }
 
+        void OpenPdfFull()
+        {
+            string s = $"{Application.streamingAssetsPath}/{PDFItem.PDF_LOCATION}{item.SourcePath}/pdf.pdf";
+
+			Application.OpenURL(s);
+        }
         #endregion
+        /// <summary>
+        /// Destroys the item and ends interaction.
+        /// </summary>
         void PickupItem()
         {
-            Destroy(item.gameObject);
-            item = null;
-            EndInteract();
+            if(!isDescriptionOpened){
+                Destroy(item.gameObject);
+                item = null;
+                EndInteract();
+            }
         }
     }
 }

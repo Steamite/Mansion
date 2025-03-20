@@ -49,7 +49,9 @@
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
-    -unity-text-outline-width: 0.5px;
+    -unity-text-outline-width: 3px;
+    font-size: 60px;
+    -unity-font-style: bold;
 }
 
 #Icon > #Letter {
@@ -70,11 +72,7 @@ Label {
     color: rgb(255, 132, 30);
 }
 
-.Description #Exit-Option {
-    display: none;
-}
-
-.Description #Take-Option {
+.Description #E {
     display: none;
 }
 

@@ -23,7 +23,7 @@ public static class GaussianBlur
         Color32[] source = tex.GetPixels32();
 
         // Initialize color channels
-        int[] _red = new int[source.Length];
+        int[] _red = new int[source.Length]; 
         int[] _green = new int[source.Length];
         int[] _blue = new int[source.Length];
 

@@ -10,10 +10,22 @@
     justify-content: center;
     align-self: flex-end;
     align-items: center;
+    border-top-left-radius: 150px;
+    border-top-right-radius: 150px;
+    border-bottom-right-radius: 150px;
+    border-bottom-left-radius: 150px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(0, 0, 0);
+    border-right-color: rgb(0, 0, 0);
+    border-top-color: rgb(0, 0, 0);
+    border-bottom-color: rgb(0, 0, 0);
 }
 
 #Minimap > #MapImage {
-    background-image: url("project://database/Assets/Sprites/Map.png?fileID=2800000&guid=9c310195b9026de458c8c592829869a9&type=3#Map");
+    background-image: url("project://database/Assets/Sprites/Map.png?fileID=21300000&guid=277751fe3fa99094aa7fc2308a15e001&type=3#Map");
     position: absolute;
     scale: 1 1;
     transform-origin: center;
