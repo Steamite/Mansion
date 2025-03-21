@@ -21,6 +21,9 @@ namespace Rooms
         /// <returns>itself</returns>
         public Room EnterRoom(Room lastRoom)
         {
+
+			Debug.Log("enter room");
+			return this;
             if (lastRoom)
             {
                 lastRoom.ExitRoom(lastRoom.AdjacentRooms.Where(unloadRoom => !AdjacentRooms.Contains(unloadRoom) && unloadRoom != gameObject.scene.name));

@@ -3,8 +3,11 @@ using Player;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 using UnityEngine.Networking;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -117,6 +120,7 @@ namespace UI.Inspect
             yield return new();
             Camera.main.cullingMask = -1;
             gameObject.SetActive(false);
+			//AsyncOperationHandle<SceneInstance> sceneUnload = Addressables.UnloadSceneAsync();
             SceneManager.UnloadSceneAsync("Interact");
             asset.actionMaps[0].Enable();
             GameObject.FindFirstObjectByType<PlayerCamera>().EndIteract();
