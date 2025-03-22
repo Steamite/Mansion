@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using Unity.Cinemachine;
 using Unity.Properties;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;

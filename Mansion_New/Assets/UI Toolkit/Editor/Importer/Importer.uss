@@ -16,7 +16,19 @@
 }
 
 #Preview > #IMG {
-    align-self: center;
+    align-self: flex-start;
     align-items: center;
     align-content: center;
+}
+
+#Binding {
+    flex-grow: 0;
+    position: absolute;
+    right: 30px;
+    width: 200px;
+    height: 30px;
+    background-image: url("project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=7433338533053954386&guid=d4f37c281ecc6f24ba4924d6dce859ef&type=3#check@2x");
+}
+
+.unity-base-field--no-label {
 }

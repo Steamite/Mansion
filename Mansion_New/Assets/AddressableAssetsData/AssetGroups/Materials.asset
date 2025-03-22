@@ -16,27 +16,27 @@ MonoBehaviour:
   m_GUID: b32f062a121544e4380c8d4e9c88e62c
   m_SerializeEntries:
   - m_GUID: 36e335017ad71d54fbb10842863188ae
-    m_Address: Packages/com.unity.render-pipelines.core/Runtime/RenderPipelineResources/FallbackShader.shader
+    m_Address: FallbackShader
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c59994ece1fbb0740bc0bc8c5c92024e
-    m_Address: Assets/Materials/Materials
+    m_Address: Materials
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d005b9e62581c4949aa71a9b0ebb26a4
-    m_Address: Assets/Standard Assets/Lighting Settings.lighting
+    m_Address: Lighting Settings
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e0e297ece079d594188bde9b90d56bdc
-    m_Address: Assets/Materials/Textures
+    m_Address: Textures
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e6e9a19c3678ded42a3bc431ebef7dbd
-    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/Utils/FallbackError.shader
+    m_Address: FallbackError
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

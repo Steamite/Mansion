@@ -16,7 +16,24 @@ MonoBehaviour:
   m_GUID: c29f144c741abd240be86c0012532872
   m_SerializeEntries:
   - m_GUID: 1aaa4f691802209448359d4378e0987d
-    m_Address: Assets/Scenes/Room Scenes/Room A.unity
+    m_Address: Room A
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25f96c4794238f642bb271d5c77cda74
+    m_Address: Assets/ItemData/Text/qweqw.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6888c0dc8cad7240adbd3a07f116891
+    m_Address: Assets/ItemData/PDF/CV-Richard_Kopp_en (6) - kopie - kopie - kopie
+      - kopie.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb0c8ca8f5eb1c146b267900be837194
+    m_Address: Assets/ItemData/Images/CV-Richard_Kopp_en (6) - kopie - kopie - kopie
+      - kopie/img0.jpg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

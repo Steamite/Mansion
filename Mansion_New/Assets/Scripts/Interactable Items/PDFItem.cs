@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -71,6 +72,11 @@ namespace Items
 			for (int i = el.childCount - 1; i > -1; i--)
 				el.RemoveAt(i);
 			displayElem.panel.visualTree.Q<VisualElement>("T").style.display = DisplayStyle.None;
+		}
+
+		protected override IEnumerator GetContent(object element)
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }

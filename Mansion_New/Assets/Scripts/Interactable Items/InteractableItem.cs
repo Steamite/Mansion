@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using System.Threading.Tasks;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Networking;
 using UnityEngine.UIElements;
 
@@ -20,6 +22,7 @@ namespace Items
         [SerializeField][MinMaxRangeSlider(0.5f, 5)] public Vector2 radiusRange;
 		/// <summary>Path for downloading the content.</summary>
         [SerializeField] public string SourcePath = "";
+        [SerializeField] public AssetReference sourceObject;
 
         /// <summary>
         /// Each type of Item must has it's own implementation for dowloading and viewing content.
@@ -28,5 +31,11 @@ namespace Items
         public abstract void LoadContent(VisualElement element);
 
         public abstract void Unload(VisualElement visualElement);
+
+        /// <summary>
+        /// Loads what it needs to using addressables and then executes the callback
+        /// </summary>
+        /// <returns></returns>
+        protected abstract IEnumerator GetContent(object element);
 	}
 }
