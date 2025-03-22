@@ -52,11 +52,11 @@ public class Importer : EditorWindow
 	/// <summary>Stores last selection position in <see cref="textField"/>>.</summary>
 	int selectedIndex;
 
-	List<InteractableItem> items;
+	List<InteractableItem> items = new();
 
-	int lastTab;
-	int lastTextSelected;
-	int lastPdfSelected;
+	int lastTab = -1;
+	int lastTextSelected = -1;
+	int lastPdfSelected = -1;
 
 	AddressableAssetSettings settings;
 	#endregion
@@ -65,6 +65,7 @@ public class Importer : EditorWindow
 	[MenuItem("Window/UI Toolkit/Importer _1")]
 	public static void ShowExample()
 	{
+
 		Importer wnd = GetWindow<Importer>();
 		wnd.titleContent = new GUIContent("Importer");
 	}
@@ -72,6 +73,7 @@ public class Importer : EditorWindow
 	/// <summary>Inits the document and all of its parts.</summary>
 	public void CreateGUI()
 	{
+		items = FindObjectsByType<InteractableItem>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
 		settings = AddressableAssetSettingsDefaultObject.Settings;
 		#region Base
 		minSize = new(800, 800);
@@ -147,6 +149,7 @@ public class Importer : EditorWindow
 		lastTextSelected = textList.selectedIndex;
 		lastPdfSelected = pdfList.selectedIndex;
 	}
+
 	private void InitUniButtons(VisualElement doc)
 	{
 
@@ -234,7 +237,6 @@ public class Importer : EditorWindow
 			return;
 		}
 		field.style.display = DisplayStyle.Flex;
-		items = FindObjectsByType<InteractableItem>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
 
 		field.RegisterValueChangedCallback<string>((s) =>
 		{
@@ -290,9 +292,14 @@ public class Importer : EditorWindow
 	void InitTextList(VisualElement doc)
 	{
 		List<string> files = new();
+		List<string> availableAssets = settings.FindGroup("Texts").entries.Select(q => q.guid).ToList();
+		if (settings.FindGroup(EditorSceneManager.GetActiveScene().name))
+			availableAssets.AddRange(settings.FindGroup(EditorSceneManager.GetActiveScene().name).entries.Select(q => q.guid));
+
 		foreach (var a in AssetDatabase.FindAssets("t:TextData"))
 		{
-			files.Add(AssetDatabase.GUIDToAssetPath(a));
+			if(availableAssets.Contains(a))
+				files.Add(AssetDatabase.GUIDToAssetPath(a));
 		}
 
 		textField = doc.Q<TextField>("TextContent");
