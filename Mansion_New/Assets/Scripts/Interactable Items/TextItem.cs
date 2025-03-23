@@ -13,15 +13,15 @@ namespace Items
     {
 		public override void LoadContent(VisualElement displayElem)
 		{
-			if (SourcePath == "")
+			if (sourceObject == null || sourceObject.AssetGUID == "")
 				return;
 
 			StartCoroutine(GetContent(displayElem));
 		}
 
-		protected override IEnumerator GetContent(object displayElem)
+		protected override IEnumerator GetContent(VisualElement displayElem)
 		{
-			Label _text = ((VisualElement)displayElem).Q<Label>("Label");
+			Label _text = displayElem.Q<Label>("Label");
 			_text.text = "Downloading text...";
 
 			for (int i = 0; i < 3; i++)

@@ -10,7 +10,7 @@ public interface ITab
 	public void ReloadData();
 
 	/// <summary>When changing elements in the list.</summary>
-	public string OpenEntry();
+	public string LinkEntry();
 
 	/// <summary>Switching tabs.</summary>
 	public void SelectTab();

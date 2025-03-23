@@ -21,7 +21,6 @@ namespace Items
 		/// <summary>Inner and Outer limits of zoom.</summary>
         [SerializeField][MinMaxRangeSlider(0.5f, 5)] public Vector2 radiusRange;
 		/// <summary>Path for downloading the content.</summary>
-        [SerializeField] public string SourcePath = "";
         [SerializeField] public AssetReference sourceObject;
 
         /// <summary>
@@ -36,6 +35,6 @@ namespace Items
         /// Loads what it needs to using addressables and then executes the callback
         /// </summary>
         /// <returns></returns>
-        protected abstract IEnumerator GetContent(object element);
+        protected abstract IEnumerator GetContent(VisualElement element);
 	}
 }

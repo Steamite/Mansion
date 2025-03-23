@@ -193,7 +193,7 @@ public class TextTab : ITab
 			textList.SetSelection(0);
 	}
 
-	public string OpenEntry()
+	public string LinkEntry()
 	{
 		return AssetDatabase.GUIDFromAssetPath((string)textList.selectedItem).ToString();
 	}

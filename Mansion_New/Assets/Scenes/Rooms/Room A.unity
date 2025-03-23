@@ -2406,14 +2406,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Very Interesting cube
   radiusRange: {x: 1, y: 1.7164179}
-  SourcePath: ewq
   sourceObject:
-    m_AssetGUID: 3974c5a0a2e0376489c86e1775e81666
+    m_AssetGUID: b53a278d092505349b9c000d68a3654d
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  amountOfPages: 2
+  pdfPath: 
 --- !u!43 &794059846
 Mesh:
   m_ObjectHideFlags: 0
@@ -2793,7 +2792,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Very Interesting cube
   radiusRange: {x: 1, y: 1}
-  SourcePath: w.txt
   sourceObject:
     m_AssetGUID: 
     m_SubObjectName: 
@@ -7877,7 +7875,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Very Interesting cube
   radiusRange: {x: 1, y: 1}
-  SourcePath: w.txt
   sourceObject:
     m_AssetGUID: f597b1ba796c1524d84a38ac1932705c
     m_SubObjectName: 

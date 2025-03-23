@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UIElements;
 
 namespace Items
@@ -11,26 +13,68 @@ namespace Items
 	/// </summary>
     class PDFItem : InteractableItem
     {
-		public const string PDF_LOCATION = "PDF/";
-
-		/// <summary>Downloaded textures.</summary>
-        Texture2D[] sprites;
-		[SerializeField] int amountOfPages;
+		const string PDF_LOCATION = "/PDF/";
+		public string pdfPath;
 		public override void LoadContent(VisualElement displayElem)
 		{
-			if (SourcePath == null)
+			if (sourceObject == null || sourceObject.AssetGUID == "")
 				return;
 
-			if(sprites == null)
-				sprites = new Texture2D[amountOfPages];
+			StartCoroutine(GetContent(displayElem));
 
-			GetImages(displayElem);
-			// Find option for button T
-			VisualElement t = displayElem.panel.visualTree.Q<VisualElement>("T");
-			t.style.display = DisplayStyle.Flex;
-			((Label)t.ElementAt(2)).text = "Otevřít pdf";
 		}
 
+		protected override IEnumerator GetContent(VisualElement displayElem)
+		{
+			Label _text = displayElem.Q<Label>("Label");
+			_text.text = "Downloading images...";
+
+			for (int i = 0; i < 3; i++)
+			{
+				AsyncOperationHandle<PDFData> pdfHandle = Addressables.LoadAssetAsync<PDFData>(sourceObject);
+				yield return pdfHandle;
+				if (pdfHandle.Status == AsyncOperationStatus.Succeeded)
+				{
+					_text.text = "";
+					pdfPath = Application.streamingAssetsPath + PDF_LOCATION + pdfHandle.Result.pdf + ".pdf";
+					VisualElement t = displayElem.panel.visualTree.Q<VisualElement>("T");
+					t.style.display = DisplayStyle.Flex;
+					((Label)t.ElementAt(2)).text = "Otevřít pdf";
+
+					AsyncOperationHandle<Texture2D> spriteHandle;
+					Label label = new Label("Loading...");
+					VisualElement imagesElement = displayElem.Q<VisualElement>("Images");
+					foreach (AssetReference image in pdfHandle.Result.images)
+					{
+						imagesElement.Add(label);
+						spriteHandle = Addressables.LoadAssetAsync<Texture2D>(image);
+						yield return spriteHandle;
+						if(spriteHandle.Status == AsyncOperationStatus.Succeeded)
+						{
+							imagesElement.Remove(label);
+							VisualElement imgElem = new();
+							imgElem.style.backgroundImage = spriteHandle.Result;
+							imagesElement.Add(imgElem);
+							imgElem.style.width = spriteHandle.Result.width;
+							imgElem.style.height = spriteHandle.Result.height;
+
+							spriteHandle.Release();
+						}
+						else
+						{
+							_text.text = "ERROR";
+							break;
+						}
+
+					}
+					pdfHandle.Release();
+					
+					yield break;
+				}
+			}
+			_text.text = "ERROR";
+		}
+		/*
 		void GetImages(VisualElement displayElem)
 		{
 			VisualElement imgGroup = displayElem.Q<VisualElement>("Images");
@@ -64,7 +108,7 @@ namespace Items
 					elementImg.style.backgroundImage = sprites[i];
 				}
 			}
-		}
+		}*/
 
 		public override void Unload(VisualElement displayElem)
 		{
@@ -72,11 +116,6 @@ namespace Items
 			for (int i = el.childCount - 1; i > -1; i--)
 				el.RemoveAt(i);
 			displayElem.panel.visualTree.Q<VisualElement>("T").style.display = DisplayStyle.None;
-		}
-
-		protected override IEnumerator GetContent(object element)
-		{
-			throw new System.NotImplementedException();
 		}
 	}
 }

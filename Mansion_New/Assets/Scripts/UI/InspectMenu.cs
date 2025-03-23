@@ -17,7 +17,7 @@ namespace UI.Inspect
     public class InspectMenu : MonoBehaviour
     {
 		#region Variables
-		/// <summary>Path to the description text element.</summary>
+		/// <summary>Path to the Desctiption scrollview.</summary>
 		public const string DESCRIPTION = "Description";
         /// <summary>Path to description "Button".</summary>
         const string DESCRIPTION_OPTION = "D";
@@ -65,7 +65,7 @@ namespace UI.Inspect
             doc.enabled = true;
             doc.rootVisualElement.Q<Label>(TITLE).text = _item.ItemName;
 
-            if(item.SourcePath == "")
+            if(item.sourceObject.IsValid())
             {
                 infoAction.Disable();
                 doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).style.display = DisplayStyle.None;
@@ -86,8 +86,8 @@ namespace UI.Inspect
             /*else if (!isDescriptionOpened && takeAction.triggered)
                 PickupItem();*/
             else if (takeAction.triggered && isDescriptionOpened && item is PDFItem)
-                OpenPdfFull();
-        }
+				Application.OpenURL(((PDFItem)item).pdfPath);
+		}
 
         #region End
         /// <summary>
@@ -110,6 +110,7 @@ namespace UI.Inspect
             cam.Priority = -1;
             StartCoroutine(WaitForBlend());
         }
+
         /// <summary>
         /// Unloads interaction scene and resets player camera.
         /// </summary>
@@ -170,12 +171,6 @@ namespace UI.Inspect
             }
         }
 
-        void OpenPdfFull()
-        {
-            string s = $"{Application.streamingAssetsPath}/{PDFItem.PDF_LOCATION}{item.SourcePath}/pdf.pdf";
-
-			Application.OpenURL(s);
-        }
         #endregion
         /// <summary>
         /// Destroys the item and ends interaction.

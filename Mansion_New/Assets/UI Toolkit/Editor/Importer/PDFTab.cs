@@ -10,6 +10,7 @@ using ImageMagick;
 using Items;
 using System.Linq;
 using System;
+using UnityEngine.AddressableAssets;
 
 public class PDFTab : ITab
 {
@@ -83,6 +84,16 @@ public class PDFTab : ITab
 
 						Debug.Log($"Assets/{IMAGE_FILE_PATH}{pdfName}/img{page}.jpg");
 						path = AssetDatabase.GUIDFromAssetPath($"Assets/{IMAGE_FILE_PATH}{pdfName}/img{page}.jpg").ToString();
+
+						TextureImporter importer = AssetImporter.GetAtPath($"Assets/{IMAGE_FILE_PATH}{pdfName}/img{page}.jpg") as TextureImporter;
+						TextureImporterSettings spriteSettings = new TextureImporterSettings();
+						importer.textureType = TextureImporterType.Sprite;
+						importer.ReadTextureSettings(spriteSettings);
+						spriteSettings.spriteMode = (int)SpriteImportMode.Single;
+						importer.SetTextureSettings(spriteSettings);
+						importer.SaveAndReimport();
+
+
 						settings.CreateOrMoveEntry(path, spriteGroup);
 						settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, path, true);
 						pdfData.images.Add(new(path));
@@ -136,26 +147,23 @@ public class PDFTab : ITab
 		pdfList.selectionChanged += newSelection =>
 		{
 			ScrollView view = pdfList.parent.Q<ScrollView>("Preview");
-			int i;
-			for (i = view.childCount - 1; i > -1; i--)
-				view.RemoveAt(i);
-
-			i = 0;
-			foreach (string s in Directory.GetFiles(
-				$"{Application.dataPath}/{IMAGE_FILE_PATH}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}"))
+			view.Clear();
+			if((string)pdfList.selectedItem != null)
 			{
-				VisualElement element = new();
-				element.name = "IMG";
-				Texture2D tex = new Texture2D(2, 2);
-				tex.LoadImage(File.ReadAllBytes(s));
-				element.style.backgroundImage = tex;
-				element.style.height = tex.height / 2;
-				element.style.width = tex.width / 2;
-				view.Add(element);
-			}
-			choicesUpdate(1);
-		};
+				foreach (AssetReference imgRef in AssetDatabase.LoadAssetAtPath<PDFData>((string)pdfList.selectedItem).images)
+				{
+					VisualElement element = new();
+					element.name = "IMG";
 
+					Texture2D tex = AssetDatabase.LoadAssetAtPath<Texture2D>(AssetDatabase.GUIDToAssetPath(imgRef.AssetGUID));
+					element.style.backgroundImage = tex;
+					element.style.height = tex.height;
+					element.style.width = tex.width;
+					view.Add(element);
+				}
+				choicesUpdate(1);
+			}
+		};
 		pdfList.parent.Q<Button>("ShowPDF").RegisterCallback<ClickEvent>(
 			(_) =>
 			{
@@ -194,7 +202,7 @@ public class PDFTab : ITab
 		pdfList.itemsSource = files;
 	}
 
-	public string OpenEntry()
+	public string LinkEntry()
 	{
 		int z = Directory.GetFiles($"{Application.dataPath}/{IMAGE_FILE_PATH}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}", "*.jpg").Length;
 		AddressableAssetGroup group = settings.FindGroup(EditorSceneManager.GetActiveScene().name);
@@ -210,7 +218,8 @@ public class PDFTab : ITab
 
 	public void SelectTab()
 	{
-		pdfList.selectedIndex = 0;
+		pdfList.SetSelection(-1);
+		pdfList.SetSelection(0);
 	}
 
 	public void Rename()

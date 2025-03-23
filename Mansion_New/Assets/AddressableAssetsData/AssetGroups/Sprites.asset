@@ -14,13 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Sprites
   m_GUID: e862f9303e32d114fa7bd02b1f868f12
-  m_SerializeEntries:
-  - m_GUID: fb0c8ca8f5eb1c146b267900be837194
-    m_Address: Assets/ItemData/Images/CV-Richard_Kopp_en (6) - kopie - kopie - kopie
-      - kopie/img0.jpg
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
   m_SchemaSet:

@@ -151,13 +151,14 @@ public class Importer : EditorWindow
 			{
 				string GUId;
 				if (rootVisualElement.Q<TabView>().selectedTabIndex == 0)
-					GUId = textTab.OpenEntry();
+					GUId = textTab.LinkEntry();
 				else
-					GUId = pdfTab.OpenEntry();
+					GUId = pdfTab.LinkEntry();
 
 				settings.CreateOrMoveEntry(GUId, g);
 				items[i].sourceObject = new AssetReference(GUId);
-
+				EditorUtility.SetDirty(items[i]);
+				EditorSceneManager.SaveOpenScenes();
 				settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, GUId, true);
 				AssetDatabase.SaveAssets();
 			}
