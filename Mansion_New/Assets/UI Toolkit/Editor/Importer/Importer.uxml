@@ -12,7 +12,7 @@
                     <engine:Button text="Clear Links" name="ClearLinks" style="flex-grow: 1;" />
                 </engine:VisualElement>
             </engine:VisualElement>
-            <engine:VisualElement name="Preview" style="flex-grow: 1;">
+            <engine:VisualElement name="Preview" style="flex-grow: 1; right: 0;">
                 <engine:Label text="Label" name="PreviewPanel" />
                 <engine:Label text="Label" name="PreviewText" style="margin-top: 50px; white-space: normal;" />
             </engine:VisualElement>
@@ -27,7 +27,7 @@
         </engine:Tab>
     </engine:TabView>
     <engine:Button text="Clear" name="Clear" style="margin-top: 2px; margin-right: 5px; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; position: absolute; right: 230px; width: 50px; height: 30px;" />
-    <engine:DropdownField name="Binding" choices="56,dsa" />
+    <engine:DropdownField name="Binding" />
     <engine:VisualElement name="Rename" style="flex-grow: 1; position: absolute; right: 0; min-width: 30px; width: 30px; height: 30px; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=7433338533053954386&amp;guid=d4f37c281ecc6f24ba4924d6dce859ef&amp;type=3#check@2x&quot;);" />
     <engine:VisualElement name="TextDialog" style="flex-grow: 1; position: absolute; height: 100%; width: 100%; background-color: rgba(0, 0, 0, 0.57); align-self: center; justify-content: center; align-items: center; display: none; transition-duration: 0.3s;">
         <engine:VisualElement name="DialogWIndow" style="flex-grow: 1; position: relative; width: 0; height: 0; background-color: rgb(75, 75, 75); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); max-width: 400px; max-height: 150px; min-width: 400px; min-height: 150px;">

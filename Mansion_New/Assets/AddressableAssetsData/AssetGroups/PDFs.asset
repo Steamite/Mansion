@@ -14,7 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: PDFs
   m_GUID: cee5d23e758fc4542a8b2f1f2052848f
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: b6888c0dc8cad7240adbd3a07f116891
+    m_Address: Assets/ItemData/PDF/CV-Richard_Kopp_en (6) - kopie - kopie - kopie
+      - kopie.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
   m_SchemaSet:
