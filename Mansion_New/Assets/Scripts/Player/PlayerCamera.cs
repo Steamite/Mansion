@@ -1,11 +1,15 @@
 using System;
+using System.Collections;
 using UI;
 using UI.Inspect;
 using Unity.Cinemachine;
 using Unity.Collections;
 using Unity.Properties;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -16,9 +20,12 @@ namespace Player
     /// </summary>
     public class PlayerCamera : MonoBehaviour, INotifyBindablePropertyChanged
     {
-		#region Variables
+        #region Variables
+        [Header("Assign")]
+        [SerializeField] AssetReference inspectScene;
+
 		/// <summary>Reference to the input asset.</summary>
-		[Header("Assign")][SerializeField] InputActionAsset asset;
+		[SerializeField] InputActionAsset asset;
         
 
         /// <summary>Intraction raycast range.</summary>
@@ -115,7 +122,7 @@ namespace Player
                 CrosshairImage.EndHold();
 
             if (interactAction.triggered)
-                Interact();
+                StartCoroutine(Interact());
             #endregion
 
 
@@ -204,12 +211,21 @@ namespace Player
         /// <summary>
         /// Starts interaction process by loading the interact scene.
         /// </summary>
-        async void Interact()
+        IEnumerator Interact()
         {
             CrosshairImage.Toggle();
             asset.actionMaps[0].Disable();
-            await SceneManager.LoadSceneAsync("Interact", LoadSceneMode.Additive);
-            GameObject.FindAnyObjectByType<ItemInspect>().Init(item.transform, asset);
+            AsyncOperationHandle<SceneInstance> sceneLoading = 
+                Addressables.LoadSceneAsync(inspectScene, LoadSceneMode.Additive, false);
+            yield return sceneLoading;
+            if (sceneLoading.Status == AsyncOperationStatus.Succeeded)
+                yield return sceneLoading.Result.ActivateAsync();
+            else
+			{
+				Debug.LogError(sceneLoading.Status);
+                yield break;
+			}
+            GameObject.FindAnyObjectByType<InpectionInit>().Init(item.transform, asset, sceneLoading);
         }
 
         /// <summary>

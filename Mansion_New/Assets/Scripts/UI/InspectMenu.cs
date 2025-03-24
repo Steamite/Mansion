@@ -1,10 +1,14 @@
 ﻿using Items;
 using Player;
+using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 using UnityEngine.Networking;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -14,7 +18,7 @@ namespace UI.Inspect
     public class InspectMenu : MonoBehaviour
     {
 		#region Variables
-		/// <summary>Path to the description text element.</summary>
+		/// <summary>Path to the Desctiption scrollview.</summary>
 		public const string DESCRIPTION = "Description";
         /// <summary>Path to description "Button".</summary>
         const string DESCRIPTION_OPTION = "D";
@@ -40,6 +44,10 @@ namespace UI.Inspect
 		UIDocument doc;
         /// <summary>Is the description page opened or not.</summary>
 		bool isDescriptionOpened;
+
+        AsyncOperationHandle<SceneInstance> scene;
+
+        const string buttonGUId = "658cd35d788af46489726e1322cc904e";
 		#endregion
 
 		#region Init
@@ -48,8 +56,9 @@ namespace UI.Inspect
 		/// </summary>
 		/// <param name="_asset">Input asset with inpection map.</param>
 		/// <param name="_item">Inspected item.</param>
-		public void Init(InputActionAsset _asset, InteractableItem _item)
+		public void Init(InputActionAsset _asset, InteractableItem _item, AsyncOperationHandle<SceneInstance> _scene)
         {
+            scene = _scene;
             asset = _asset;
             item = _item;
 
@@ -58,11 +67,12 @@ namespace UI.Inspect
             takeAction = asset.actionMaps[2].actions[2];
             asset.actionMaps[2].Enable();
 
+            //Texture2D a = Addressables.LoadAssetAsync<Texture2D>(buttonGUId).Result;
             doc = GetComponent<UIDocument>();
             doc.enabled = true;
             doc.rootVisualElement.Q<Label>(TITLE).text = _item.ItemName;
 
-            if(item.SourcePath == "")
+            if(item.SourceObject.IsValid())
             {
                 infoAction.Disable();
                 doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).style.display = DisplayStyle.None;
@@ -83,8 +93,8 @@ namespace UI.Inspect
             /*else if (!isDescriptionOpened && takeAction.triggered)
                 PickupItem();*/
             else if (takeAction.triggered && isDescriptionOpened && item is PDFItem)
-                OpenPdfFull();
-        }
+				Application.OpenURL(((PDFItem)item).pdfPath);
+		}
 
         #region End
         /// <summary>
@@ -92,7 +102,6 @@ namespace UI.Inspect
         /// </summary>
         void EndInteract()
         {
-
             asset.actionMaps[2].Disable();
             if (item)
             {
@@ -105,21 +114,25 @@ namespace UI.Inspect
 
             doc.enabled = false;
             cam.Priority = -1;
-            StartCoroutine(WaitForBlend());
+            StartCoroutine(EnableMovement());
         }
+
         /// <summary>
         /// Unloads interaction scene and resets player camera.
         /// </summary>
         /// <returns></returns>
-        IEnumerator WaitForBlend()
-        {
-            CrosshairImage.Toggle();
+        IEnumerator EnableMovement()
+		{
+			CrosshairImage.Toggle();
             yield return new();
             Camera.main.cullingMask = -1;
             gameObject.SetActive(false);
-            SceneManager.UnloadSceneAsync("Interact");
-            asset.actionMaps[0].Enable();
-            GameObject.FindFirstObjectByType<PlayerCamera>().EndIteract();
+			AsyncOperationHandle<SceneInstance> sceneUnload = Addressables.UnloadSceneAsync(scene, UnloadSceneOptions.None, false);
+            sceneUnload.Completed += (_) =>
+            {
+				asset.actionMaps[0].Enable();
+				GameObject.FindFirstObjectByType<PlayerCamera>().EndIteract();
+			};
         }
         #endregion
 
@@ -166,12 +179,6 @@ namespace UI.Inspect
             }
         }
 
-        void OpenPdfFull()
-        {
-            string s = $"{Application.streamingAssetsPath}/{PDFItem.PDF_LOCATION}{item.SourcePath}/pdf.pdf";
-
-			Application.OpenURL(s);
-        }
         #endregion
         /// <summary>
         /// Destroys the item and ends interaction.

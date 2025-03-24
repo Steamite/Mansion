@@ -1,11 +1,15 @@
 #if UNITY_EDITOR
+using Items;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
 using UnityEditor;
+using UnityEditor.AddressableAssets;
+using UnityEditor.AddressableAssets.Settings;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 /// <summary>
@@ -14,40 +18,28 @@ using UnityEngine.UIElements;
 public class Importer : EditorWindow
 {
 	#region Variables
-	/// <summary>Assets/StreamingAssets/Text/</summary>
-	string TEXT_PATH = "Assets/StreamingAssets/Text/";
-	/// <summary>Assets/StreamingAssets/PDF/</summary>
-	string PDF_PATH = "Assets/StreamingAssets/PDF/";
-	/// <summary>/BCK/</summary>
-	const string BCK_PATH = "/BCK/";
-
 	/// <summary>UI document containing the window definition</summary>
 	[SerializeField] private VisualTreeAsset m_VisualTreeAsset = default;
-	/// <summary>Dialog window</summary>
-	VisualElement win;
 
-	/// <summary>ListView for text elements.</summary>
-	ListView textList;
-	/// <summary>ListView for pdf elements.</summary>
-	ListView pdfList;
-	/// <summary>Text field for text content</summary>
-	TextField textField;
 	/// <summary>Text field in <see cref="win"/></summary>
 	TextField nameField;
+	Button clearButton;
 
-	/// <summary>Action callback for <see cref="win"/>.</summary>
-	Action<string> stringAction;
+	public static List<InteractableItem> items = new();
+	public List<int> choiceIds = new();
+	public static Action<string> stringAction;
 
-	/// <summary>Stores last cursor position in <see cref="textField"/>>.</summary>
-	int cursorIndex;
-	/// <summary>Stores last selection position in <see cref="textField"/>>.</summary>
-	int selectedIndex;
+	AddressableAssetSettings settings;
+
+	TextTab textTab;
+	PDFTab pdfTab;
 	#endregion
 
 	#region Init
 	[MenuItem("Window/UI Toolkit/Importer _1")]
 	public static void ShowExample()
 	{
+
 		Importer wnd = GetWindow<Importer>();
 		wnd.titleContent = new GUIContent("Importer");
 	}
@@ -55,18 +47,43 @@ public class Importer : EditorWindow
 	/// <summary>Inits the document and all of its parts.</summary>
 	public void CreateGUI()
 	{
+		settings = AddressableAssetSettingsDefaultObject.Settings;
 		#region Base
 		minSize = new(800, 800);
 
-		VisualElement root = rootVisualElement;
-
 		VisualElement doc = m_VisualTreeAsset.Instantiate();
+		VisualElement win = InitRenameWindow(doc);
 		doc.style.flexGrow = 1;
-		root.Add(doc);
+		rootVisualElement.Add(doc);
+
+		textTab = new(doc, win, UpdateChoices);
+		pdfTab = new(doc, UpdateChoices);
+
+
+		doc.Q<TabView>().activeTabChanged += (_, newT) => {
+			int newTabIndex = newT.parent.IndexOf(newT);
+			if (newTabIndex == 0)
+			{
+				textTab.SelectTab();
+			}
+			else
+			{
+				pdfTab.SelectTab();
+			}
+			Debug.Log(newTabIndex);
+			UpdateChoices(newTabIndex);
+		};
 		#endregion
 
-		#region Window
-		win = doc.Q<VisualElement>("TextDialog");
+		ReloadData();
+		InitUniButtons(doc, win);
+		textTab.SelectTab();
+		EditorSceneManager.activeSceneChangedInEditMode += (_, _) => { if (hasFocus) OnFocus(); };
+		EditorSceneManager.activeSceneChanged += (_, _) => { if (hasFocus) OnFocus(); };
+	}
+	VisualElement InitRenameWindow(VisualElement doc)
+	{
+		VisualElement win = doc.Q<VisualElement>("TextDialog");
 		nameField = win.Q<TextField>("EntryName");
 		win.Q<Button>("Save").RegisterCallback<ClickEvent>((_) =>
 		{
@@ -77,271 +94,160 @@ public class Importer : EditorWindow
 			}
 		});
 		win.Q<Button>("Cancel").RegisterCallback<ClickEvent>((_) => win.style.display = DisplayStyle.None);
-		#endregion
-
-		InitTextList(doc);
-		InitTextControls(doc);
-
-		InitPDFList(doc);
-
+		return win;
+	}
+	void InitUniButtons(VisualElement doc, VisualElement win)
+	{
 		#region Rename
 		doc.Q<VisualElement>("Rename").RegisterCallback<ClickEvent>((_) =>
 		{
-			if (doc.Q<TabView>().activeTab.name == "PDF")
+			win.style.display = DisplayStyle.Flex;
+			if (doc.Q<TabView>().selectedTabIndex == 0)
 			{
-				if ((string)pdfList.selectedItem != "")
-				{
-					win.style.display = DisplayStyle.Flex;
-					stringAction = (s) =>
-					{
-						if (Directory.Exists(PDF_PATH + s))
-						{
-							EditorUtility.DisplayDialog("ALREADY IN USE", "FOLDER EXISTS", "ok");
-							return;
-						}
-						AssetDatabase.MoveAsset((string)pdfList.selectedItem, PDF_PATH + s);
-						pdfList.itemsSource[pdfList.selectedIndex] = PDF_PATH + s;
-						pdfList.RefreshItems();
-					};
-				}
+				pdfTab.Rename();
 			}
 			else
 			{
-				if ((string)textList.selectedItem != "")
-				{
-					win.style.display = DisplayStyle.Flex;
-					stringAction = (s) =>
-					{
-						AssetDatabase.MoveAsset((string)textList.selectedItem, TEXT_PATH + s + ".txt");
-						textList.itemsSource[textList.selectedIndex] = TEXT_PATH + s + ".txt";
-						textList.RefreshItems();
-					};
-				}
+				textTab.Rename();
 			}
 		}
 		);
 		#endregion
-	}
 
-	#region Text
-	/// <summary>
-	/// Adds items source and callbacks to <see cref="textList"/>.
-	/// </summary>
-	/// <param name="doc">Root of the document.</param>
-	void InitTextList(VisualElement doc)
-	{
-		List<string> files = new();
-		foreach (var a in Directory.GetFiles(TEXT_PATH, "*.txt"))
+		#region ClearBinding
+		clearButton = doc.Q<Button>("Clear");
+		clearButton.clicked += () =>
 		{
-			files.Add(a);
-		}
+			AddressableAssetGroup g;
+			int activeTab = doc.Q<TabView>().selectedTabIndex, i;
+			string GUId;
 
-		textField = doc.Q<TextField>("TextContent");
-		textList = doc.Q<Tab>("Text").Q<ListView>("List");
-		textList.itemsSource = files;
-
-		textList.onAdd = (view) =>
-		{
-			doc.Q<VisualElement>("TextDialog").style.display = DisplayStyle.Flex;
-			win.Q<TextField>("EntryName").value = "";
-
-			stringAction = (s) =>
+			if (activeTab == 0)
 			{
-				s = TEXT_PATH + s + ".txt";
-				if (File.Exists(s))
-				{
-					EditorUtility.DisplayDialog("Cannot add", "FILE ALREADY EXISTS", "ok");
-					return;
-				}
-				File.WriteAllText(s, "Dummy text");
-				view.itemsSource.Add(s);
-				view.Rebuild();
-			};
-		};
-
-		textList.onRemove = (_) =>
-		{
-			if (textList.selectedIndex != -1 &&
-				EditorUtility.DisplayDialog("Delete string entry",
-				$"Are you sure you want to delete entry: {textList.selectedItem}",
-				"confirm", "cancel"))
-			{
-				string fileName = Path.GetFileName((string)textList.selectedItem);
-				AssetDatabase.MoveAsset((string)textList.selectedItem, ((string)textList.selectedItem).Replace(fileName, "") + BCK_PATH + fileName);
-				textList.itemsSource.RemoveAt(textList.selectedIndex);
-				textList.Rebuild();
+				textTab.Clear(out i, out g);
 			}
-		};
-
-		textList.bindItem = (element, id) =>
-		{
-			element.Q<Label>().text = Path.GetFileName(textList.itemsSource[id].ToString());
-		};
-
-		textList.selectionChanged += newSelection =>
-		{
-			textField.value = File.ReadAllText((string)textList.selectedItem);
-		};
-	}
-	
-	/// <summary>
-	/// Implements functionality for the bottom buttons.
-	/// </summary>
-	/// <param name="doc">Root of the document.</param>
-	void InitTextControls(VisualElement doc)
-	{
-		doc.Q<Button>("Link").RegisterCallback<ClickEvent>((_) =>
-		{
-			if (selectedIndex - cursorIndex != 0)
+			else
 			{
-				stringAction = (linkAddr) =>
-				{
-					int start = Math.Min(selectedIndex, cursorIndex);
-					int end = Math.Max(selectedIndex, cursorIndex);
-
-					string s = textField.text;
-
-					s = s.Insert(end, @"</a></b></color>");
-					s = s.Insert(start, $"<color=\"blue\"><b><a href=\"{linkAddr}\">");
-					textField.value = s;
-				};
-				win.style.display = DisplayStyle.Flex;
+				pdfTab.Clear(out i, out g);
 			}
+
+			GUId = items[i].SourceObject.AssetGUID;
+			items[i].SourceObject = new("");
+
+			settings.CreateOrMoveEntry(GUId, g);
+			settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, GUId, true);
+			AssetDatabase.SaveAssets();
+			UpdateChoices();
+		};
+		#endregion
+
+		#region Dropdown
+		DropdownField field = doc.Q<DropdownField>("Binding");
+		field.RegisterValueChangedCallback<string>((s) =>
+		{
+			int i = items.FindIndex(q => q.gameObject.GetInstanceID() == choiceIds[field.index]);
+			AddressableAssetGroup g = settings.FindGroup(EditorSceneManager.GetActiveScene().name);
+			if (i > -1)
+			{
+				string GUId;
+				InteractableItem newItem;
+				if (rootVisualElement.Q<TabView>().selectedTabIndex == 0)
+					GUId = textTab.LinkEntry(items[i], out newItem);
+				else
+					GUId = pdfTab.LinkEntry(items[i], out newItem);
+
+				items[i] = newItem;
+				items[i].SourceObject = new AssetReference(GUId);
+				EditorUtility.SetDirty(items[i]);
+				settings.CreateOrMoveEntry(GUId, g);
+				EditorSceneManager.SaveOpenScenes();
+				settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, GUId, true);
+				AssetDatabase.SaveAssets();
+			}
+
+			i = items.FindIndex(q => q.gameObject.GetInstanceID() == choiceIds[field.choices.IndexOf(s.previousValue)]);
+			if (i > -1)
+				items[i].SourceObject = new("");
+
+			UpdateChoices();
 		});
-
-		doc.Q<Button>("Save").RegisterCallback<ClickEvent>((_) =>
-		{
-			File.WriteAllText((string)textList.selectedItem, textField.text);
-		});
-
-		doc.Q<Button>("ClearLinks").RegisterCallback<ClickEvent>((_) =>
-		{
-			string s = textField.text;
-			s = s.Replace("<color=\"blue\"><b>", "");
-			s = s.Replace("</a></b></color>", "");
-			int i;
-			while ((i = s.IndexOf("<a href")) > -1)
-			{
-				int j = s.IndexOf("\">");
-				s = s.Remove(i, j - i + 2);
-			}
-			textField.value = s;
-		});
-		textField.RegisterValueChangedCallback<string>((s) => doc.Q<Label>("PreviewText").text = s.newValue);
+		#endregion
 	}
-	#endregion
 
-	#region PDF
-	/// <summary>
-	/// Fills <see cref="pdfList"/> and assigns callbacks to it.
-	/// </summary>
-	/// <param name="doc">Root of the document.</param>
-	void InitPDFList(VisualElement doc)
+	void ReloadData()
 	{
-		List<string> folders = new();
-		foreach (var a in Directory.GetDirectories(PDF_PATH).Where(q => !q.Contains("BCK")))
-			folders.Add(a);
-
-		pdfList = doc.Q<Tab>("PDF").Q<ListView>("List");
-		pdfList.itemsSource = folders;
-
-
-		pdfList.onAdd = (view) =>
-		{
-			string folder = EditorUtility.OpenFolderPanel("Choose folder to use", "C:\\Users\\%username%", "");
-			if (folder != null && folder != "")
-			{
-				string uFolder = PDF_PATH + Path.GetFileName(folder);
-				if (Directory.Exists(uFolder))
-				{
-					EditorUtility.DisplayDialog("Cannot add", "FOLDER ALREADY EXISTS", "ok");
-					return;
-				}
-
-				Directory.Move(folder, uFolder);
-				List<string> files = Directory.GetFiles(uFolder).ToList();
-				int i;
-				if ((i = files.FindIndex(q => q.EndsWith(".pdf"))) != -1)
-				{
-					try
-					{
-						File.Move(files[i], uFolder + "\\pdf.pdf");
-					}
-					catch { }
-				}
-				i = 0;
-				foreach (string s in files.Where(q => !q.EndsWith(".pdf")))
-				{
-					try
-					{
-						File.Move(s, uFolder + $"\\img{i}.png");
-					}
-					catch { }
-				}
-
-
-				view.itemsSource.Add(uFolder);
-				view.Rebuild();
-			}
-		};
-
-		pdfList.onRemove = (_) =>
-		{
-			if (pdfList.selectedIndex != -1 &&
-				EditorUtility.DisplayDialog("Delete string entry",
-				$"Are you sure you want to delete entry: {pdfList.selectedItem}",
-				"confirm", "cancel"))
-			{
-				string fileName = Path.GetFileName((string)pdfList.selectedItem);
-
-				AssetDatabase.MoveAsset((string)pdfList.selectedItem, ((string)pdfList.selectedItem).Replace(fileName, "").TrimEnd('\\') + BCK_PATH + fileName);
-				pdfList.itemsSource.RemoveAt(pdfList.selectedIndex);
-				pdfList.Rebuild();
-			}
-		};
-
-		pdfList.bindItem = (element, id) =>
-		{
-			element.Q<Label>().text = Path.GetFileName(pdfList.itemsSource[id].ToString());
-		};
-
-		pdfList.selectionChanged += newSelection =>
-		{
-			ScrollView view = pdfList.parent.Q<ScrollView>("Preview");
-			int i;
-			for (i = view.childCount - 1; i > -1; i--)
-				view.RemoveAt(i);
-
-			i = 0;
-			foreach (string s in Directory.GetFiles((string)pdfList.selectedItem).Where(q => !q.EndsWith(".pdf")))
-			{
-				VisualElement element = new();
-				element.name = "IMG";
-				Texture2D tex = new Texture2D(2, 2);
-				tex.LoadImage(File.ReadAllBytes(s));
-				element.style.backgroundImage = tex;
-				element.style.height = tex.height / 2;
-				element.style.width = tex.width / 2;
-				view.Add(element);
-			}
-		};
-
-		pdfList.parent.Q<Button>("ShowPDF").RegisterCallback<ClickEvent>((_) => Application.OpenURL((string)pdfList.selectedItem + "\\pdf.pdf"));
+		items = FindObjectsByType<InteractableItem>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
+		textTab.ReloadData();
+		pdfTab.ReloadData();
 	}
-	#endregion
 
 	#endregion
 
 	#region Updates
+	private void OnFocus()
+	{
+		if (textTab != null)
+		{
+			ReloadData();
+			UpdateChoices();
+		}
+	}
+
 	/// <summary>
 	/// Updates the selection data for <see cref="textField"/>.
 	/// </summary>
 	private void OnGUI()
 	{
-		if (textField.textSelection.HasSelection())
-			selectedIndex = textField.selectIndex;
-		cursorIndex = textField.cursorIndex;
+		if (textTab != null)
+			textTab.UpdateIndexes();
+	}
+
+	void UpdateChoices(int i = -1)
+	{
+		if (i == -1)
+			i = rootVisualElement.Q<TabView>().selectedTabIndex;
+		DropdownField field = rootVisualElement.Q<DropdownField>();
+
+		field.choices = items.Where(q => q.SourceObject == null || q.SourceObject.AssetGUID == "").Select(q => $"{q.name} ({q.GetType().ToString().Replace("Items.", "")})").ToList();
+		choiceIds = items.Where(q => q.SourceObject == null || q.SourceObject.AssetGUID == "").Select(q => q.gameObject.GetInstanceID()).ToList();
+
+		InteractableItem item;
+		string selection;
+		if(i == 0)
+		{
+			selection = UpdateText(out item, textTab.textList);
+		}
+		else
+		{
+			selection = UpdateText(out item, pdfTab.pdfList);
+		}
+
+		field.choices.Insert(0, selection);
+		if(item)
+			choiceIds.Insert(0, item.gameObject.GetInstanceID());
+		else
+			choiceIds.Insert(0, -1);
+
+		field.SetValueWithoutNotify(selection);
+	}
+
+	public string UpdateText(out InteractableItem item, ListView listView)
+	{
+		if (item = Importer.items.Where(q => q.SourceObject != null && q.SourceObject.AssetGUID != "").ToList()
+			.FirstOrDefault(q => q.SourceObject.AssetGUID == AssetDatabase.GUIDFromAssetPath((string)listView.selectedItem).ToString()))
+		{
+			clearButton.style.display = DisplayStyle.Flex;
+			return $"{item.name} ({item.GetType().ToString().Replace("Items.", "")})";
+		}
+		else
+		{
+			clearButton.style.display = DisplayStyle.None;
+			if (!EditorSceneManager.GetActiveScene().name.Contains("Room"))
+				return "Select a room Scene!";
+			return "Select binding";
+		}
 	}
 	#endregion
+
 }
 #endif

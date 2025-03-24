@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Universal
+  m_EditorClassIdentifier: 
+  m_GroupName: Universal
+  m_GUID: 5528967dd38a89d4f9f97de074978318
+  m_SerializeEntries:
+  - m_GUID: 35845fe01580c41289b024647b1d1c53
+    m_Address: Action map
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b334b482a0d970409e99bdb9e62d520
+    m_Address: Panel Settings
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d4f37c281ecc6f24ba4924d6dce859ef
+    m_Address: UnityDefaultRuntimeTheme
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db63ed6ef943581489595a91faccf9ec
+    m_Address: UITK Text Settings
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9263fbe9ee4797b498a0240e070baac4, type: 2}
+    - {fileID: 11400000, guid: 7c38ac52b09ba7e45b07540b58a1dc0e, type: 2}

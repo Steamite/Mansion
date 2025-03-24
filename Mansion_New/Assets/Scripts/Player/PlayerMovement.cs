@@ -1,10 +1,13 @@
 using Rooms;
 using System;
+using System.Collections;
 using Unity.Cinemachine;
 using Unity.Properties;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -28,7 +31,7 @@ namespace Player
 		/// <summary>Min and max range limits for minimap zooming.</summary>
         [SerializeField][MinMaxRangeSlider(0, 10)] Vector2 mapZoomLimit;
 		/// <summary>Base room to load scenes from</summary>
-        [SerializeField] string startingScene;
+        [SerializeField] AssetReference startingScene;
 		/// <summary>Current velocity of on -y.</summary>
 		Vector3 gravity;
 
@@ -63,22 +66,23 @@ namespace Player
 
         }
 
-        async void Start()
+        IEnumerator Start()
         {
-            if (SceneManager.sceneCount > 1)
-            {
-                for (int i = SceneManager.sceneCount - 1; i > 0; i--)
-                {
-                    await SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i).name);
-                }
-            }
-            await SceneManager.LoadSceneAsync(startingScene, LoadSceneMode.Additive);
-            ActiveRoom = FindFirstObjectByType<Room>().EnterRoom(null);
+			AsyncOperationHandle<SceneInstance> initialLoad = 
+                Addressables.LoadSceneAsync(startingScene, LoadSceneMode.Additive, false);
+			yield return initialLoad;
+			if (initialLoad.Status == AsyncOperationStatus.Succeeded)
+				yield return initialLoad.Result.ActivateAsync();
+
+			ActiveRoom = FindFirstObjectByType<Room>().EnterRoom(null);
             propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
 
             Position.x = -transform.position.x;
             Position.y = transform.position.z;
             propertyChanged?.Invoke(this, new(nameof(Position)));
+            Debug.Log(asset);
+                asset.Enable();
+                Debug.Log("Enabled:" + moveAction.enabled);
         }
 		#endregion
 
@@ -88,6 +92,7 @@ namespace Player
 		void Update()
         {
             Vector2 input = moveAction.ReadValue<Vector2>();
+            Debug.Log("moving by:" + input);
             if (input.x != 0 || input.y != 0)
             {
                 Vector3 moveDir = transform.TransformDirection(Vector3.forward) * input.y + transform.TransformDirection(Vector3.right) * input.x;

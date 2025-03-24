@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using System.Threading.Tasks;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.Networking;
 using UnityEngine.UIElements;
 
@@ -17,9 +19,9 @@ namespace Items
 		/// <summary>Display name of the item.</summary>
 		[SerializeField] public string ItemName;
 		/// <summary>Inner and Outer limits of zoom.</summary>
-        [SerializeField][MinMaxRangeSlider(0.5f, 5)] public Vector2 radiusRange;
+        [SerializeField][MinMaxRangeSlider(0.5f, 5)] public Vector2 RadiusRange;
 		/// <summary>Path for downloading the content.</summary>
-        [SerializeField] public string SourcePath = "";
+        [SerializeField] public AssetReference SourceObject;
 
         /// <summary>
         /// Each type of Item must has it's own implementation for dowloading and viewing content.
@@ -28,5 +30,18 @@ namespace Items
         public abstract void LoadContent(VisualElement element);
 
         public abstract void Unload(VisualElement visualElement);
+
+        /// <summary>
+        /// Loads what it needs to using addressables and then executes the callback
+        /// </summary>
+        /// <returns></returns>
+        protected abstract IEnumerator GetContent(VisualElement element);
+
+        public void Clone(InteractableItem item)
+        {
+            ItemName = item.ItemName;
+            RadiusRange = item.RadiusRange;
+            SourceObject = item.SourceObject;
+        }
 	}
 }

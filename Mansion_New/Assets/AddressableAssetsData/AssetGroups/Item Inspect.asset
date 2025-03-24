@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Item Inspect
+  m_EditorClassIdentifier: 
+  m_GroupName: Item Inspect
+  m_GUID: 941976cb9905c9b4497704527447102a
+  m_SerializeEntries:
+  - m_GUID: 1c1e35c6bdfe9ca41878e670fbc5ed00
+    m_Address: Interaction/Toolbar.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27222b81903c77f46942fe0a871e708e
+    m_Address: Interaction
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28d0d3120f3eede4dbbb3a69b32104cc
+    m_Address: InspectToolbar
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 38bc2ba076245284eadc5ed0adea6675
+    m_Address: Interact
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d718517031f02343958430206a4ba0e
+    m_Address: Shaders
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 658cd35d788af46489726e1322cc904e
+    m_Address: Shortcut_Icon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ccf533349f3b9e545ab41f322e4a3c50, type: 2}
+    - {fileID: 11400000, guid: 786e1a99013b18f4f9601e7d3b3946e1, type: 2}

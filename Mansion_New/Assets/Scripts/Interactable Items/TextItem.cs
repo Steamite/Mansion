@@ -1,4 +1,7 @@
-﻿using UI.Inspect;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UIElements;
 
 namespace Items
@@ -6,36 +9,40 @@ namespace Items
 	/// <summary>
 	/// Elemet that stores text, which can contain some tags to make it more interesting.
 	/// </summary>
-    class TextItem : InteractableItem
+    public class TextItem : InteractableItem
     {
-		const string TEXT_FOLDER = "TEXT/";
-		/// <summary>Cached string.</summary>
-		string content = null;
-
 		public override void LoadContent(VisualElement displayElem)
 		{
-			if (SourcePath == "")
+			if (SourceObject == null || SourceObject.AssetGUID == "")
 				return;
 
-			Label _text = displayElem.Q<Label>("Label");
-			if (content == null || content == "ERROR")
-			{
-				_text.text = "Downloading text...";
-				WebUtil.GetTextFromServer(
-					TEXT_FOLDER + SourcePath,
-					(s) =>
-					{
-						content = s;
-						_text.text = s;
-					});
-			}
-			else
-				_text.text = content;
+			StartCoroutine(GetContent(displayElem));
 		}
 
-		public override void Unload(VisualElement visualElement)
+		protected override IEnumerator GetContent(VisualElement displayElem)
 		{
-			visualElement.Q<Label>("Label").text = "";
+			Label _text = displayElem.Q<Label>("Label");
+			_text.text = "Downloading text...";
+
+			for (int i = 0; i < 3; i++)
+			{
+				AsyncOperationHandle<TextData> handle = Addressables.LoadAssetAsync<TextData>(SourceObject);
+				yield return handle;
+				if (handle.Status == AsyncOperationStatus.Succeeded)
+				{
+					_text.text = handle.Result.content;
+					if (SourceObject.IsValid())
+						SourceObject.ReleaseAsset();
+					yield break;
+				}
+			}
+			_text.text = "ERROR";
 		}
+
+		public override void Unload(VisualElement displayElem)
+		{
+			displayElem.Q<Label>("Label").text = "";
+		}
+
 	}
 }
