@@ -68,14 +68,6 @@ namespace Player
 
         IEnumerator Start()
         {
-			/*if (SceneManager.sceneCount > 1)
-            {
-                for (int i = SceneManager.sceneCount - 1; i > 0; i--)
-                {
-                    await SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(i).name);
-                }
-            }*/
-
 			AsyncOperationHandle<SceneInstance> initialLoad = 
                 Addressables.LoadSceneAsync(startingScene, LoadSceneMode.Additive, false);
 			yield return initialLoad;

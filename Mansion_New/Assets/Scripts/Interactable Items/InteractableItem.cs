@@ -19,9 +19,9 @@ namespace Items
 		/// <summary>Display name of the item.</summary>
 		[SerializeField] public string ItemName;
 		/// <summary>Inner and Outer limits of zoom.</summary>
-        [SerializeField][MinMaxRangeSlider(0.5f, 5)] public Vector2 radiusRange;
+        [SerializeField][MinMaxRangeSlider(0.5f, 5)] public Vector2 RadiusRange;
 		/// <summary>Path for downloading the content.</summary>
-        [SerializeField] public AssetReference sourceObject;
+        [SerializeField] public AssetReference SourceObject;
 
         /// <summary>
         /// Each type of Item must has it's own implementation for dowloading and viewing content.
@@ -36,5 +36,12 @@ namespace Items
         /// </summary>
         /// <returns></returns>
         protected abstract IEnumerator GetContent(VisualElement element);
+
+        public void Clone(InteractableItem item)
+        {
+            ItemName = item.ItemName;
+            RadiusRange = item.RadiusRange;
+            SourceObject = item.SourceObject;
+        }
 	}
 }

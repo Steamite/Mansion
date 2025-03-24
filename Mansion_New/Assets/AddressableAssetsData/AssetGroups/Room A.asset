@@ -20,20 +20,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 269f0c3386d88fc42949936bc1a0a11b
-    m_Address: Assets/ItemData/Images/CV-Richard_Kopp_en (5) - kopie - kopie - kopie
-      - kopie/img0.jpg
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b53a278d092505349b9c000d68a3654d
-    m_Address: Assets/ItemData/PDF/CV-Richard_Kopp_en (5) - kopie - kopie - kopie
-      - kopie.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f597b1ba796c1524d84a38ac1932705c
-    m_Address: Assets/ItemData/Text/t.asset
+  - m_GUID: db03ed1a3a3941044a4a0071c0c3e52d
+    m_Address: "Assets/ItemData/Text/dsanasobvaouhf\xE9a.asset"
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Texts
   m_GUID: 801f7060af88ae049b3ce1d932555a3b
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: f597b1ba796c1524d84a38ac1932705c
+    m_Address: t
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
   m_SchemaSet:

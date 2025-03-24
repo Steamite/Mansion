@@ -87,9 +87,9 @@ public class TextTab : ITab
 
 				// Removing reference from item
 				string GUId = AssetDatabase.GUIDFromAssetPath((string)textList.selectedItem).ToString();
-				InteractableItem itemAssigned = Importer.items.FirstOrDefault(q => q.sourceObject?.AssetGUID == GUId);
+				InteractableItem itemAssigned = Importer.items.FirstOrDefault(q => q.SourceObject?.AssetGUID == GUId);
 				if (itemAssigned != null)
-					itemAssigned.sourceObject = new("");
+					itemAssigned.SourceObject = new("");
 
 				// Removing from addressables
 				settings.RemoveAssetEntry(GUId);
@@ -168,7 +168,7 @@ public class TextTab : ITab
 
 	public void Clear(out int i, out AddressableAssetGroup g)
 	{
-		i = Importer.items.FindIndex(q => q.sourceObject.AssetGUID == AssetDatabase.GUIDFromAssetPath((string)textList.selectedItem).ToString());
+		i = Importer.items.FindIndex(q => q.SourceObject.AssetGUID == AssetDatabase.GUIDFromAssetPath((string)textList.selectedItem).ToString());
 		g = AddressableAssetSettingsDefaultObject.Settings.FindGroup("Texts");
 	}
 
@@ -193,8 +193,15 @@ public class TextTab : ITab
 			textList.SetSelection(0);
 	}
 
-	public string LinkEntry()
+	public string LinkEntry(InteractableItem item, out InteractableItem newItem)
 	{
+		if (item is not TextItem)
+		{
+			newItem = item.gameObject.AddComponent<TextItem>();
+			newItem.Clone(item);
+			Editor.DestroyImmediate(item);
+		}
+		else newItem = item;
 		return AssetDatabase.GUIDFromAssetPath((string)textList.selectedItem).ToString();
 	}
 

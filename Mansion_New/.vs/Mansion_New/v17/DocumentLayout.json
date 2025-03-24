@@ -3,28 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\assets\\scripts\\interactable items\\pdfitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interactable items\\pdfitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|c:\\users\\spravce\\rk\\mansion\\mansion_new\\assets\\scripts\\ui\\inspectmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\inspectmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\assets\\scripts\\interactable items\\textitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interactable items\\textitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BC6166CD-E546-682B-3F4D-419420C88F87}|Assembly-CSharp-Editor.csproj|c:\\users\\spravce\\rk\\mansion\\mansion_new\\assets\\ui toolkit\\editor\\importer\\pdftab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC6166CD-E546-682B-3F4D-419420C88F87}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\ui toolkit\\editor\\importer\\pdftab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BC6166CD-E546-682B-3F4D-419420C88F87}|Assembly-CSharp-Editor.csproj|c:\\users\\spravce\\rk\\mansion\\mansion_new\\assets\\ui toolkit\\editor\\importer\\texttab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BC6166CD-E546-682B-3F4D-419420C88F87}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\ui toolkit\\editor\\importer\\texttab.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{BC6166CD-E546-682B-3F4D-419420C88F87}|Assembly-CSharp-Editor.csproj|C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\assets\\ui toolkit\\editor\\importer\\importer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BC6166CD-E546-682B-3F4D-419420C88F87}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\ui toolkit\\editor\\importer\\importer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|c:\\users\\spravce\\rk\\mansion\\mansion_new\\assets\\scripts\\interactable items\\interactableitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\interactable items\\interactableitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,21 +18,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "Importer.cs",
               "DocumentMoniker": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\UI Toolkit\\Editor\\Importer\\Importer.cs",
               "RelativeDocumentMoniker": "Assets\\UI Toolkit\\Editor\\Importer\\Importer.cs",
               "ToolTip": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\UI Toolkit\\Editor\\Importer\\Importer.cs",
               "RelativeToolTip": "Assets\\UI Toolkit\\Editor\\Importer\\Importer.cs",
-              "ViewState": "AgIAAIcAAAAAAAAAAAAswJkAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAIkAAAAAAAAAAAAAwJsAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-22T13:13:04.392Z",
               "IsPinned": true,
@@ -57,67 +37,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "InspectMenu.cs",
-              "DocumentMoniker": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\InspectMenu.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\InspectMenu.cs",
-              "ToolTip": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\InspectMenu.cs",
-              "RelativeToolTip": "Assets\\Scripts\\UI\\InspectMenu.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAAwFgAAAAvAAAAAAAAAA==",
+              "Title": "InteractableItem.cs",
+              "DocumentMoniker": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\Scripts\\Interactable Items\\InteractableItem.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Interactable Items\\InteractableItem.cs",
+              "ToolTip": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\Scripts\\Interactable Items\\InteractableItem.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Interactable Items\\InteractableItem.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAgwCcAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T09:25:36.304Z",
+              "WhenOpened": "2025-03-24T06:54:03.126Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TextTab.cs",
-              "DocumentMoniker": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\UI Toolkit\\Editor\\Importer\\TextTab.cs",
-              "RelativeDocumentMoniker": "Assets\\UI Toolkit\\Editor\\Importer\\TextTab.cs",
-              "ToolTip": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\UI Toolkit\\Editor\\Importer\\TextTab.cs",
-              "RelativeToolTip": "Assets\\UI Toolkit\\Editor\\Importer\\TextTab.cs",
-              "ViewState": "AgIAAKwAAAAAAAAAAAAlwMYAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T08:54:47.238Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PDFTab.cs",
-              "DocumentMoniker": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\UI Toolkit\\Editor\\Importer\\PDFTab.cs",
-              "RelativeDocumentMoniker": "Assets\\UI Toolkit\\Editor\\Importer\\PDFTab.cs",
-              "ToolTip": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\UI Toolkit\\Editor\\Importer\\PDFTab.cs",
-              "RelativeToolTip": "Assets\\UI Toolkit\\Editor\\Importer\\PDFTab.cs",
-              "ViewState": "AgIAAM4AAAAAAAAAAADgv+IAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T08:52:09.909Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TextItem.cs",
-              "DocumentMoniker": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\Scripts\\Interactable Items\\TextItem.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Interactable Items\\TextItem.cs",
-              "ToolTip": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\Scripts\\Interactable Items\\TextItem.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Interactable Items\\TextItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T08:24:39.378Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PDFItem.cs",
-              "DocumentMoniker": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\Scripts\\Interactable Items\\PDFItem.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Interactable Items\\PDFItem.cs",
-              "ToolTip": "C:\\Users\\Spravce\\RK\\Mansion\\Mansion_New\\Assets\\Scripts\\Interactable Items\\PDFItem.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Interactable Items\\PDFItem.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAgwA8AAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T08:24:38.872Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             }
           ]
         }

@@ -2401,18 +2401,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 723985725}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dcb9824e74d7344085c59ad1f53ea64, type: 3}
+  m_Script: {fileID: 11500000, guid: fa5ccc1ab7c167a459e0f866b26f0467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Very Interesting cube
-  radiusRange: {x: 1, y: 1.7164179}
-  sourceObject:
-    m_AssetGUID: b53a278d092505349b9c000d68a3654d
+  RadiusRange: {x: 1.3265307, y: 2.244898}
+  SourceObject:
+    m_AssetGUID: db03ed1a3a3941044a4a0071c0c3e52d
     m_SubObjectName: 
     m_SubObjectGUID: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0
-  pdfPath: 
 --- !u!43 &794059846
 Mesh:
   m_ObjectHideFlags: 0
@@ -2791,8 +2790,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Very Interesting cube
-  radiusRange: {x: 1, y: 1}
-  sourceObject:
+  RadiusRange: {x: 0.5, y: 0.5}
+  SourceObject:
     m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectGUID: 
@@ -7874,8 +7873,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Very Interesting cube
-  radiusRange: {x: 1, y: 1}
-  sourceObject:
+  RadiusRange: {x: 0.5, y: 0.5}
+  SourceObject:
     m_AssetGUID: f597b1ba796c1524d84a38ac1932705c
     m_SubObjectName: 
     m_SubObjectGUID: 

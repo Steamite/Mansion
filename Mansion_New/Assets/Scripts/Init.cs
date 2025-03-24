@@ -10,6 +10,8 @@ public class Init : MonoBehaviour
     {
 		AsyncOperationHandle<SceneInstance> initialLoad = 
 			Addressables.LoadSceneAsync("Player", UnityEngine.SceneManagement.LoadSceneMode.Single, false);
+		
+		
 		yield return initialLoad;
 		if (initialLoad.Status == AsyncOperationStatus.Succeeded)
 			yield return initialLoad.Result.ActivateAsync();

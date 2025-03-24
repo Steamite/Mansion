@@ -1,5 +1,6 @@
 ﻿using Items;
 using Player;
+using System;
 using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -43,6 +44,10 @@ namespace UI.Inspect
 		UIDocument doc;
         /// <summary>Is the description page opened or not.</summary>
 		bool isDescriptionOpened;
+
+        AsyncOperationHandle<SceneInstance> scene;
+
+        const string buttonGUId = "658cd35d788af46489726e1322cc904e";
 		#endregion
 
 		#region Init
@@ -51,8 +56,9 @@ namespace UI.Inspect
 		/// </summary>
 		/// <param name="_asset">Input asset with inpection map.</param>
 		/// <param name="_item">Inspected item.</param>
-		public void Init(InputActionAsset _asset, InteractableItem _item)
+		public void Init(InputActionAsset _asset, InteractableItem _item, AsyncOperationHandle<SceneInstance> _scene)
         {
+            scene = _scene;
             asset = _asset;
             item = _item;
 
@@ -61,11 +67,12 @@ namespace UI.Inspect
             takeAction = asset.actionMaps[2].actions[2];
             asset.actionMaps[2].Enable();
 
+            //Texture2D a = Addressables.LoadAssetAsync<Texture2D>(buttonGUId).Result;
             doc = GetComponent<UIDocument>();
             doc.enabled = true;
             doc.rootVisualElement.Q<Label>(TITLE).text = _item.ItemName;
 
-            if(item.sourceObject.IsValid())
+            if(item.SourceObject.IsValid())
             {
                 infoAction.Disable();
                 doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).style.display = DisplayStyle.None;
@@ -95,7 +102,6 @@ namespace UI.Inspect
         /// </summary>
         void EndInteract()
         {
-
             asset.actionMaps[2].Disable();
             if (item)
             {
@@ -108,23 +114,25 @@ namespace UI.Inspect
 
             doc.enabled = false;
             cam.Priority = -1;
-            StartCoroutine(WaitForBlend());
+            StartCoroutine(EnableMovement());
         }
 
         /// <summary>
         /// Unloads interaction scene and resets player camera.
         /// </summary>
         /// <returns></returns>
-        IEnumerator WaitForBlend()
-        {
-            CrosshairImage.Toggle();
+        IEnumerator EnableMovement()
+		{
+			CrosshairImage.Toggle();
             yield return new();
             Camera.main.cullingMask = -1;
             gameObject.SetActive(false);
-			//AsyncOperationHandle<SceneInstance> sceneUnload = Addressables.UnloadSceneAsync();
-            SceneManager.UnloadSceneAsync("Interact");
-            asset.actionMaps[0].Enable();
-            GameObject.FindFirstObjectByType<PlayerCamera>().EndIteract();
+			AsyncOperationHandle<SceneInstance> sceneUnload = Addressables.UnloadSceneAsync(scene, UnloadSceneOptions.None, false);
+            sceneUnload.Completed += (_) =>
+            {
+				asset.actionMaps[0].Enable();
+				GameObject.FindFirstObjectByType<PlayerCamera>().EndIteract();
+			};
         }
         #endregion
 

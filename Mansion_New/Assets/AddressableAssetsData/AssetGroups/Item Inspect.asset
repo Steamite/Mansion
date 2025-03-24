@@ -15,6 +15,21 @@ MonoBehaviour:
   m_GroupName: Item Inspect
   m_GUID: 941976cb9905c9b4497704527447102a
   m_SerializeEntries:
+  - m_GUID: 1c1e35c6bdfe9ca41878e670fbc5ed00
+    m_Address: Interaction/Toolbar.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27222b81903c77f46942fe0a871e708e
+    m_Address: Interaction
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28d0d3120f3eede4dbbb3a69b32104cc
+    m_Address: InspectToolbar
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 38bc2ba076245284eadc5ed0adea6675
     m_Address: Interact
     m_ReadOnly: 0
@@ -22,6 +37,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d718517031f02343958430206a4ba0e
     m_Address: Shaders
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 658cd35d788af46489726e1322cc904e
+    m_Address: Shortcut_Icon
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

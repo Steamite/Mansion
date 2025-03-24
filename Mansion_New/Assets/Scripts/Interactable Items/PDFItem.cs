@@ -11,13 +11,13 @@ namespace Items
 	/// Item with *.pdf and .png description.
 	/// Each page of the pdf equals one png.
 	/// </summary>
-    class PDFItem : InteractableItem
+    public class PDFItem : InteractableItem
     {
 		const string PDF_LOCATION = "/PDF/";
 		public string pdfPath;
 		public override void LoadContent(VisualElement displayElem)
 		{
-			if (sourceObject == null || sourceObject.AssetGUID == "")
+			if (SourceObject == null || SourceObject.AssetGUID == "")
 				return;
 
 			StartCoroutine(GetContent(displayElem));
@@ -31,7 +31,7 @@ namespace Items
 
 			for (int i = 0; i < 3; i++)
 			{
-				AsyncOperationHandle<PDFData> pdfHandle = Addressables.LoadAssetAsync<PDFData>(sourceObject);
+				AsyncOperationHandle<PDFData> pdfHandle = Addressables.LoadAssetAsync<PDFData>(SourceObject);
 				yield return pdfHandle;
 				if (pdfHandle.Status == AsyncOperationStatus.Succeeded)
 				{
@@ -58,7 +58,7 @@ namespace Items
 							imgElem.style.width = spriteHandle.Result.width;
 							imgElem.style.height = spriteHandle.Result.height;
 
-							spriteHandle.Release();
+							//spriteHandle.Release();
 						}
 						else
 						{

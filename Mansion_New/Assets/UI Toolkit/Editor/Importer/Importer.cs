@@ -131,8 +131,8 @@ public class Importer : EditorWindow
 				pdfTab.Clear(out i, out g);
 			}
 
-			GUId = items[i].sourceObject.AssetGUID;
-			items[i].sourceObject = new("");
+			GUId = items[i].SourceObject.AssetGUID;
+			items[i].SourceObject = new("");
 
 			settings.CreateOrMoveEntry(GUId, g);
 			settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, GUId, true);
@@ -150,14 +150,16 @@ public class Importer : EditorWindow
 			if (i > -1)
 			{
 				string GUId;
+				InteractableItem newItem;
 				if (rootVisualElement.Q<TabView>().selectedTabIndex == 0)
-					GUId = textTab.LinkEntry();
+					GUId = textTab.LinkEntry(items[i], out newItem);
 				else
-					GUId = pdfTab.LinkEntry();
+					GUId = pdfTab.LinkEntry(items[i], out newItem);
 
-				settings.CreateOrMoveEntry(GUId, g);
-				items[i].sourceObject = new AssetReference(GUId);
+				items[i] = newItem;
+				items[i].SourceObject = new AssetReference(GUId);
 				EditorUtility.SetDirty(items[i]);
+				settings.CreateOrMoveEntry(GUId, g);
 				EditorSceneManager.SaveOpenScenes();
 				settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, GUId, true);
 				AssetDatabase.SaveAssets();
@@ -165,7 +167,7 @@ public class Importer : EditorWindow
 
 			i = items.FindIndex(q => q.gameObject.GetInstanceID() == choiceIds[field.choices.IndexOf(s.previousValue)]);
 			if (i > -1)
-				items[i].sourceObject = new("");
+				items[i].SourceObject = new("");
 
 			UpdateChoices();
 		});
@@ -206,8 +208,8 @@ public class Importer : EditorWindow
 			i = rootVisualElement.Q<TabView>().selectedTabIndex;
 		DropdownField field = rootVisualElement.Q<DropdownField>();
 
-		field.choices = items.Where(q => q.sourceObject == null || q.sourceObject.AssetGUID == "").Select(q => $"{q.name} ({q.GetType().ToString().Replace("Items.", "")})").ToList();
-		choiceIds = items.Where(q => q.sourceObject == null || q.sourceObject.AssetGUID == "").Select(q => q.gameObject.GetInstanceID()).ToList();
+		field.choices = items.Where(q => q.SourceObject == null || q.SourceObject.AssetGUID == "").Select(q => $"{q.name} ({q.GetType().ToString().Replace("Items.", "")})").ToList();
+		choiceIds = items.Where(q => q.SourceObject == null || q.SourceObject.AssetGUID == "").Select(q => q.gameObject.GetInstanceID()).ToList();
 
 		InteractableItem item;
 		string selection;
@@ -231,8 +233,8 @@ public class Importer : EditorWindow
 
 	public string UpdateText(out InteractableItem item, ListView listView)
 	{
-		if (item = Importer.items.Where(q => q.sourceObject != null && q.sourceObject.AssetGUID != "").ToList()
-			.FirstOrDefault(q => q.sourceObject.AssetGUID == AssetDatabase.GUIDFromAssetPath((string)listView.selectedItem).ToString()))
+		if (item = Importer.items.Where(q => q.SourceObject != null && q.SourceObject.AssetGUID != "").ToList()
+			.FirstOrDefault(q => q.SourceObject.AssetGUID == AssetDatabase.GUIDFromAssetPath((string)listView.selectedItem).ToString()))
 		{
 			clearButton.style.display = DisplayStyle.Flex;
 			return $"{item.name} ({item.GetType().ToString().Replace("Items.", "")})";

@@ -1,3 +1,4 @@
+using Items;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public interface ITab
 	public void ReloadData();
 
 	/// <summary>When changing elements in the list.</summary>
-	public string LinkEntry();
+	public string LinkEntry(InteractableItem item, out InteractableItem newItem);
 
 	/// <summary>Switching tabs.</summary>
 	public void SelectTab();

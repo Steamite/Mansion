@@ -11,6 +11,7 @@ using Items;
 using System.Linq;
 using System;
 using UnityEngine.AddressableAssets;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 
 public class PDFTab : ITab
 {
@@ -124,9 +125,9 @@ public class PDFTab : ITab
 
 				// Removing reference from item
 				string GUId = AssetDatabase.GUIDFromAssetPath((string)pdfList.selectedItem).ToString();
-				InteractableItem itemAssigned = Importer.items.FirstOrDefault(q => q.sourceObject?.AssetGUID == GUId);
+				InteractableItem itemAssigned = Importer.items.FirstOrDefault(q => q.SourceObject?.AssetGUID == GUId);
 				if (itemAssigned != null)
-					itemAssigned.sourceObject = new("");
+					itemAssigned.SourceObject = new("");
 
 				// Removing from addressables
 				settings.RemoveAssetEntry(GUId);
@@ -183,7 +184,7 @@ public class PDFTab : ITab
 			settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, GUId, true);
 		}
 		AssetDatabase.SaveAssets();
-		i = Importer.items.FindIndex(q => q.sourceObject.AssetGUID == AssetDatabase.GUIDFromAssetPath((string)pdfList.selectedItem).ToString());
+		i = Importer.items.FindIndex(q => q.SourceObject.AssetGUID == AssetDatabase.GUIDFromAssetPath((string)pdfList.selectedItem).ToString());
 		g = settings.FindGroup("PDFs");
 	}
 
@@ -202,8 +203,16 @@ public class PDFTab : ITab
 		pdfList.itemsSource = files;
 	}
 
-	public string LinkEntry()
+	public string LinkEntry(InteractableItem item, out InteractableItem newItem)
 	{
+		if (item is not PDFItem)
+		{
+			newItem = item.gameObject.AddComponent<PDFItem>();
+			newItem.Clone(item);
+			Editor.DestroyImmediate(item);
+		}
+		else newItem = item;
+
 		int z = Directory.GetFiles($"{Application.dataPath}/{IMAGE_FILE_PATH}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}", "*.jpg").Length;
 		AddressableAssetGroup group = settings.FindGroup(EditorSceneManager.GetActiveScene().name);
 		string GUId;

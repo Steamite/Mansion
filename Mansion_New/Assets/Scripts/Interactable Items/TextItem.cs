@@ -9,11 +9,11 @@ namespace Items
 	/// <summary>
 	/// Elemet that stores text, which can contain some tags to make it more interesting.
 	/// </summary>
-    class TextItem : InteractableItem
+    public class TextItem : InteractableItem
     {
 		public override void LoadContent(VisualElement displayElem)
 		{
-			if (sourceObject == null || sourceObject.AssetGUID == "")
+			if (SourceObject == null || SourceObject.AssetGUID == "")
 				return;
 
 			StartCoroutine(GetContent(displayElem));
@@ -26,13 +26,13 @@ namespace Items
 
 			for (int i = 0; i < 3; i++)
 			{
-				AsyncOperationHandle<TextData> handle = Addressables.LoadAssetAsync<TextData>(sourceObject);
+				AsyncOperationHandle<TextData> handle = Addressables.LoadAssetAsync<TextData>(SourceObject);
 				yield return handle;
 				if (handle.Status == AsyncOperationStatus.Succeeded)
 				{
 					_text.text = handle.Result.content;
-					if (sourceObject.IsValid())
-						sourceObject.ReleaseAsset();
+					if (SourceObject.IsValid())
+						SourceObject.ReleaseAsset();
 					yield break;
 				}
 			}

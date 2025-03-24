@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles/Loading/Loading%20Screen.uss?fileID=7433441132597879392&amp;guid=664cc8598a03ec24a805d5fb160a0541&amp;type=3#Loading Screen" />
+    <engine:VisualElement style="flex-grow: 1; background-color: rgb(0, 0, 0);">
+        <engine:ProgressBar value="92.6" title="Loading Game" style="position: absolute; bottom: 150px; align-self: center; width: 90%; height: 5%; font-size: 35px; color: rgb(168, 111, 9);" />
+    </engine:VisualElement>
+</engine:UXML>

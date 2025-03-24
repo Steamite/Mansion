@@ -216,13 +216,16 @@ namespace Player
             CrosshairImage.Toggle();
             asset.actionMaps[0].Disable();
             AsyncOperationHandle<SceneInstance> sceneLoading = 
-                Addressables.LoadSceneAsync(inspectScene, LoadSceneMode.Additive, false); //SceneManager.LoadSceneAsync("Interact", LoadSceneMode.Additive);
+                Addressables.LoadSceneAsync(inspectScene, LoadSceneMode.Additive, false);
             yield return sceneLoading;
             if (sceneLoading.Status == AsyncOperationStatus.Succeeded)
                 yield return sceneLoading.Result.ActivateAsync();
             else
-                Debug.LogError(sceneLoading.Status);
-            GameObject.FindAnyObjectByType<ItemInspect>().Init(item.transform, asset);
+			{
+				Debug.LogError(sceneLoading.Status);
+                yield break;
+			}
+            GameObject.FindAnyObjectByType<InpectionInit>().Init(item.transform, asset, sceneLoading);
         }
 
         /// <summary>
