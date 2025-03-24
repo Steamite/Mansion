@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2913207af0d947942b5831c182b48dfb, type: 3}
-  m_Name: CV-Richard_Kopp_en (4) - kopie - kopie - kopie - kopie
+  m_Script: {fileID: 11500000, guid: 5834b5087d578d24c926ce20cd31e6d6, type: 3}
+  m_Name: Main Menu_ContentUpdateGroupSchema
   m_EditorClassIdentifier: 
-  pdf: CV-Richard_Kopp_en (4) - kopie - kopie - kopie - kopie
-  images: []
+  m_Group: {fileID: 11400000, guid: 2df15e1d728ec104a9ce2cbe3931a5b1, type: 2}
+  m_StaticContent: 0

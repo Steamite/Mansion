@@ -91,7 +91,6 @@ namespace Player
             lookAction = inputMap.FindAction("Look");
             crouchAction = inputMap.FindAction("Crouch");
             
-            
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
 

@@ -9,11 +9,14 @@ public class Init : MonoBehaviour
     IEnumerator Start()
     {
 		AsyncOperationHandle<SceneInstance> initialLoad = 
-			Addressables.LoadSceneAsync("Player", UnityEngine.SceneManagement.LoadSceneMode.Single, false);
+			Addressables.LoadSceneAsync("Main Menu", UnityEngine.SceneManagement.LoadSceneMode.Single, false);
 		
 		
 		yield return initialLoad;
 		if (initialLoad.Status == AsyncOperationStatus.Succeeded)
+		{
 			yield return initialLoad.Result.ActivateAsync();
+			GameObject.Find("Main Menu").GetComponent<MainMenu>().unloadMainMenu = initialLoad;
+		}
 	}
 }

@@ -63,16 +63,15 @@ namespace Player
             controller = GetComponent<CharacterController>();
             groundPos = transform.GetChild(1);
             playerCamera = transform.GetChild(0).GetComponent<PlayerCamera>();
-
         }
 
         IEnumerator Start()
         {
-			AsyncOperationHandle<SceneInstance> initialLoad = 
+			/*AsyncOperationHandle<SceneInstance> initialLoad = 
                 Addressables.LoadSceneAsync(startingScene, LoadSceneMode.Additive, false);
 			yield return initialLoad;
 			if (initialLoad.Status == AsyncOperationStatus.Succeeded)
-				yield return initialLoad.Result.ActivateAsync();
+				yield return initialLoad.Result.ActivateAsync();*/
 
 			ActiveRoom = FindFirstObjectByType<Room>().EnterRoom(null);
             propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
@@ -82,7 +81,8 @@ namespace Player
             propertyChanged?.Invoke(this, new(nameof(Position)));
             Debug.Log(asset);
                 asset.Enable();
-                Debug.Log("Enabled:" + moveAction.enabled);
+            Debug.Log("Enabled:" + moveAction.enabled);
+            yield break;
         }
 		#endregion
 

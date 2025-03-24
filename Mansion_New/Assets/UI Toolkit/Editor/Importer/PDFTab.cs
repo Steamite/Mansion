@@ -96,11 +96,12 @@ public class PDFTab : ITab
 
 
 						settings.CreateOrMoveEntry(path, spriteGroup);
-						settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, path, true);
 						pdfData.images.Add(new(path));
+						settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, path, true);
 
 						page++;
 					}
+					EditorUtility.SetDirty(pdfData);
 					AssetDatabase.SaveAssets();
 				}
 
@@ -222,6 +223,7 @@ public class PDFTab : ITab
 			settings.CreateOrMoveEntry(GUId, group);
 			settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, GUId, true);
 		}
+		AssetDatabase.SaveAssets();
 		return AssetDatabase.GUIDFromAssetPath((string)pdfList.selectedItem).ToString();
 	}
 

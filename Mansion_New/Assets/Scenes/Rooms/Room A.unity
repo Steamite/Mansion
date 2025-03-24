@@ -2754,7 +2754,7 @@ GameObject:
   - component: {fileID: 871209462}
   - component: {fileID: 871209461}
   - component: {fileID: 871209460}
-  - component: {fileID: 871209459}
+  - component: {fileID: 871209463}
   m_Layer: 7
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -2777,26 +2777,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 261447927}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &871209459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 871209457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa5ccc1ab7c167a459e0f866b26f0467, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemName: Very Interesting cube
-  RadiusRange: {x: 0.5, y: 0.5}
-  SourceObject:
-    m_AssetGUID: 
-    m_SubObjectName: 
-    m_SubObjectGUID: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
 --- !u!65 &871209460
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2871,6 +2851,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 871209457}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &871209463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871209457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dcb9824e74d7344085c59ad1f53ea64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemName: Very Interesting cube
+  RadiusRange: {x: 0.5, y: 0.5}
+  SourceObject:
+    m_AssetGUID: ef0c79bad98ef8a4aa6d3adb268d03c5
+    m_SubObjectName: 
+    m_SubObjectGUID: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  pdfPath: 
 --- !u!43 &878421405
 Mesh:
   m_ObjectHideFlags: 0
