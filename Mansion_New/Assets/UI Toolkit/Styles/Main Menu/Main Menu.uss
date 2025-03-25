@@ -15,11 +15,13 @@
     font-size: 50px;
     height: 100px;
     background-color: rgb(255, 255, 255);
+    transition-duration: 0.2s;
 }
 
 .unity-button:hover {
-    scale: 1.1 1.1;
+    scale: 1.05 1.1;
     background-color: rgb(173, 173, 173);
+    transition-duration: 0.2s;
 }
 
 #Menu {
@@ -27,4 +29,16 @@
     width: 50%;
     align-self: center;
     height: 100%;
+}
+
+.unity-collection-view__item:hover {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#unity-content-viewport {
+    overflow: visible;
+}
+
+#unity-content-container {
+    overflow: visible;
 }

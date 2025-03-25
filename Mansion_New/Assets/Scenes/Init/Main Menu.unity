@@ -186,7 +186,7 @@ MonoBehaviour:
   loadingScreen: {fileID: 1470199984}
   document: {fileID: 1050927711}
   loadableScenes:
-  - {fileID: 102900000, guid: 1aaa4f691802209448359d4378e0987d, type: 3}
+  - Room A
   useAction:
     m_Name: Use
     m_Type: 0

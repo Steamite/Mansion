@@ -55,6 +55,7 @@ namespace Player
 		#region Init
 		void Awake()
         {
+            asset.Disable();
             gravity = new();
             InputActionMap inputMap = asset.actionMaps[0];
             moveAction = inputMap.FindAction("Move");
@@ -65,31 +66,36 @@ namespace Player
             playerCamera = transform.GetChild(0).GetComponent<PlayerCamera>();
         }
 
-        IEnumerator Start()
+        public void Activate() =>
+            StartCoroutine(InitInput());
+        IEnumerator InitInput()
         {
-			/*AsyncOperationHandle<SceneInstance> initialLoad = 
-                Addressables.LoadSceneAsync(startingScene, LoadSceneMode.Additive, false);
-			yield return initialLoad;
-			if (initialLoad.Status == AsyncOperationStatus.Succeeded)
-				yield return initialLoad.Result.ActivateAsync();*/
+            if (Init.toLoad == "Player")
+            {
+                AsyncOperationHandle<SceneInstance> initialLoad =
+                    Addressables.LoadSceneAsync(startingScene, LoadSceneMode.Additive, false);
+                yield return initialLoad;
+                if (initialLoad.Status == AsyncOperationStatus.Succeeded)
+                    yield return initialLoad.Result.ActivateAsync();
+            }
 
-			ActiveRoom = FindFirstObjectByType<Room>().EnterRoom(null);
+            ActiveRoom = FindFirstObjectByType<Room>().EnterRoom(null);
             propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
 
             Position.x = -transform.position.x;
             Position.y = transform.position.z;
             propertyChanged?.Invoke(this, new(nameof(Position)));
-            Debug.Log(asset);
-                asset.Enable();
+
+            asset.Enable();
             Debug.Log("Enabled:" + moveAction.enabled);
             yield break;
         }
-		#endregion
+        #endregion
 
-		/// <summary>
+        /// <summary>
         /// Player movement and map resize.
         /// </summary>
-		void Update()
+        void Update()
         {
             Vector2 input = moveAction.ReadValue<Vector2>();
             Debug.Log("moving by:" + input);

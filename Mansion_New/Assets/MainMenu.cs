@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using UnityEditor;
+using Player;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
@@ -13,17 +12,17 @@ public class MainMenu : MonoBehaviour
 {
 	[SerializeField] UIDocument loadingScreen;
 	[SerializeField] UIDocument document;
-	[SerializeField] List<SceneAsset> loadableScenes;
+	[SerializeField] List<string> loadableScenes;
 	[SerializeField] InputAction useAction;
 
-	[HideInInspector]public AsyncOperationHandle<SceneInstance> unloadMainMenu;
+	[HideInInspector]public SceneInstance unloadMainMenu;
 	private void Awake()
 	{
 		ListView menuList = document.rootVisualElement.Q<ListView>("Menu");
 		menuList.bindItem = (el, i) =>
 		{
-			el.Q<Button>().text = loadableScenes[i].name;
-			el.Q<Button>().RegisterCallbackOnce<ClickEvent>((_) => StartCoroutine(LoadRoom(loadableScenes[i].name)));
+			el.Q<Button>().text = loadableScenes[i];
+			el.Q<Button>().RegisterCallbackOnce<ClickEvent>((_) => StartCoroutine(LoadRoom(loadableScenes[i])));
 		};
 		menuList.itemsSource = loadableScenes;
 	}
@@ -34,36 +33,46 @@ public class MainMenu : MonoBehaviour
 		document.enabled = false;
 		ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
 
-		AsyncOperationHandle<SceneInstance> playerLoad = Addressables.LoadSceneAsync("Player", UnityEngine.SceneManagement.LoadSceneMode.Additive, false);
-		while (!playerLoad.IsDone)
-		{
-			progressBar.value = playerLoad.PercentComplete / 2;
-			yield return new();
-		}
-		if (playerLoad.Status == AsyncOperationStatus.Succeeded)
-		{
-			progressBar.value = 0.5f;
-			AsyncOperationHandle<SceneInstance> roomLoad = Addressables.LoadSceneAsync(roomToLoad, UnityEngine.SceneManagement.LoadSceneMode.Additive, false);
-			while (!roomLoad.IsDone)
-			{
-				progressBar.value = roomLoad.PercentComplete / 2 + 0.5f;
-				yield return new();
-			}
-			if (roomLoad.Status == AsyncOperationStatus.Succeeded)
-			{
-				progressBar.value = 1;
-				yield return roomLoad.Result.ActivateAsync();
-				yield return playerLoad.Result.ActivateAsync();
-				progressBar.title = "Loaded";
-				useAction.Enable();
-				useAction.performed += (_) => UnloadMainMenu();
-			}
-		}
+        AsyncOperationHandle<SceneInstance> roomLoad = Addressables.LoadSceneAsync(roomToLoad, UnityEngine.SceneManagement.LoadSceneMode.Additive, false);
+        while (!roomLoad.IsDone)
+        {
+            progressBar.value = roomLoad.PercentComplete / 2;
+            yield return new();
+        }
+        if (roomLoad.Status == AsyncOperationStatus.Succeeded)
+        {
+            yield return roomLoad.Result.ActivateAsync();
+            progressBar.value = 0.5f;
+
+            AsyncOperationHandle<SceneInstance> playerLoad = Addressables.LoadSceneAsync("Player", UnityEngine.SceneManagement.LoadSceneMode.Additive, false);
+            while (!playerLoad.IsDone)
+            {
+                progressBar.value = playerLoad.PercentComplete / 2;
+                yield return new();
+            }
+            if (playerLoad.Status == AsyncOperationStatus.Succeeded)
+            {
+                progressBar.value = 1;
+                progressBar.title = "Loaded";
+                yield return playerLoad.Result.ActivateAsync();
+				VisualElement l = loadingScreen.rootVisualElement.Q<Label>("Label");
+				l.RegisterCallback<TransitionEndEvent>((_) => ToggleTransition((VisualElement)_.target));
+				ToggleTransition(l);
+                useAction.Enable();
+                useAction.performed += (_) => UnloadMainMenu();
+            }
+        }
 	}
 
 	private void UnloadMainMenu()
 	{
 		useAction.Disable();
 		Addressables.UnloadSceneAsync(unloadMainMenu, UnityEngine.SceneManagement.UnloadSceneOptions.None);
+        GameObject.FindFirstObjectByType<PlayerMovement>().Activate();
+	}
+
+	void ToggleTransition(VisualElement l)
+	{
+		l.ToggleInClassList("disabledText");
 	}
 }

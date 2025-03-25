@@ -22,3 +22,9 @@
     border-top-color: rgb(168, 111, 9);
     border-bottom-color: rgb(168, 111, 9);
 }
+
+.disabledText {
+    opacity: 0;
+    transition-duration: 3s;
+    transition-timing-function: linear;
+}
