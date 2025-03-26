@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d69ffaac12a0648882a8bfa9e68086, type: 3}
   m_Name: dsanasobvao
   m_EditorClassIdentifier: 
-  content: 
+  content: This is an ak47 gun!
