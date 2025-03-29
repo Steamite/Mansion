@@ -16,7 +16,7 @@ public class SceneLoadingShortucts : MonoBehaviour
     /// </summary>
     static SceneLoadingShortucts()
     {
-        EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        //EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
     }
 
     /// <summary>

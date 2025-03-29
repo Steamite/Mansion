@@ -15,7 +15,7 @@
                     <ui:Label text="E" name="Letter" class="a" />
                 </ui:VisualElement>
                 <ui:VisualElement name="Spacer" class="spacer" />
-                <ui:Label text="Zavřít" name="Selection" class="sel" />
+                <ui:Label text="Close" name="Selection" class="sel" />
             </ui:VisualElement>
             <ui:VisualElement name="D" style="flex-grow: 0; flex-direction: row; align-items: center;">
                 <ui:VisualElement name="Icon" style="background-image: url(&quot;project://database/Assets/Sprites/Shortcut_Icon.png?fileID=2800000&amp;guid=658cd35d788af46489726e1322cc904e&amp;type=3#Shortcut_Icon&quot;);">

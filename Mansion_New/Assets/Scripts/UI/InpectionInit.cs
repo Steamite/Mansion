@@ -28,7 +28,6 @@ namespace UI.Inspect
 
         RenderTexture screenShot;
 
-
 		#region Init
 		/// <summary>
 		/// Disables movement actions and hides objects that are not needed for the inspection.
@@ -55,7 +54,7 @@ namespace UI.Inspect
         }
 
 		/// <summary>
-		/// Creates the screenshot and sets up the orbital camera.
+		/// Assigns the background and sets up the orbital camera.
 		/// </summary>
 		/// <param name="_item">Item for inspection</param>
 		/// <param name="_asset">Asset containging actions.</param>
@@ -109,7 +108,7 @@ namespace UI.Inspect
 		#endregion
 
         /// <summary>
-        /// S
+        /// Creates a blured screenshot.
         /// </summary>
         /// <returns></returns>
 		public Sprite Blur()

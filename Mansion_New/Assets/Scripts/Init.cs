@@ -20,6 +20,11 @@ public class Init : MonoBehaviour
 		yield return initialLoad;
         ActivateScene(initialLoad);
     }
+
+    /// <summary>
+    /// Loads the main menu or the level itself.
+    /// </summary>
+    /// <param name="initialLoad"></param>
     async void ActivateScene(AsyncOperationHandle<SceneInstance> initialLoad)
 	{
         if (initialLoad.Status == AsyncOperationStatus.Succeeded)

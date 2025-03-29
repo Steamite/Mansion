@@ -180,6 +180,7 @@ namespace UI.Inspect
         }
 
         #endregion
+
         /// <summary>
         /// Destroys the item and ends interaction.
         /// </summary>
