@@ -47,7 +47,6 @@
     width: 150px;
     height: 150px;
     background-image: url("project://database/Assets/Sprites/Artboard%201@5x.png?fileID=2800000&guid=8616aad909a2758438862602bf308582&type=3#Artboard 1@5x");
-    transition-duration: 0.2s;
 }
 
 #Minimap > #Center {

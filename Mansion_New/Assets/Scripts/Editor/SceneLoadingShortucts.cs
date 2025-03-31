@@ -16,7 +16,7 @@ public class SceneLoadingShortucts : MonoBehaviour
     /// </summary>
     static SceneLoadingShortucts()
     {
-        EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        //EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
     }
 
     /// <summary>
@@ -30,8 +30,9 @@ public class SceneLoadingShortucts : MonoBehaviour
             string activeSceneName;
 			if ((activeSceneName = EditorSceneManager.GetActiveScene().name) != "Init")
             {
-                EditorSceneManager.SaveOpenScenes();
-                EditorSceneManager.OpenScene($"{scenePath}Init.unity");
+                activeSceneName = EditorSceneManager.GetActiveScene().path;
+				EditorSceneManager.SaveOpenScenes();
+                EditorSceneManager.OpenScene("Assets/Scenes/Init/Init.unity");
                 EditorApplication.EnterPlaymode();
                 File.WriteAllText($"{Application.persistentDataPath}/openScene.txt", activeSceneName);
             }
@@ -43,7 +44,7 @@ public class SceneLoadingShortucts : MonoBehaviour
         else if(state == PlayModeStateChange.EnteredEditMode)
         {
             if(File.Exists($"{Application.persistentDataPath}/openScene.txt"))
-                EditorSceneManager.OpenScene($"Assets/Scenes/Rooms/{File.ReadAllText($"{Application.persistentDataPath}/openScene.txt")}.unity");
+                EditorSceneManager.OpenScene($"{File.ReadAllText($"{Application.persistentDataPath}/openScene.txt")}");
         }
     }
 
@@ -53,11 +54,20 @@ public class SceneLoadingShortucts : MonoBehaviour
         if (EditorSceneManager.GetActiveScene().name != "Init")
         {
             EditorSceneManager.SaveOpenScenes();
-            EditorSceneManager.OpenScene($"{scenePath}Init.unity");
+            EditorSceneManager.OpenScene("Assets/Scenes/Init/Init.unity");
         }
     }
-    [MenuItem("Custom Editors/Load/Player _F2", priority = 1)]
-    static void LoadMainMenu()
+	[MenuItem("Custom Editors/Load/Main Menu _F2", priority = 1)]
+	static void LoadMainMenu()
+	{
+		if (EditorSceneManager.GetActiveScene().name != "Main Menu")
+		{
+			EditorSceneManager.SaveOpenScenes();
+			EditorSceneManager.OpenScene("Assets/Scenes/Init/Main Menu.unity");
+		}
+	}
+	[MenuItem("Custom Editors/Load/Player _F3", priority = 1)]
+    static void LoadPlayer()
     {
         if (EditorSceneManager.GetActiveScene().name != "Player")
         {
@@ -65,23 +75,25 @@ public class SceneLoadingShortucts : MonoBehaviour
             EditorSceneManager.OpenScene($"{scenePath}Player.unity");
         }
     }
-    [MenuItem("Custom Editors/Load/Interact _F3", priority = 2)]
-    static void LoadLevel()
+    [MenuItem("Custom Editors/Load/Interact _F4", priority = 2)]
+    static void LoadInteract()
     {
         if(EditorSceneManager.GetActiveScene().name != "Interact")
         {
             EditorSceneManager.SaveOpenScenes();
             EditorSceneManager.OpenScene($"{scenePath}Interact.unity");
-        }
+			EditorSceneManager.OpenScene($"{scenePath}Player.unity", OpenSceneMode.Additive);
+		}
     }
 
-	[MenuItem("Custom Editors/Load/Room A _F4", priority = 3)]
+	[MenuItem("Custom Editors/Load/Room A _F5", priority = 3)]
 	static void LoaRoom()
 	{
 		if (EditorSceneManager.GetActiveScene().name != "Room A")
 		{
 			EditorSceneManager.SaveOpenScenes();
-			EditorSceneManager.OpenScene($"Assets/Scenes/Rooms/Room A.unity");
+			EditorSceneManager.OpenScene("Assets/Scenes/Rooms/Room A.unity");
+			EditorSceneManager.OpenScene($"{scenePath}Player.unity", OpenSceneMode.Additive);
 		}
 	}
 }

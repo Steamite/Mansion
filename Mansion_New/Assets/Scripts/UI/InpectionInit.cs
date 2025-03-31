@@ -4,6 +4,7 @@ using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.UI;
@@ -28,7 +29,6 @@ namespace UI.Inspect
 
         RenderTexture screenShot;
 
-
 		#region Init
 		/// <summary>
 		/// Disables movement actions and hides objects that are not needed for the inspection.
@@ -49,13 +49,13 @@ namespace UI.Inspect
             c.enabled = true;
             screenShot = new RenderTexture(Screen.width, Screen.height, 24);
             c.targetTexture = screenShot;
-
+            
 
 			StartCoroutine(WaitOnPostRender(_item.GetComponent<InteractableItem>(), _asset, scene));
         }
 
 		/// <summary>
-		/// Creates the screenshot and sets up the orbital camera.
+		/// Assigns the background and sets up the orbital camera.
 		/// </summary>
 		/// <param name="_item">Item for inspection</param>
 		/// <param name="_asset">Asset containging actions.</param>
@@ -65,12 +65,12 @@ namespace UI.Inspect
             // Create the picture
             yield return new WaitForEndOfFrame();
             canvas.transform.GetChild(0).GetComponent<Image>().sprite = Blur();
-            canvas.gameObject.SetActive(true);
+			canvas.gameObject.SetActive(true);
             Camera.main.cullingMask = 96;
             canvas.worldCamera = Camera.main;
 
-            // rotate camera to match current player rotation
-            CinemachineOrbitalFollow orbit = cam.GetComponent<CinemachineOrbitalFollow>();
+			// rotate camera to match current player rotation
+			CinemachineOrbitalFollow orbit = cam.GetComponent<CinemachineOrbitalFollow>();
 
             CapsuleCollider capsuleCollider;
             if (capsuleCollider = _item.GetComponent<CapsuleCollider>())
@@ -109,7 +109,7 @@ namespace UI.Inspect
 		#endregion
 
         /// <summary>
-        /// S
+        /// Creates a blured screenshot.
         /// </summary>
         /// <returns></returns>
 		public Sprite Blur()
@@ -123,6 +123,7 @@ namespace UI.Inspect
 			tex.Apply(); // Apply texture changes before reading pixels
             RenderTexture.active = null;
 			Camera c = Camera.main.transform.GetChild(0).GetComponent<Camera>();
+            c.enabled = false;
 
 			RenderTexture renH = RenderTexture.GetTemporary(width, height);
 			RenderTexture renV = RenderTexture.GetTemporary(width, height);

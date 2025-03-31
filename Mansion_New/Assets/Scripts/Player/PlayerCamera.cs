@@ -31,11 +31,12 @@ namespace Player
         /// <summary>Intraction raycast range.</summary>
         [SerializeField][Range(0.5f, 1.5f)] float range = 1;
         /// <summary>Speed of camera rotation.</summary>
-        [SerializeField][Range(0, 10)] float lookSpeed;
+        [SerializeField][Range(10, 25)] float lookSpeed;
         /// <summary>Max camara angle.</summary>
         [SerializeField][Range(300, 360)] float lookLockMax;
         /// <summary>Min camara angle.</summary>
         [SerializeField][Range(0, 60)] float lookLockMin;
+        
 
 		/// <summary>Item that the player is currently looking at.</summary>
 		[SerializeField] GameObject item;
@@ -55,7 +56,7 @@ namespace Player
 		[HideInInspector] public InputAction crouchAction;
 
 		/// <summary>Current rotation on the xAxis(up/down)</summary>
-		float xRotation;
+		float VerticalRot;
 		/// <summary>
         /// Number of the last frame that caused a raycast. 
         /// <br/>(prevents multiple raycasts in one frame)
@@ -66,8 +67,10 @@ namespace Player
 
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
 
-        /// <summary>Property for minimap rotation binding.</summary>
-		[CreateProperty] public float yRotation;
+        Vector2 input;
+
+		/// <summary>Property for minimap rotation binding.</summary>
+		[CreateProperty] public float horizontalRot;
 		#endregion
 
 		/// <summary>Ray constructor.</summary>
@@ -85,12 +88,11 @@ namespace Player
 		#region Init
 		void Awake()
         {
-            xRotation = 0;
+            VerticalRot = 0;
             InputActionMap inputMap = asset.actionMaps[0];
             interactAction = inputMap.FindAction("Interact");
             lookAction = inputMap.FindAction("Look");
             crouchAction = inputMap.FindAction("Crouch");
-            
             
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
@@ -100,8 +102,8 @@ namespace Player
         }
         void Start()
         {
-            yRotation = transform.parent.rotation.eulerAngles.y;
-            propertyChanged?.Invoke(this, new(nameof(yRotation)));
+            horizontalRot = transform.parent.rotation.eulerAngles.y;
+            propertyChanged?.Invoke(this, new(nameof(horizontalRot)));
         }
 		#endregion
 		private void OnDrawGizmos()
@@ -129,23 +131,31 @@ namespace Player
             bool checkRayCast = false;
             
             #region Camera
-            Vector2 input = lookAction.ReadValue<Vector2>() * lookSpeed;
+            input += lookAction.ReadValue<Vector2>() * lookSpeed * Time.deltaTime;
             if (input.y != 0)
             {
-                xRotation -= input.y;
-                xRotation = Mathf.Clamp(xRotation, -60, 60);
+                float f = Mathf.Lerp(VerticalRot, VerticalRot - input.y, 0.8f);
+                input.y += f - VerticalRot;
+                VerticalRot = Mathf.Clamp(f, -60, 60);
                 if (standing)
-                    topCam.transform.localRotation = Quaternion.Euler(new(xRotation, 0, 0));
+                    topCam.transform.localRotation = Quaternion.Euler(VerticalRot, 0, 0);
                 else
-                    bottomCam.transform.localRotation = Quaternion.Euler(new(xRotation, 0, 0));
-                checkRayCast = true;
+                    bottomCam.transform.localRotation = Quaternion.Euler(VerticalRot, 0, 0);
+
+				checkRayCast = true;
             }
             if (input.x != 0)
             {
-                transform.parent.Rotate(Vector3.up, input.x);
-                yRotation = transform.parent.rotation.eulerAngles.y;
-                //Debug.Log(yRotation);
-                propertyChanged?.Invoke(this, new(nameof(yRotation)));
+				float f = Mathf.Lerp(horizontalRot, horizontalRot + input.x, 0.8f);
+				input.x -= f - horizontalRot;
+				horizontalRot = f;
+
+                transform.parent.rotation = Quaternion.Euler(0, horizontalRot, 0);//.Euler(new(0, horizontalRot, 0));//.parent.Rotate(Vector3.up, input.x);
+                propertyChanged?.Invoke(this, new(nameof(horizontalRot)));
+                if (horizontalRot > 360)
+                    horizontalRot -= 360;
+                else if (horizontalRot < -360)
+                    horizontalRot += 360;
                 checkRayCast = true;
             }
             #endregion

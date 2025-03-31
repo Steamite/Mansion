@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 using UnityEngine.Networking;
+using UnityEngine.Rendering;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
@@ -112,7 +113,7 @@ namespace UI.Inspect
             Camera.main.transform.SetParent(GameObject.Find("UI").transform);
             Camera.main.transform.SetParent(null);
 
-            doc.enabled = false;
+			doc.enabled = false;
             cam.Priority = -1;
             StartCoroutine(EnableMovement());
         }
@@ -180,6 +181,7 @@ namespace UI.Inspect
         }
 
         #endregion
+
         /// <summary>
         /// Destroys the item and ends interaction.
         /// </summary>

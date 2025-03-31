@@ -1,8 +1,0 @@
-<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI%20Toolkit/Styles/MainInterface/Crosshair.uss?fileID=7433441132597879392&amp;guid=bfcd9577e1735ba43b5959f54f5ea5e3&amp;type=3#Crosshair" />
-    <Style src="project://database/Assets/UI%20Toolkit/Styles/MainInterface/Minimap.uss?fileID=7433441132597879392&amp;guid=78e2dc6fb7f06ba43b18e67310113e1c&amp;type=3#Minimap" />
-    <engine:VisualElement name="CrosshairContainer" style="flex-grow: 1; justify-content: center; align-content: center; align-items: center; align-self: stretch; position: absolute; width: 100%; height: 100%;">
-        <UI.CrosshairImage style="position: relative; align-self: center; align-items: center; justify-content: center; align-content: auto; width: 12.5px; height: 12.5px; background-image: url(&quot;project://database/Assets/Sprites/Circle.png?fileID=2800000&amp;guid=9e9157bf92654f14685b72652fc8461e&amp;type=3#Circle&quot;); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; transition-duration: 0.2s;" />
-    </engine:VisualElement>
-    <UI.Minimap name="MinimapContainer" map-image="project://database/Assets/Sprites/Map.png?fileID=21300000&amp;guid=277751fe3fa99094aa7fc2308a15e001&amp;type=3#Map" style="flex-grow: 1; top: 10px; right: 10px;" />
-</engine:UXML>

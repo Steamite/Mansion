@@ -55,6 +55,7 @@ namespace Player
 		#region Init
 		void Awake()
         {
+            asset.Disable();
             gravity = new();
             InputActionMap inputMap = asset.actionMaps[0];
             moveAction = inputMap.FindAction("Move");
@@ -63,36 +64,41 @@ namespace Player
             controller = GetComponent<CharacterController>();
             groundPos = transform.GetChild(1);
             playerCamera = transform.GetChild(0).GetComponent<PlayerCamera>();
-
         }
 
-        IEnumerator Start()
+        public void Activate() =>
+            StartCoroutine(InitInput());
+        IEnumerator InitInput()
         {
-			AsyncOperationHandle<SceneInstance> initialLoad = 
-                Addressables.LoadSceneAsync(startingScene, LoadSceneMode.Additive, false);
-			yield return initialLoad;
-			if (initialLoad.Status == AsyncOperationStatus.Succeeded)
-				yield return initialLoad.Result.ActivateAsync();
+            if (Init.toLoad == "Player")
+            {
+                AsyncOperationHandle<SceneInstance> initialLoad =
+                    Addressables.LoadSceneAsync(startingScene, LoadSceneMode.Additive, false);
+                yield return initialLoad;
+                if (initialLoad.Status == AsyncOperationStatus.Succeeded)
+                    yield return initialLoad.Result.ActivateAsync();
+            }
 
-			ActiveRoom = FindFirstObjectByType<Room>().EnterRoom(null);
+            ActiveRoom = FindFirstObjectByType<Room>().EnterRoom(null);
             propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
 
             Position.x = -transform.position.x;
             Position.y = transform.position.z;
             propertyChanged?.Invoke(this, new(nameof(Position)));
-            Debug.Log(asset);
-                asset.Enable();
-                Debug.Log("Enabled:" + moveAction.enabled);
-        }
-		#endregion
 
-		/// <summary>
+            asset.Enable();
+            //Debug.Log("Enabled:" + moveAction.enabled);
+            yield break;
+        }
+        #endregion
+
+        /// <summary>
         /// Player movement and map resize.
         /// </summary>
-		void Update()
+        void Update()
         {
             Vector2 input = moveAction.ReadValue<Vector2>();
-            Debug.Log("moving by:" + input);
+            //Debug.Log("moving by:" + input);
             if (input.x != 0 || input.y != 0)
             {
                 Vector3 moveDir = transform.TransformDirection(Vector3.forward) * input.y + transform.TransformDirection(Vector3.right) * input.x;

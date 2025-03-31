@@ -8,14 +8,14 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: a57477913897c46af95d590f580878bd, type: 3}
-  svgType: 0
+  svgType: 3
   texturedSpriteMeshType: 0
   svgPixelsPerUnit: 100
   gradientResolution: 64
   alignment: 0
   customPivot: {x: 0, y: 0}
   generatePhysicsShape: 0
-  viewportOptions: 0
+  viewportOptions: 1
   preserveViewport: 0
   advancedMode: 0
   predefinedResolutionIndex: 1
@@ -39,9 +39,9 @@ ScriptedImporter:
   spriteData:
     TessellationDetail: 0
     SpriteRect:
-      name: 
+      name: Mansion_IconSprite
       originalName: 
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.49666667, y: 0.5}
       alignment: 0
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -49,7 +49,7 @@ ScriptedImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 0
-        height: 0
+        width: 45
+        height: 30
       spriteID: ed9182e3c46c9ab49a01894d2e944337
     PhysicsOutlines: []
