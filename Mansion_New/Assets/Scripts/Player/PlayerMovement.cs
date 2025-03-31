@@ -87,7 +87,7 @@ namespace Player
             propertyChanged?.Invoke(this, new(nameof(Position)));
 
             asset.Enable();
-            Debug.Log("Enabled:" + moveAction.enabled);
+            //Debug.Log("Enabled:" + moveAction.enabled);
             yield break;
         }
         #endregion
@@ -98,7 +98,7 @@ namespace Player
         void Update()
         {
             Vector2 input = moveAction.ReadValue<Vector2>();
-            Debug.Log("moving by:" + input);
+            //Debug.Log("moving by:" + input);
             if (input.x != 0 || input.y != 0)
             {
                 Vector3 moveDir = transform.TransformDirection(Vector3.forward) * input.y + transform.TransformDirection(Vector3.right) * input.x;

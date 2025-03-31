@@ -42,7 +42,7 @@ Shader "Custom/BoxBlur_Horizontal"
                 color += tex2D(_MainTex, i.uv + texelSize) * 0.2;
                 color += tex2D(_MainTex, i.uv - texelSize * 2) * 0.1;
                 color += tex2D(_MainTex, i.uv + texelSize * 2) * 0.1;
-                
+
                 return color;
             }
             ENDHLSL

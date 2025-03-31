@@ -13,13 +13,5 @@ MonoBehaviour:
   m_Name: Lens
   m_EditorClassIdentifier: 
   Presets:
-  - Name: 21mm
-    VerticalFOV: 60
-  - Name: 35mm
-    VerticalFOV: 38
-  - Name: 58mm
-    VerticalFOV: 23
-  - Name: 80mm
-    VerticalFOV: 17
-  - Name: 125mm
-    VerticalFOV: 10
+  - Name: Player Cam
+    VerticalFOV: 80

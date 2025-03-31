@@ -82,7 +82,8 @@ public class SceneLoadingShortucts : MonoBehaviour
         {
             EditorSceneManager.SaveOpenScenes();
             EditorSceneManager.OpenScene($"{scenePath}Interact.unity");
-        }
+			EditorSceneManager.OpenScene($"{scenePath}Player.unity", OpenSceneMode.Additive);
+		}
     }
 
 	[MenuItem("Custom Editors/Load/Room A _F5", priority = 3)]
@@ -92,6 +93,7 @@ public class SceneLoadingShortucts : MonoBehaviour
 		{
 			EditorSceneManager.SaveOpenScenes();
 			EditorSceneManager.OpenScene("Assets/Scenes/Rooms/Room A.unity");
+			EditorSceneManager.OpenScene($"{scenePath}Player.unity", OpenSceneMode.Additive);
 		}
 	}
 }

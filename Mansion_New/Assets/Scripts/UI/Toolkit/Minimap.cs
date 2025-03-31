@@ -39,7 +39,7 @@ namespace UI
 
         /// <summary>
         /// Inits all bindings.
-        /// <br/> rotation to <see cref="PlayerCamera.xRotation"/>
+        /// <br/> rotation to <see cref="PlayerCamera.VerticalRot"/>
         /// <br/> locationLabel to <see cref="PlayerMovement.ActiveRoom"/>
         /// <br/> position to <see cref="PlayerMovement.Position"/>
         /// <br/> zoom to <see cref="PlayerMovement.mapZoom"/>
@@ -106,7 +106,7 @@ namespace UI
             element.ElementAt(0).name = "Visor";
             if (cam)
             {
-                DataBinding binding = BindingUtil.CreateBinding(nameof(PlayerCamera.yRotation));
+                DataBinding binding = BindingUtil.CreateBinding(nameof(PlayerCamera.horizontalRot));
                 binding.sourceToUiConverters.AddConverter((ref float f) => new StyleRotate(new Rotate(f)));
                 element.SetBinding("style.rotate", binding);
                 element.dataSource = cam;
