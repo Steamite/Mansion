@@ -66,8 +66,13 @@ namespace Player
             playerCamera = transform.GetChild(0).GetComponent<PlayerCamera>();
         }
 
-        public void Activate() =>
-            StartCoroutine(InitInput());
+        public void Activate()
+        {
+			UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+			UnityEngine.Cursor.visible = false;
+			StartCoroutine(InitInput());
+		}
+
         IEnumerator InitInput()
         {
             if (Init.toLoad == "Player")
@@ -133,7 +138,7 @@ namespace Player
         /// <param name="hit">The object that was hit.</param>
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
-            if(hit.gameObject.tag == "Entrance")
+            if(hit.gameObject.CompareTag("Entrance"))
             {
                 ActiveRoom = hit.transform.parent.parent.GetComponent<Room>().EnterRoom(ActiveRoom);
                 propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));

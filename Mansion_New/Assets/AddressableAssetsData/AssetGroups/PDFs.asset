@@ -15,11 +15,6 @@ MonoBehaviour:
   m_GroupName: PDFs
   m_GUID: cee5d23e758fc4542a8b2f1f2052848f
   m_SerializeEntries:
-  - m_GUID: a297e8cac53dd7e4aa63790e5c6e5fb8
-    m_Address: Assets/ItemData/PDF/SQL_Schema_ERD_and_Table_Designs.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ef0c79bad98ef8a4aa6d3adb268d03c5
     m_Address: Assets/ItemData/PDF/CV-Richard_Kopp_en (9) - kopie - kopie - kopie
       - kopie - kopie.asset

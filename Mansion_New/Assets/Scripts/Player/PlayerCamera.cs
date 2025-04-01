@@ -94,8 +94,6 @@ namespace Player
             lookAction = inputMap.FindAction("Look");
             crouchAction = inputMap.FindAction("Crouch");
             
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-            UnityEngine.Cursor.visible = false;
 
             topCam = transform.GetChild(0).GetComponent<CinemachineCamera>();
             bottomCam = transform.GetChild(1).GetComponent<CinemachineCamera>();
@@ -232,7 +230,7 @@ namespace Player
                 yield return sceneLoading.Result.ActivateAsync();
             else
 			{
-				Debug.LogError(sceneLoading.Status);
+				Debug.LogError(sceneLoading.Status.ToString());
                 yield break;
 			}
             GameObject.FindAnyObjectByType<InpectionInit>().Init(item.transform, asset, sceneLoading);

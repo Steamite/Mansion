@@ -2241,12 +2241,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Very Interesting cube
   RadiusRange: {x: 1.3265307, y: 2.244898}
-  SourceObject:
+  sourceObject:
     m_AssetGUID: 
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
+  SourceObjectName: 
 --- !u!43 &794059846
 Mesh:
   m_ObjectHideFlags: 0
@@ -2700,12 +2701,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Very Interesting cube
   RadiusRange: {x: 1.3181819, y: 2.1735537}
-  SourceObject:
-    m_AssetGUID: 
+  sourceObject:
+    m_AssetGUID: a297e8cac53dd7e4aa63790e5c6e5fb8
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
+  SourceObjectName: SQL_Schema_ERD_and_Table_Designs
   pdfPath: 
 --- !u!43 &878421405
 Mesh:
@@ -7875,12 +7877,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Very Interesting cube
   RadiusRange: {x: 0.98347116, y: 2.6570249}
-  SourceObject:
-    m_AssetGUID: 
+  sourceObject:
+    m_AssetGUID: f77bcdb8d4e74a44fafdbce995cd2c1d
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
+  SourceObjectName: granat
 --- !u!65 &2026528712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8808,6 +8811,7 @@ MonoBehaviour:
   AdjacentRooms:
   - 
   - 
+  roomName: 
 --- !u!33 &943411950168445383
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -9558,7 +9562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &2944045894301407521
 MeshRenderer:
   m_ObjectHideFlags: 0

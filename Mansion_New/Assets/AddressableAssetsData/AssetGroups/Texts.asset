@@ -20,18 +20,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e3f7d05762bea7c4cba2f89810a394d7
-    m_Address: Assets/ItemData/Text/Dummy text.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f597b1ba796c1524d84a38ac1932705c
     m_Address: t
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f77bcdb8d4e74a44fafdbce995cd2c1d
-    m_Address: Assets/ItemData/Text/granat.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
