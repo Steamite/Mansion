@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2926918503994334135}
   - component: {fileID: 1264724404336685800}
   - component: {fileID: 5117656149310074451}
-  - component: {fileID: 5074529481157948858}
+  - component: {fileID: 7436774687042092553}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -115,7 +115,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5074529481157948858
+--- !u!114 &7436774687042092553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,18 +124,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1703447182633172223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0493a62bfa719d142ae518e56fd00078, type: 3}
+  m_Script: {fileID: 11500000, guid: 795c4434d9084184f91e8d0731c425bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asset: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}
-  controller: {fileID: 5117656149310074451}
-  viewCamera: {fileID: 7277721814510061358}
-  groundPos: {fileID: 4510609505876796492}
-  moveSpeed: 0.12
-  lookSpeed: 0.1
-  lookLockMax: 315
-  lookLockMin: 45
-  itemRaycast: {fileID: 0}
+  asset: {fileID: 0}
+  moveSpeed: 5
+  mapZoomLimit: {x: 0, y: 0}
+  startingScene:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  Position: {x: 0, y: 0}
+  ActiveRoom: {fileID: 0}
+  mapZoom: 1
 --- !u!1 &4453385898779357693
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +151,7 @@ GameObject:
   - component: {fileID: 3904695240653830464}
   - component: {fileID: 4501647019391218251}
   - component: {fileID: 3682550704062459136}
-  - component: {fileID: 6888083504032847568}
+  - component: {fileID: 4376074269299862888}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -274,7 +277,7 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &6888083504032847568
+--- !u!114 &4376074269299862888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,12 +286,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 4453385898779357693}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f37257a5672550c41a560962276ff074, type: 3}
+  m_Script: {fileID: 11500000, guid: 00fb85f7806b76d4ebe61a9ea470b2e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetImage: {fileID: 0}
+  inspectScene:
+    m_AssetGUID: 
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  asset: {fileID: 0}
   range: 1
+  lookSpeed: 10
+  lookLockMax: 300
+  lookLockMin: 0
   item: {fileID: 0}
+  crouchAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: c62bd085-2f95-4c61-b456-86ffd2d45c85
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  horizontalRot: 0
 --- !u!1 &4723987962114234453
 GameObject:
   m_ObjectHideFlags: 0

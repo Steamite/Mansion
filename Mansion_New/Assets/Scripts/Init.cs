@@ -15,7 +15,9 @@ public class Init : MonoBehaviour
     [SerializeField] bool gameInit = true;
     IEnumerator Start()
     {
-        toLoad = gameInit ? mainMenu : player;
+        //WebGLInput.stickyCursorLock = false;
+        
+		toLoad = gameInit ? mainMenu : player;
         AsyncOperationHandle<SceneInstance> initialLoad = 
 			Addressables.LoadSceneAsync(toLoad, UnityEngine.SceneManagement.LoadSceneMode.Single, false);
 		

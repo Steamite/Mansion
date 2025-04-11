@@ -11,7 +11,7 @@ namespace Rooms
     /// </summary>
     public class Room : MonoBehaviour
     {
-        [SerializeField] public List<string> AdjacentRooms;
+        [SerializeField] public List<string> AdjacentRooms = new();
         [SerializeField] public string roomName;
         /// <summary>
         /// Loads new rooms and unloads the old ones that are not needed.

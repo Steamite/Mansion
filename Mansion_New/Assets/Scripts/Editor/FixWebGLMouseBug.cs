@@ -39,13 +39,13 @@ public class FixWebGLMouseBug : IPostprocessBuildWithReport
 			modifiedContent = reader.ReadToEnd().Replace("requestPointerLock()", "requestPointerLock({unadjustedMovement: true}).catch(function(error) {console.log(error);})");
 		}
 
-		// Write the modified content back to the temp file
+		// Write the modified content back to the file
 		using (StreamWriter writer = new StreamWriter(filePath, false))
 		{
 			writer.Write(modifiedContent);
 		}
 
-		/*
+/*
 		// Decompress
 		using (FileStream originalFileStream = new FileStream(filePath, FileMode.Open))
 		using (FileStream decompressedFileStream = File.Create(tempFile))
@@ -74,9 +74,9 @@ public class FixWebGLMouseBug : IPostprocessBuildWithReport
 		{
 			modifiedFileStream.CopyTo(compressionStream);
 			Debug.Log("File recompressed.");
-		}
+		}*/
 
 		// Cleanup the temporary file
-		File.Delete(tempFile);*/
+		File.Delete(tempFile);
 	}
 }

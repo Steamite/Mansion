@@ -31,7 +31,7 @@ namespace Player
         /// <summary>Intraction raycast range.</summary>
         [SerializeField][Range(0.5f, 1.5f)] float range = 1;
         /// <summary>Speed of camera rotation.</summary>
-        [SerializeField][Range(10, 25)] float lookSpeed;
+        [SerializeField][Range(0, 3)] float lookSpeed;
         /// <summary>Max camara angle.</summary>
         [SerializeField][Range(300, 360)] float lookLockMax;
         /// <summary>Min camara angle.</summary>
@@ -127,9 +127,9 @@ namespace Player
 
 
             bool checkRayCast = false;
-            
+
             #region Camera
-            input += lookAction.ReadValue<Vector2>() * lookSpeed * Time.deltaTime;
+            input += lookAction.ReadValue<Vector2>() * lookSpeed;
             if (input.y != 0)
             {
                 float f = Mathf.Lerp(VerticalRot, VerticalRot - input.y, 0.8f);
