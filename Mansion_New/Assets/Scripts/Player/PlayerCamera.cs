@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UI;
 using UI.Inspect;
 using Unity.Cinemachine;
@@ -71,6 +72,7 @@ namespace Player
 
 		/// <summary>Property for minimap rotation binding.</summary>
 		[CreateProperty] public float horizontalRot;
+
 		#endregion
 
 		/// <summary>Ray constructor.</summary>

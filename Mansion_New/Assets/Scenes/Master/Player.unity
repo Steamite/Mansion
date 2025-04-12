@@ -8,8 +8,8 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 275776b062fd5f946a841ad8a2af0e7a
-  m_OcclusionCullingData: {fileID: 36300000, guid: 7eaace63935c8004683be0b0dd85bf27, type: 2}
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -18,8 +18,8 @@ RenderSettings:
   m_FogColor: {r: 0.23921569, g: 0.21568628, b: 0.2, a: 1}
   m_FogMode: 1
   m_FogDensity: 0
-  m_LinearFogStart: 5
-  m_LinearFogEnd: 20
+  m_LinearFogStart: 0.5
+  m_LinearFogEnd: 29.55
   m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000004, guid: 0617bf5144f806a4ebff2d5cef07651d, type: 2}
+  m_LightingDataAsset: {fileID: 112000004, guid: 51c0a9a88b3e7774eba24c348c5d74dd, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: d005b9e62581c4949aa71a9b0ebb26a4, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -487,7 +487,7 @@ Transform:
   m_GameObject: {fileID: 914655226}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.1031312, z: 0, w: 0.99466777}
-  m_LocalPosition: {x: -36.021294, y: 1.4250001, z: -24.865318}
+  m_LocalPosition: {x: -36.751293, y: 1.45, z: -22.965317}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -587,7 +587,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!1 &1814606906
@@ -937,8 +937,8 @@ CharacterController:
   serializedVersion: 3
   m_Height: 1.58
   m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_SlopeLimit: 1
+  m_StepOffset: 0.001
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: -0.2, z: 0}
@@ -1009,7 +1009,7 @@ Transform:
   m_GameObject: {fileID: 1703447182477470205}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.1031312, z: -0, w: 0.99466777}
-  m_LocalPosition: {x: -35.97, y: 0.975, z: -25.11}
+  m_LocalPosition: {x: -36.7, y: 1, z: -23.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

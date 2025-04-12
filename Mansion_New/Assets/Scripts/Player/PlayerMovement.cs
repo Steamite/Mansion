@@ -145,12 +145,15 @@ namespace Player
             }
         }
 
+
         /// <summary>
         /// Handles gravity.f
         /// </summary>
         private void FixedUpdate()
         {
-            if (Physics.Raycast(groundPos.position, Vector3.down, 0.1f))
+            if (transform.position.y > 0)
+                transform.position = new(transform.position.x, 1, transform.position.z);
+            /*if ()
             {
                 gravity.y = 0;
             }
@@ -158,7 +161,7 @@ namespace Player
             {
                 gravity.y -= 9.8f * Time.fixedDeltaTime;
                 controller.Move(gravity);
-            }
+            }*/
         }
     }
 }
