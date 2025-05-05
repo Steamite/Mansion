@@ -45,8 +45,43 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 785812bd80f66504695f749c55555d5d
+    m_Address: Assets/ItemData/Images/uniformy1943/img0.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e2b44ee19ac4a44c8e4dc2f88d15df1
+    m_Address: Assets/ItemData/Images/uniformy1943/img4.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f4be6b0e2cb9f9498b31d3b7ba10d5a
+    m_Address: Assets/ItemData/Images/uniformy1943/img3.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a297e8cac53dd7e4aa63790e5c6e5fb8
     m_Address: Assets/ItemData/PDF/SQL_Schema_ERD_and_Table_Designs.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3d64aa6d0615134db81ab43ea291b6e
+    m_Address: Assets/ItemData/PDF/uniformy1943.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9e98573ac27c654dbcc1d7262365261
+    m_Address: Assets/ItemData/Images/uniformy1943/img2.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba4bfc70207066843a7c556728903108
+    m_Address: Assets/ItemData/Images/uniformy1943/img1.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db03ed1a3a3941044a4a0071c0c3e52d
+    m_Address: Assets/ItemData/Text/dsanasobvao.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

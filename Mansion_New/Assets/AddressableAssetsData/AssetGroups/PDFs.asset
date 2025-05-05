@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: PDFs
   m_GUID: cee5d23e758fc4542a8b2f1f2052848f
   m_SerializeEntries:
+  - m_GUID: a0be7b768de41194782164fda9e64fa1
+    m_Address: Assets/ItemData/PDF/QT_Soviet-Uniforms-WWII.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ef0c79bad98ef8a4aa6d3adb268d03c5
     m_Address: Assets/ItemData/PDF/CV-Richard_Kopp_en (9) - kopie - kopie - kopie
       - kopie - kopie.asset

@@ -131,7 +131,9 @@ namespace Player
             bool checkRayCast = false;
 
             #region Camera
-            input += lookAction.ReadValue<Vector2>() * lookSpeed;
+            Vector2 vector = lookAction.ReadValue<Vector2>();
+            Debug.Log(vector);
+            input += vector * lookSpeed;
             if (input.y != 0)
             {
                 float f = Mathf.Lerp(VerticalRot, VerticalRot - input.y, 0.8f);
@@ -150,7 +152,7 @@ namespace Player
 				input.x -= f - horizontalRot;
 				horizontalRot = f;
 
-                transform.parent.rotation = Quaternion.Euler(0, horizontalRot, 0);//.Euler(new(0, horizontalRot, 0));//.parent.Rotate(Vector3.up, input.x);
+                transform.parent.rotation = Quaternion.Euler(0, horizontalRot, 0);
                 propertyChanged?.Invoke(this, new(nameof(horizontalRot)));
                 if (horizontalRot > 360)
                     horizontalRot -= 360;

@@ -21,6 +21,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 874414068fcb66948882a585e21ac44b
+    m_Address: Assets/ItemData/Images/QT_Soviet-Uniforms-WWII/img1.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9f8b244a9039bb4792c2953147c387a
+    m_Address: Assets/ItemData/Images/QT_Soviet-Uniforms-WWII/img0.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
   m_SchemaSet:
