@@ -85,7 +85,7 @@ namespace UI
                 #region Room Label
                 locationLabel = new();
                 binding = BindingUtil.CreateBinding(nameof(PlayerMovement.ActiveRoom));
-                binding.sourceToUiConverters.AddConverter((ref Room r) => r?.name);
+                binding.sourceToUiConverters.AddConverter((ref Room r) => r?.roomName);
 
                 locationLabel.SetBinding("text", binding);
                 locationLabel.dataSource = movement;

@@ -10,15 +10,19 @@ namespace UI
     [UxmlElement]
     public partial class CrosshairImage : VisualElement
     {
-        /// <summary>Instance so it can be used from everywhere.</summary>
-        static CrosshairImage instance;
-        /// <summary>Copy of self for toggling during interaction.</summary>
-        static VisualTreeAsset document = null;
+
+		/// <summary>Instance so it can be used from everywhere.</summary>
+#pragma warning disable UDR0001 // Domain Reload Analyzer
+		static CrosshairImage instance = null;
+		/// <summary>Copy of self for toggling during interaction.</summary>
+		static VisualTreeAsset document = null;
+#pragma warning restore UDR0001 // Domain Reload Analyzer
 
 		public CrosshairImage()
         {
             Add(new());
             instance = this;
+            document = null;
         }
 
         /// <summary>Transitions to active state</summary>

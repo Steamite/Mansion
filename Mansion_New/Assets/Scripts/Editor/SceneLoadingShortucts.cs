@@ -16,7 +16,7 @@ public class SceneLoadingShortucts : MonoBehaviour
     /// </summary>
     static SceneLoadingShortucts()
     {
-        //EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
     }
 
     /// <summary>
@@ -78,23 +78,17 @@ public class SceneLoadingShortucts : MonoBehaviour
     [MenuItem("Custom Editors/Load/Interact _F4", priority = 2)]
     static void LoadInteract()
     {
-        if(EditorSceneManager.GetActiveScene().name != "Interact")
-        {
-            EditorSceneManager.SaveOpenScenes();
-            EditorSceneManager.OpenScene($"{scenePath}Interact.unity");
-			EditorSceneManager.OpenScene($"{scenePath}Player.unity", OpenSceneMode.Additive);
-		}
+        EditorSceneManager.SaveOpenScenes();
+        EditorSceneManager.OpenScene($"{scenePath}Interact.unity");
+		EditorSceneManager.OpenScene($"{scenePath}Player.unity", OpenSceneMode.Additive);
     }
 
 	[MenuItem("Custom Editors/Load/Room A _F5", priority = 3)]
 	static void LoaRoom()
 	{
-		if (EditorSceneManager.GetActiveScene().name != "Room A")
-		{
-			EditorSceneManager.SaveOpenScenes();
-			EditorSceneManager.OpenScene("Assets/Scenes/Rooms/Room A.unity");
-			EditorSceneManager.OpenScene($"{scenePath}Player.unity", OpenSceneMode.Additive);
-		}
+		EditorSceneManager.SaveOpenScenes();
+		EditorSceneManager.OpenScene("Assets/Scenes/Rooms/Room A.unity");
+		EditorSceneManager.OpenScene($"{scenePath}Player.unity", OpenSceneMode.Additive);
 	}
 }
 #endif

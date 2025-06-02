@@ -6,6 +6,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace Items
@@ -15,14 +16,23 @@ namespace Items
     /// </summary>
     [RequireComponent(typeof(Collider))]
     public abstract class InteractableItem : MonoBehaviour
-	{
-		/// <summary>Display name of the item.</summary>
-		[SerializeField] public string ItemName;
-		/// <summary>Inner and Outer limits of zoom.</summary>
+    {
+        /// <summary>Display name of the item.</summary>
+        [SerializeField] public string ItemName;
+        /// <summary>Inner and Outer limits of zoom.</summary>
         [SerializeField][MinMaxRangeSlider(0.5f, 5)] public Vector2 RadiusRange;
-		/// <summary>Path for downloading the content.</summary>
-        [SerializeField] public AssetReference SourceObject;
+        /// <summary>Path for downloading the content.</summary>
+        public AssetReference SourceObject { get => sourceObject; private set => sourceObject = value; }
+        [SerializeField] AssetReference sourceObject;
 
+        [SerializeField] public string SourceObjectName;
+
+#if UNITY_EDITOR
+        public void SetSource(AssetReference reference, string objectName) {
+            SourceObject = reference;
+            SourceObjectName = objectName;
+		}
+#endif
         /// <summary>
         /// Each type of Item must has it's own implementation for dowloading and viewing content.
         /// </summary>
@@ -42,6 +52,7 @@ namespace Items
             ItemName = item.ItemName;
             RadiusRange = item.RadiusRange;
             SourceObject = item.SourceObject;
-        }
+            SourceObjectName = item.SourceObjectName;
+		}
 	}
 }
