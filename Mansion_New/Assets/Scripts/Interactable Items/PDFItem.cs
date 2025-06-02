@@ -112,6 +112,7 @@ namespace Items
 
 		public override void Unload(VisualElement displayElem)
 		{
+			StopAllCoroutines();
 			VisualElement el = displayElem.Q<VisualElement>("Images");
 			for (int i = el.childCount - 1; i > -1; i--)
 				el.RemoveAt(i);

@@ -66,8 +66,13 @@ namespace Player
             playerCamera = transform.GetChild(0).GetComponent<PlayerCamera>();
         }
 
-        public void Activate() =>
-            StartCoroutine(InitInput());
+        public void Activate()
+        {
+			UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+			UnityEngine.Cursor.visible = false;
+			StartCoroutine(InitInput());
+		}
+
         IEnumerator InitInput()
         {
             if (Init.toLoad == "Player")
@@ -133,19 +138,22 @@ namespace Player
         /// <param name="hit">The object that was hit.</param>
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
-            if(hit.gameObject.tag == "Entrance")
+            if(hit.gameObject.CompareTag("Entrance"))
             {
                 ActiveRoom = hit.transform.parent.parent.GetComponent<Room>().EnterRoom(ActiveRoom);
                 propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
             }
         }
 
+
         /// <summary>
         /// Handles gravity.f
         /// </summary>
         private void FixedUpdate()
         {
-            if (Physics.Raycast(groundPos.position, Vector3.down, 0.1f))
+            if (transform.position.y > 0)
+                transform.position = new(transform.position.x, 1, transform.position.z);
+            /*if ()
             {
                 gravity.y = 0;
             }
@@ -153,7 +161,7 @@ namespace Player
             {
                 gravity.y -= 9.8f * Time.fixedDeltaTime;
                 controller.Move(gravity);
-            }
+            }*/
         }
     }
 }

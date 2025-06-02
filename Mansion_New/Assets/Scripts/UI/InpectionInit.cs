@@ -1,8 +1,12 @@
 ﻿using Items;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using Unity.Cinemachine;
+using Unity.Collections;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -29,15 +33,29 @@ namespace UI.Inspect
 
         RenderTexture screenShot;
 
-		#region Init
-		/// <summary>
-		/// Disables movement actions and hides objects that are not needed for the inspection.
-		/// </summary>
-		/// <param name="_item">Item for inspection</param>
-		/// <param name="_asset">Asset containging actions.</param>
-		public void Init(Transform _item, InputActionAsset _asset, AsyncOperationHandle<SceneInstance> scene)
+        int width;
+        int height;
+
+        InteractableItem item;
+        InputActionAsset asset;
+        AsyncOperationHandle<SceneInstance> scene;
+
+        #region Init
+        /// <summary>
+        /// Disables movement actions and hides objects that are not needed for the inspection.
+        /// </summary>
+        /// <param name="_item">Item for inspection</param>
+        /// <param name="_asset">Asset containging actions.</param>
+        public void Init(Transform _item, InputActionAsset _asset, AsyncOperationHandle<SceneInstance> _scene)
 		{
-			_asset.actionMaps[2].Disable();
+            width = Screen.width;
+            height = Screen.height;
+
+            item = _item.GetComponent<InteractableItem>();
+            asset = _asset;
+            scene = _scene;
+
+            _asset.actionMaps[2].Disable();
 
 			transform.position = _item.position;
             _item.parent = transform;
@@ -45,13 +63,20 @@ namespace UI.Inspect
             foreach (Transform trans in _item.GetComponentsInChildren<Transform>(true))
                 trans.gameObject.layer = 6;
 
+
+            Debug.Log("starting to render");
             Camera c = Camera.main.transform.GetChild(0).GetComponent<Camera>();
             c.enabled = true;
-            screenShot = new RenderTexture(Screen.width, Screen.height, 24);
+            screenShot = new RenderTexture(width, height, 24);
             c.targetTexture = screenShot;
-            
 
-			StartCoroutine(WaitOnPostRender(_item.GetComponent<InteractableItem>(), _asset, scene));
+            c.Render();
+/*
+            c.targetTexture = null;
+            c.enabled = false;*/
+
+            Debug.Log("got the screenshot");
+            StartCoroutine(WaitOnPostRender());
         }
 
 		/// <summary>
@@ -60,27 +85,94 @@ namespace UI.Inspect
 		/// <param name="_item">Item for inspection</param>
 		/// <param name="_asset">Asset containging actions.</param>
 		/// <returns></returns>
-		IEnumerator WaitOnPostRender(InteractableItem _item, InputActionAsset _asset, AsyncOperationHandle<SceneInstance> scene)
+		IEnumerator WaitOnPostRender()
         {
             // Create the picture
             yield return new WaitForEndOfFrame();
-            canvas.transform.GetChild(0).GetComponent<Image>().sprite = Blur();
-			canvas.gameObject.SetActive(true);
+
+            RenderTexture renH = RenderTexture.GetTemporary(width, height);
+
+            horizontalMaterial.SetFloat("_BlurSize", Radial);
+            verticalMaterial.SetFloat("_BlurSize", Radial);
+
+            Graphics.Blit(screenShot, renH, horizontalMaterial);
+            Graphics.Blit(renH, screenShot, verticalMaterial);
+            RenderTexture.ReleaseTemporary(renH);
+
+            Debug.Log("Shaded");
+            Test();
+            yield break;
+            NativeArray<byte> tempvar = new NativeArray<byte>(screenShot.width * screenShot.height * 16, Allocator.Persistent, NativeArrayOptions.UninitializedMemory);
+            var req = AsyncGPUReadback.RequestIntoNativeArrayAsync(ref tempvar, screenShot);
+            yield return req;
+            Texture2D tempimg = new Texture2D(screenShot.width, screenShot.height);
+            tempimg.LoadRawTextureData(tempvar);
+            tempimg.Apply();
+            StartCoroutine(FinishStuff(Sprite.Create(tempimg, new(0, 0, tempimg.width, tempimg.height), new(0, 0))));
+
+        }
+		#endregion
+
+        public async void Test()
+        {
+            NativeArray<byte> tempvar = new NativeArray<byte>(screenShot.width * screenShot.height * 16, Allocator.Persistent, NativeArrayOptions.UninitializedMemory);
+            var req = AsyncGPUReadback.RequestIntoNativeArrayAsync(ref tempvar, screenShot);
+            await req;
+            Texture2D tempimg = new Texture2D(screenShot.width, screenShot.height);
+            tempimg.LoadRawTextureData(tempvar);
+            tempimg.Apply();
+            StartCoroutine(FinishStuff(Sprite.Create(tempimg, new(0, 0, tempimg.width, tempimg.height), new(0, 0))));
+        }
+
+        public void GetImg(bool firstTry = true)
+        {
+
+            
+            AsyncGPUReadback.Request(
+                screenShot, 
+                0, 
+                TextureFormat.RGB24,
+                (req) =>
+                {
+
+                    if (!req.hasError)
+                    {
+                        Debug.Log("request is done");
+                        var data = req.GetData<byte>();
+                        Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
+                        tex.LoadRawTextureData(data);
+                        tex.Apply();
+                        
+                    }
+                    else if(firstTry)
+                    {
+                        Debug.LogError("fuck you");
+                        GetImg(false);
+                    }
+                });
+        }
+
+
+        IEnumerator FinishStuff(Sprite sprite)
+        {
+            Debug.Log("created the sprite");
+            canvas.transform.GetChild(0).GetComponent<Image>().sprite = sprite;
+            canvas.gameObject.SetActive(true);
             Camera.main.cullingMask = 96;
             canvas.worldCamera = Camera.main;
 
-			// rotate camera to match current player rotation
-			CinemachineOrbitalFollow orbit = cam.GetComponent<CinemachineOrbitalFollow>();
+            // rotate camera to match current player rotation
+            CinemachineOrbitalFollow orbit = cam.GetComponent<CinemachineOrbitalFollow>();
 
             CapsuleCollider capsuleCollider;
-            if (capsuleCollider = _item.GetComponent<CapsuleCollider>())
+            if (capsuleCollider = item.GetComponent<CapsuleCollider>())
             {
-                if(_item.transform.rotation.x != 0)
+                if (item.transform.rotation.x != 0)
                 {
-                    orbit.TargetOffset.z = _item.transform.eulerAngles.x < 0 ? capsuleCollider.center.y : -capsuleCollider.center.y;
+                    orbit.TargetOffset.z = item.transform.eulerAngles.x < 0 ? capsuleCollider.center.y : -capsuleCollider.center.y;
                     orbit.GetComponent<CinemachineRotationComposer>()
                         .TargetOffset.z = orbit.TargetOffset.z;
-                    orbit.Orbits.Top.Height = capsuleCollider.radius*2;
+                    orbit.Orbits.Top.Height = capsuleCollider.radius * 2;
                     orbit.Orbits.Center.Height = capsuleCollider.radius;
                     orbit.Orbits.Bottom.Height = -capsuleCollider.radius;
                 }
@@ -95,7 +187,7 @@ namespace UI.Inspect
             }
 
             orbit.HorizontalAxis.Value = Camera.main.transform.rotation.eulerAngles.y;
-            orbit.RadialAxis.Range = _item.RadiusRange;
+            orbit.RadialAxis.Range = item.RadiusRange;
 
             cam.Priority = 3;
 
@@ -104,46 +196,7 @@ namespace UI.Inspect
             while (brain.ActiveBlend == null)
                 yield return null;
             yield return new WaitUntil(() => brain.ActiveBlend == null);
-            canvas.GetComponent<InspectMenu>().Init(_asset, _item, scene);
+            canvas.GetComponent<InspectMenu>().Init(asset, item, scene);
         }
-		#endregion
-
-        /// <summary>
-        /// Creates a blured screenshot.
-        /// </summary>
-        /// <returns></returns>
-		public Sprite Blur()
-		{
-			int width = Screen.width;
-			int height = Screen.height;
-
-            RenderTexture.active = screenShot;
-			Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
-			tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
-			tex.Apply(); // Apply texture changes before reading pixels
-            RenderTexture.active = null;
-			Camera c = Camera.main.transform.GetChild(0).GetComponent<Camera>();
-            c.enabled = false;
-
-			RenderTexture renH = RenderTexture.GetTemporary(width, height);
-			RenderTexture renV = RenderTexture.GetTemporary(width, height);
-
-			horizontalMaterial.SetFloat("_BlurSize", Radial);
-			verticalMaterial.SetFloat("_BlurSize", Radial);
-
-			Graphics.Blit(tex, renH, horizontalMaterial);
-			Graphics.Blit(renH, renV, verticalMaterial);
-
-			RenderTexture.active = renV;
-			tex.ReadPixels(new Rect(0, 0, renV.width, renV.height), 0, 0);
-			tex.Apply();
-			RenderTexture.active = null;
-
-			RenderTexture.ReleaseTemporary(renH);
-			RenderTexture.ReleaseTemporary(renV);
-
-
-			return Sprite.Create(tex, new(0, 0, width, height), new(0, 0));
-		}
 	}
 }

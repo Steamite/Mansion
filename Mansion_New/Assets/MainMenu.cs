@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour
         while (!roomLoad.IsDone)
         {
             progressBar.value = roomLoad.PercentComplete / 2;
-            yield return new();
+            yield return null;
         }
         if (roomLoad.Status == AsyncOperationStatus.Succeeded)
         {
@@ -48,7 +48,7 @@ public class MainMenu : MonoBehaviour
             while (!playerLoad.IsDone)
             {
                 progressBar.value = playerLoad.PercentComplete / 2;
-                yield return new();
+                yield return null;
             }
             if (playerLoad.Status == AsyncOperationStatus.Succeeded)
             {
