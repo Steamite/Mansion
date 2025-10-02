@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Library\\PackageCache\\com.unity.render-pipelines.universal@82fb1398b3b8\\Shaders\\Lit.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|c:\\users\\liebich vojt\u011Bch\\documents\\blender\\projekt z\u00E1me\u010Dek\\mansion\\mansion_new\\assets\\materials\\shaders\\horizontalblur.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|C:\\Users\\Liebich Vojt\u011Bch\\Documents\\Blender\\Projekt Z\u00E1me\u010Dek\\Mansion\\Mansion_New\\assets\\materials\\shaders\\horizontalblur.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\materials\\shaders\\horizontalblur.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
@@ -68,7 +68,7 @@
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.unity.render-pipelines.universal@82fb1398b3b8\\Shaders\\Lit.shader",
               "ToolTip": "C:\\Users\\Liebich Vojt\u011Bch\\Documents\\Blender\\Projekt Z\u00E1me\u010Dek\\Mansion\\Mansion_New\\Library\\PackageCache\\com.unity.render-pipelines.universal@82fb1398b3b8\\Shaders\\Lit.shader",
               "RelativeToolTip": "Library\\PackageCache\\com.unity.render-pipelines.universal@82fb1398b3b8\\Shaders\\Lit.shader",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
               "WhenOpened": "2025-04-08T13:23:47.712Z",
               "EditorCaption": ""
@@ -83,8 +83,7 @@
               "RelativeToolTip": "Assets\\Materials\\Shaders\\HorizontalBlur.shader",
               "ViewState": "AgIAABIAAAAAAAAAAIBJwCcAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
-              "WhenOpened": "2025-03-31T15:01:22.172Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T15:01:22.172Z"
             },
             {
               "$type": "Document",
