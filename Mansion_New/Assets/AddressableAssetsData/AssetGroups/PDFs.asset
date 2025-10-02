@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: PDFs
   m_GUID: cee5d23e758fc4542a8b2f1f2052848f
   m_SerializeEntries:
+  - m_GUID: 57ebd186923b9dd42b3b407e9990cb1b
+    m_Address: Assets/ItemData/PDF/Prakticky_test_2_1_long.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a0be7b768de41194782164fda9e64fa1
     m_Address: Assets/ItemData/PDF/QT_Soviet-Uniforms-WWII.asset
     m_ReadOnly: 0
