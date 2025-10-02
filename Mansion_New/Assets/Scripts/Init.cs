@@ -7,13 +7,18 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 
 public class Init : MonoBehaviour
 {
-    public static string toLoad;
-    [SerializeField] string player = "Player";
+#pragma warning disable UDR0001 // Domain Reload Analyzer
+	public static string toLoad;
+#pragma warning restore UDR0001 // Domain Reload Analyzer
+	[SerializeField] string player = "Player";
     [SerializeField] string mainMenu = "Main Menu";
     [SerializeField] bool gameInit = true;
     IEnumerator Start()
     {
-        toLoad = gameInit ? mainMenu : player;
+		//WebGLInput.stickyCursorLock = false;
+		//Application.targetFrameRate = 60;
+		//QualitySettings.vSyncCount = 1;
+		toLoad = gameInit ? mainMenu : player;
         AsyncOperationHandle<SceneInstance> initialLoad = 
 			Addressables.LoadSceneAsync(toLoad, UnityEngine.SceneManagement.LoadSceneMode.Single, false);
 		

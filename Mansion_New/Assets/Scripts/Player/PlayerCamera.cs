@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UI;
 using UI.Inspect;
 using Unity.Cinemachine;
@@ -31,7 +32,7 @@ namespace Player
         /// <summary>Intraction raycast range.</summary>
         [SerializeField][Range(0.5f, 1.5f)] float range = 1;
         /// <summary>Speed of camera rotation.</summary>
-        [SerializeField][Range(10, 25)] float lookSpeed;
+        [SerializeField][Range(0, 3)] float lookSpeed;
         /// <summary>Max camara angle.</summary>
         [SerializeField][Range(300, 360)] float lookLockMax;
         /// <summary>Min camara angle.</summary>
@@ -71,6 +72,7 @@ namespace Player
 
 		/// <summary>Property for minimap rotation binding.</summary>
 		[CreateProperty] public float horizontalRot;
+
 		#endregion
 
 		/// <summary>Ray constructor.</summary>
@@ -94,8 +96,6 @@ namespace Player
             lookAction = inputMap.FindAction("Look");
             crouchAction = inputMap.FindAction("Crouch");
             
-            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-            UnityEngine.Cursor.visible = false;
 
             topCam = transform.GetChild(0).GetComponent<CinemachineCamera>();
             bottomCam = transform.GetChild(1).GetComponent<CinemachineCamera>();
@@ -129,9 +129,11 @@ namespace Player
 
 
             bool checkRayCast = false;
-            
+
             #region Camera
-            input += lookAction.ReadValue<Vector2>() * lookSpeed * Time.deltaTime;
+            Vector2 vector = lookAction.ReadValue<Vector2>();
+            Debug.Log(vector);
+            input += vector * lookSpeed;
             if (input.y != 0)
             {
                 float f = Mathf.Lerp(VerticalRot, VerticalRot - input.y, 0.8f);
@@ -150,7 +152,7 @@ namespace Player
 				input.x -= f - horizontalRot;
 				horizontalRot = f;
 
-                transform.parent.rotation = Quaternion.Euler(0, horizontalRot, 0);//.Euler(new(0, horizontalRot, 0));//.parent.Rotate(Vector3.up, input.x);
+                transform.parent.rotation = Quaternion.Euler(0, horizontalRot, 0);
                 propertyChanged?.Invoke(this, new(nameof(horizontalRot)));
                 if (horizontalRot > 360)
                     horizontalRot -= 360;
@@ -232,7 +234,7 @@ namespace Player
                 yield return sceneLoading.Result.ActivateAsync();
             else
 			{
-				Debug.LogError(sceneLoading.Status);
+				Debug.LogError(sceneLoading.Status.ToString());
                 yield break;
 			}
             GameObject.FindAnyObjectByType<InpectionInit>().Init(item.transform, asset, sceneLoading);

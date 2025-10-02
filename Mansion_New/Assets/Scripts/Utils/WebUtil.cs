@@ -8,7 +8,10 @@ using static System.Collections.Specialized.BitVector32;
 
 public class WebUtil : MonoBehaviour
 {
-    static WebUtil instance;
+    static WebUtil instance = null;
+	[RuntimeInitializeOnLoadMethod]
+	static void Refresh() =>
+		instance = null;
     private void Awake()
     {
         instance = this;

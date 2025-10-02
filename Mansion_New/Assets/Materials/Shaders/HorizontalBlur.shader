@@ -21,8 +21,10 @@ Shader "Custom/BoxBlur_Horizontal"
                 float4 vertex : SV_POSITION;
             };
 
-            sampler2D _MainTex;
-            float _BlurSize;
+            CBUFFER_START(UnityPerMaterial)
+                sampler2D _MainTex;
+                float _BlurSize;
+            CBUFFER_END
 
             v2f vert (float4 vertex : POSITION, float2 uv : TEXCOORD0)
             {
