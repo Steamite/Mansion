@@ -51,7 +51,13 @@ namespace UI.Inspect
             width = Screen.width;
             height = Screen.height;
 
-            item = _item.GetComponent<InteractableItem>();
+            while(_item != null)
+            {
+                if (_item.TryGetComponent<InteractableItem>(out item))
+                    break;
+                _item = _item.parent;
+            }
+
             asset = _asset;
             scene = _scene;
 
@@ -164,27 +170,10 @@ namespace UI.Inspect
             // rotate camera to match current player rotation
             CinemachineOrbitalFollow orbit = cam.GetComponent<CinemachineOrbitalFollow>();
 
-            CapsuleCollider capsuleCollider;
-            if (capsuleCollider = item.GetComponent<CapsuleCollider>())
-            {
-                if (item.transform.rotation.x != 0)
-                {
-                    orbit.TargetOffset.z = item.transform.eulerAngles.x < 0 ? capsuleCollider.center.y : -capsuleCollider.center.y;
-                    orbit.GetComponent<CinemachineRotationComposer>()
-                        .TargetOffset.z = orbit.TargetOffset.z;
-                    orbit.Orbits.Top.Height = capsuleCollider.radius * 2;
-                    orbit.Orbits.Center.Height = capsuleCollider.radius;
-                    orbit.Orbits.Bottom.Height = -capsuleCollider.radius;
-                }
-                else
-                {
-                    orbit.GetComponent<CinemachineRotationComposer>()
-                        .TargetOffset.y = capsuleCollider.center.y;
-                    orbit.Orbits.Top.Height = capsuleCollider.center.y + capsuleCollider.height / 2;
-                    orbit.Orbits.Center.Height = capsuleCollider.center.y;
-                    orbit.Orbits.Bottom.Height = capsuleCollider.center.y - capsuleCollider.height / 2;
-                }
-            }
+            orbit.Orbits.Top.Height = item.top;
+            orbit.Orbits.Center.Height = item.center;
+            orbit.Orbits.Bottom.Height = item.bottom;
+            orbit.TargetOffset = item.offset;
 
             orbit.HorizontalAxis.Value = Camera.main.transform.rotation.eulerAngles.y;
             orbit.RadialAxis.Range = item.RadiusRange;

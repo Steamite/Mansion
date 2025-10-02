@@ -15,6 +15,16 @@ MonoBehaviour:
   m_GroupName: Sprites
   m_GUID: e862f9303e32d114fa7bd02b1f868f12
   m_SerializeEntries:
+  - m_GUID: 71fb239fa2286154cb1475a4740b26fe
+    m_Address: Assets/ItemData/Images/Prakticky_test_2_1_long/img0.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 764327c96c4457240a267e2b3aeef79f
+    m_Address: Assets/ItemData/Images/Prakticky_test_2_1_long/img1.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 84ac31040d3b81545ae8d37fef4fae16
     m_Address: Assets/ItemData/Images/CV-Richard_Kopp_en (9) - kopie - kopie - kopie
       - kopie - kopie/img0.jpg

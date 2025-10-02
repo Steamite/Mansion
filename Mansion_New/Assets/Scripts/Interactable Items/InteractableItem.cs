@@ -14,7 +14,6 @@ namespace Items
     /// <summary>
     /// Base class for all interactable items, has data for inspection.
     /// </summary>
-    [RequireComponent(typeof(Collider))]
     public abstract class InteractableItem : MonoBehaviour
     {
         /// <summary>Display name of the item.</summary>
@@ -26,6 +25,10 @@ namespace Items
         [SerializeField] AssetReference sourceObject;
 
         [SerializeField] public string SourceObjectName;
+        public float top;
+        public float center;
+        public float bottom;
+        public Vector3 offset;
 
 #if UNITY_EDITOR
         public void SetSource(AssetReference reference, string objectName) {
@@ -54,5 +57,10 @@ namespace Items
             SourceObject = item.SourceObject;
             SourceObjectName = item.SourceObjectName;
 		}
-	}
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawSphere(transform.position + offset, 0.2f);
+        }
+    }
 }

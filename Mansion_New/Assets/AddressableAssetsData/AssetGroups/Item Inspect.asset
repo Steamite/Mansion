@@ -45,11 +45,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 7b4e7742962c27a4c82105e86a7f17e3
-    m_Address: Assets/Models/New Scene.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
   m_SchemaSet:
