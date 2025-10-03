@@ -16,97 +16,97 @@ MonoBehaviour:
   m_GUID: c29f144c741abd240be86c0012532872
   m_SerializeEntries:
   - m_GUID: 167806897f35e9c469505e21aa41654d
-    m_Address: Assets/ItemData/Images/SQL_Schema_ERD_and_Table_Designs/img5.jpg
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 1aaa4f691802209448359d4378e0987d
-    m_Address: Room A
+    m_Address: img5
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2c03b436f6996ef429643906422e9cb1
-    m_Address: Assets/ItemData/Images/SQL_Schema_ERD_and_Table_Designs/img2.jpg
+    m_Address: img2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4e410862e1992664390cfd6d3edbaee2
-    m_Address: Assets/ItemData/Images/SQL_Schema_ERD_and_Table_Designs/img6.jpg
+    m_Address: img6
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 539b5a6f4396f42488c943abd25ee055
-    m_Address: Assets/ItemData/Images/SQL_Schema_ERD_and_Table_Designs/img7.jpg
+    m_Address: img7
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d13692c76ec4784890769c6404fa1ac
-    m_Address: Assets/ItemData/Images/SQL_Schema_ERD_and_Table_Designs/img1.jpg
+    m_Address: img1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71e12d6a8ef0a4f47b0765c7dda112f6
+    m_Address: Room A 2.0
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 785812bd80f66504695f749c55555d5d
-    m_Address: Assets/ItemData/Images/uniformy1943/img0.jpg
+    m_Address: img0
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9e2b44ee19ac4a44c8e4dc2f88d15df1
-    m_Address: Assets/ItemData/Images/uniformy1943/img4.jpg
+    m_Address: img4
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9f4be6b0e2cb9f9498b31d3b7ba10d5a
-    m_Address: Assets/ItemData/Images/uniformy1943/img3.jpg
+    m_Address: img3
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a297e8cac53dd7e4aa63790e5c6e5fb8
-    m_Address: Assets/ItemData/PDF/SQL_Schema_ERD_and_Table_Designs.asset
+    m_Address: SQL_Schema_ERD_and_Table_Designs
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a3d64aa6d0615134db81ab43ea291b6e
-    m_Address: Assets/ItemData/PDF/uniformy1943.asset
+    m_Address: uniformy1943
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b9e98573ac27c654dbcc1d7262365261
-    m_Address: Assets/ItemData/Images/uniformy1943/img2.jpg
+    m_Address: img2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ba4bfc70207066843a7c556728903108
-    m_Address: Assets/ItemData/Images/uniformy1943/img1.jpg
+    m_Address: img1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: db03ed1a3a3941044a4a0071c0c3e52d
-    m_Address: Assets/ItemData/Text/dsanasobvao.asset
+    m_Address: dsanasobvao
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e3f7d05762bea7c4cba2f89810a394d7
-    m_Address: Assets/ItemData/Text/Dummy text.asset
+    m_Address: Dummy text
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f03355ebadff8594bbab51496858f5a8
-    m_Address: Assets/ItemData/Images/SQL_Schema_ERD_and_Table_Designs/img0.jpg
+    m_Address: img0
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f3dc3e00f6c3d37458cbba96a365d739
-    m_Address: Assets/ItemData/Images/SQL_Schema_ERD_and_Table_Designs/img3.jpg
+    m_Address: img3
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f77bcdb8d4e74a44fafdbce995cd2c1d
-    m_Address: Assets/ItemData/Text/granat.asset
+    m_Address: granat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f8707b958ad92fb479fab3754a8db656
-    m_Address: Assets/ItemData/Images/SQL_Schema_ERD_and_Table_Designs/img4.jpg
+    m_Address: img4
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

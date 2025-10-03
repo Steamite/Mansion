@@ -7,6 +7,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using UnityEngine.Networking;
 using UnityEngine.Rendering;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -39,6 +40,18 @@ namespace UI.Inspect
         /// <summary>Destoys the inpected item.</summary>
 		InputAction takeAction;
 
+        InputAction zoomAction;
+
+        InputAction startRotateAction;
+        
+        InputAction stopRotateAction;
+
+        InputAction startDragAction;
+        
+        InputAction stopDragAction;
+
+        InputAction dragAction;
+
         /// <summary>Item in inspection.</summary>
 		InteractableItem item;
 
@@ -46,10 +59,12 @@ namespace UI.Inspect
 		UIDocument doc;
         /// <summary>Is the description page opened or not.</summary>
 		bool isDescriptionOpened;
+        bool canDrag;
 
         AsyncOperationHandle<SceneInstance> scene;
-
         const string buttonGUId = "658cd35d788af46489726e1322cc904e";
+        CinemachinePositionComposer positionComposer;
+        CinemachineInputAxisController axisController;
 		#endregion
 
 		#region Init
@@ -67,6 +82,12 @@ namespace UI.Inspect
             endAction = asset.actionMaps[2].actions[0];
             infoAction = asset.actionMaps[2].actions[1];
             takeAction = asset.actionMaps[2].actions[2];
+            zoomAction = asset.actionMaps[2].actions[3];
+            startRotateAction = asset.actionMaps[2].actions[4];
+            stopRotateAction = asset.actionMaps[2].actions[5];
+            dragAction= asset.actionMaps[2].actions[6];
+            startDragAction = asset.actionMaps[2].actions[7];
+            stopDragAction = asset.actionMaps[2].actions[8];
             asset.actionMaps[2].Enable();
 
             //Texture2D a = Addressables.LoadAssetAsync<Texture2D>(buttonGUId).Result;
@@ -82,6 +103,8 @@ namespace UI.Inspect
             isDescriptionOpened = false;
 
 
+            axisController = transform.parent.GetChild(2).GetComponent<CinemachineInputAxisController>();
+            positionComposer = transform.parent.GetChild(2).GetComponent<CinemachinePositionComposer>();
             enabled = true;
         }
         #endregion
@@ -92,11 +115,51 @@ namespace UI.Inspect
                 EndInteract();
             else if (infoAction.triggered)
                 DescriptionToggle();
-            /*else if (!isDescriptionOpened && takeAction.triggered)
-                PickupItem();*/
             else if (takeAction.triggered && isDescriptionOpened && item is PDFItem)
-				Application.OpenURL(((PDFItem)item).pdfPath);
-		}
+                Application.OpenURL(((PDFItem)item).pdfPath);
+            
+            if (zoomAction.triggered)
+                Zoom();
+            if (startRotateAction.triggered)
+                TogglePanTilt(true);
+            else if (stopRotateAction.triggered)
+                TogglePanTilt(false);
+
+            if (startDragAction.triggered)
+                ToggleDrag(true);
+            else if (stopDragAction.triggered)
+                ToggleDrag(false);
+            if (canDrag)
+                Drag();
+        }
+
+        #region Control Actions
+        void Zoom()
+        {
+            Vector2 f = zoomAction.ReadValue<Vector2>();
+            positionComposer.CameraDistance = Mathf.Clamp(positionComposer.CameraDistance - f.y, item.RadiusRange.x, item.RadiusRange.y);
+            Debug.Log(f);
+        }
+        
+        void TogglePanTilt(bool newState)
+        {
+            axisController.Controllers[0].Enabled = newState;
+            axisController.Controllers[1].Enabled = newState;
+        }
+
+        void ToggleDrag(bool newState)
+        {
+            canDrag = newState;
+        }
+
+        void Drag()
+        {
+            Vector2 drag = dragAction.ReadValue<Vector2>();
+            positionComposer.Composition.ScreenPosition.x = Mathf.Clamp(positionComposer.Composition.ScreenPosition.x + drag.x, -0.5f, 0.5f);
+            positionComposer.Composition.ScreenPosition.y = Mathf.Clamp(positionComposer.Composition.ScreenPosition.y + drag.y, -0.5f, 0.5f);
+        }
+
+        #endregion
 
         #region End
         /// <summary>

@@ -87,7 +87,7 @@ public class SceneLoadingShortucts : MonoBehaviour
 	static void LoaRoom()
 	{
 		EditorSceneManager.SaveOpenScenes();
-		EditorSceneManager.OpenScene("Assets/Scenes/Rooms/Room A.unity");
+		EditorSceneManager.OpenScene("Assets/Scenes/Rooms/Room A 2.0.unity");
 		EditorSceneManager.OpenScene($"{scenePath}Player.unity", OpenSceneMode.Additive);
 	}
 }

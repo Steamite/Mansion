@@ -1,10 +1,26 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Liebich Vojt\u011Bch\\Documents\\Blender\\Projekt Z\u00E1me\u010Dek\\Mansion\\Mansion_New\\",
+  "WorkspaceRootPath": "C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|c:\\users\\liebich vojt\u011Bch\\documents\\blender\\projekt z\u00E1me\u010Dek\\mansion\\mansion_new\\assets\\scripts\\player\\playercamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|c:\\programing\\unity projects\\mansion\\mansion_new\\assets\\scripts\\ui\\inspectmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\inspectmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\assets\\scripts\\ui\\inpectioninit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\inpectioninit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\assets\\scripts\\player\\playercamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playercamera.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BC6166CD-E546-682B-3F4D-419420C88F87}|Assembly-CSharp-Editor.csproj|C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\assets\\scripts\\editor\\sceneloadingshortucts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BC6166CD-E546-682B-3F4D-419420C88F87}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\scripts\\editor\\sceneloadingshortucts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\assets\\scripts\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07BAC2EF-EB78-71B1-6282-9EC33737260D}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,20 +30,100 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PlayerCamera.cs",
-              "DocumentMoniker": "C:\\Users\\Liebich Vojt\u011Bch\\Documents\\Blender\\Projekt Z\u00E1me\u010Dek\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerCamera.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerCamera.cs",
-              "ToolTip": "C:\\Users\\Liebich Vojt\u011Bch\\Documents\\Blender\\Projekt Z\u00E1me\u010Dek\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerCamera.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerCamera.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAgwFsAAAA6AAAAAAAAAA==",
+              "Title": "InspectMenu.cs",
+              "DocumentMoniker": "C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\InspectMenu.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\InspectMenu.cs",
+              "ToolTip": "C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\InspectMenu.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\InspectMenu.cs",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAkwIEAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-02T13:03:39.194Z",
+              "WhenOpened": "2025-10-02T16:22:21.288Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InpectionInit.cs",
+              "DocumentMoniker": "C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\InpectionInit.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\InpectionInit.cs",
+              "ToolTip": "C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\Assets\\Scripts\\UI\\InpectionInit.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UI\\InpectionInit.cs",
+              "ViewState": "AgIAAJ4AAAAAAAAAAAAkwL8AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T16:21:40.763Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "SceneLoadingShortucts.cs",
+              "DocumentMoniker": "C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\Assets\\Scripts\\Editor\\SceneLoadingShortucts.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Editor\\SceneLoadingShortucts.cs",
+              "ToolTip": "C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\Assets\\Scripts\\Editor\\SceneLoadingShortucts.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Editor\\SceneLoadingShortucts.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAIwFkAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T16:19:30.788Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PlayerMovement.cs",
+              "DocumentMoniker": "C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerMovement.cs",
+              "ToolTip": "C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerMovement.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerMovement.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAD4v1YAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T16:19:08.317Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayerCamera.cs",
+              "DocumentMoniker": "C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerCamera.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerCamera.cs",
+              "ToolTip": "C:\\Programing\\Unity Projects\\Mansion\\Mansion_New\\Assets\\Scripts\\Player\\PlayerCamera.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerCamera.cs",
+              "ViewState": "AgIAAGkAAAAAAAAAAAAQwHcAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-02T13:03:39.194Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1471,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1471,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
             }
           ]
         }

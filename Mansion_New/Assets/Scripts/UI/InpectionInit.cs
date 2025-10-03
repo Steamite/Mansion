@@ -167,16 +167,20 @@ namespace UI.Inspect
             Camera.main.cullingMask = 96;
             canvas.worldCamera = Camera.main;
 
+            CinemachinePositionComposer composer = cam.GetComponent<CinemachinePositionComposer>();
+            composer.TargetOffset = item.offset;
+            composer.CameraDistance = item.RadiusRange.x;
+
             // rotate camera to match current player rotation
-            CinemachineOrbitalFollow orbit = cam.GetComponent<CinemachineOrbitalFollow>();
+            /* CinemachineOrbitalFollow orbit = cam.GetComponent<CinemachineOrbitalFollow>();
 
-            orbit.Orbits.Top.Height = item.top;
-            orbit.Orbits.Center.Height = item.center;
-            orbit.Orbits.Bottom.Height = item.bottom;
-            orbit.TargetOffset = item.offset;
+             orbit.Orbits.Top.Height = item.top;
+             orbit.Orbits.Center.Height = item.center;
+             orbit.Orbits.Bottom.Height = item.bottom;
+             orbit.TargetOffset = item.offset;
 
-            orbit.HorizontalAxis.Value = Camera.main.transform.rotation.eulerAngles.y;
-            orbit.RadialAxis.Range = item.RadiusRange;
+             orbit.HorizontalAxis.Value = Camera.main.transform.rotation.eulerAngles.y;
+             orbit.RadialAxis.Range = item.RadiusRange;*/
 
             cam.Priority = 3;
 

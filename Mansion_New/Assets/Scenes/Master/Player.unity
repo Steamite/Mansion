@@ -490,8 +490,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 914655226}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.1031312, z: 0, w: 0.99466777}
-  m_LocalPosition: {x: -36.751293, y: 1.45, z: -22.965317}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.45, y: 1.6500001, z: -2.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1015,15 +1015,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703447182477470205}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.1031312, z: -0, w: 0.99466777}
-  m_LocalPosition: {x: -36.7, y: 1, z: -23.21}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.45, y: 1.2, z: -2.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2079150358}
   - {fileID: 4510609506257973582}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -11.839, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7960491847810131837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,7 +1040,7 @@ MonoBehaviour:
   moveSpeed: 5
   mapZoomLimit: {x: 0.8, y: 2}
   startingScene:
-    m_AssetGUID: 1aaa4f691802209448359d4378e0987d
+    m_AssetGUID: 71e12d6a8ef0a4f47b0765c7dda112f6
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 

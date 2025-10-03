@@ -153,9 +153,13 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 845e5562cc587fd40b8fc4d112642195, type: 3}
   m_SortingOrder: 0
+  m_Position: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
   m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
 --- !u!4 &1050927712
 Transform:
   m_ObjectHideFlags: 0
@@ -186,7 +190,7 @@ MonoBehaviour:
   loadingScreen: {fileID: 1470199984}
   document: {fileID: 1050927711}
   loadableScenes:
-  - Room A
+  - Room A 2.0
   useAction:
     m_Name: Use
     m_Type: 0
@@ -237,9 +241,13 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 35e9768006f8fd24196f1ab0575b2b7c, type: 3}
   m_SortingOrder: 2
+  m_Position: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
   m_WorldSpaceHeight: 1080
+  m_PivotReferenceSize: 0
+  m_Pivot: 0
+  m_WorldSpaceCollider: {fileID: 0}
 --- !u!4 &1470199985
 Transform:
   m_ObjectHideFlags: 0

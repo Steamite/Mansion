@@ -132,7 +132,7 @@ namespace Player
 
             #region Camera
             Vector2 vector = lookAction.ReadValue<Vector2>();
-            Debug.Log(vector);
+            //Debug.Log(vector);
             input += vector * lookSpeed;
             if (input.y != 0)
             {
