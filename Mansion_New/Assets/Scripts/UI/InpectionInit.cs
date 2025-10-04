@@ -169,7 +169,11 @@ namespace UI.Inspect
 
             CinemachinePositionComposer composer = cam.GetComponent<CinemachinePositionComposer>();
             composer.TargetOffset = item.offset;
-            composer.CameraDistance = item.RadiusRange.x;
+            composer.CameraDistance = (item.RadiusRange.x + item.RadiusRange.y) / 2;
+
+            CinemachinePanTilt panTilt = cam.GetComponent<CinemachinePanTilt>();
+            panTilt.PanAxis.Value = item.startRotation.x;
+            panTilt.TiltAxis.Value = item.startRotation.y;
 
             // rotate camera to match current player rotation
             /* CinemachineOrbitalFollow orbit = cam.GetComponent<CinemachineOrbitalFollow>();

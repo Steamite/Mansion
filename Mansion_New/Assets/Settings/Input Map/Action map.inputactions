@@ -1118,6 +1118,15 @@
                     "processors": "",
                     "interactions": "Press(behavior=1)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ResetView",
+                    "type": "Button",
+                    "id": "693567fc-a950-4af6-8359-4b9f52919095",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1250,6 +1259,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "StopRotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a4ca7f9b-dad8-4b26-b1f5-cc8d703de378",
+                    "path": "<Keyboard>/home",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetView",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

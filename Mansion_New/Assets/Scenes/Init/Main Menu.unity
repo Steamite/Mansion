@@ -207,6 +207,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Use
       m_Flags: 0
+    - m_Name: 
+      m_Id: 5e697ec7-0995-4370-87bd-b7395b116c65
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Use
+      m_Flags: 0
     m_Flags: 0
 --- !u!1 &1470199983
 GameObject:

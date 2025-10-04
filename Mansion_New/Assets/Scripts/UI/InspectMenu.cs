@@ -52,6 +52,8 @@ namespace UI.Inspect
 
         InputAction dragAction;
 
+        InputAction resetViewAction;
+
         /// <summary>Item in inspection.</summary>
 		InteractableItem item;
 
@@ -64,6 +66,7 @@ namespace UI.Inspect
         AsyncOperationHandle<SceneInstance> scene;
         const string buttonGUId = "658cd35d788af46489726e1322cc904e";
         CinemachinePositionComposer positionComposer;
+        CinemachinePanTilt panTilt;
         CinemachineInputAxisController axisController;
 		#endregion
 
@@ -88,6 +91,7 @@ namespace UI.Inspect
             dragAction= asset.actionMaps[2].actions[6];
             startDragAction = asset.actionMaps[2].actions[7];
             stopDragAction = asset.actionMaps[2].actions[8];
+            resetViewAction = asset.actionMaps[2].actions[9];
             asset.actionMaps[2].Enable();
 
             //Texture2D a = Addressables.LoadAssetAsync<Texture2D>(buttonGUId).Result;
@@ -104,6 +108,7 @@ namespace UI.Inspect
 
 
             axisController = transform.parent.GetChild(2).GetComponent<CinemachineInputAxisController>();
+            panTilt = transform.parent.GetChild(2).GetComponent<CinemachinePanTilt>();
             positionComposer = transform.parent.GetChild(2).GetComponent<CinemachinePositionComposer>();
             enabled = true;
         }
@@ -117,27 +122,32 @@ namespace UI.Inspect
                 DescriptionToggle();
             else if (takeAction.triggered && isDescriptionOpened && item is PDFItem)
                 Application.OpenURL(((PDFItem)item).pdfPath);
-            
-            if (zoomAction.triggered)
-                Zoom();
-            if (startRotateAction.triggered)
-                TogglePanTilt(true);
-            else if (stopRotateAction.triggered)
-                TogglePanTilt(false);
 
-            if (startDragAction.triggered)
-                ToggleDrag(true);
-            else if (stopDragAction.triggered)
-                ToggleDrag(false);
-            if (canDrag)
-                Drag();
+            if (resetViewAction.triggered)
+                ResetView();
+            else
+            {
+                if (zoomAction.triggered && isDescriptionOpened == false)
+                    Zoom();
+                if (startRotateAction.triggered)
+                    TogglePanTilt(true);
+                else if (stopRotateAction.triggered)
+                    TogglePanTilt(false);
+
+                if (startDragAction.triggered)
+                    ToggleDrag(true);
+                else if (stopDragAction.triggered)
+                    ToggleDrag(false);
+                if (canDrag && isDescriptionOpened == false)
+                    Drag();
+            }
         }
 
         #region Control Actions
         void Zoom()
         {
             Vector2 f = zoomAction.ReadValue<Vector2>();
-            positionComposer.CameraDistance = Mathf.Clamp(positionComposer.CameraDistance - f.y, item.RadiusRange.x, item.RadiusRange.y);
+            positionComposer.CameraDistance = Mathf.Clamp(positionComposer.CameraDistance - f.y * 0.1f, item.RadiusRange.x, item.RadiusRange.y);
             Debug.Log(f);
         }
         
@@ -155,10 +165,17 @@ namespace UI.Inspect
         void Drag()
         {
             Vector2 drag = dragAction.ReadValue<Vector2>();
-            positionComposer.Composition.ScreenPosition.x = Mathf.Clamp(positionComposer.Composition.ScreenPosition.x + drag.x, -0.5f, 0.5f);
-            positionComposer.Composition.ScreenPosition.y = Mathf.Clamp(positionComposer.Composition.ScreenPosition.y + drag.y, -0.5f, 0.5f);
+            positionComposer.Composition.ScreenPosition.x = Mathf.Clamp(positionComposer.Composition.ScreenPosition.x + drag.x, -0.5f * 1 / positionComposer.CameraDistance, 0.5f * 1 / positionComposer.CameraDistance);
+            positionComposer.Composition.ScreenPosition.y = Mathf.Clamp(positionComposer.Composition.ScreenPosition.y + drag.y, -0.5f * 1 / positionComposer.CameraDistance, 0.5f * 1 / positionComposer.CameraDistance);
         }
 
+        void ResetView()
+        {
+            positionComposer.Composition.ScreenPosition.x = 0;
+            positionComposer.Composition.ScreenPosition.y = 0;
+            panTilt.PanAxis.Value = item.startRotation.x;
+            panTilt.TiltAxis.Value = item.startRotation.y;
+        }
         #endregion
 
         #region End

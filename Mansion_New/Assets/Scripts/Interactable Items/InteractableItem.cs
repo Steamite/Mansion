@@ -19,15 +19,14 @@ namespace Items
         /// <summary>Display name of the item.</summary>
         [SerializeField] public string ItemName;
         /// <summary>Inner and Outer limits of zoom.</summary>
-        [SerializeField][MinMaxRangeSlider(0.5f, 5)] public Vector2 RadiusRange;
+        [SerializeField][MinMaxRangeSlider(0.01f, 5)] public Vector2 RadiusRange;
         /// <summary>Path for downloading the content.</summary>
         public AssetReference SourceObject { get => sourceObject; private set => sourceObject = value; }
         [SerializeField] AssetReference sourceObject;
 
         [SerializeField] public string SourceObjectName;
-        public float top;
-        public float center;
-        public float bottom;
+        public Vector2 maxDrag;
+        public Vector2 startRotation;
         public Vector3 offset;
 
 #if UNITY_EDITOR

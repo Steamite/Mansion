@@ -23,3 +23,9 @@ MonoBehaviour:
     content: uniformy1943
   - scene: {fileID: 102900000, guid: 1aaa4f691802209448359d4378e0987d, type: 3}
     content: granat
+  - scene: {fileID: 102900000, guid: 71e12d6a8ef0a4f47b0765c7dda112f6, type: 3}
+    content: roll-up2_velkej
+  - scene: {fileID: 102900000, guid: 71e12d6a8ef0a4f47b0765c7dda112f6, type: 3}
+    content: t
+  - scene: {fileID: 102900000, guid: 71e12d6a8ef0a4f47b0765c7dda112f6, type: 3}
+    content: roll-up3_velkej

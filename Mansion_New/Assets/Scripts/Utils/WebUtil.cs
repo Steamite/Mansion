@@ -29,6 +29,7 @@ public class WebUtil : MonoBehaviour
             throw new NotImplementedException("Add webUtil to scene");
         instance.StartCoroutine(instance.DownloadText(path, action));
     }
+
     IEnumerator DownloadText(string path, Action<string> action)
     {
         for (int i = 0; i < 3; i++)
