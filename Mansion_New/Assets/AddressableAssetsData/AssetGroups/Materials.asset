@@ -30,11 +30,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d005b9e62581c4949aa71a9b0ebb26a4
-    m_Address: Lighting Settings
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e0e297ece079d594188bde9b90d56bdc
     m_Address: Textures
     m_ReadOnly: 0

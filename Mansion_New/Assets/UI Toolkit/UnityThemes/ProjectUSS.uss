@@ -1,4 +1,5 @@
 :root {
     --text-color: rgb(255, 156, 0);
     color: var(--text-color);
+    font-size: 40px;
 }

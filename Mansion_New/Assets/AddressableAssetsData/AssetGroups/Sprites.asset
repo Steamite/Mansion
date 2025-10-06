@@ -20,8 +20,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64f2c1de7df25d944882427d2bdcd433
+    m_Address: Assets/ItemData/Images/roll-up6/img0.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a64c13fb8f0ee04499be138528c47c9f
+    m_Address: Assets/ItemData/Images/roll-up7/img0.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d151ed56084afb54b87951e21a03f034
+    m_Address: Assets/ItemData/Images/roll-uo4/img0.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d2f4b178333f78549aec01037128b837
     m_Address: Assets/ItemData/Images/roll-up3_velkej/img0.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d9e1ef439fd81894eac26f1674988e44
+    m_Address: Assets/ItemData/Images/roll-up5/img0.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9d700c68dd9a774a8667560b12ea9d2
+    m_Address: Assets/ItemData/Images/roll-up1/img0.jpg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

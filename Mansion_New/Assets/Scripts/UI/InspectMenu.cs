@@ -1,4 +1,5 @@
 ﻿using Items;
+using NUnit.Framework.Constraints;
 using Player;
 using System;
 using System.Collections;
@@ -25,13 +26,14 @@ namespace UI.Inspect
 		public const string DESCRIPTION = "Description";
         /// <summary>Path to description "Button".</summary>
         const string DESCRIPTION_OPTION = "D";
+        const string HOME_OPTION = "Home";
         /// <summary>Title label element.</summary>
         const string TITLE = "Title-Label";
 
         /// <summary>Inpect camera.</summary>
 		[SerializeField] CinemachineCamera cam;
         /// <summary>Input holder.</summary>
-        InputActionAsset asset;
+        public InputActionAsset asset;
 
         /// <summary>Ends interaction.</summary>
         InputAction endAction;
@@ -40,19 +42,6 @@ namespace UI.Inspect
         /// <summary>Destoys the inpected item.</summary>
 		InputAction takeAction;
 
-        InputAction zoomAction;
-
-        InputAction startRotateAction;
-        
-        InputAction stopRotateAction;
-
-        InputAction startDragAction;
-        
-        InputAction stopDragAction;
-
-        InputAction dragAction;
-
-        InputAction resetViewAction;
 
         /// <summary>Item in inspection.</summary>
 		InteractableItem item;
@@ -60,14 +49,12 @@ namespace UI.Inspect
         /// <summary>Root of the document.</summary>
 		UIDocument doc;
         /// <summary>Is the description page opened or not.</summary>
-		bool isDescriptionOpened;
-        bool canDrag;
+		public bool isDescriptionOpened;
+
 
         AsyncOperationHandle<SceneInstance> scene;
         const string buttonGUId = "658cd35d788af46489726e1322cc904e";
-        CinemachinePositionComposer positionComposer;
-        CinemachinePanTilt panTilt;
-        CinemachineInputAxisController axisController;
+
 		#endregion
 
 		#region Init
@@ -85,13 +72,7 @@ namespace UI.Inspect
             endAction = asset.actionMaps[2].actions[0];
             infoAction = asset.actionMaps[2].actions[1];
             takeAction = asset.actionMaps[2].actions[2];
-            zoomAction = asset.actionMaps[2].actions[3];
-            startRotateAction = asset.actionMaps[2].actions[4];
-            stopRotateAction = asset.actionMaps[2].actions[5];
-            dragAction= asset.actionMaps[2].actions[6];
-            startDragAction = asset.actionMaps[2].actions[7];
-            stopDragAction = asset.actionMaps[2].actions[8];
-            resetViewAction = asset.actionMaps[2].actions[9];
+
             asset.actionMaps[2].Enable();
 
             //Texture2D a = Addressables.LoadAssetAsync<Texture2D>(buttonGUId).Result;
@@ -106,10 +87,7 @@ namespace UI.Inspect
             }
             isDescriptionOpened = false;
 
-
-            axisController = transform.parent.GetChild(2).GetComponent<CinemachineInputAxisController>();
-            panTilt = transform.parent.GetChild(2).GetComponent<CinemachinePanTilt>();
-            positionComposer = transform.parent.GetChild(2).GetComponent<CinemachinePositionComposer>();
+            transform.parent.GetChild(2).GetComponent<InspectionController>().Init(this, _asset, item);
             enabled = true;
         }
         #endregion
@@ -122,61 +100,7 @@ namespace UI.Inspect
                 DescriptionToggle();
             else if (takeAction.triggered && isDescriptionOpened && item is PDFItem)
                 Application.OpenURL(((PDFItem)item).pdfPath);
-
-            if (resetViewAction.triggered)
-                ResetView();
-            else
-            {
-                if (zoomAction.triggered && isDescriptionOpened == false)
-                    Zoom();
-                if (startRotateAction.triggered)
-                    TogglePanTilt(true);
-                else if (stopRotateAction.triggered)
-                    TogglePanTilt(false);
-
-                if (startDragAction.triggered)
-                    ToggleDrag(true);
-                else if (stopDragAction.triggered)
-                    ToggleDrag(false);
-                if (canDrag && isDescriptionOpened == false)
-                    Drag();
-            }
         }
-
-        #region Control Actions
-        void Zoom()
-        {
-            Vector2 f = zoomAction.ReadValue<Vector2>();
-            positionComposer.CameraDistance = Mathf.Clamp(positionComposer.CameraDistance - f.y * 0.1f, item.RadiusRange.x, item.RadiusRange.y);
-            Debug.Log(f);
-        }
-        
-        void TogglePanTilt(bool newState)
-        {
-            axisController.Controllers[0].Enabled = newState;
-            axisController.Controllers[1].Enabled = newState;
-        }
-
-        void ToggleDrag(bool newState)
-        {
-            canDrag = newState;
-        }
-
-        void Drag()
-        {
-            Vector2 drag = dragAction.ReadValue<Vector2>();
-            positionComposer.Composition.ScreenPosition.x = Mathf.Clamp(positionComposer.Composition.ScreenPosition.x + drag.x, -0.5f * 1 / positionComposer.CameraDistance, 0.5f * 1 / positionComposer.CameraDistance);
-            positionComposer.Composition.ScreenPosition.y = Mathf.Clamp(positionComposer.Composition.ScreenPosition.y + drag.y, -0.5f * 1 / positionComposer.CameraDistance, 0.5f * 1 / positionComposer.CameraDistance);
-        }
-
-        void ResetView()
-        {
-            positionComposer.Composition.ScreenPosition.x = 0;
-            positionComposer.Composition.ScreenPosition.y = 0;
-            panTilt.PanAxis.Value = item.startRotation.x;
-            panTilt.TiltAxis.Value = item.startRotation.y;
-        }
-        #endregion
 
         #region End
         /// <summary>
@@ -234,6 +158,7 @@ namespace UI.Inspect
                 doc.rootVisualElement.RemoveFromClassList("Inspect");
                 
                 ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).ElementAt(2)).text = "Zavřít popis";
+                doc.rootVisualElement.Q<VisualElement>(HOME_OPTION).style.display = DisplayStyle.None;// "Zavřít popis";
                 
                 item.LoadContent(doc.rootVisualElement.Q<ScrollView>(DESCRIPTION)
                     .Q<VisualElement>("unity-content-container"));
@@ -255,7 +180,9 @@ namespace UI.Inspect
 					.Q<VisualElement>("unity-content-container"));
 
 				((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).ElementAt(2)).text = "Popis";
-                
+                doc.rootVisualElement.Q<VisualElement>(HOME_OPTION).style.display = DisplayStyle.Flex;// "Zavřít popis";
+
+
                 isDescriptionOpened = false;
                 endAction.Enable();
             }

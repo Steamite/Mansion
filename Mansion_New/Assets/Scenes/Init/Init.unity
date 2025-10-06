@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: Player
   mainMenu: Main Menu
-  gameInit: 0
+  gameInit: 1
 --- !u!4 &1832425752
 Transform:
   m_ObjectHideFlags: 0

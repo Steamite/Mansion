@@ -25,7 +25,7 @@ namespace UI
                     element.style.backgroundImage = new(_map);
                     element.style.minWidth = _map.rect.width;
                     element.style.minHeight = _map.rect.height;
-                    ratio = 10f;
+                    ratio = 19.9f;
                 }
             } 
         }

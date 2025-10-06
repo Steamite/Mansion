@@ -16,9 +16,10 @@ public class MainMenu : MonoBehaviour
 	[SerializeField] InputAction useAction;
 
 	[HideInInspector]public SceneInstance unloadMainMenu;
-	private void Awake()
+	private async void Awake()
 	{
-		ListView menuList = document.rootVisualElement.Q<ListView>("Menu");
+		document.visualTreeAsset = await Addressables.LoadAssetAsync<VisualTreeAsset>("MainMenuDoc").Task;
+		ListView menuList = document.rootVisualElement.Q<ListView>("List");
 		menuList.bindItem = (el, i) =>
 		{
 			el.Q<Button>().text = loadableScenes[i];

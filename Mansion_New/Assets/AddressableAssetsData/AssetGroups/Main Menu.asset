@@ -15,18 +15,33 @@ MonoBehaviour:
   m_GroupName: Main Menu
   m_GUID: e1a48d25280797743b37f49cb52783b2
   m_SerializeEntries:
-  - m_GUID: 5a4a0401569dee3458052a81f3eb2d6d
-    m_Address: Styles
+  - m_GUID: 2f8bfa15d217dd74493c10a8cdaa2a9d
+    m_Address: Main Menu Style
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35e9768006f8fd24196f1ab0575b2b7c
+    m_Address: LoadingScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 664cc8598a03ec24a805d5fb160a0541
+    m_Address: Loading Screen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 845e5562cc587fd40b8fc4d112642195
+    m_Address: MainMenuDoc
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96c15863d8d78fd46bbcf7e690c7426b
+    m_Address: ButtonTemplate
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cccb213c9f4ac61478aef2495f80ec5b
     m_Address: Main Menu
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f04c28920bda57547bf253ae43e3db52
-    m_Address: Docs
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

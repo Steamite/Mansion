@@ -2,14 +2,14 @@
     <Style src="project://database/Assets/UI%20Toolkit/Styles/Interaction/Toolbar.uss?fileID=7433441132597879392&amp;guid=1c1e35c6bdfe9ca41878e670fbc5ed00&amp;type=3#Toolbar" />
     <Style src="project://database/Assets/UI%20Toolkit/Styles/Interaction/ItemDescription.uss?fileID=7433441132597879392&amp;guid=0e8f6866d1981524f9ebb9025c1f334a&amp;type=3#ItemDescription" />
     <ui:VisualElement name="Screen" class="Inspect" style="flex-grow: 1; display: flex;">
-        <ui:VisualElement name="Title" style="flex-grow: 0; position: relative; -unity-text-align: middle-center; padding-top: 15px; background-color: rgba(101, 73, 61, 0.79); padding-right: 30px; align-self: center; padding-bottom: 10px; padding-left: 30px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
-            <ui:Label text="&lt;placeHolderText&gt;" name="Title-Label" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 100px;" />
+        <ui:VisualElement name="Title" style="flex-grow: 0; position: relative; -unity-text-align: middle-center; padding-top: 5px; background-color: rgba(101, 73, 61, 0.79); padding-right: 30px; align-self: center; padding-bottom: 5px; padding-left: 30px; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+            <ui:Label text="&lt;placeHolderText&gt;" name="Title-Label" style="margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 60px;" />
         </ui:VisualElement>
         <ui:ScrollView name="Description" horizontal-scroller-visibility="Hidden" enabled="true" style="align-self: center; margin-top: 50px; height: 65%; display: flex;">
             <ui:Label name="Label" double-click-selects-word="false" triple-click-selects-line="false" style="padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; font-size: 20px; white-space: pre-wrap; color: rgb(255, 255, 255); min-width: 900px; max-width: 1200px;" />
             <ui:VisualElement name="Images" style="flex-grow: 0; align-self: stretch; align-items: center;" />
         </ui:ScrollView>
-        <ui:VisualElement name="Bar" style="flex-grow: 0; flex-direction: row; width: 100%; height: 15%; position: relative; padding-left: 0; padding-right: 0; padding-bottom: 2%; justify-content: center;">
+        <ui:VisualElement name="Bar" style="flex-grow: 0; flex-direction: row; width: 100%; height: 125px; position: absolute; padding-left: 0; padding-right: 0; padding-bottom: 18px; justify-content: center; bottom: 0;">
             <ui:VisualElement name="E" class="w" style="padding-left: 0;">
                 <ui:VisualElement name="Icon">
                     <ui:Label text="E" name="Letter" class="a" />
@@ -31,6 +31,14 @@
                 <ui:VisualElement name="Spacer" />
                 <ui:Label text="Vzít" name="Selection" />
             </ui:VisualElement>
+            <ui:VisualElement name="Home" style="flex-grow: 0; flex-direction: row; align-items: center; padding-right: 0; display: flex;">
+                <ui:VisualElement name="Icon">
+                    <ui:Label text="Home" name="Letter" class="a" style="font-size: 25px; -unity-text-outline-width: 1px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Spacer" />
+                <ui:Label text="Reset pohledu" name="Selection" />
+            </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; position: absolute; top: 0; right: 0; width: 50px; height: 50px; margin-top: 10px; margin-right: 10px;" />
     </ui:VisualElement>
 </ui:UXML>
