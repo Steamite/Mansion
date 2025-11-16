@@ -12,22 +12,23 @@ namespace UI
         /// <summary>Map image.</summary>
         Sprite _map;
         /// <inheritdoc cref="_map"/>
-        [UxmlAttribute] Sprite mapImage 
-        { 
-            get => _map; 
-            set 
-            { 
+        [UxmlAttribute]
+        Sprite mapImage
+        {
+            get => _map;
+            set
+            {
                 _map = value;
-                if(childCount > 0 && _map != null)
+                if (childCount > 0 && _map != null)
                 {
                     VisualElement element = this.Q<VisualElement>("MapImage");
-                    
+
                     element.style.backgroundImage = new(_map);
                     element.style.minWidth = _map.rect.width;
                     element.style.minHeight = _map.rect.height;
                     ratio = 19.9f;
                 }
-            } 
+            }
         }
 
         /// <summary>World to image ration.</summary>
@@ -59,12 +60,12 @@ namespace UI
             {
                 #region Map Zoom
                 DataBinding binding = BindingUtil.CreateBinding(nameof(PlayerMovement.mapZoom));
-                binding.sourceToUiConverters.AddConverter((ref float f) => 
+                binding.sourceToUiConverters.AddConverter((ref float f) =>
                 {
                     StyleScale _scale = new StyleScale(new Vector2(f, f));
                     //Debug.Log(_scale.keyword + " " + _scale.value);
                     zoom = f * ratio;
-                    return _scale; 
+                    return _scale;
                 });
                 element.SetBinding("style.scale", binding);
                 #endregion
@@ -117,7 +118,7 @@ namespace UI
 
             element = new();
             element.name = "Center";
-            map.Add(element);            
+            map.Add(element);
         }
     }
 }

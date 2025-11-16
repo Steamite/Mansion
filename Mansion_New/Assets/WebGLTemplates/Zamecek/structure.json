@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "template": {
+      "type": "object",
+      "properties": {
+        "company_host": { "type": ["string", "null"] },
+        "site_location": { "type": ["string", "null"] },
+        "work_activity": { "type": ["string", "null"] },
+        "work_description": { "type": ["string", "null"] },
+        "environment_and_simultaneous_activities": { "type": ["string", "null"] },
+        "work_category": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "duration_hours": { "type": ["number", "null"] },
+        "workers_count": { "type": ["integer", "null"] },
+        "tools_equipment": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "materials_substances": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "work_height_m": { "type": ["number", "null"] },
+        "energies_present": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "permits_needed": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "oopp": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "contacts": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "risk_register": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "hazard": { "type": "string" },
+              "source": { "type": "string" },
+              "risk": { "type": "string" },
+              "probability": { "type": "integer" },
+              "severity": { "type": "integer" },
+              "risk_level": { "type": "string" },
+              "measures": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "mandatory_PPE": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "optional_PPE": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            },
+            "required": [
+              "hazard",
+              "source",
+              "risk",
+              "probability",
+              "severity",
+              "risk_level",
+              "measures",
+              "mandatory_PPE",
+              "optional_PPE"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "is_complete": { "type": "boolean" }
+      },
+      "required": [
+        "company_host",
+        "site_location",
+        "work_activity",
+        "work_description",
+        "environment_and_simultaneous_activities",
+        "work_category",
+        "duration_hours",
+        "workers_count",
+        "tools_equipment",
+        "materials_substances",
+        "work_height_m",
+        "energies_present",
+        "permits_needed",
+        "oopp",
+        "contacts",
+        "risk_register",
+        "is_complete"
+      ],
+      "additionalProperties": false
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "field": { "type": "string" },
+          "question": { "type": "string" },
+          "type": { "type": "string" },
+          "options": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["id", "field", "question", "type", "options"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["template", "questions"],
+  "additionalProperties": false
+}

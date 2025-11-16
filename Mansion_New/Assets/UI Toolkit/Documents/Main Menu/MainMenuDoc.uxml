@@ -7,7 +7,7 @@
             <engine:Button text="Button" name="Settings" />
         </engine:VisualElement>
         <engine:VisualElement name="Menu" style="flex-grow: 1;">
-            <engine:Label text="Room List" style="align-self: center;" />
+            <engine:Label text="Seznam místností" style="align-self: center;" />
             <engine:ListView name="List" item-template="project://database/Assets/UI%20Toolkit/Documents/Main%20Menu/ButtonTemplate.uxml?fileID=9197481963319205126&amp;guid=96c15863d8d78fd46bbcf7e690c7426b&amp;type=3#ButtonTemplate" fixed-item-height="120" selection-type="None" allow-add="false" allow-remove="false" show-bound-collection-size="false" virtualization-method="DynamicHeight" style="background-color: rgba(0, 0, 0, 0); flex-grow: 1;" />
         </engine:VisualElement>
     </engine:VisualElement>

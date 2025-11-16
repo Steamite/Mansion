@@ -28,3 +28,37 @@
     transition-duration: 3s;
     transition-timing-function: linear;
 }
+
+#icon {
+    width: 75px;
+    height: 75px;
+    background-image: url("project://database/Assets/Sprites/Shortcut_Icon.png?fileID=2800000&guid=658cd35d788af46489726e1322cc904e&type=3#Shortcut_Icon");
+    -unity-text-align: middle-center;
+    margin-top: 0;
+    margin-right: 15px;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+}
+
+#control-view {
+    height: 75px;
+    flex-direction: row;
+    -unity-text-align: middle-left;
+}
+
+#icon-label {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    flex-grow: 1;
+    -unity-background-image-tint-color: var(--text-color);
+}

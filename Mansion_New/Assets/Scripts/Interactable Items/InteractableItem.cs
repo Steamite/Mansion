@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Collections;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Networking;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace Items
@@ -30,10 +25,11 @@ namespace Items
         public Vector3 offset;
 
 #if UNITY_EDITOR
-        public void SetSource(AssetReference reference, string objectName) {
+        public void SetSource(AssetReference reference, string objectName)
+        {
             SourceObject = reference;
             SourceObjectName = objectName;
-		}
+        }
 #endif
         /// <summary>
         /// Each type of Item must has it's own implementation for dowloading and viewing content.
@@ -55,7 +51,7 @@ namespace Items
             RadiusRange = item.RadiusRange;
             SourceObject = item.SourceObject;
             SourceObjectName = item.SourceObjectName;
-		}
+        }
 
         private void OnDrawGizmosSelected()
         {

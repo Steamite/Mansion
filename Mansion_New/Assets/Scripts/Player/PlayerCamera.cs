@@ -1,10 +1,6 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using UI;
-using UI.Inspect;
 using Unity.Cinemachine;
-using Unity.Collections;
 using Unity.Properties;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -25,9 +21,9 @@ namespace Player
         [Header("Assign")]
         [SerializeField] AssetReference inspectScene;
 
-		/// <summary>Reference to the input asset.</summary>
-		[SerializeField] InputActionAsset asset;
-        
+        /// <summary>Reference to the input asset.</summary>
+        [SerializeField] InputActionAsset asset;
+        public ICrosshairImage crosshairImage;
 
         /// <summary>Intraction raycast range.</summary>
         [SerializeField][Range(0.5f, 1.5f)] float range = 1;
@@ -37,32 +33,33 @@ namespace Player
         [SerializeField][Range(300, 360)] float lookLockMax;
         /// <summary>Min camara angle.</summary>
         [SerializeField][Range(0, 60)] float lookLockMin;
-        
+        [SerializeField]public  UIDocument uiDoc;
 
-		/// <summary>Item that the player is currently looking at.</summary>
-		[SerializeField] GameObject item;
-		/// <summary>Ensures correct croshair transitions(Backup for when the <see cref="item"/> is destoyed).</summary>
+
+        /// <summary>Item that the player is currently looking at.</summary>
+        [SerializeField] GameObject item;
+        /// <summary>Ensures correct croshair transitions(Backup for when the <see cref="item"/> is destoyed).</summary>
         bool hasItem;
 
-		/// <summary>Standing camera.</summary>
-		CinemachineCamera topCam;
-		/// <summary>Crouch camera.</summary>
+        /// <summary>Standing camera.</summary>
+        CinemachineCamera topCam;
+        /// <summary>Crouch camera.</summary>
         CinemachineCamera bottomCam;
 
-		/// <summary>Action for interacting with <see cref="item"/>.</summary>
-		InputAction interactAction;
-		/// <summary>Vector composite for capturing mouse movement.</summary>
+        /// <summary>Action for interacting with <see cref="item"/>.</summary>
+        InputAction interactAction;
+        /// <summary>Vector composite for capturing mouse movement.</summary>
         InputAction lookAction;
-		/// <summary>Input for toggling crouch and standing state.</summary>
-		[HideInInspector] public InputAction crouchAction;
+        /// <summary>Input for toggling crouch and standing state.</summary>
+        [HideInInspector] public InputAction crouchAction;
 
-		/// <summary>Current rotation on the xAxis(up/down)</summary>
-		float VerticalRot;
-		/// <summary>
+        /// <summary>Current rotation on the xAxis(up/down)</summary>
+        float VerticalRot;
+        /// <summary>
         /// Number of the last frame that caused a raycast. 
         /// <br/>(prevents multiple raycasts in one frame)
         /// </summary>
-		int lastFrame;
+        int lastFrame;
         /// <summary>If the caracter is standing or not.</summary>
 		bool standing = true;
 
@@ -70,13 +67,13 @@ namespace Player
 
         Vector2 input;
 
-		/// <summary>Property for minimap rotation binding.</summary>
-		[CreateProperty] public float horizontalRot;
+        /// <summary>Property for minimap rotation binding.</summary>
+        [CreateProperty] public float horizontalRot;
 
-		#endregion
+        #endregion
 
-		/// <summary>Ray constructor.</summary>
-		Ray cameraRay
+        /// <summary>Ray constructor.</summary>
+        Ray cameraRay
         {
             get
             {
@@ -87,15 +84,15 @@ namespace Player
             }
         }
 
-		#region Init
-		void Awake()
+        #region Init
+        void Awake()
         {
             VerticalRot = 0;
             InputActionMap inputMap = asset.actionMaps[0];
             interactAction = inputMap.FindAction("Interact");
             lookAction = inputMap.FindAction("Look");
             crouchAction = inputMap.FindAction("Crouch");
-            
+
 
             topCam = transform.GetChild(0).GetComponent<CinemachineCamera>();
             bottomCam = transform.GetChild(1).GetComponent<CinemachineCamera>();
@@ -104,9 +101,10 @@ namespace Player
         {
             horizontalRot = transform.parent.rotation.eulerAngles.y;
             propertyChanged?.Invoke(this, new(nameof(horizontalRot)));
+            crosshairImage = uiDoc.rootVisualElement.Q("Crosshair") as ICrosshairImage;
         }
-		#endregion
-		private void OnDrawGizmos()
+        #endregion
+        private void OnDrawGizmos()
         {
             if (topCam == null)
                 Awake();
@@ -119,9 +117,9 @@ namespace Player
         {
             #region Interaction
             if (interactAction.WasPressedThisFrame())
-                CrosshairImage.StartHold();
+                crosshairImage.StartHold();
             else if (interactAction.WasReleasedThisFrame())
-                CrosshairImage.EndHold();
+                crosshairImage.EndHold();
 
             if (interactAction.triggered)
                 StartCoroutine(Interact());
@@ -144,13 +142,13 @@ namespace Player
                 else
                     bottomCam.transform.localRotation = Quaternion.Euler(VerticalRot, 0, 0);
 
-				checkRayCast = true;
+                checkRayCast = true;
             }
             if (input.x != 0)
             {
-				float f = Mathf.Lerp(horizontalRot, horizontalRot + input.x, 0.8f);
-				input.x -= f - horizontalRot;
-				horizontalRot = f;
+                float f = Mathf.Lerp(horizontalRot, horizontalRot + input.x, 0.8f);
+                input.x -= f - horizontalRot;
+                horizontalRot = f;
 
                 transform.parent.rotation = Quaternion.Euler(0, horizontalRot, 0);
                 propertyChanged?.Invoke(this, new(nameof(horizontalRot)));
@@ -201,7 +199,7 @@ namespace Player
                 //Debug.Log("hit");
                 if (!hasItem)
                 {
-                    CrosshairImage.Enter();
+                    crosshairImage.Enter();
                     hasItem = true;
                 }
                 item = hit.transform.gameObject;
@@ -212,7 +210,7 @@ namespace Player
                 //Debug.Log("miss");
                 if (hasItem)
                 {
-                    CrosshairImage.Exit();
+                    crosshairImage.Exit();
                     hasItem = false;
                 }
                 interactAction.Disable();
@@ -225,19 +223,20 @@ namespace Player
         /// </summary>
         IEnumerator Interact()
         {
-            CrosshairImage.Toggle();
+            crosshairImage.Toggle(false);
             asset.actionMaps[0].Disable();
-            AsyncOperationHandle<SceneInstance> sceneLoading = 
+            AsyncOperationHandle<SceneInstance> sceneLoading =
                 Addressables.LoadSceneAsync(inspectScene, LoadSceneMode.Additive, false);
             yield return sceneLoading;
             if (sceneLoading.Status == AsyncOperationStatus.Succeeded)
                 yield return sceneLoading.Result.ActivateAsync();
             else
-			{
-				Debug.LogError(sceneLoading.Status.ToString());
+            {
+                Debug.LogError(sceneLoading.Status.ToString());
                 yield break;
-			}
-            GameObject.FindAnyObjectByType<InpectionInit>().Init(item.transform, asset, sceneLoading);
+            }
+            IInspectionInit init = sceneLoading.Result.Scene.GetRootGameObjects()[0].transform.GetChild(0).GetComponent<IInspectionInit>();
+            init.Init(item.transform, asset, sceneLoading);
         }
 
         /// <summary>
@@ -245,12 +244,13 @@ namespace Player
         /// </summary>
         public void EndIteract()
         {
-            if(standing == false){
+            if (standing == false)
+            {
                 standing = true;
                 bottomCam.Priority = 0;
                 topCam.transform.rotation = bottomCam.transform.rotation;
             }
-            if(item)
+            if (item)
                 hasItem = false;
             RayCastUpdate();
         }

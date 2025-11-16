@@ -1,6 +1,4 @@
 using Items;
-using TMPro;
-using UI.Inspect;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,7 +20,7 @@ public class InspectionController : MonoBehaviour
 
     InputAction resetViewAction;
 
-    InspectMenu menu;
+    IInspectMenu menu;
 
     bool canDrag;
     CinemachinePositionComposer positionComposer;
@@ -31,7 +29,7 @@ public class InspectionController : MonoBehaviour
 
     InteractableItem item;
 
-    public void Init(InspectMenu _menu, InputActionAsset asset, InteractableItem _item)
+    public void Init(IInspectMenu _menu, InputActionAsset asset, InteractableItem _item)
     {
         menu = _menu;
         item = _item;
@@ -43,8 +41,8 @@ public class InspectionController : MonoBehaviour
         startDragAction = asset.actionMaps[2].actions[7];
         stopDragAction = asset.actionMaps[2].actions[8];
         resetViewAction = asset.actionMaps[2].actions[9];
-        
-        
+
+
         enabled = true;
 
         axisController = GetComponent<CinemachineInputAxisController>();
@@ -61,7 +59,7 @@ public class InspectionController : MonoBehaviour
             ResetView();
         else
         {
-            if (zoomAction.triggered && menu.isDescriptionOpened == false)
+            if (zoomAction.triggered && menu.isDescrOpen == false)
                 Zoom();
             if (startRotateAction.triggered)
                 TogglePanTilt(true);
@@ -72,7 +70,7 @@ public class InspectionController : MonoBehaviour
                 ToggleDrag(true);
             else if (stopDragAction.triggered)
                 ToggleDrag(false);
-            if (canDrag && menu.isDescriptionOpened == false)
+            if (canDrag && menu.isDescrOpen == false)
                 Drag();
         }
     }

@@ -6,9 +6,6 @@ using Unity.Properties;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.ResourceManagement.ResourceProviders;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 namespace Player
@@ -16,44 +13,44 @@ namespace Player
     /// <summary>Handles player movement and map resizing.</summary>
     public class PlayerMovement : MonoBehaviour, INotifyBindablePropertyChanged
     {
-		#region Variables
-		/// <summary>Reference to the input assets.</summary>
-		[Header("Assets")][SerializeField] InputActionAsset asset;
+        #region Variables
+        /// <summary>Reference to the input assets.</summary>
+        [Header("Assets")][SerializeField] InputActionAsset asset;
 
         /// <summary>Player controller for easier move handling.</summary>
         CharacterController controller;
         /// <summary>GroundPosition for gravity.</summary>
 		Transform groundPos;
-		PlayerCamera playerCamera;
+        PlayerCamera playerCamera;
 
-		/// <summary>Movement speed.</summary>
-		[Header("Configures")][SerializeField][Range(0, 10)] float moveSpeed = 5f;
-		/// <summary>Min and max range limits for minimap zooming.</summary>
+        /// <summary>Movement speed.</summary>
+        [Header("Configures")][SerializeField][Range(0, 10)] float moveSpeed = 5f;
+        /// <summary>Min and max range limits for minimap zooming.</summary>
         [SerializeField][MinMaxRangeSlider(0, 10)] Vector2 mapZoomLimit;
-		/// <summary>Base room to load scenes from</summary>
+        /// <summary>Base room to load scenes from</summary>
         [SerializeField] AssetReference startingScene;
-		/// <summary>Current velocity of on -y.</summary>
-		Vector3 gravity;
+        /// <summary>Current velocity of on -y.</summary>
+        Vector3 gravity;
 
-		/// <summary>Input for moving.</summary>
-		InputAction moveAction;
-		/// <summary>Input for zooming minmap.</summary>
-		InputAction mapZoomAction;
-		#endregion
+        /// <summary>Input for moving.</summary>
+        InputAction moveAction;
+        /// <summary>Input for zooming minmap.</summary>
+        InputAction mapZoomAction;
+        #endregion
 
-		#region Binding Properies
-		/// <summary>Character position for moving minimap.</summary>
-		[CreateProperty] public Vector2 Position = new();
-		/// <summary>Active room for displayText under the minimap.</summary>
+        #region Binding Properies
+        /// <summary>Character position for moving minimap.</summary>
+        [CreateProperty] public Vector2 Position = new();
+        /// <summary>Active room for displayText under the minimap.</summary>
         [CreateProperty] public Room ActiveRoom;
-		/// <summary>Current zoom level.</summary>
-		[CreateProperty] public float mapZoom = 1;
+        /// <summary>Current zoom level.</summary>
+        [CreateProperty] public float mapZoom = 1;
 
-		public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
-		#endregion
+        public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
+        #endregion
 
-		#region Init
-		void Awake()
+        #region Init
+        void Awake()
         {
             asset.Disable();
             gravity = new();
@@ -68,23 +65,16 @@ namespace Player
 
         public void Activate()
         {
-			UnityEngine.Cursor.lockState = CursorLockMode.Locked;
-			UnityEngine.Cursor.visible = false;
-			StartCoroutine(InitInput());
-		}
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+            StartCoroutine(InitInput());
+        }
 
         IEnumerator InitInput()
         {
-            if (Init.toLoad == "Player")
-            {
-                AsyncOperationHandle<SceneInstance> initialLoad =
-                    Addressables.LoadSceneAsync(startingScene, LoadSceneMode.Additive, false);
-                yield return initialLoad;
-                if (initialLoad.Status == AsyncOperationStatus.Succeeded)
-                    yield return initialLoad.Result.ActivateAsync();
-            }
+            ActiveRoom = FindFirstObjectByType<Room>();
+            yield return ActiveRoom.EnterRoom(null);
 
-            ActiveRoom = FindFirstObjectByType<Room>().EnterRoom(null);
             propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
 
             Position.x = -transform.position.x;
@@ -138,9 +128,20 @@ namespace Player
         /// <param name="hit">The object that was hit.</param>
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
-            if(hit.gameObject.CompareTag("Entrance"))
+            if (hit.gameObject.CompareTag("Entrance"))
             {
-                ActiveRoom = hit.transform.parent.parent.GetComponent<Room>().EnterRoom(ActiveRoom);
+                ActiveRoom = hit.transform.parent.parent.GetComponent<Room>();
+                StartCoroutine(ActiveRoom.EnterRoom(ActiveRoom));
+                propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
+            }
+        }
+        private void OnTriggerEnter(Collider hit)
+        {
+            if (hit.gameObject.CompareTag("Entrance"))
+            {
+                Room newRoom = hit.transform.parent.parent.GetComponent<Room>();
+                StartCoroutine(newRoom.EnterRoom(ActiveRoom));
+                ActiveRoom = newRoom;
                 propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
             }
         }

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -16,25 +15,25 @@ namespace SimpleFolderIcon.Editor
 
         static void DrawFolderIcon(string guid, Rect rect)
         {
-            
+
             var path = AssetDatabase.GUIDToAssetPath(guid);
             var iconDictionary = IconDictionaryCreator.IconDictionary;
 
-			try
-			{
-				if (path == "" ||
-								Event.current.type != EventType.Repaint ||
-								!File.GetAttributes(path).HasFlag(FileAttributes.Directory) ||
-								!iconDictionary.ContainsKey(Path.GetFileName(path)))
-				{
-					return;
-				}
-			}
-            catch 
+            try
+            {
+                if (path == "" ||
+                                Event.current.type != EventType.Repaint ||
+                                !File.GetAttributes(path).HasFlag(FileAttributes.Directory) ||
+                                !iconDictionary.ContainsKey(Path.GetFileName(path)))
+                {
+                    return;
+                }
+            }
+            catch
             {
                 return;
             }
-			
+
 
             Rect imageRect;
 

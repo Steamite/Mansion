@@ -1,16 +1,10 @@
 ﻿using Items;
-using NUnit.Framework.Constraints;
 using Player;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.Networking;
-using UnityEngine.Rendering;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
@@ -19,11 +13,11 @@ using UnityEngine.UIElements;
 namespace UI.Inspect
 {
     /// <summary>Handles input for the input menu.</summary>
-    public class InspectMenu : MonoBehaviour
+    public class InspectMenu : MonoBehaviour, IInspectMenu
     {
-		#region Variables
-		/// <summary>Path to the Desctiption scrollview.</summary>
-		public const string DESCRIPTION = "Description";
+        #region Variables
+        /// <summary>Path to the Desctiption scrollview.</summary>
+        public const string DESCRIPTION = "Description";
         /// <summary>Path to description "Button".</summary>
         const string DESCRIPTION_OPTION = "D";
         const string HOME_OPTION = "Home";
@@ -50,20 +44,21 @@ namespace UI.Inspect
 		UIDocument doc;
         /// <summary>Is the description page opened or not.</summary>
 		public bool isDescriptionOpened;
+		public bool isDescrOpen { get => isDescriptionOpened; }
 
 
         AsyncOperationHandle<SceneInstance> scene;
         const string buttonGUId = "658cd35d788af46489726e1322cc904e";
 
-		#endregion
+        #endregion
 
-		#region Init
-		/// <summary>
-		/// Maps actions, and hides the description option if no file is assigned to the inspected item.
-		/// </summary>
-		/// <param name="_asset">Input asset with inpection map.</param>
-		/// <param name="_item">Inspected item.</param>
-		public void Init(InputActionAsset _asset, InteractableItem _item, AsyncOperationHandle<SceneInstance> _scene)
+        #region Init
+        /// <summary>
+        /// Maps actions, and hides the description option if no file is assigned to the inspected item.
+        /// </summary>
+        /// <param name="_asset">Input asset with inpection map.</param>
+        /// <param name="_item">Inspected item.</param>
+        public void Init(InputActionAsset _asset, InteractableItem _item, AsyncOperationHandle<SceneInstance> _scene)
         {
             scene = _scene;
             asset = _asset;
@@ -80,7 +75,7 @@ namespace UI.Inspect
             doc.enabled = true;
             doc.rootVisualElement.Q<Label>(TITLE).text = _item.ItemName;
 
-            if(item.SourceObject.IsValid())
+            if (item.SourceObject.IsValid())
             {
                 infoAction.Disable();
                 doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).style.display = DisplayStyle.None;
@@ -118,7 +113,7 @@ namespace UI.Inspect
             Camera.main.transform.SetParent(GameObject.Find("UI").transform);
             Camera.main.transform.SetParent(null);
 
-			doc.enabled = false;
+            doc.enabled = false;
             cam.Priority = -1;
             StartCoroutine(EnableMovement());
         }
@@ -128,17 +123,18 @@ namespace UI.Inspect
         /// </summary>
         /// <returns></returns>
         IEnumerator EnableMovement()
-		{
-			CrosshairImage.Toggle();
+        {
+            PlayerCamera playerCam = FindFirstObjectByType<PlayerCamera>();
+            playerCam.crosshairImage.Toggle(true);
             yield return new();
             Camera.main.cullingMask = -1;
             gameObject.SetActive(false);
-			AsyncOperationHandle<SceneInstance> sceneUnload = Addressables.UnloadSceneAsync(scene, UnloadSceneOptions.None, false);
+            AsyncOperationHandle<SceneInstance> sceneUnload = Addressables.UnloadSceneAsync(scene, UnloadSceneOptions.None, false);
             sceneUnload.Completed += (_) =>
             {
-				asset.actionMaps[0].Enable();
-				GameObject.FindFirstObjectByType<PlayerCamera>().EndIteract();
-			};
+                asset.actionMaps[0].Enable();
+                playerCam.EndIteract();
+            };
         }
         #endregion
 
@@ -156,10 +152,10 @@ namespace UI.Inspect
 
                 doc.rootVisualElement.AddToClassList("Description");
                 doc.rootVisualElement.RemoveFromClassList("Inspect");
-                
+
                 ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).ElementAt(2)).text = "Zavřít popis";
                 doc.rootVisualElement.Q<VisualElement>(HOME_OPTION).style.display = DisplayStyle.None;// "Zavřít popis";
-                
+
                 item.LoadContent(doc.rootVisualElement.Q<ScrollView>(DESCRIPTION)
                     .Q<VisualElement>("unity-content-container"));
 
@@ -176,10 +172,10 @@ namespace UI.Inspect
                 doc.rootVisualElement.RemoveFromClassList("Description");
                 doc.rootVisualElement.AddToClassList("Inspect");
 
-				item.Unload(doc.rootVisualElement.Q<ScrollView>(DESCRIPTION)
-					.Q<VisualElement>("unity-content-container"));
+                item.Unload(doc.rootVisualElement.Q<ScrollView>(DESCRIPTION)
+                    .Q<VisualElement>("unity-content-container"));
 
-				((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).ElementAt(2)).text = "Popis";
+                ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).ElementAt(2)).text = "Popis";
                 doc.rootVisualElement.Q<VisualElement>(HOME_OPTION).style.display = DisplayStyle.Flex;// "Zavřít popis";
 
 
@@ -195,7 +191,8 @@ namespace UI.Inspect
         /// </summary>
         void PickupItem()
         {
-            if(!isDescriptionOpened){
+            if (!isDescriptionOpened)
+            {
                 Destroy(item.gameObject);
                 item = null;
                 EndInteract();

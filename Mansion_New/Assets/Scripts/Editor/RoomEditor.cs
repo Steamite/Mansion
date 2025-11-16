@@ -1,69 +1,87 @@
-using System.Collections.Generic;
-using System.ComponentModel;
 using Rooms;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 [CustomEditor(typeof(Room))]
 public class RoomEditor : Editor
 {
     Room room;
-    SerializedObject GetTarget;
-    SerializedProperty ThisList;
-    int ListSize;
 
-    int selectedIndex;
-    void OnEnable(){
+    public override VisualElement CreateInspectorGUI()
+    {
         room = (Room)target;
-        GetTarget = new SerializedObject(room);
-        ThisList = GetTarget.FindProperty(nameof(Room.AdjacentRooms)); // Find the List in our script and create a refrence of it
+        VisualElement element = new();
+
+        ListView listView = new()
+        {
+            showAddRemoveFooter = true,
+            showFoldoutHeader = true,
+            headerTitle = "Adjacent Rooms"
+        };
+        listView.makeItem = () => new ObjectField()
+        {
+            objectType = typeof(SceneAsset),
+            allowSceneObjects = false,
+            style =
+            {
+                paddingLeft = new Length(2, LengthUnit.Percent),
+                paddingRight = new Length(10, LengthUnit.Percent),
+
+            }
+        };
+        listView.bindItem = (el, i) =>
+        {
+            ObjectField field = el as ObjectField;
+            SceneAsset sceneAsset = AssetDatabase.LoadAssetAtPath<SceneAsset>($"Assets/Scenes/Room Scenes/{room.AdjacentRooms[i]}.unity");
+            field.value = sceneAsset;
+            var x = i;
+            field.RegisterValueChangedCallback((evt) => OnSceneChange(evt, x));
+        };
+
+        listView.onAdd = (list) =>
+        {
+            room.AdjacentRooms.Add(new(""));
+            EditorUtility.SetDirty(room);
+            listView.itemsSource = room.AdjacentRooms;
+        };
+
+        listView.onRemove = (list) =>
+        {
+            room.AdjacentRooms.RemoveAt(list.selectedIndex);
+            EditorUtility.SetDirty(room);
+            listView.itemsSource = room.AdjacentRooms;
+        };
+
+        element.Add(listView);
+        listView.itemsSource = room.AdjacentRooms;
+
+        ObjectField field = new("Entrances") { objectType = typeof(GameObject) };
+        field.value = room.entrances;
+        field.RegisterValueChangedCallback((evt) => OnEntranceChange(evt.newValue));
+        element.Add(field);
+
+        return element;
     }
 
-    public override void OnInspectorGUI(){    
-        EditorGUILayout.LabelField("Define the list size with a number");
-        ListSize = ThisList.arraySize;
-        ListSize = EditorGUILayout.IntField ("List Size", ListSize);
-    
-        if(ListSize != ThisList.arraySize){
-            while(ListSize > ThisList.arraySize){
-                ThisList.InsertArrayElementAtIndex(ThisList.arraySize);
-            }
-            while(ListSize < ThisList.arraySize){
-                ThisList.DeleteArrayElementAtIndex(ThisList.arraySize - 1);
-            }
+    void OnSceneChange(ChangeEvent<Object> evt, int i)
+    {
+        Object obj = evt.newValue;
+        if (obj.name == room.gameObject.scene.name)
+        {
+            (evt.target as ObjectField).SetValueWithoutNotify(evt.previousValue);
+            Debug.LogWarning("cannot add same scene");
+            return;
         }
-    
-        EditorGUILayout.Space ();
-    
-        //Or add a new item to the List<> with a butto
-        EditorGUILayout.LabelField("Add a new room connection:");
-    
-        if(GUILayout.Button("Add New")){
-            room.AdjacentRooms.Add("");
-            EditorUtility.SetDirty(target);
-        }
-    
-        EditorGUILayout.Space ();
 
-        string scene;
-        for(int i = 0; i < room.AdjacentRooms.Count; i++){
-            scene = ((SceneAsset) EditorGUILayout.ObjectField(
-                AssetDatabase.LoadAssetAtPath<SceneAsset>($"Assets/Scenes/Room Scenes/{room.AdjacentRooms[i]}.unity"), typeof(SceneAsset), false))?.name;
-            if(scene != room.AdjacentRooms[i]){
-                room.AdjacentRooms[i] = scene;
-                EditorUtility.SetDirty(target);
-            }
-                
-        }
-        if(ListSize > 0){
-            EditorGUILayout.Space();
-            GUI.enabled = room.AdjacentRooms.FindIndex(q => q == "" || q == null) > -1;
-            if(GUILayout.Button("Remove Empty")){
-                room.AdjacentRooms.RemoveAll(q=> q == "" || q == null);
-                EditorUtility.SetDirty(target);
-            }
-        }
+        room.AdjacentRooms[i] = obj.name;
+        EditorUtility.SetDirty(room);
+    }
+
+    void OnEntranceChange(Object obj)
+    {
+        room.entrances = (obj as GameObject).transform;
+        EditorUtility.SetDirty(room);
     }
 }

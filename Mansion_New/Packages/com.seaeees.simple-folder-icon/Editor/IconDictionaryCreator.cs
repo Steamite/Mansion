@@ -43,27 +43,27 @@ namespace SimpleFolderIcon.Editor
         {
             var dictionary = new Dictionary<string, Texture>();
 
-            var appDirPath = Application.dataPath.Replace("Assets","Packages");
+            var appDirPath = Application.dataPath.Replace("Assets", "Packages");
             var dir = new DirectoryInfo(appDirPath + "/" + AssetsPath);
             FileInfo[] info = dir.GetFiles("*.png");
-            foreach(FileInfo f in info)
+            foreach (FileInfo f in info)
             {
                 var texture = (Texture)AssetDatabase.LoadAssetAtPath($"Packages/{AssetsPath}/{f.Name}", typeof(Texture2D));
-                dictionary.Add(Path.GetFileNameWithoutExtension(f.Name),texture);
+                dictionary.Add(Path.GetFileNameWithoutExtension(f.Name), texture);
             }
 
             FileInfo[] infoSO = dir.GetFiles("*.asset");
-            foreach (FileInfo f in infoSO) 
+            foreach (FileInfo f in infoSO)
             {
                 var folderIconSO = (FolderIconSO)AssetDatabase.LoadAssetAtPath($"Packages/{AssetsPath}/{f.Name}", typeof(FolderIconSO));
 
-                if (folderIconSO != null) 
+                if (folderIconSO != null)
                 {
                     var texture = (Texture)folderIconSO.icon;
 
-                    foreach (string folderName in folderIconSO.folderNames) 
+                    foreach (string folderName in folderIconSO.folderNames)
                     {
-                        if (folderName != null) 
+                        if (folderName != null)
                         {
                             // dictionary.TryAdd(folderName, texture);
                             dictionary.Add(folderName, texture);
@@ -71,7 +71,7 @@ namespace SimpleFolderIcon.Editor
                     }
                 }
             }
-            
+
             IconDictionary = dictionary;
         }
     }

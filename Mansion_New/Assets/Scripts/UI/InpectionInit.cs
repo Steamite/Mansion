@@ -1,12 +1,8 @@
 ﻿using Items;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using Unity.Cinemachine;
 using Unity.Collections;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -16,20 +12,20 @@ using UnityEngine.UI;
 namespace UI.Inspect
 {
     /// <summary>Handles camera events for inspecting the item.</summary>
-    public class InpectionInit : MonoBehaviour
-	{
-		[Header("Canvas")]
-		/// <summary>Orbital camera.</summary>
-		[SerializeField] CinemachineCamera cam;
+    public class InpectionInit : MonoBehaviour, IInspectionInit
+    {
+        [Header("Canvas")]
+        /// <summary>Orbital camera.</summary>
+        [SerializeField] CinemachineCamera cam;
         /// <summary>Image component that needs the image.</summary>
         [SerializeField] Image backgroundImage;
         /// <summary>Canvas with the background Image.</summary>
         [SerializeField] Canvas canvas;
 
         [Header("Blur")]
-		[SerializeField] Material horizontalMaterial;
-		[SerializeField] Material verticalMaterial;
-		[SerializeField] int Radial = 3;
+        [SerializeField] Material horizontalMaterial;
+        [SerializeField] Material verticalMaterial;
+        [SerializeField] int Radial = 3;
 
         RenderTexture screenShot;
 
@@ -47,11 +43,11 @@ namespace UI.Inspect
         /// <param name="_item">Item for inspection</param>
         /// <param name="_asset">Asset containging actions.</param>
         public void Init(Transform _item, InputActionAsset _asset, AsyncOperationHandle<SceneInstance> _scene)
-		{
+        {
             width = Screen.width;
             height = Screen.height;
 
-            while(_item != null)
+            while (_item != null)
             {
                 if (_item.TryGetComponent<InteractableItem>(out item))
                     break;
@@ -63,7 +59,7 @@ namespace UI.Inspect
 
             _asset.actionMaps[2].Disable();
 
-			transform.position = _item.position;
+            transform.position = _item.position;
             _item.parent = transform;
             _item.localPosition = new(0, 0, 0);
             foreach (Transform trans in _item.GetComponentsInChildren<Transform>(true))
@@ -77,21 +73,21 @@ namespace UI.Inspect
             c.targetTexture = screenShot;
 
             c.Render();
-/*
-            c.targetTexture = null;
-            c.enabled = false;*/
+            /*
+                        c.targetTexture = null;
+                        c.enabled = false;*/
 
             Debug.Log("got the screenshot");
             StartCoroutine(WaitOnPostRender());
         }
 
-		/// <summary>
-		/// Assigns the background and sets up the orbital camera.
-		/// </summary>
-		/// <param name="_item">Item for inspection</param>
-		/// <param name="_asset">Asset containging actions.</param>
-		/// <returns></returns>
-		IEnumerator WaitOnPostRender()
+        /// <summary>
+        /// Assigns the background and sets up the orbital camera.
+        /// </summary>
+        /// <param name="_item">Item for inspection</param>
+        /// <param name="_asset">Asset containging actions.</param>
+        /// <returns></returns>
+        IEnumerator WaitOnPostRender()
         {
             // Create the picture
             yield return new WaitForEndOfFrame();
@@ -117,7 +113,7 @@ namespace UI.Inspect
             StartCoroutine(FinishStuff(Sprite.Create(tempimg, new(0, 0, tempimg.width, tempimg.height), new(0, 0))));
 
         }
-		#endregion
+        #endregion
 
         public async void Test()
         {
@@ -133,10 +129,10 @@ namespace UI.Inspect
         public void GetImg(bool firstTry = true)
         {
 
-            
+
             AsyncGPUReadback.Request(
-                screenShot, 
-                0, 
+                screenShot,
+                0,
                 TextureFormat.RGB24,
                 (req) =>
                 {
@@ -148,9 +144,9 @@ namespace UI.Inspect
                         Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
                         tex.LoadRawTextureData(data);
                         tex.Apply();
-                        
+
                     }
-                    else if(firstTry)
+                    else if (firstTry)
                     {
                         Debug.LogError("fuck you");
                         GetImg(false);
@@ -195,5 +191,5 @@ namespace UI.Inspect
             yield return new WaitUntil(() => brain.ActiveBlend == null);
             canvas.GetComponent<InspectMenu>().Init(asset, item, scene);
         }
-	}
+    }
 }

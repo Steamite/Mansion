@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,9 +12,9 @@ namespace Rooms
         private void OnValidate()
         {
             int index;
-            if((index = AdjacentRooms.FindIndex(q=> q.SceneName == SceneName)) == 0)
+            if ((index = AdjacentRooms.FindIndex(q => q.SceneName == SceneName)) == 0)
                 return;
-            else if(index > 0)
+            else if (index > 0)
                 AdjacentRooms.RemoveAt(index);
 
             AdjacentRooms.Insert(0, this);

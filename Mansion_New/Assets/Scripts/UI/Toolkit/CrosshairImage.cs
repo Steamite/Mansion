@@ -1,5 +1,5 @@
+using Player;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 namespace UI
@@ -8,54 +8,45 @@ namespace UI
     /// Handles transitions off the croshair.
     /// </summary>
     [UxmlElement]
-    public partial class CrosshairImage : VisualElement
+    public partial class CrosshairImage : VisualElement, ICrosshairImage
     {
-
-		/// <summary>Instance so it can be used from everywhere.</summary>
-#pragma warning disable UDR0001 // Domain Reload Analyzer
-		static CrosshairImage instance = null;
-		/// <summary>Copy of self for toggling during interaction.</summary>
-		static VisualTreeAsset document = null;
 #pragma warning restore UDR0001 // Domain Reload Analyzer
 
-		public CrosshairImage()
+        public CrosshairImage()
         {
             Add(new());
-            instance = this;
-            document = null;
         }
 
         /// <summary>Transitions to active state</summary>
-        public static void Enter()
-            => instance.AddToClassList("Active");
+        public void Enter()
+            => AddToClassList("Active");
 
         /// <summary>Transitions from active state</summary>
-        public static void Exit()
+        public void Exit()
         {
-            instance.RemoveFromClassList("Active");
+            RemoveFromClassList("Active");
             EndHold();
         }
 
         /// <summary>Starts filling the crosshair.</summary>
-        public static void StartHold()
-            => instance.AddToClassList("Holding");
+        public void StartHold()
+            => AddToClassList("Holding");
         /// <summary>Ends the filling effect.</summary>
-        public static void EndHold()
-			=> instance.RemoveFromClassList("Holding");
+        public void EndHold()
+            => RemoveFromClassList("Holding");
 
         /// <summary>Toggles by removing treeAsset from UIDoc component.</summary>
-        public static void Toggle()
-		{
-            if(document == null)
+        public void Toggle(bool show)
+        {
+            if (!show)
             {
+                this.parent.parent.style.display = DisplayStyle.None;
                 EndHold();
-                document = GameObject.Find("UI").GetComponent<UIDocument>().visualTreeAsset;
-                GameObject.Find("UI").GetComponent<UIDocument>().visualTreeAsset = null;
             }
             else
             {
-                GameObject.Find("UI").GetComponent<UIDocument>().visualTreeAsset = document;
-                document = null;
+                this.parent.parent.style.display = DisplayStyle.Flex;
+                Enter();
             }
         }
     }
