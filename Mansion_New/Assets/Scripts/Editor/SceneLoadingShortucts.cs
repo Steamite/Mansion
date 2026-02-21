@@ -25,6 +25,7 @@ public class SceneLoadingShortucts : MonoBehaviour
     /// <param name="state">New state.</param>
     static void OnPlayModeStateChanged(PlayModeStateChange state)
     {
+        return;
         if (state == PlayModeStateChange.ExitingEditMode)
         {
             string activeSceneName;
