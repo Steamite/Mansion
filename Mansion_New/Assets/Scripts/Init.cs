@@ -10,23 +10,29 @@ public class Init : MonoBehaviour
 #pragma warning disable UDR0001 // Domain Reload Analyzer
     public static string toLoad;
 #pragma warning restore UDR0001 // Domain Reload Analyzer
+
     [SerializeField] string player = "Player";
     [SerializeField] string mainMenu = "Main Menu";
     [SerializeField] bool gameInit = true;
+
     IEnumerator Start()
     {
         Room.loadedScenes = new();
+
         //WebGLInput.stickyCursorLock = false;
         //Application.targetFrameRate = 60;
         //QualitySettings.vSyncCount = 1;
-        toLoad = gameInit ? mainMenu : player;
-        AsyncOperationHandle<SceneInstance> initialLoad =
-            Addressables.LoadSceneAsync(toLoad, UnityEngine.SceneManagement.LoadSceneMode.Single, false);
 
-        Debug.Log("adsadasd 1");
+        toLoad = gameInit ? mainMenu : player;
+        AsyncOperationHandle<SceneInstance> initialLoad = Addressables.LoadSceneAsync(
+            toLoad, 
+            UnityEngine.SceneManagement.LoadSceneMode.Single, 
+            false);
+
+        Debug.Log($"Start {toLoad} loading");
         yield return initialLoad;
         ActivateScene(initialLoad);
-        Debug.Log("adsadasd 2:" + initialLoad.Status);
+        Debug.Log($"Activated {toLoad}");
     }
 
     /// <summary>
@@ -43,7 +49,7 @@ public class Init : MonoBehaviour
             menu.unloadMainMenu = instance;
             if (toLoad == "Player")
             {
-                menu.InitLoad();
+                menu.LoadRoomByIndex();
             }
         }
     }

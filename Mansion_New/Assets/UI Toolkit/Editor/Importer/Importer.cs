@@ -29,7 +29,7 @@ namespace Importer
         Button clearButton;
 
         public static List<InteractableItem> items = new();
-        public List<int> choiceIds = new();
+        public List<EntityId> choiceIds = new();
         public static Action<string> stringAction;
 
         AddressableAssetSettings settings;
@@ -105,6 +105,7 @@ namespace Importer
             win.Q<Button>("Cancel").RegisterCallback<ClickEvent>((_) => win.style.display = DisplayStyle.None);
             return win;
         }
+
         void InitUniButtons(VisualElement doc, VisualElement win)
         {
             #region Rename
@@ -174,11 +175,12 @@ namespace Importer
             };
             #endregion
         }
+
         void LinkData(string s, int tab = -1)
         {
             if (tab == -1)
                 tab = rootVisualElement.Q<TabView>().selectedTabIndex;
-            int i = items.FindIndex(q => q.gameObject.GetInstanceID() == choiceIds[field.index]);
+            int i = items.FindIndex(q => q.gameObject.GetEntityId() == choiceIds[field.index]);
             AddressableAssetGroup g = settings.FindGroup(EditorSceneManager.GetActiveScene().name);
             if (i > -1)
             {
@@ -197,7 +199,7 @@ namespace Importer
                 settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, GUId, true);
                 AssetDatabase.SaveAssets();
             }
-            i = items.FindIndex(q => q.gameObject.GetInstanceID() == choiceIds[field.choices.IndexOf(s)]);
+            i = items.FindIndex(q => q.gameObject.GetEntityId() == choiceIds[field.choices.IndexOf(s)]);
             if (i > -1)
                 UnlinkData(items[i]);
 
@@ -215,7 +217,7 @@ namespace Importer
 
         void ReloadData()
         {
-            items = FindObjectsByType<InteractableItem>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
+            items = Resources.FindObjectsOfTypeAll<InteractableItem>().ToList();
             textTab.ReloadData();
             pdfTab.ReloadData();
         }
@@ -248,7 +250,7 @@ namespace Importer
             DropdownField field = rootVisualElement.Q<DropdownField>();
 
             field.choices = items.Where(q => q.SourceObject == null || q.SourceObject.AssetGUID == "").Select(q => $"{q.name} ({q.GetType().ToString().Replace("Items.", "")})").ToList();
-            choiceIds = items.Where(q => q.SourceObject == null || q.SourceObject.AssetGUID == "").Select(q => q.gameObject.GetInstanceID()).ToList();
+            choiceIds = items.Where(q => q.SourceObject == null || q.SourceObject.AssetGUID == "").Select(q => q.gameObject.GetEntityId()).ToList();
 
             InteractableItem item;
             string selection;
@@ -263,9 +265,9 @@ namespace Importer
 
             field.choices.Insert(0, selection);
             if (item)
-                choiceIds.Insert(0, item.gameObject.GetInstanceID());
+                choiceIds.Insert(0, item.gameObject.GetEntityId());
             else
-                choiceIds.Insert(0, -1);
+                choiceIds.Insert(0, EntityId.None);
 
             field.SetValueWithoutNotify(selection);
         }

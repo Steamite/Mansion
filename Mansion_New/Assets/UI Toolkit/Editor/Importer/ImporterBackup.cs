@@ -60,9 +60,7 @@ namespace Importer
                     sceneName = links[i].scene.name;
                     EditorSceneManager.SaveOpenScenes();
                     EditorSceneManager.OpenScene("Assets/Scenes/Rooms/" + sceneName + ".unity");
-                    sceneItems = GameObject.FindObjectsByType<InteractableItem>(
-                        FindObjectsInactive.Include,
-                        FindObjectsSortMode.InstanceID).ToList();
+                    sceneItems = Resources.FindObjectsOfTypeAll<InteractableItem>().ToList();
                 }
                 int j = sceneItems.FindIndex(q => q.SourceObjectName == links[i].content);
                 if (j > -1)

@@ -319,6 +319,7 @@ MonoBehaviour:
   document: {fileID: 1050927711}
   loadableScenes:
   - 1
+  - Prototype
   useAction:
     m_Name: Use
     m_Type: 0

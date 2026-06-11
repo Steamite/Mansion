@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WebGLFocusManager : MonoBehaviour
 {
+    #if UNITY_WEBGL && !UNITY_EDITOR
     void Awake()
     {
         // Tells Unity not to destroy this specific GameObject when a new scene loads.
@@ -45,4 +46,5 @@ public class WebGLFocusManager : MonoBehaviour
             cam.enabled = true;
         }
     }
+#endif
 }

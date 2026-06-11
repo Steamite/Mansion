@@ -124,7 +124,7 @@ namespace UI.Inspect
         /// <returns></returns>
         IEnumerator EnableMovement()
         {
-            PlayerCamera playerCam = FindFirstObjectByType<PlayerCamera>();
+            PlayerCamera playerCam = FindAnyObjectByType<PlayerCamera>();
             playerCam.crosshairImage.Toggle(true);
             yield return new();
             Camera.main.cullingMask = -1;

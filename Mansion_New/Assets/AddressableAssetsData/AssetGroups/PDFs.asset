@@ -45,6 +45,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f367a999ddfe9314386a6b85d7687e19
+    m_Address: Assets/ItemData/PDF/sample-local-pdf.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: faacdc980607827418ce976d103235e8
     m_Address: Assets/ItemData/PDF/roll-up5.asset
     m_ReadOnly: 0

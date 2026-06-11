@@ -72,7 +72,7 @@ namespace Player
 
         IEnumerator InitInput()
         {
-            ActiveRoom = FindFirstObjectByType<Room>();
+            ActiveRoom = FindAnyObjectByType<Room>();
             yield return ActiveRoom.EnterRoom(null);
 
             propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
@@ -82,7 +82,6 @@ namespace Player
             propertyChanged?.Invoke(this, new(nameof(Position)));
 
             asset.Enable();
-            //Debug.Log("Enabled:" + moveAction.enabled);
             yield break;
         }
         #endregion

@@ -35,7 +35,7 @@ namespace Items
                 if (pdfHandle.Status == AsyncOperationStatus.Succeeded)
                 {
                     _text.text = "";
-                    pdfPath = Application.streamingAssetsPath + PDF_LOCATION + pdfHandle.Result.pdf + ".pdf";
+                    pdfPath = Application.streamingAssetsPath + PDF_LOCATION + pdfHandle.Result.pdfName + ".pdf";
                     VisualElement t = displayElem.panel.visualTree.Q<VisualElement>("T");
                     t.style.display = DisplayStyle.Flex;
                     ((Label)t.ElementAt(2)).text = "Otevřít pdf";

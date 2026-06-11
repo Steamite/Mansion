@@ -47,8 +47,8 @@ namespace UI
         /// </summary>
 		public Minimap()
         {
-            PlayerCamera cam = GameObject.FindFirstObjectByType<PlayerCamera>();
-            PlayerMovement movement = GameObject.FindFirstObjectByType<PlayerMovement>();
+            PlayerCamera cam = GameObject.FindAnyObjectByType<PlayerCamera>();
+            PlayerMovement movement = GameObject.FindAnyObjectByType<PlayerMovement>();
             VisualElement map = new();
             map.name = "Minimap";
             Add(map);

@@ -1,3 +1,4 @@
+using Assets.UI_Toolkit.Editor.Importer.PDF;
 using ImageMagick;
 using Items;
 using System;
@@ -15,13 +16,11 @@ namespace Importer.Tabs
 {
     public class PDFTab : ITab
     {
-        const string PDF_PATH = "Assets/ItemData/PDF/";
-        const string PDF_FILE_PATH = "Assets/StreamingAssets/PDF/";
-        const string IMAGE_FILE_PATH = "ItemData/Images/";
 
         AddressableAssetGroup spriteGroup;
         AddressableAssetSettings settings;
 
+        readonly PDFConversion conversion;
         /// <summary>ListView for pdf elements.</summary>
         public ListView pdfList;
 
@@ -29,6 +28,8 @@ namespace Importer.Tabs
         {
             settings = AddressableAssetSettingsDefaultObject.Settings;
             spriteGroup = settings.FindGroup("Sprites");
+            conversion = new (settings, spriteGroup);
+
             InitPDFList(doc, choicesUpdate);
         }
 
@@ -44,71 +45,11 @@ namespace Importer.Tabs
 
             pdfList.onAdd = async (view) =>
             {
-                string originalPdf = EditorUtility.OpenFilePanel("Choose pdf to use", "C:\\Users\\%username%", "");
-                if (originalPdf != null && originalPdf != "")
-                {
-                    string pdfName = Path.GetFileNameWithoutExtension(originalPdf);
-                    string newPdf = PDF_FILE_PATH + Path.GetFileName(originalPdf);
-                    if (File.Exists(newPdf))
-                    {
-                        EditorUtility.DisplayDialog("Cannot add", "PDF ALREADY EXISTS", "ok");
-                        return;
-                    }
-                    File.Move(originalPdf, newPdf);
-
-                    PDFData pdfData = ScriptableObject.CreateInstance<PDFData>();
-                    pdfData.pdf = pdfName;
-                    pdfData.images = new();
-                    AssetDatabase.CreateAsset(pdfData, $"{PDF_PATH}{pdfName}.asset");
-                    settings.CreateOrMoveEntry(AssetDatabase.GUIDFromAssetPath($"{PDF_PATH}{pdfName}.asset").ToString(), settings.FindGroup("PDFs"));
-                    settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, AssetDatabase.GUIDFromAssetPath($"{PDF_PATH}{pdfName}.asset").ToString(), true);
-
-                    using (var images = new MagickImageCollection())
-                    {
-                        var depth = new MagickReadSettings
-                        {
-                            Density = new Density(300, 300)
-                        };
-
-                        // Add all the pages of the pdf file to the collection
-                        images.Read(File.ReadAllBytes(newPdf), depth);
-                        Directory.CreateDirectory($"{Application.dataPath}/{IMAGE_FILE_PATH}{pdfName}");
-
-                        var page = 0;
-                        string path;
-                        foreach (var image in images)
-                        {
-                            // Write page to file that contains the page number
-                            path = $"{Application.dataPath}/{IMAGE_FILE_PATH}{pdfName}/img{page}.jpg";
-                            await image.WriteAsync(path, MagickFormat.Jpg);
-                            AssetDatabase.Refresh();
-
-                            Debug.Log($"Assets/{IMAGE_FILE_PATH}{pdfName}/img{page}.jpg");
-                            path = AssetDatabase.GUIDFromAssetPath($"Assets/{IMAGE_FILE_PATH}{pdfName}/img{page}.jpg").ToString();
-
-                            TextureImporter importer = AssetImporter.GetAtPath($"Assets/{IMAGE_FILE_PATH}{pdfName}/img{page}.jpg") as TextureImporter;
-                            TextureImporterSettings spriteSettings = new TextureImporterSettings();
-                            importer.textureType = TextureImporterType.Sprite;
-                            importer.ReadTextureSettings(spriteSettings);
-                            spriteSettings.spriteMode = (int)SpriteImportMode.Single;
-                            importer.SetTextureSettings(spriteSettings);
-                            importer.SaveAndReimport();
-
-
-                            settings.CreateOrMoveEntry(path, spriteGroup);
-                            pdfData.images.Add(new(path));
-                            settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, path, true);
-
-                            page++;
-                        }
-                        EditorUtility.SetDirty(pdfData);
-                        AssetDatabase.SaveAssets();
-                    }
-
-
-                    view.itemsSource.Add(newPdf);
-                    view.Rebuild();
-                }
+                string pdfPath = await conversion.CreatePDF();
+                if (pdfPath == null)
+                    return;
+                view.itemsSource.Add(pdfPath);
+                view.Rebuild();
             };
 
             pdfList.onRemove = (_) =>
@@ -121,8 +62,8 @@ namespace Importer.Tabs
                     string fileName = Path.GetFileNameWithoutExtension((string)pdfList.selectedItem);
 
                     AssetDatabase.DeleteAsset((string)pdfList.selectedItem);
-                    AssetDatabase.DeleteAsset("Assets/" + IMAGE_FILE_PATH + fileName);
-                    AssetDatabase.MoveAsset(PDF_FILE_PATH + fileName + ".pdf", PDF_FILE_PATH + "BCK/" + fileName + ".pdf");
+                    AssetDatabase.DeleteAsset("Assets/" + PDFConversion.IMAGE_FILE_PATH + fileName);
+                    AssetDatabase.MoveAsset(PDFConversion.PDF_FILE_PATH + fileName + ".pdf", PDFConversion.PDF_FILE_PATH + "BCK/" + fileName + ".pdf");
 
                     // Removing reference from item
                     string GUId = AssetDatabase.GUIDFromAssetPath((string)pdfList.selectedItem).ToString();
@@ -170,17 +111,17 @@ namespace Importer.Tabs
                 (_) =>
                 {
                     //Debug.Log($"{Application.dataPath}/{PDF_FILE_PATH.Remove(0, 6)}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}.pdf");
-                    Application.OpenURL($"{Application.dataPath}/{PDF_FILE_PATH.Remove(0, 6)}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}.pdf");
+                    Application.OpenURL($"{Application.dataPath}/{PDFConversion.PDF_FILE_PATH.Remove(0, 6)}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}.pdf");
                 });
         }
 
         public void Clear(out int i, out AddressableAssetGroup g)
         {
-            int z = Directory.GetFiles($"{Application.dataPath}/{IMAGE_FILE_PATH}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}", "*.jpg").Length;
+            int z = Directory.GetFiles($"{Application.dataPath}/{PDFConversion.IMAGE_FILE_PATH}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}", "*.jpg").Length;
             string GUId;
             for (int x = 0; x < z; x++)
             {
-                GUId = AssetDatabase.GUIDFromAssetPath($"Assets/{IMAGE_FILE_PATH}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}/img{x}.jpg").ToString();
+                GUId = AssetDatabase.GUIDFromAssetPath($"Assets/{PDFConversion.IMAGE_FILE_PATH}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}/img{x}.jpg").ToString();
                 settings.CreateOrMoveEntry(GUId, spriteGroup);
                 settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, GUId, true);
             }
@@ -196,7 +137,7 @@ namespace Importer.Tabs
             if (settings.FindGroup(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name))
                 availableAssets.AddRange(settings.FindGroup(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name).entries.Select(q => q.guid));
 
-            foreach (var GUId in AssetDatabase.FindAssets($"t:{nameof(PDFData)}", new string[] { PDF_PATH }))
+            foreach (var GUId in AssetDatabase.FindAssets($"t:{nameof(PDFData)}", new string[] { PDFConversion.PDF_PATH }))
             {
                 if (availableAssets.Contains(GUId))
                     files.Add(AssetDatabase.GUIDToAssetPath(GUId));
@@ -215,12 +156,12 @@ namespace Importer.Tabs
             else newItem = item;
 
             contentName = Path.GetFileNameWithoutExtension((string)pdfList.selectedItem);
-            int z = Directory.GetFiles($"{Application.dataPath}/{IMAGE_FILE_PATH}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}", "*.jpg").Length;
+            int z = Directory.GetFiles($"{Application.dataPath}/{PDFConversion.IMAGE_FILE_PATH}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}", "*.jpg").Length;
             AddressableAssetGroup group = settings.FindGroup(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
             string GUId;
             for (int x = 0; x < z; x++)
             {
-                GUId = AssetDatabase.GUIDFromAssetPath($"Assets/{IMAGE_FILE_PATH}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}/img{x}.jpg").ToString();
+                GUId = AssetDatabase.GUIDFromAssetPath($"Assets/{PDFConversion.IMAGE_FILE_PATH}{Path.GetFileNameWithoutExtension((string)pdfList.selectedItem)}/img{x}.jpg").ToString();
                 settings.CreateOrMoveEntry(GUId, group);
                 settings.SetDirty(AddressableAssetSettings.ModificationEvent.EntryMoved, GUId, true);
             }
@@ -240,13 +181,13 @@ namespace Importer.Tabs
             {
                 Importer.stringAction = (s) =>
                 {
-                    if (Directory.Exists(PDF_PATH + s))
+                    if (Directory.Exists(PDFConversion.PDF_PATH + s))
                     {
                         EditorUtility.DisplayDialog("ALREADY IN USE", "FOLDER EXISTS", "ok");
                         return;
                     }
-                    AssetDatabase.MoveAsset((string)pdfList.selectedItem, PDF_PATH + s);
-                    pdfList.itemsSource[pdfList.selectedIndex] = PDF_PATH + s;
+                    AssetDatabase.MoveAsset((string)pdfList.selectedItem, PDFConversion.PDF_PATH + s);
+                    pdfList.itemsSource[pdfList.selectedIndex] = PDFConversion.PDF_PATH + s;
                     pdfList.RefreshItems();
                 };
             }

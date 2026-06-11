@@ -1,4 +1,5 @@
-﻿using Items;
+﻿using Assets.Scripts.UI;
+using Items;
 using System.Collections;
 using Unity.Cinemachine;
 using Unity.Collections;
@@ -12,6 +13,7 @@ using UnityEngine.UI;
 namespace UI.Inspect
 {
     /// <summary>Handles camera events for inspecting the item.</summary>
+    [RequireComponent(typeof(BlurTexture))]
     public class InpectionInit : MonoBehaviour, IInspectionInit
     {
         [Header("Canvas")]
@@ -22,15 +24,8 @@ namespace UI.Inspect
         /// <summary>Canvas with the background Image.</summary>
         [SerializeField] Canvas canvas;
 
-        [Header("Blur")]
-        [SerializeField] Material horizontalMaterial;
-        [SerializeField] Material verticalMaterial;
-        [SerializeField] int Radial = 3;
+        
 
-        RenderTexture screenShot;
-
-        int width;
-        int height;
 
         InteractableItem item;
         InputActionAsset asset;
@@ -44,9 +39,6 @@ namespace UI.Inspect
         /// <param name="_asset">Asset containging actions.</param>
         public void Init(Transform _item, InputActionAsset _asset, AsyncOperationHandle<SceneInstance> _scene)
         {
-            width = Screen.width;
-            height = Screen.height;
-
             while (_item != null)
             {
                 if (_item.TryGetComponent<InteractableItem>(out item))
@@ -66,77 +58,25 @@ namespace UI.Inspect
                 trans.gameObject.layer = 6;
 
 
-            Debug.Log("starting to render");
-            Camera c = Camera.main.transform.GetChild(0).GetComponent<Camera>();
-            c.enabled = true;
-            screenShot = new RenderTexture(width, height, 24);
-            c.targetTexture = screenShot;
-
-            c.Render();
-            /*
-                        c.targetTexture = null;
-                        c.enabled = false;*/
+            
 
             Debug.Log("got the screenshot");
-            StartCoroutine(WaitOnPostRender());
+            GetComponent<BlurTexture>().Blur(SetupCameras);
         }
 
-        /// <summary>
-        /// Assigns the background and sets up the orbital camera.
-        /// </summary>
-        /// <param name="_item">Item for inspection</param>
-        /// <param name="_asset">Asset containging actions.</param>
-        /// <returns></returns>
-        IEnumerator WaitOnPostRender()
-        {
-            // Create the picture
-            yield return new WaitForEndOfFrame();
-
-            RenderTexture renH = RenderTexture.GetTemporary(width, height);
-
-            horizontalMaterial.SetFloat("_BlurSize", Radial);
-            verticalMaterial.SetFloat("_BlurSize", Radial);
-
-            Graphics.Blit(screenShot, renH, horizontalMaterial);
-            Graphics.Blit(renH, screenShot, verticalMaterial);
-            RenderTexture.ReleaseTemporary(renH);
-
-            Debug.Log("Shaded");
-            Test();
-            yield break;
-            NativeArray<byte> tempvar = new NativeArray<byte>(screenShot.width * screenShot.height * 16, Allocator.Persistent, NativeArrayOptions.UninitializedMemory);
-            var req = AsyncGPUReadback.RequestIntoNativeArrayAsync(ref tempvar, screenShot);
-            yield return req;
-            Texture2D tempimg = new Texture2D(screenShot.width, screenShot.height);
-            tempimg.LoadRawTextureData(tempvar);
-            tempimg.Apply();
-            StartCoroutine(FinishStuff(Sprite.Create(tempimg, new(0, 0, tempimg.width, tempimg.height), new(0, 0))));
-
-        }
+        
         #endregion
 
-        public async void Test()
+        
+
+        /*public void GetImg(bool firstTry = true)
         {
-            NativeArray<byte> tempvar = new NativeArray<byte>(screenShot.width * screenShot.height * 16, Allocator.Persistent, NativeArrayOptions.UninitializedMemory);
-            var req = AsyncGPUReadback.RequestIntoNativeArrayAsync(ref tempvar, screenShot);
-            await req;
-            Texture2D tempimg = new Texture2D(screenShot.width, screenShot.height);
-            tempimg.LoadRawTextureData(tempvar);
-            tempimg.Apply();
-            StartCoroutine(FinishStuff(Sprite.Create(tempimg, new(0, 0, tempimg.width, tempimg.height), new(0, 0))));
-        }
-
-        public void GetImg(bool firstTry = true)
-        {
-
-
             AsyncGPUReadback.Request(
                 screenShot,
                 0,
                 TextureFormat.RGB24,
                 (req) =>
                 {
-
                     if (!req.hasError)
                     {
                         Debug.Log("request is done");
@@ -152,10 +92,10 @@ namespace UI.Inspect
                         GetImg(false);
                     }
                 });
-        }
+        }*/
 
 
-        IEnumerator FinishStuff(Sprite sprite)
+        void SetupCameras(Sprite sprite)
         {
             Debug.Log("created the sprite");
             canvas.transform.GetChild(0).GetComponent<Image>().sprite = sprite;
@@ -171,7 +111,11 @@ namespace UI.Inspect
             panTilt.PanAxis.Value = item.startRotation.x;
             panTilt.TiltAxis.Value = item.startRotation.y;
 
-            // rotate camera to match current player rotation
+            cam.Priority = 3;
+            StartCoroutine(WaitForBlend());
+        }
+        IEnumerator WaitForBlend()
+        {
             /* CinemachineOrbitalFollow orbit = cam.GetComponent<CinemachineOrbitalFollow>();
 
              orbit.Orbits.Top.Height = item.top;
@@ -182,13 +126,17 @@ namespace UI.Inspect
              orbit.HorizontalAxis.Value = Camera.main.transform.rotation.eulerAngles.y;
              orbit.RadialAxis.Range = item.RadiusRange;*/
 
-            cam.Priority = 3;
 
-            // Enable camera movement
             CinemachineBrain brain = Camera.main.GetComponent<CinemachineBrain>();
-            while (brain.ActiveBlend == null)
-                yield return null;
+            /*while (brain.ActiveBlend == null)
+                yield return null;*/
+
+            //wait for the blend to activate
+            yield return new WaitUntil(() => brain.ActiveBlend != null);
+
+            //wait for the blend to end
             yield return new WaitUntil(() => brain.ActiveBlend == null);
+
             canvas.GetComponent<InspectMenu>().Init(asset, item, scene);
         }
     }

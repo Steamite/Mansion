@@ -415,7 +415,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 2d617334a7a192a449bda60d3c16da50, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 0aab9f6856f434d4a89c0ec59a382a9c, type: 2}
 --- !u!4 &706707857
 Transform:
   m_ObjectHideFlags: 0
@@ -614,6 +614,7 @@ GameObject:
   m_IsActive: 1
 --- !u!212 &1814606907
 SpriteRenderer:
+  serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -659,6 +660,7 @@ SpriteRenderer:
   m_SortingLayerID: -598189993
   m_SortingLayer: 1
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 277751fe3fa99094aa7fc2308a15e001, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -668,7 +670,6 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 1
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!4 &1814606908
 Transform:
