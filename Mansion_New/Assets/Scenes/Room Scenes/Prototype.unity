@@ -181,6 +181,7 @@ MonoBehaviour:
   maxDrag: {x: 0, y: 0}
   startRotation: {x: 135, y: 0}
   offset: {x: 0, y: 0.9, z: 0}
+  rotatable: 0
   pdfPath: 
 --- !u!65 &7404388
 BoxCollider:
@@ -1780,6 +1781,7 @@ MonoBehaviour:
   maxDrag: {x: 0, y: 0}
   startRotation: {x: 50, y: 0}
   offset: {x: 0, y: 0.9, z: 0}
+  rotatable: 0
   pdfPath: 
 --- !u!65 &517961247
 BoxCollider:
@@ -2170,6 +2172,7 @@ MonoBehaviour:
   maxDrag: {x: 0, y: 0}
   startRotation: {x: -90, y: 0}
   offset: {x: 0, y: 0.9, z: 0}
+  rotatable: 0
   pdfPath: 
 --- !u!65 &689721153
 BoxCollider:
@@ -2311,6 +2314,7 @@ MonoBehaviour:
   maxDrag: {x: 0, y: 0}
   startRotation: {x: 0, y: 0}
   offset: {x: 0, y: 0.9, z: 0}
+  rotatable: 0
   pdfPath: 
 --- !u!65 &695196074
 BoxCollider:
@@ -2629,6 +2633,7 @@ MonoBehaviour:
   maxDrag: {x: 0, y: 0}
   startRotation: {x: 180, y: 0}
   offset: {x: 0, y: 0.9, z: 0}
+  rotatable: 0
   pdfPath: 
 --- !u!65 &1041483832
 BoxCollider:
@@ -2876,6 +2881,7 @@ MonoBehaviour:
   maxDrag: {x: 0, y: 0}
   startRotation: {x: 0, y: 0}
   offset: {x: 0, y: 0.9, z: 0}
+  rotatable: 0
   pdfPath: 
 --- !u!65 &1059647698
 BoxCollider:
@@ -4478,6 +4484,7 @@ MonoBehaviour:
   maxDrag: {x: 0, y: 0}
   startRotation: {x: -90, y: 0}
   offset: {x: 0, y: 0.9, z: 0}
+  rotatable: 0
   pdfPath: 
 --- !u!65 &1983103433
 BoxCollider:

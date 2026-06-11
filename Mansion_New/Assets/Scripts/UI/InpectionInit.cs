@@ -104,12 +104,13 @@ namespace UI.Inspect
             canvas.worldCamera = Camera.main;
 
             CinemachinePositionComposer composer = cam.GetComponent<CinemachinePositionComposer>();
-            composer.TargetOffset = item.offset;
+            composer.TargetOffset = item.Offset;
             composer.CameraDistance = (item.RadiusRange.x + item.RadiusRange.y) / 2;
 
             CinemachinePanTilt panTilt = cam.GetComponent<CinemachinePanTilt>();
-            panTilt.PanAxis.Value = item.startRotation.x;
-            panTilt.TiltAxis.Value = item.startRotation.y;
+            panTilt.PanAxis.Value = item.StartRotation.x;
+            panTilt.TiltAxis.Value = item.StartRotation.y;
+
 
             cam.Priority = 3;
             StartCoroutine(WaitForBlend());
@@ -137,6 +138,9 @@ namespace UI.Inspect
             //wait for the blend to end
             yield return new WaitUntil(() => brain.ActiveBlend == null);
 
+            CinemachinePanTilt panTilt = cam.GetComponent<CinemachinePanTilt>();
+            panTilt.enabled = item.Rotatable;
+            
             canvas.GetComponent<InspectMenu>().Init(asset, item, scene);
         }
     }

@@ -23,6 +23,7 @@ public class InspectionController : MonoBehaviour
     IInspectMenu menu;
 
     bool canDrag;
+    bool relock;
     CinemachinePositionComposer positionComposer;
     CinemachinePanTilt panTilt;
     CinemachineInputAxisController axisController;
@@ -60,7 +61,10 @@ public class InspectionController : MonoBehaviour
         else
         {
             if (zoomAction.triggered && menu.isDescrOpen == false)
+            {
                 Zoom();
+                relock = true;
+            }
             if (startRotateAction.triggered)
                 TogglePanTilt(true);
             else if (stopRotateAction.triggered)
@@ -71,7 +75,16 @@ public class InspectionController : MonoBehaviour
             else if (stopDragAction.triggered)
                 ToggleDrag(false);
             if (canDrag && menu.isDescrOpen == false)
-                Drag();
+            {
+                Vector2 drag = dragAction.ReadValue<Vector2>();
+                Drag(drag);
+                relock = false;
+            }
+            else if(relock)
+            {
+                relock = false;
+                Drag(new());
+            }
         }
     }
 
@@ -80,7 +93,6 @@ public class InspectionController : MonoBehaviour
     {
         Vector2 f = zoomAction.ReadValue<Vector2>();
         positionComposer.CameraDistance = Mathf.Clamp(positionComposer.CameraDistance - f.y * 0.1f, item.RadiusRange.x, item.RadiusRange.y);
-        Debug.Log(f);
     }
 
     void TogglePanTilt(bool newState)
@@ -94,9 +106,8 @@ public class InspectionController : MonoBehaviour
         canDrag = newState;
     }
 
-    void Drag()
+    void Drag(Vector2 drag)
     {
-        Vector2 drag = dragAction.ReadValue<Vector2>();
         positionComposer.Composition.ScreenPosition.x = Mathf.Clamp(positionComposer.Composition.ScreenPosition.x + drag.x, -0.5f * 1 / positionComposer.CameraDistance, 0.5f * 1 / positionComposer.CameraDistance);
         positionComposer.Composition.ScreenPosition.y = Mathf.Clamp(positionComposer.Composition.ScreenPosition.y + drag.y, -0.5f * 1 / positionComposer.CameraDistance, 0.5f * 1 / positionComposer.CameraDistance);
     }
@@ -105,8 +116,8 @@ public class InspectionController : MonoBehaviour
     {
         positionComposer.Composition.ScreenPosition.x = 0;
         positionComposer.Composition.ScreenPosition.y = 0;
-        panTilt.PanAxis.Value = item.startRotation.x;
-        panTilt.TiltAxis.Value = item.startRotation.y;
+        panTilt.PanAxis.Value = item.StartRotation.x;
+        panTilt.TiltAxis.Value = item.StartRotation.y;
     }
     #endregion
 }

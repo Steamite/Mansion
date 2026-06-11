@@ -17,12 +17,19 @@ namespace Items
         [SerializeField][MinMaxRangeSlider(0.01f, 5)] public Vector2 RadiusRange;
         /// <summary>Path for downloading the content.</summary>
         public AssetReference SourceObject { get => sourceObject; private set => sourceObject = value; }
+        public Vector2 MaxDrag { get => maxDrag; set => maxDrag = value; }
+        public Vector2 StartRotation { get => startRotation; set => startRotation = value; }
+        public Vector3 Offset { get => offset; set => offset = value; }
+        public bool Rotatable { get => rotatable; set => rotatable = value; }
+
         [SerializeField] AssetReference sourceObject;
 
         [SerializeField] public string SourceObjectName;
-        public Vector2 maxDrag;
-        public Vector2 startRotation;
-        public Vector3 offset;
+
+        [SerializeField] private Vector2 maxDrag;
+        [SerializeField] private Vector2 startRotation;
+        [SerializeField] private Vector3 offset;
+        [SerializeField] private bool rotatable = true;
 
 #if UNITY_EDITOR
         public void SetSource(AssetReference reference, string objectName)
@@ -55,7 +62,7 @@ namespace Items
 
         private void OnDrawGizmosSelected()
         {
-            Gizmos.DrawSphere(transform.position + offset, 0.2f);
+            Gizmos.DrawSphere(transform.position + Offset, 0.2f);
         }
     }
 }
