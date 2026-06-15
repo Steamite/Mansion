@@ -1,3 +1,4 @@
+using Assets.Scripts.Interactable_Items.Rooms;
 using System;
 using System.Collections;
 using Unity.Cinemachine;
@@ -122,7 +123,7 @@ namespace Player
                 crosshairImage.EndHold();
 
             if (interactAction.triggered)
-                StartCoroutine(Interact());
+                Interact();
             #endregion
 
 
@@ -221,22 +222,16 @@ namespace Player
         /// <summary>
         /// Starts interaction process by loading the interact scene.
         /// </summary>
-        IEnumerator Interact()
+        void Interact()
         {
             crosshairImage.Toggle(false);
             asset.actionMaps[0].Disable();
-            AsyncOperationHandle<SceneInstance> sceneLoading =
-                Addressables.LoadSceneAsync(inspectScene, LoadSceneMode.Additive, false);
-            yield return sceneLoading;
-            if (sceneLoading.Status == AsyncOperationStatus.Succeeded)
-                yield return sceneLoading.Result.ActivateAsync();
-            else
-            {
-                Debug.LogError(sceneLoading.Status.ToString());
-                yield break;
-            }
-            IInspectionInit init = sceneLoading.Result.Scene.GetRootGameObjects()[0].transform.GetChild(0).GetComponent<IInspectionInit>();
-            init.Init(item.transform, asset, sceneLoading);
+            AddressableSceneManager.LoadScene("Interact", SceneType.Player, null,
+                (sceneInstance) =>
+                {
+                    IInspectionInit init = sceneInstance.Scene.GetRootGameObjects()[0].transform.GetChild(0).GetComponent<IInspectionInit>();
+                    init.Init(item.transform, asset);
+                });
         }
 
         /// <summary>

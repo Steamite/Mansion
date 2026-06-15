@@ -20,5 +20,5 @@ public interface IInspectMenu
 
 public interface IInspectionInit
 {
-    public void Init(Transform _item, InputActionAsset _asset, AsyncOperationHandle<SceneInstance> _scene) { }
+    public void Init(Transform _item, InputActionAsset _asset) { }
 }

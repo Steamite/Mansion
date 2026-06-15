@@ -16,7 +16,7 @@ MonoBehaviour:
   m_GUID: 42a1c2a9495a9a34c9eb9b38f02ec0a4
   m_SerializeEntries:
   - m_GUID: 2acbbddd7e7ceda41b37fce7a2a54fba
-    m_Address: Assets/Prefabs/Void/void.prefab
+    m_Address: void
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

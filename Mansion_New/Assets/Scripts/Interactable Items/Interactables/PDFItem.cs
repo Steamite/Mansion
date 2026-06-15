@@ -20,7 +20,6 @@ namespace Items
                 return;
 
             StartCoroutine(GetContent(displayElem));
-
         }
 
         protected override IEnumerator GetContent(VisualElement displayElem)
@@ -32,13 +31,19 @@ namespace Items
             {
                 AsyncOperationHandle<PDFData> pdfHandle = Addressables.LoadAssetAsync<PDFData>(SourceObject);
                 yield return pdfHandle;
+
                 if (pdfHandle.Status == AsyncOperationStatus.Succeeded)
                 {
                     _text.text = "";
                     pdfPath = Application.streamingAssetsPath + PDF_LOCATION + pdfHandle.Result.pdfName + ".pdf";
+                    
+                    // Menu button
                     VisualElement t = displayElem.panel.visualTree.Q<VisualElement>("T");
-                    t.style.display = DisplayStyle.Flex;
-                    ((Label)t.ElementAt(2)).text = "Otevřít pdf";
+                    if(t != null)
+                    {
+                        t.style.display = DisplayStyle.Flex;
+                        ((Label)t.ElementAt(2)).text = "Otevřít pdf";
+                    }
 
                     AsyncOperationHandle<Texture2D> spriteHandle;
                     Label label = new Label("Loading...");
@@ -56,8 +61,6 @@ namespace Items
                             imagesElement.Add(imgElem);
                             imgElem.style.width = spriteHandle.Result.width;
                             imgElem.style.height = spriteHandle.Result.height;
-
-                            //spriteHandle.Release();
                         }
                         else
                         {
@@ -113,9 +116,14 @@ namespace Items
         {
             StopAllCoroutines();
             VisualElement el = displayElem.Q<VisualElement>("Images");
+
             for (int i = el.childCount - 1; i > -1; i--)
                 el.RemoveAt(i);
-            displayElem.panel.visualTree.Q<VisualElement>("T").style.display = DisplayStyle.None;
+
+            //// Menu button
+            VisualElement TButton = displayElem.panel.visualTree.Q<VisualElement>("T");
+            if(TButton != null)
+                TButton.style.display = DisplayStyle.None;
         }
     }
 }

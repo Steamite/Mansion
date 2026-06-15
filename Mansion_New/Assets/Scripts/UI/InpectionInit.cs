@@ -29,7 +29,6 @@ namespace UI.Inspect
 
         InteractableItem item;
         InputActionAsset asset;
-        AsyncOperationHandle<SceneInstance> scene;
 
         #region Init
         /// <summary>
@@ -37,7 +36,7 @@ namespace UI.Inspect
         /// </summary>
         /// <param name="_item">Item for inspection</param>
         /// <param name="_asset">Asset containging actions.</param>
-        public void Init(Transform _item, InputActionAsset _asset, AsyncOperationHandle<SceneInstance> _scene)
+        public void Init(Transform _item, InputActionAsset _asset)
         {
             while (_item != null)
             {
@@ -47,7 +46,6 @@ namespace UI.Inspect
             }
 
             asset = _asset;
-            scene = _scene;
 
             _asset.actionMaps[2].Disable();
 
@@ -66,34 +64,6 @@ namespace UI.Inspect
 
         
         #endregion
-
-        
-
-        /*public void GetImg(bool firstTry = true)
-        {
-            AsyncGPUReadback.Request(
-                screenShot,
-                0,
-                TextureFormat.RGB24,
-                (req) =>
-                {
-                    if (!req.hasError)
-                    {
-                        Debug.Log("request is done");
-                        var data = req.GetData<byte>();
-                        Texture2D tex = new Texture2D(width, height, TextureFormat.RGB24, false);
-                        tex.LoadRawTextureData(data);
-                        tex.Apply();
-
-                    }
-                    else if (firstTry)
-                    {
-                        Debug.LogError("fuck you");
-                        GetImg(false);
-                    }
-                });
-        }*/
-
 
         void SetupCameras(Sprite sprite)
         {
@@ -141,7 +111,7 @@ namespace UI.Inspect
             CinemachinePanTilt panTilt = cam.GetComponent<CinemachinePanTilt>();
             panTilt.enabled = item.Rotatable;
             
-            canvas.GetComponent<InspectMenu>().Init(asset, item, scene);
+            canvas.GetComponent<InspectMenu>().Init(asset, item);
         }
     }
 }

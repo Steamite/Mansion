@@ -1,4 +1,5 @@
-﻿using Items;
+﻿using Assets.Scripts.Interactable_Items.Rooms;
+using Items;
 using Player;
 using System.Collections;
 using Unity.Cinemachine;
@@ -46,8 +47,6 @@ namespace UI.Inspect
 		public bool isDescriptionOpened;
 		public bool isDescrOpen { get => isDescriptionOpened; }
 
-
-        AsyncOperationHandle<SceneInstance> scene;
         const string buttonGUId = "658cd35d788af46489726e1322cc904e";
 
         #endregion
@@ -58,9 +57,8 @@ namespace UI.Inspect
         /// </summary>
         /// <param name="_asset">Input asset with inpection map.</param>
         /// <param name="_item">Inspected item.</param>
-        public void Init(InputActionAsset _asset, InteractableItem _item, AsyncOperationHandle<SceneInstance> _scene)
+        public void Init(InputActionAsset _asset, InteractableItem _item)
         {
-            scene = _scene;
             asset = _asset;
             item = _item;
 
@@ -129,12 +127,13 @@ namespace UI.Inspect
             yield return new();
             Camera.main.cullingMask = -1;
             gameObject.SetActive(false);
-            AsyncOperationHandle<SceneInstance> sceneUnload = Addressables.UnloadSceneAsync(scene, UnloadSceneOptions.None, false);
-            sceneUnload.Completed += (_) =>
+            // TODO
+            AddressableSceneManager.UnloadScene(
+                "Interact", () =>
             {
                 asset.actionMaps[0].Enable();
                 playerCam.EndIteract();
-            };
+            });
         }
         #endregion
 
@@ -156,8 +155,9 @@ namespace UI.Inspect
                 ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).ElementAt(2)).text = "Zavřít popis";
                 doc.rootVisualElement.Q<VisualElement>(HOME_OPTION).style.display = DisplayStyle.None;// "Zavřít popis";
 
-                item.LoadContent(doc.rootVisualElement.Q<ScrollView>(DESCRIPTION)
-                    .Q<VisualElement>("unity-content-container"));
+                item.LoadContent(
+                    doc.rootVisualElement.Q<ScrollView>(DESCRIPTION)
+                        .Q<VisualElement>("unity-content-container"));
 
                 isDescriptionOpened = true;
                 endAction.Disable();

@@ -49,9 +49,18 @@ namespace Player
         public event EventHandler<BindablePropertyChangedEventArgs> propertyChanged;
         #endregion
 
+        static PlayerMovement instance = null;
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
+        static void Clear()
+        {
+            instance = null;
+        }
+
         #region Init
         void Awake()
         {
+            instance = this;
             asset.Disable();
             gravity = new();
             InputActionMap inputMap = asset.actionMaps[0];
@@ -63,7 +72,13 @@ namespace Player
             playerCamera = transform.GetChild(0).GetComponent<PlayerCamera>();
         }
 
-        public void Activate()
+        public static void Activate()
+        {
+            if (instance)
+                instance.Init();
+        }
+
+        void Init()
         {
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             UnityEngine.Cursor.visible = false;
@@ -73,7 +88,7 @@ namespace Player
         IEnumerator InitInput()
         {
             ActiveRoom = FindAnyObjectByType<Room>();
-            yield return ActiveRoom.EnterRoom(null);
+            ActiveRoom.EnterRoom(null);
 
             propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
 
@@ -96,7 +111,10 @@ namespace Player
             if (input.x != 0 || input.y != 0)
             {
                 Vector3 moveDir = transform.TransformDirection(Vector3.forward) * input.y + transform.TransformDirection(Vector3.right) * input.x;
-                controller.Move((playerCamera.crouchAction.inProgress ? 0.5f : 1) * moveSpeed * Time.deltaTime * new Vector3(moveDir.x, 0, moveDir.z));
+                controller.Move(
+                    (playerCamera.crouchAction.inProgress ? 0.5f : 1) 
+                    * moveSpeed * Time.deltaTime 
+                    * new Vector3(moveDir.x, 0, moveDir.z));
                 playerCamera.RayCastUpdate();
 
                 Position.x = -transform.position.x;
@@ -130,7 +148,8 @@ namespace Player
             if (hit.gameObject.CompareTag("Entrance"))
             {
                 ActiveRoom = hit.transform.parent.parent.GetComponent<Room>();
-                StartCoroutine(ActiveRoom.EnterRoom(ActiveRoom));
+                ActiveRoom.EnterRoom(ActiveRoom);
+
                 propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
             }
         }
@@ -139,7 +158,8 @@ namespace Player
             if (hit.gameObject.CompareTag("Entrance"))
             {
                 Room newRoom = hit.transform.parent.parent.GetComponent<Room>();
-                StartCoroutine(newRoom.EnterRoom(ActiveRoom));
+                newRoom.EnterRoom(ActiveRoom);
+
                 ActiveRoom = newRoom;
                 propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
             }
@@ -151,8 +171,8 @@ namespace Player
         /// </summary>
         private void FixedUpdate()
         {
-            if (transform.position.y > 0)
-                transform.position = new(transform.position.x, 1, transform.position.z);
+            /*if (transform.position.y > 0)
+                transform.position = new(transform.position.x, 1, transform.position.z);*/
             /*if ()
             {
                 gravity.y = 0;

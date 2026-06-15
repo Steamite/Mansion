@@ -402,6 +402,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &8772341248919994359
 MonoBehaviour:
@@ -419,7 +420,7 @@ MonoBehaviour:
   - 1
   - 2
   - 4
-  roomName: 
+  roomName: 3
   entrances: {fileID: 111121187}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -315,36 +315,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e31ac7dcff52d45b0f3cb2e55894bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingScreen: {fileID: 1470199984}
   document: {fileID: 1050927711}
+  loadingScreen: {fileID: 1470199986}
   loadableScenes:
   - 1
   - Prototype
-  useAction:
-    m_Name: Use
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 905b5860-9fea-4bd1-b0eb-e248c577e9ac
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: dca247b9-65cf-471f-988d-da7d81eaf182
-      m_Path: <Keyboard>/anyKey
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Use
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 5e697ec7-0995-4370-87bd-b7395b116c65
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Use
-      m_Flags: 0
-    m_Flags: 0
+  - VR Test
 --- !u!1 &1470199983
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,6 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1470199985}
   - component: {fileID: 1470199984}
+  - component: {fileID: 1470199986}
   m_Layer: 5
   m_Name: Loading Screen
   m_TagString: Untagged
@@ -400,6 +377,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1470199986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470199983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af882db4baa0cbc4786a1d735691504d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UI::Assets.Scripts.UI.MainMenu.LoadingScreen
+  loadingScreen: {fileID: 1470199984}
+  useVR: 1
+  vrInteractabeInitPrefab: {fileID: 7979735612602952588, guid: c9aa570168b9d1849a55089f41adcaf3, type: 3}
+  useAction:
+    m_Name: Use
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 5b4768c5-df9d-47a1-a89f-b8dd2d7b2a5a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: e62e2b8e-b8d9-45b7-916c-d44c6f50085a
+      m_Path: <Keyboard>/anyKey
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Use
+      m_Flags: 0
+    - m_Name: 
+      m_Id: c5b93c17-0764-403d-9091-36be3430f3f7
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Use
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -57,10 +57,13 @@ public class RoomEditor : Editor
         element.Add(listView);
         listView.itemsSource = room.AdjacentRooms;
 
-        ObjectField field = new("Entrances") { objectType = typeof(GameObject) };
-        field.value = room.entrances;
-        field.RegisterValueChangedCallback((evt) => OnEntranceChange(evt.newValue));
-        element.Add(field);
+        ObjectField entranceTransformField = new("Entrances") { objectType = typeof(Transform) };
+        entranceTransformField.BindProperty(serializedObject.FindProperty(nameof(Room.entrances)));
+        element.Add(entranceTransformField);
+
+        TextField roomNameField = new("Name");
+        roomNameField.BindProperty(serializedObject.FindProperty(nameof(Room.roomName)));
+        element.Add(roomNameField);
 
         return element;
     }

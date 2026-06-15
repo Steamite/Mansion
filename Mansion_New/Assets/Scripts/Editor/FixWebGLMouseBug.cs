@@ -34,7 +34,7 @@ public class FixWebGLMouseBug : IPostprocessBuildWithReport
 
         using (StreamReader reader = new StreamReader(filePath))
         {
-            modifiedContent = reader.ReadToEnd().Replace("requestPointerLock()", "requestPointerLock({unadjustedMovement: true}).catch(function(error) {console.log(error);})");
+            modifiedContent = reader.ReadToEnd().Replace("requestPointerLock()", "requestPointerLock({unadjustedMovement: true})?.catch(function(error) {console.log(error);})");
         }
 
         // Write the modified content back to the file

@@ -1,3 +1,5 @@
+using Assets.Scripts.Interactable_Items.Rooms;
+using Items;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,67 +16,55 @@ namespace Rooms
     /// </summary>
     public class Room : MonoBehaviour
     {
-        [SerializeField] public List<string> AdjacentRooms = new();
-        [SerializeField] public string roomName;
-        [SerializeField] public Transform entrances;
-        public static Dictionary<string, AsyncOperationHandle<SceneInstance>> loadedScenes;
+        public List<string> AdjacentRooms = new();
+        public string roomName;
+        public Transform entrances;
 
-        IEnumerator LoadRoom(string asset)
+        public void FinishLoad(bool startingRoom)
         {
-            AsyncOperationHandle<SceneInstance> initialLoad =
-                    Addressables.LoadSceneAsync($"{asset}", LoadSceneMode.Additive, false);
-            yield return initialLoad;
-            if (initialLoad.Status == AsyncOperationStatus.Succeeded)
-            {
-                yield return initialLoad.Result.ActivateAsync();
-                loadedScenes.Add(asset, initialLoad);
-                initialLoad.Result.Scene.GetRootGameObjects()[0].GetComponent<Room>().ToggleEntrances(true);
-            }
+            ToggleEntrances(!startingRoom);
+            VRManagerLink.OnRoomLoad(transform);
         }
 
         /// <summary>
         /// Loads new rooms and unloads the old ones that are not needed.
         /// </summary>
-        /// <param name="lastRoom">Previus active room.</param>
+        /// <param name="previousRoom">Previous active room, null if leaving the starting location.</param>
         /// <returns>itself</returns>
-        public IEnumerator EnterRoom(Room lastRoom)
+        public void EnterRoom(Room previousRoom)
         {
             Debug.Log("enter room");
-            if (lastRoom)
+            if (previousRoom)
             {
-                List<string> roomsToUnload = lastRoom.AdjacentRooms.Where(q => !AdjacentRooms.Contains(q) && q != gameObject.scene.name).ToList();
-                yield return lastRoom.ExitRoom(roomsToUnload);
-                List<string> roomsToLoad = AdjacentRooms.Where(loadRoom => !lastRoom.AdjacentRooms.Contains(loadRoom) && loadRoom != lastRoom.gameObject.scene.name).ToList();
+                List<string> roomsToUnload = previousRoom.AdjacentRooms.Where(q => !AdjacentRooms.Contains(q) && q != roomName).ToList();
+                previousRoom.ExitRoom(roomsToUnload);
+                List<string> roomsToLoad = AdjacentRooms.Where(loadRoom => !previousRoom.AdjacentRooms.Contains(loadRoom) && loadRoom != previousRoom.gameObject.scene.name).ToList();
                 foreach (string asset in roomsToLoad)
                 {
-                    yield return LoadRoom(asset);
+                    AddressableSceneManager.LoadScene(asset, SceneType.Room);
                 }
             }
             else
             {
                 foreach (string asset in AdjacentRooms)
                 {
-                    yield return LoadRoom(asset);
+                    AddressableSceneManager.LoadScene(asset, SceneType.Room);
                 }
             }
 
-
+            //Disable all entrances and wall colliders
             ToggleEntrances(false);
-            yield return this;
-            //Disable all entrances and wall enable colliders
         }
 
         /// <summary>
         /// Unloads unnedded scenes and enables it's own entrances.
         /// </summary>
-        /// <param name="enumerable">Scenes to unload</param>
-        public IEnumerator ExitRoom(IEnumerable<string> enumerable)
+        /// <param name="RoomsToUnload">Scenes to unload</param>
+        void ExitRoom(IEnumerable<string> RoomsToUnload)
         {
-            foreach (string asset in enumerable)
+            foreach (string roomName in RoomsToUnload)
             {
-                AsyncOperationHandle<SceneInstance> instance = Addressables.UnloadSceneAsync(loadedScenes[asset]);
-                yield return instance.Result;
-                loadedScenes.Remove(asset);
+                AddressableSceneManager.UnloadScene(roomName);
             }
             ToggleEntrances(true);
         }

@@ -30,6 +30,7 @@ namespace Items
         [SerializeField] private Vector2 startRotation;
         [SerializeField] private Vector3 offset;
         [SerializeField] private bool rotatable = true;
+        [SerializeField] public Vector3 rotationVR;
 
 #if UNITY_EDITOR
         public void SetSource(AssetReference reference, string objectName)

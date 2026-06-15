@@ -305,6 +305,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &8451724920720258789
 Transform:
@@ -364,7 +365,7 @@ MonoBehaviour:
   AdjacentRooms:
   - 2
   - 3
-  roomName: 
+  roomName: 4
   entrances: {fileID: 1540502355}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
