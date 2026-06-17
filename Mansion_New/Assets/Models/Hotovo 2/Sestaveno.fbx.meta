@@ -1,0 +1,660 @@
+fileFormatVersion: 2
+guid: 43a70c8d9ee84534e95cd486a638fc4e
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 4f7915697cb348a449b6d5f37f267463, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 1ae4035131393ae4a9e68fc321032a14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material5
+    second: {fileID: 2100000, guid: bfd9407d49de6b747a2a1714280eeb22, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny10
+    second: {fileID: 2100000, guid: 4f73d79f1d34b054885f41287bab1fab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny2.002
+    second: {fileID: 2100000, guid: 459ef6ec7368fa74aa0f52197000bfef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny3
+    second: {fileID: 2100000, guid: 6249f483e5c2dc440bb92e4ca64cf641, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny4
+    second: {fileID: 2100000, guid: a1da55ff888610540bd49d99ab776bc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny6
+    second: {fileID: 2100000, guid: 0d96b8c6d8eb68b44984e4ac8c114e37, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny7
+    second: {fileID: 2100000, guid: aa5aa78aa50ff624d8b2c08e231a9985, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny8
+    second: {fileID: 2100000, guid: 1dde1df2a58642347aeda8ea602d7448, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny9
+    second: {fileID: 2100000, guid: 4e8f93d3206d4c147acbfddbc9d3f33c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stenyChodby
+    second: {fileID: 2100000, guid: 33025248a7aecb842825ec26e5301c21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop1
+    second: {fileID: 2100000, guid: 17fca06ad21afe4409d8592b14c905a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop10
+    second: {fileID: 2100000, guid: 1486476a25f28314ba9394a098b224fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop3
+    second: {fileID: 2100000, guid: 9e3ea6dad482e4840a6e309384da7d18, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop4
+    second: {fileID: 2100000, guid: 999d58973b8b7fe40949401a4d7d52d6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop5
+    second: {fileID: 2100000, guid: 2c5877eb3880db54483039a36018058f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop6
+    second: {fileID: 2100000, guid: afe2ebfd6367bf441be2102c1bc269f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop7
+    second: {fileID: 2100000, guid: 1aa03360a6a6c3e41a1b57fb68a3c7e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop8
+    second: {fileID: 2100000, guid: fc959e77625efca4db7419d141f7bd58, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop9
+    second: {fileID: 2100000, guid: dd513c23a0d9cf248a075e5c0c5e222a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stropChodby
+    second: {fileID: 2100000, guid: 4210bfb49b0c4e642bf0ba4be8389442, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: chodby_stenyChodby_BaseColor
+    second: {fileID: 2800000, guid: 9968fd35916bc7748a699ecde97abbbe, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: chodby_stenyChodby_Metallic
+    second: {fileID: 2800000, guid: 0675fcb8f3e183d4cb2a2ce4b283097a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: chodby_stenyChodby_Normal
+    second: {fileID: 2800000, guid: c2c640b4a37d73841ba811f4487deb76, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: chodby_stenyChodby_Roughness
+    second: {fileID: 2800000, guid: 1c828dff8c0b8854d8aaca4a56e3716e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: chodby_stropChodby_BaseColor
+    second: {fileID: 2800000, guid: 6f87d437bba04244b8ccb0d39e6935a5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: chodby_stropChodby_Metallic
+    second: {fileID: 2800000, guid: 803e64a50acf35e4e853e426dde57ca6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: chodby_stropChodby_Normal
+    second: {fileID: 2800000, guid: b561a8a153e295344a9ac4d7468287e1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: chodby_stropChodby_Roughness
+    second: {fileID: 2800000, guid: caa32692f436d824aa766254432016ac, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost10_steny10_BaseColor
+    second: {fileID: 2800000, guid: e3befcda72a333748b85a3d8c7004577, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost10_steny10_Metallic
+    second: {fileID: 2800000, guid: bb01666b39ab5b34fb836830392be724, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost10_steny10_Normal
+    second: {fileID: 2800000, guid: 73cddb8068c35cb45b9e5a4e4ff21f61, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost10_steny10_Roughness
+    second: {fileID: 2800000, guid: 2abe82946d1db354cac29a6d3300013d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost10_strop10_BaseColor
+    second: {fileID: 2800000, guid: 227535b47df704b4c92b9dca5f2bcece, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost10_strop10_Metallic
+    second: {fileID: 2800000, guid: e5862d2bd94f9bd44b86ec651c16b8dc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost10_strop10_Normal
+    second: {fileID: 2800000, guid: afbeee51287e3db4487081c68b6ca4db, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost10_strop10_Roughness
+    second: {fileID: 2800000, guid: 8c4603ef79dcfde4ea2e021ade1016ae, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost3_steny3_BaseColor
+    second: {fileID: 2800000, guid: f0996eb653399c34baad4d58c012816f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost3_steny3_Metallic
+    second: {fileID: 2800000, guid: a7a5de8729b47b040a46f7398a70d01d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost3_steny3_Normal
+    second: {fileID: 2800000, guid: 3177ed653cee75048a350c27423c10eb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost3_steny3_Roughness
+    second: {fileID: 2800000, guid: ed9e7af7150b5d74785cb52d763ad25e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost3_strop3_BaseColor
+    second: {fileID: 2800000, guid: c3d0979de81da5543b6d3287873fc8a4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost3_strop3_Metallic
+    second: {fileID: 2800000, guid: f23cd1a20ac06ff41bdd21d3bbddfc87, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost3_strop3_Normal
+    second: {fileID: 2800000, guid: b4fbea2eb2edb514fae3d9c23499b1c0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost3_strop3_Roughness
+    second: {fileID: 2800000, guid: c71e744a94f041a42b2b1cd3efb6a318, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost4_steny4_BaseColor
+    second: {fileID: 2800000, guid: c390157fed962e644bfba97aea7f5378, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost4_steny4_Metallic
+    second: {fileID: 2800000, guid: e9402321e833e6f43b7bb324c57264a1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost4_steny4_Normal
+    second: {fileID: 2800000, guid: c96e8e1cab83b4440be1a6468ef33743, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost4_steny4_Roughness
+    second: {fileID: 2800000, guid: ad4daa60411a4f940814af78e5a7437c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost4_strop4_BaseColor
+    second: {fileID: 2800000, guid: 9b35a9b21010c9f4a92d3c43d67a6245, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost4_strop4_Metallic
+    second: {fileID: 2800000, guid: 27c96b139581d124fb105dbf0afc8059, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost4_strop4_Normal
+    second: {fileID: 2800000, guid: ff6081e2d38811e4eac72f370317520f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost4_strop4_Roughness
+    second: {fileID: 2800000, guid: 4bf667ceb18d4644eaf349681db92a82, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost5_Material5_BaseColor
+    second: {fileID: 2800000, guid: a1fa8b22a9813634b8911cf2488dd1d3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost5_Material5_Metallic
+    second: {fileID: 2800000, guid: a36ba5b28092f7042b3bb710a039c20e, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost5_Material5_Normal
+    second: {fileID: 2800000, guid: 9afbd5ad54cb6a940b66bb932b8691da, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost5_Material5_Roughness
+    second: {fileID: 2800000, guid: b4be3b505a7a56a4196e18b63d64cc68, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost5_strop5_BaseColor
+    second: {fileID: 2800000, guid: 26849d929986f3d48a3d1bef6830bdcb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost5_strop5_Metallic
+    second: {fileID: 2800000, guid: 2f40fa6628507e04cafce716b7a306cd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost5_strop5_Normal
+    second: {fileID: 2800000, guid: 5510d3fca06583143a983f70b2279ebe, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost5_strop5_Roughness
+    second: {fileID: 2800000, guid: 7e73f0065b0c65c4d87195ba665f064d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost6_steny6_BaseColor
+    second: {fileID: 2800000, guid: 134936e609c4d144cb1a2eb1bd3cd308, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost6_steny6_Metallic
+    second: {fileID: 2800000, guid: 8a0c95d6378d6c543b300852b7679b08, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost6_steny6_Normal
+    second: {fileID: 2800000, guid: 93d0337495d879443a8c9e1f41475960, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost6_steny6_Roughness
+    second: {fileID: 2800000, guid: b348467262f7bf6489634bdf16da7447, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost6_strop6_BaseColor
+    second: {fileID: 2800000, guid: 6425ac60549d8624095deeff449c04ba, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost6_strop6_Metallic
+    second: {fileID: 2800000, guid: 7dbd7f08612e3af479d175730b57ce00, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost6_strop6_Normal
+    second: {fileID: 2800000, guid: 6578be451f4daaa4b96d0165d5b862d9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost6_strop6_Roughness
+    second: {fileID: 2800000, guid: 7f628f6225fa54c449acde978dfd4f38, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost7_steny7_BaseColor
+    second: {fileID: 2800000, guid: 19cfaf653bfa86b4eadc85efbf434012, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost7_steny7_Metallic
+    second: {fileID: 2800000, guid: 5adc1e988ba0bf24886443500e105c08, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost7_steny7_Normal
+    second: {fileID: 2800000, guid: fac004a8bc5d8ec4aaac581df3688148, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost7_steny7_Roughness
+    second: {fileID: 2800000, guid: 539a9d1304c44a1449aa3d669ee505a0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost7_strop7_BaseColor
+    second: {fileID: 2800000, guid: 3a4f691f5b9246f40b1396fd681e98d0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost7_strop7_Metallic
+    second: {fileID: 2800000, guid: eeb886841ec2d6c48b314da013cdf2f3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost7_strop7_Normal
+    second: {fileID: 2800000, guid: a775a181251b7d04bb312ec4c1ec6c68, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost7_strop7_Roughness
+    second: {fileID: 2800000, guid: e72cb1da8d2321440ac226c92fc4fa1d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost8_steny8_BaseColor
+    second: {fileID: 2800000, guid: aa21b73190c240144808ad211eec04f4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost8_steny8_Metallic
+    second: {fileID: 2800000, guid: 82d355767a1f41f42b1c1ff6ab58de52, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost8_steny8_Normal
+    second: {fileID: 2800000, guid: 99c9d19e30e343b429996b2c0d378715, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost8_steny8_Roughness
+    second: {fileID: 2800000, guid: a83225e566cc8d341a404260f0680010, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost8_strop8_BaseColor
+    second: {fileID: 2800000, guid: 4beb5ed1ad171ee49978d3f40065c2c0, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost8_strop8_Metallic
+    second: {fileID: 2800000, guid: 34306f3ba8bb93844a9343d4fb4e61bc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost8_strop8_Normal
+    second: {fileID: 2800000, guid: 3efa9e283faae214d9b3d50a1c2a0c7f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost8_strop8_Roughness
+    second: {fileID: 2800000, guid: 8113b4e52b177424c929fc03cafe09a8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost9_steny9_BaseColor
+    second: {fileID: 2800000, guid: cbe49fc0471905049be6e21fc011852b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost9_steny9_Metallic
+    second: {fileID: 2800000, guid: 9f224a2d09dbc4643827141e4a62dc52, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost9_steny9_Normal
+    second: {fileID: 2800000, guid: aceba50852b53544081b19c1e6a2ba1a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost9_steny9_Roughness
+    second: {fileID: 2800000, guid: 4a2723b949c35e647971f40f472e53b2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost9_strop9_BaseColor
+    second: {fileID: 2800000, guid: c144af34c37172d4e8628f3f4beb83f6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost9_strop9_Metallic
+    second: {fileID: 2800000, guid: 5ce4b0fe147e1fd4a97333b6d767f055, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost9_strop9_Normal
+    second: {fileID: 2800000, guid: b711fc7f401713243914992fbc23516f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnost9_strop9_Roughness
+    second: {fileID: 2800000, guid: 3b251d3af748f644f8824acc4df995d9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnsot2_steny1_BaseColor
+    second: {fileID: 2800000, guid: ab1abf324c31c174ea16bdf6df924c37, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnsot2_steny1_Metallic
+    second: {fileID: 2800000, guid: f560692350dd91c4296889e7c2cdce82, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnsot2_steny1_Normal
+    second: {fileID: 2800000, guid: c50b02678e0f2124bbff385be7c0eebd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnsot2_steny1_Roughness
+    second: {fileID: 2800000, guid: 305513ff34bcc1243bb5da951353fc5f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnsot2_strop1_BaseColor
+    second: {fileID: 2800000, guid: 304674d499a166d449d973f5a4b0e63b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnsot2_strop1_Metallic
+    second: {fileID: 2800000, guid: d9b969169de7912418ae41f0c8562bb2, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnsot2_strop1_Normal
+    second: {fileID: 2800000, guid: 3bb2476240e0ebd4e8d5fd3118af51a4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: mistnsot2_strop1_Roughness
+    second: {fileID: 2800000, guid: f7a99bed83d1eab41b65ac804954d6a3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: steny2_BaseColor
+    second: {fileID: 2800000, guid: d6bafd20281243e42a3c65e7ca06670c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: steny2_Metallic
+    second: {fileID: 2800000, guid: 6251e1c6afed79343ae467f4da760394, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: steny2_Normal
+    second: {fileID: 2800000, guid: 1d7f293946057b74981c01cc0947c6a8, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: steny2_Roughness
+    second: {fileID: 2800000, guid: 9d0f92add53f6134a9e78499f86dd6bc, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: strop2_BaseColor
+    second: {fileID: 2800000, guid: f27fa28dc5b5b2b4dbc24303329527e5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: strop2_Metallic
+    second: {fileID: 2800000, guid: 509a42ea14026af479791b4b16f2e3e1, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: strop2_Normal
+    second: {fileID: 2800000, guid: 19c09733db2836c40af25a0ab85dfe59, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: strop2_Roughness
+    second: {fileID: 2800000, guid: 0dc8959519223d9468c65b24b471304f, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1.02
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 0.010199999
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

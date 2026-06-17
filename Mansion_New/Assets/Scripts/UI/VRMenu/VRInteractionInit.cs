@@ -31,8 +31,16 @@ namespace Assets.Scripts.UI.VRMenu
 
         void FillListeners(InteractableItem item, XRBaseInteractable xRBase)
         {
-            xRBase.hoverEntered.AddListener(manager.Hover);
-            xRBase.hoverExited.AddListener(manager.EndHover);
+            if(item is PDFItem)
+            {
+                xRBase.selectEntered.AddListener(manager.Open);
+                //xRBase.selectExited.AddListener(manager.Close);
+            }
+            else
+            {
+                xRBase.hoverEntered.AddListener(manager.Hover);
+                xRBase.hoverExited.AddListener(manager.EndHover);
+            }
         }
 
         public void DestroySelf()

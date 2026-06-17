@@ -22,6 +22,7 @@ namespace Items
         {
             Label _text = displayElem.Q<Label>("Label");
             _text.text = "Downloading text...";
+            _text.style.display = DisplayStyle.Flex;
 
             for (int i = 0; i < 3; i++)
             {

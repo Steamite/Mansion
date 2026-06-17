@@ -78,6 +78,7 @@ namespace Player
                 instance.Init();
         }
 
+        [ContextMenu("Enable")]
         void Init()
         {
             UnityEngine.Cursor.lockState = CursorLockMode.Locked;

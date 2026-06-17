@@ -31,7 +31,7 @@ namespace Items
                 return;
 
 
-            var interactables = room.GetChild(2).GetComponentsInChildren<InteractableItem>();
+            var interactables = room.GetComponentsInChildren<InteractableItem>();
             foreach (var item in interactables)
             {
                 vrManager.SetupItem(item);

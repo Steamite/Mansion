@@ -11,6 +11,24 @@ using UnityEngine.SceneManagement;
 
 namespace Rooms
 {
+
+    /// Hiearchy
+    /// root
+    ///     - Interactables 0
+    ///         - ...
+    ///     - Colliders 1
+    ///         - Walls
+    ///             - ...
+    ///         - Floors (Teleportation Area)
+    ///             - ...
+    ///     - Entrances 2
+    ///         - ...
+    ///     - Lighting 3
+    ///         - Adaptive Probe Volume
+    ///         - Lights
+    ///             - ...
+    ///     - SpawnPoint 4 
+        
     /// <summary>
     /// Handles transitions between rooms.
     /// </summary>
@@ -18,12 +36,19 @@ namespace Rooms
     {
         public List<string> AdjacentRooms = new();
         public string roomName;
-        public Transform entrances;
+        
+        Transform Entrances => transform.GetChild(2).transform;
+        public Transform SpawnPoint => transform.GetChild(4).transform;
+        public static Room StartingRoom { private set; get; } 
+
 
         public void FinishLoad(bool startingRoom)
         {
             ToggleEntrances(!startingRoom);
             VRManagerLink.OnRoomLoad(transform);
+
+            if (startingRoom)
+                StartingRoom = this;
         }
 
         /// <summary>
@@ -75,7 +100,7 @@ namespace Rooms
         /// <param name="state">New state to toggle to.</param>
         void ToggleEntrances(bool state)
         {
-            foreach (BoxCollider collider in entrances.GetComponentsInChildren<BoxCollider>())
+            foreach (BoxCollider collider in Entrances.GetComponentsInChildren<BoxCollider>())
             {
                 collider.enabled = state;
             }

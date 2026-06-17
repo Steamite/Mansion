@@ -25,7 +25,9 @@ namespace Items
         protected override IEnumerator GetContent(VisualElement displayElem)
         {
             Label _text = displayElem.Q<Label>("Label");
+
             _text.text = "Downloading images...";
+            _text.style.display = DisplayStyle.Flex;
 
             for (int i = 0; i < 3; i++)
             {
@@ -34,9 +36,11 @@ namespace Items
 
                 if (pdfHandle.Status == AsyncOperationStatus.Succeeded)
                 {
-                    _text.text = "";
+                    _text.style.display = DisplayStyle.None;
                     pdfPath = Application.streamingAssetsPath + PDF_LOCATION + pdfHandle.Result.pdfName + ".pdf";
-                    
+
+                    if (displayElem == null)
+                        yield break;
                     // Menu button
                     VisualElement t = displayElem.panel.visualTree.Q<VisualElement>("T");
                     if(t != null)
@@ -47,6 +51,9 @@ namespace Items
 
                     AsyncOperationHandle<Texture2D> spriteHandle;
                     Label label = new Label("Loading...");
+                    if (displayElem == null)
+                        yield break;
+
                     VisualElement imagesElement = displayElem.Q<VisualElement>("Images");
                     foreach (AssetReference image in pdfHandle.Result.images)
                     {
@@ -65,6 +72,7 @@ namespace Items
                         else
                         {
                             _text.text = "ERROR";
+                            _text.style.display = DisplayStyle.Flex;
                             break;
                         }
 
@@ -75,6 +83,7 @@ namespace Items
                 }
             }
             _text.text = "ERROR";
+            _text.style.display = DisplayStyle.Flex;
         }
         /*
 		void GetImages(VisualElement displayElem)

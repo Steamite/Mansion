@@ -1,9 +1,0 @@
-<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement style="flex-grow: 0; width: 150px; min-width: 150px; font-size: 14px;">
-        <ui:Label text="Labeldsadsadsadsa" name="Title" style="-unity-text-align: middle-center; background-color: rgba(0, 0, 0, 0.784); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; color: rgb(255, 255, 255);"/>
-        <ui:ScrollView horizontal-scroller-visibility="Hidden" touch-scroll-type="Elastic" name="Description">
-            <ui:Label text="dsadsadasdsadasdsadsadsadasdas" name="Label" style="-unity-text-align: middle-left; background-color: rgba(0, 0, 0, 0.784); margin-top: 2px; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; color: rgb(255, 255, 255); white-space: pre-wrap; font-size: 10px;"/>
-            <ui:VisualElement name="Images" style="flex-grow: 1;"/>
-        </ui:ScrollView>
-    </ui:VisualElement>
-</ui:UXML>

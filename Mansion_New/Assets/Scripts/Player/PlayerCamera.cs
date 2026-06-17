@@ -103,6 +103,16 @@ namespace Player
             horizontalRot = transform.parent.rotation.eulerAngles.y;
             propertyChanged?.Invoke(this, new(nameof(horizontalRot)));
             crosshairImage = uiDoc.rootVisualElement.Q("Crosshair") as ICrosshairImage;
+
+            // REMOVE
+            for (int i = 0; i < SceneManager.loadedSceneCount; i++)
+            {
+                if(SceneManager.GetSceneAt(i).name == "Prototype")
+                {
+                    topCam.transform.position += new Vector3(0, 0.25f, 0);
+                    break;
+                }
+            }
         }
         #endregion
         private void OnDrawGizmos()

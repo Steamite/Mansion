@@ -57,13 +57,13 @@ public class RoomEditor : Editor
         element.Add(listView);
         listView.itemsSource = room.AdjacentRooms;
 
-        ObjectField entranceTransformField = new("Entrances") { objectType = typeof(Transform) };
-        entranceTransformField.BindProperty(serializedObject.FindProperty(nameof(Room.entrances)));
-        element.Add(entranceTransformField);
-
         TextField roomNameField = new("Name");
         roomNameField.BindProperty(serializedObject.FindProperty(nameof(Room.roomName)));
         element.Add(roomNameField);
+/*
+        ObjectField spawnPointField = new("SpawnPoint");
+        spawnPointField.BindProperty(serializedObject.FindProperty(nameof(Room.sp)));
+        element.Add(spawnPointField);*/
 
         return element;
     }
@@ -79,12 +79,6 @@ public class RoomEditor : Editor
         }
 
         room.AdjacentRooms[i] = obj.name;
-        EditorUtility.SetDirty(room);
-    }
-
-    void OnEntranceChange(Object obj)
-    {
-        room.entrances = (obj as GameObject).transform;
         EditorUtility.SetDirty(room);
     }
 }

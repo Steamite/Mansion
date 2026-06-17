@@ -31,6 +31,7 @@ namespace Items
         [SerializeField] private Vector3 offset;
         [SerializeField] private bool rotatable = true;
         [SerializeField] public Vector3 rotationVR;
+        public Vector3 OffsetVR;
 
 #if UNITY_EDITOR
         public void SetSource(AssetReference reference, string objectName)
@@ -39,6 +40,7 @@ namespace Items
             SourceObjectName = objectName;
         }
 #endif
+        public void Clear() => StopAllCoroutines();
         /// <summary>
         /// Each type of Item must has it's own implementation for dowloading and viewing content.
         /// </summary>

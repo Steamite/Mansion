@@ -1,6 +1,8 @@
-﻿using Assets.Scripts.UI.MainMenu;
+﻿using Assets.Scripts.Interactable_Items.Rooms;
+using Assets.Scripts.UI.MainMenu;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
 
@@ -11,6 +13,11 @@ public class LevelSelector : MonoBehaviour
     
     [SerializeField] List<string> loadableScenes;
 
+    [SerializeField] PanelSettings screenSettings;
+    [SerializeField] PanelSettings worldSettings;
+
+    [SerializeField] GameObject mainCamera;
+
     private void Awake()
     {
         ShowUI();
@@ -18,8 +25,41 @@ public class LevelSelector : MonoBehaviour
 
     void ShowUI()
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        if (loadingScreen.UseVR)
+        {
+            mainCamera.SetActive(false);
+
+            document.enabled = false;
+            document.panelSettings = worldSettings;
+            //document.worldSpaceSize = new(1920, 1080); TEST
+            document.enabled = true;
+
+            UIDocument doc = loadingScreen.GetComponent<UIDocument>();
+            doc.panelSettings = worldSettings;
+            doc.enabled = false;
+
+            AddressableSceneManager.LoadScene(
+                "Player VR",
+                SceneType.Player,
+                null,
+                (scene) =>
+                {
+                    GameObject[] objs = scene.Scene.GetRootGameObjects();
+                    Camera.main.cullingMask = LayerMask.GetMask("UI", "Ignore Raycast");// LayerMask.NameToLayer("UI");
+                    objs[1].transform.GetChild(0)
+                        .GetComponent<SpriteRenderer>().enabled = false;
+                });
+        }
+        else
+        {
+            mainCamera.SetActive(true);
+
+            document.panelSettings = screenSettings;
+            loadingScreen.GetComponent<UIDocument>().panelSettings = screenSettings;
+
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
 
         Debug.Log("Opened Main Menu");
         ListView menuList = document.rootVisualElement.Q<ListView>("List");

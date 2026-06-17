@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using Importer.Tabs;
 using Items;
+using Rooms;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -283,7 +284,7 @@ namespace Importer
             else
             {
                 clearButton.style.display = DisplayStyle.None;
-                if (!EditorSceneManager.GetActiveScene().name.Contains("Room"))
+                if (!EditorSceneManager.GetActiveScene().GetRootGameObjects().Any(q=> q.TryGetComponent(out Room _)))
                     return "Select a room Scene!";
                 return "Select binding";
             }

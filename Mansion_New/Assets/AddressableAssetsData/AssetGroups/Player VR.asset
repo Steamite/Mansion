@@ -25,6 +25,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb08c75ecbd40694f94980cce6e40330
+    m_Address: Assets/Models/Human/Chunk.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d995973ba7c2661449848a647b816fb4
     m_Address: VR Test
     m_ReadOnly: 0

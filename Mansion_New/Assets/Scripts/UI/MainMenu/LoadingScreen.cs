@@ -2,8 +2,6 @@
 using Assets.Scripts.UI.VRMenu;
 using Items;
 using Player;
-using Unity.VectorGraphics;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.ResourceProviders;
@@ -18,6 +16,7 @@ namespace Assets.Scripts.UI.MainMenu
         bool canExit = false;
 
         [SerializeField] bool useVR = false;
+        public bool UseVR => useVR;
         [SerializeField] VRInteractionInit vrInteractabeInitPrefab;
 
         [SerializeField] InputAction useAction;
@@ -32,7 +31,9 @@ namespace Assets.Scripts.UI.MainMenu
 
         public void StartRoomLoad(string sceneName)
         {
-            if(useVR)
+            AddressableSceneManager.UseVR = useVR;
+
+            if (useVR)
             {
                 if (VRManagerLink.VRManager == null)
                 {
@@ -60,19 +61,25 @@ namespace Assets.Scripts.UI.MainMenu
         void LoadPlayer(SceneInstance scene)
         {
             ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
-            AddressableSceneManager.LoadScene(
-                useVR ? "Player VR" : "Player",
-                SceneType.Player,
-                (percent) => progressBar.value = 0.5f + percent / 2,
-                FinishLoadVisual
-                );
+            if (!useVR)
+                AddressableSceneManager.LoadScene(
+                    "Player",
+                    SceneType.Player,
+                    (percent) => progressBar.value = 0.5f + percent / 2,
+                    FinishLoadVisual
+                    );
+            else
+            {
+
+                FinishLoadVisual(new());
+            }
         }
 
-        void FinishLoadVisual(SceneInstance scene)
+        void FinishLoadVisual(SceneInstance _)
         {
             ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
             progressBar.value = 1;
-            progressBar.title = "Načteno";//"Loaded";
+            progressBar.title = "Načteno";
 
 
             VisualElement l = loadingScreen.rootVisualElement.Q<Label>("Label");
@@ -97,6 +104,13 @@ namespace Assets.Scripts.UI.MainMenu
 
             canExit = false;
             useAction.Disable();
+
+            if (useVR)
+            {
+                Camera.main.cullingMask = -1;
+            }
+            GameObject.FindGameObjectWithTag("Player").transform.position 
+                = Rooms.Room.StartingRoom.SpawnPoint.transform.position;
 
             AddressableSceneManager.UnloadScene("Main Menu");
             PlayerMovement.Activate();

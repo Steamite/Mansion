@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -33,14 +34,16 @@ namespace Assets.Scripts.Interactable_Items.Rooms
 
         Dictionary<string, HandleDetails> loadedScenes;
 
-
+        public static bool UseVR { get; set; }
         static AddressableSceneManager instance;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         static void Clear()
         {
             instance = null;
+            UseVR = false;
         }
+
         private void Awake()
         {
             instance = this;
@@ -60,6 +63,8 @@ namespace Assets.Scripts.Interactable_Items.Rooms
 
         IEnumerator WaitForSceneLoad(string sceneToLoad, SceneType sceneType, Action<float> proggressAction = null, Action<SceneInstance> onFinish = null)
         {
+            Debug.Log(loadedScenes.Count);
+
             AsyncOperationHandle<SceneInstance> loadHandle =
                     Addressables.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive, false);
 
@@ -86,7 +91,7 @@ namespace Assets.Scripts.Interactable_Items.Rooms
                         break;
                     case SceneType.Room:
                         Room loadedRoom = instance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
-                        loadedRoom.FinishLoad(false);
+                        loadedRoom.FinishLoad(loadedScenes.Count(q=> q.Value.type == SceneType.Room) == 1);
                         break;
                 }
 
@@ -130,6 +135,7 @@ namespace Assets.Scripts.Interactable_Items.Rooms
 
                 yield return handle;
             }
+            Debug.Log(loadedScenes.Count);
         }
     }
 }
