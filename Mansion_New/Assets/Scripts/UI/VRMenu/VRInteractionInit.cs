@@ -19,7 +19,7 @@ namespace Assets.Scripts.UI.VRMenu
         public void SetupItem(InteractableItem item)
         {
             XRBaseInteractable xRBase;
-            if(item.Rotatable)
+            if(item.IsStatic)
                 xRBase = item.gameObject
                 .AddComponent<XRGrabInteractable>();
             else

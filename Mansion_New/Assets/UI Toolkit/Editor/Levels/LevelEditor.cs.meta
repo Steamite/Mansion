@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: da17f12020e23684b81e44fc35ca0e27
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_ViewDataDictionary: {instanceID: 0}
+  - lightningTemplate: {fileID: 11400000, guid: f7ca3cbb871d66d43812b14c1567919a, type: 2}
+  - sceneTemplate: {fileID: 11400000, guid: 59d912972a89afc4cb4b4262eb95881b, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -35,12 +35,11 @@ namespace Rooms
     public class Room : MonoBehaviour
     {
         public List<string> AdjacentRooms = new();
-        public string roomName;
         
         Transform Entrances => transform.GetChild(2).transform;
         public Transform SpawnPoint => transform.GetChild(4).transform;
-        public static Room StartingRoom { private set; get; } 
-
+        public static Room StartingRoom { private set; get; }
+        public Transform Interactables => transform.GetChild(0);
 
         public void FinishLoad(bool startingRoom)
         {
@@ -61,7 +60,7 @@ namespace Rooms
             Debug.Log("enter room");
             if (previousRoom)
             {
-                List<string> roomsToUnload = previousRoom.AdjacentRooms.Where(q => !AdjacentRooms.Contains(q) && q != roomName).ToList();
+                List<string> roomsToUnload = previousRoom.AdjacentRooms.Where(q => !AdjacentRooms.Contains(q) && q != name).ToList();
                 previousRoom.ExitRoom(roomsToUnload);
                 List<string> roomsToLoad = AdjacentRooms.Where(loadRoom => !previousRoom.AdjacentRooms.Contains(loadRoom) && loadRoom != previousRoom.gameObject.scene.name).ToList();
                 foreach (string asset in roomsToLoad)

@@ -2,6 +2,7 @@
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 
 namespace Items
@@ -13,23 +14,23 @@ namespace Items
     {
         /// <summary>Display name of the item.</summary>
         [SerializeField] public string ItemName;
+
         /// <summary>Inner and Outer limits of zoom.</summary>
         [SerializeField][MinMaxRangeSlider(0.01f, 5)] public Vector2 RadiusRange;
         /// <summary>Path for downloading the content.</summary>
         public AssetReference SourceObject { get => sourceObject; private set => sourceObject = value; }
-        public Vector2 MaxDrag { get => maxDrag; set => maxDrag = value; }
+      //  public Vector2 MaxDrag { get => maxDrag; set => maxDrag = value; }
         public Vector2 StartRotation { get => startRotation; set => startRotation = value; }
         public Vector3 Offset { get => offset; set => offset = value; }
-        public bool Rotatable { get => rotatable; set => rotatable = value; }
+        public bool IsStatic => gameObject.isStatic;
 
         [SerializeField] AssetReference sourceObject;
 
         [SerializeField] public string SourceObjectName;
 
-        [SerializeField] private Vector2 maxDrag;
-        [SerializeField] private Vector2 startRotation;
-        [SerializeField] private Vector3 offset;
-        [SerializeField] private bool rotatable = true;
+//        [SerializeField] private Vector2 maxDrag;
+        [SerializeField] public Vector2 startRotation;
+        [SerializeField] public Vector3 offset;
         [SerializeField] public Vector3 rotationVR;
         public Vector3 OffsetVR;
 

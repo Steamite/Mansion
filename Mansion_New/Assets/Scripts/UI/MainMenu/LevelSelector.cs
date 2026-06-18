@@ -35,7 +35,9 @@ public class LevelSelector : MonoBehaviour
             document.enabled = true;
 
             UIDocument doc = loadingScreen.GetComponent<UIDocument>();
+            doc.enabled = true;
             doc.panelSettings = worldSettings;
+            doc.worldSpaceSizeMode = UIDocument.WorldSpaceSizeMode.Fixed;
             doc.enabled = false;
 
             AddressableSceneManager.LoadScene(

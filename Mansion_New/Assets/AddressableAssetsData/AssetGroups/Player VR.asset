@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Player VR
   m_GUID: 07e7c6d9e6fee3b4193f2282e4dea5d2
   m_SerializeEntries:
+  - m_GUID: 346c0b76288f72649819b6aa7ca618f7
+    m_Address: Assets/Scenes/Room Scenes/VR Test
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c4a2193a40f154f44af4d4ae8b36cf3e
     m_Address: Player VR
     m_ReadOnly: 0
@@ -25,13 +30,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cb08c75ecbd40694f94980cce6e40330
-    m_Address: Assets/Models/Human/Chunk.fbx
+  - m_GUID: d995973ba7c2661449848a647b816fb4
+    m_Address: VR Test
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d995973ba7c2661449848a647b816fb4
-    m_Address: VR Test
+  - m_GUID: ff9c6aa4f2268a84aa817997c807cfa5
+    m_Address: Hotovo3
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

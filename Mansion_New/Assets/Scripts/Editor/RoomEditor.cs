@@ -57,9 +57,9 @@ public class RoomEditor : Editor
         element.Add(listView);
         listView.itemsSource = room.AdjacentRooms;
 
-        TextField roomNameField = new("Name");
-        roomNameField.BindProperty(serializedObject.FindProperty(nameof(Room.roomName)));
-        element.Add(roomNameField);
+        /*TextField roomNameField = new("Name");
+        roomNameField.BindProperty(serializedObject.FindProperty(nameof(Room.name)));
+        element.Add(roomNameField);*/
 /*
         ObjectField spawnPointField = new("SpawnPoint");
         spawnPointField.BindProperty(serializedObject.FindProperty(nameof(Room.sp)));

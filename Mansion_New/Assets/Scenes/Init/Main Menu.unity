@@ -321,6 +321,7 @@ MonoBehaviour:
   - Prototype
   - VR Test
   - Test
+  - Room
   screenSettings: {fileID: 11400000, guid: 8b334b482a0d970409e99bdb9e62d520, type: 2}
   worldSettings: {fileID: 11400000, guid: a0182d393c08ba34da414a2dda6f0010, type: 2}
   mainCamera: {fileID: 615289002}
@@ -414,6 +415,14 @@ MonoBehaviour:
     - m_Name: 
       m_Id: c5b93c17-0764-403d-9091-36be3430f3f7
       m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Use
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 1b264dda-f29f-4609-a093-80133f18c5ce
+      m_Path: '*/{Trigger}'
       m_Interactions: 
       m_Processors: 
       m_Groups: 

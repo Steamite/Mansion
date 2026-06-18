@@ -1,0 +1,22 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ui:VisualElement name="Root" style="flex-grow: 1; flex-direction: column; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;">
+        <ui:ListView name="Levels" header-title="Levels:" show-add-remove-footer="true" show-foldout-header="true" show-border="true"/>
+        <ui:VisualElement name="LevelInfo" style="border-top-color: rgb(87, 87, 87); border-top-width: 5px; padding-bottom: 5px; padding-top: 5px;">
+            <uie:ObjectField label="Object Field" name="LevelAsset"/>
+            <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row; min-width: 100%; justify-content: space-between; align-content: stretch;">
+                <ui:TextField label="Level Name" placeholder-text="Level Name" name="Name" style="flex-grow: 1;"/>
+                <ui:Button text="Save" name="Save"/>
+            </ui:VisualElement>
+            <ui:Button text="Load" name="Load"/>
+            <ui:ListView name="Rooms" reorderable="false" horizontal-scrolling="false" show-foldout-header="true" header-title="Rooms" show-add-remove-footer="true" show-border="true"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="RoomInfo" style="flex-grow: 1; border-top-color: rgb(87, 87, 87); border-top-width: 5px; padding-top: 5px; padding-bottom: 5px;">
+            <ui:VisualElement name="VisualElement" style="flex-grow: 0; flex-direction: row; min-width: 100%; justify-content: space-between; align-content: stretch;">
+                <ui:TextField label="Room Name" placeholder-text="Room Name" name="RoomName" style="flex-grow: 1;"/>
+                <ui:Button text="Save" name="Save"/>
+            </ui:VisualElement>
+            <ui:ListView name="Items" header-title="Items" show-foldout-header="true" show-add-remove-footer="true"/>
+            <ui:ListView name="Entrances" reorderable="false" show-foldout-header="true" header-title="Entrances" show-add-remove-footer="true"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

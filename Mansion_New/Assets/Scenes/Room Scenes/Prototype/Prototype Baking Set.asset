@@ -16,13 +16,13 @@ MonoBehaviour:
     m_Keys:
     - cce481c706f8eaf4bab2a10e7a7246b1
     m_Values:
-    - hasProbeVolume: 1
+    - hasProbeVolume: 0
       bakeScene: 1
       bounds:
         m_Center: {x: -17.550001, y: 0, z: -9.450001}
         m_Extent: {x: 6.75, y: 2.7, z: 6.75}
   singleSceneMode: 1
-  dialogNoProbeVolumeInSetShown: 0
+  dialogNoProbeVolumeInSetShown: 1
   settings:
     m_Version: 1
     dilationSettings:

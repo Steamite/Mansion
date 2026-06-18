@@ -5,7 +5,7 @@
         <ui:Label text="Labeldsadsadsadsa" name="Title" style="background-color: rgba(0, 0, 0, 0.784); -unity-text-align: upper-center;"/>
         <ui:ScrollView horizontal-scroller-visibility="Hidden" touch-scroll-type="Elastic" name="Description">
             <ui:Label text="" name="Label" style="-unity-text-align: middle-center; margin-top: 2px; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 4px; padding-right: 4px; padding-bottom: 4px; padding-left: 4px; color: rgb(255, 255, 255); white-space: pre-wrap; font-size: 25px; flex-grow: 1; display: flex;"/>
-            <ui:VisualElement name="Images" style="flex-grow: 1; max-width: 100%;"/>
+            <ui:VisualElement name="Images" style="flex-grow: 1; max-width: 100%; align-self: center;"/>
         </ui:ScrollView>
     </ui:VisualElement>
 </ui:UXML>
