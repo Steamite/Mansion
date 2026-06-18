@@ -1060,19 +1060,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1703447182477470205}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 498bf1341ed298c46be469d0e54fe472, type: 3}
+  m_Script: {fileID: 11500000, guid: a8e582eea25057f45af796669511dee6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Player::Assets.Scripts.Player.Menu
+  m_EditorClassIdentifier: UI::Assets.Scripts.Player.Menu
   showMainMenu:
     m_Name: Show Main Menu
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: d6e89451-61d4-4743-a057-96227352e151
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 717625b9-4ea2-4ad3-b17b-e725dc7141cb
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: 7f7fa073-5b2c-4797-a2b0-48c611c8ad6f
+      m_Id: 20a789b8-5716-4124-93e3-d267250397ca
       m_Path: <Keyboard>/tab
       m_Interactions: 
       m_Processors: 

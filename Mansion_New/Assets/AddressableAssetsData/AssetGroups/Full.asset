@@ -25,8 +25,33 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 772d1abad04393e4da617d02659e2a09
+    m_Address: Assets/Scenes/Room Scenes/Test
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e06cb9318febc24d990abd1dc493a8d
+    m_Address: Assets/Scenes/Room Scenes/ByPart
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4873aa927b1bf6408f378936d1695fe
+    m_Address: Assets/Scenes/Room Scenes/Prototype
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: be274573264094c409bd893e344b0f93
     m_Address: Assets/Models/Hotovo 2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb08c75ecbd40694f94980cce6e40330
+    m_Address: Assets/Models/Human/Chunk.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0fe08c59c64c104d9d8e285619f52b9
+    m_Address: Room A 2 lighting
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -22,7 +22,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
         
         Room selectedRoom;
         string openedScene;
-        string roomScene => $"{LevelEditor.LevelEditor.LEVEL_SCENE_PATH}{_sceneExplorer.SelectedLevel}/{openedScene}.unity";
+        public string RoomScene => $"{LevelEditor.LevelEditor.LEVEL_SCENE_PATH}{_sceneExplorer.SelectedLevel}/{openedScene}.unity";
 
         List<InteractableItem> itemsOnScene;
         ListView view;
@@ -62,7 +62,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
             Add(view = new());
             view.InitStyles("Interactables");
             view.fixedItemHeight = 250;
-            view.makeItem = () => new ItemEditor();
+            view.makeItem = () => new ItemEditor(this);
             view.bindItem = (e, i) => (e as ItemEditor).Bind(itemsOnScene[i]);
             view.onAdd = (_) =>
             {
@@ -76,7 +76,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
                     Quaternion.Euler(0, 0, 0));
 
                 EditorSceneManager.SaveScene(
-                    EditorSceneManager.GetSceneByPath(roomScene));
+                    EditorSceneManager.GetSceneByPath(RoomScene));
 
                 Reload();
             };
@@ -89,7 +89,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
 
                 selectedRoom.Interactables.GetChild(i).gameObject.SetActive(false);
                 EditorSceneManager.SaveScene(
-                    EditorSceneManager.GetSceneByPath(roomScene));
+                    EditorSceneManager.GetSceneByPath(RoomScene));
                 Reload();
             };
         }
@@ -140,7 +140,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
             selectedRoom.name = val;
             EditorUtility.SetDirty(_sceneExplorer.SelectedLevel);
             EditorUtility.SetDirty(selectedRoom);
-            EditorSceneManager.SaveScene(EditorSceneManager.GetSceneByPath(roomScene));
+            EditorSceneManager.SaveScene(EditorSceneManager.GetSceneByPath(RoomScene));
 
             string path = $"{LevelEditor.LevelEditor.LEVEL_SCENE_PATH}{_sceneExplorer.SelectedLevel.WorldName}/{openedScene}.unity";
 
@@ -159,7 +159,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
             selectedRoom.GetComponent<MeshRenderer>().sharedMaterials = materials;
             
             EditorUtility.SetDirty(selectedRoom);
-            EditorSceneManager.SaveScene(EditorSceneManager.GetSceneByPath(roomScene));
+            EditorSceneManager.SaveScene(EditorSceneManager.GetSceneByPath(RoomScene));
         }
 
         public void ClearItem()

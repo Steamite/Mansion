@@ -1,6 +1,7 @@
 ﻿using Items;
 using System;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -14,30 +15,45 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
     }
     public partial class ItemEditor : Foldout
     {
+        RoomList _roomList;
+        ObjectField itemField;
+
         EnumField itemType;
         TextField itemName;
         ObjectField itemData;
         Vector3Field position;
         Vector3Field centerOffset;
 
-        Vector2Field radiusRange;
+        CustomMinMaxSlider radiusRange;
         Vector2Field startRotation;
 
         Toggle staticObject;
 
+        ObjectField modelField;
+
         Button zoomTo;
         InteractableItem _item;
-
         public ItemEditor()
+        { }
+        public ItemEditor(RoomList roomList)
         {
-            Add(itemName = new TextField());
-            Add(itemType = new EnumField());
-            Add(itemData = new ObjectField());
-            Add(radiusRange = new Vector2Field());
-            Add(startRotation = new Vector2Field());
+            _roomList = roomList;
+            Add(itemField = new ObjectField() 
+            { 
+                enabledSelf = false 
+            });
+
+            Add(itemName = new TextField() { label = "Item Name"});
+            Add(itemType = new EnumField() { label = "Type"});
+            Add(itemData = new ObjectField() { label = "Data"});
+            Add(modelField = new ObjectField() { label = "Item Name", objectType = typeof(Mesh)});
+
+            Add(radiusRange = new CustomMinMaxSlider("Radius"));
+
+            Add(startRotation = new Vector2Field() { label = "Start Rotation"});
             //Add(field = new ObjectField());
-            Add(position = new Vector3Field());
-            Add(centerOffset = new Vector3Field());
+            Add(position = new Vector3Field() { label = "Position"});
+            Add(centerOffset = new Vector3Field() { label = "Center Offset"});
 
             Add(zoomTo = new Button() { text = "Show" });
             zoomTo.clicked += () =>
@@ -51,7 +67,9 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
         public void Bind(InteractableItem item)
         {
             _item = item;
-            text = item.ItemName;
+            itemField.value = _item;
+
+            text = _item.ItemName;
             SerializedObject sItem = new(_item);
             itemName.Unbind();
             itemName.BindProperty(sItem.FindProperty(nameof(InteractableItem.ItemName)));
@@ -66,24 +84,33 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
             SerializedObject sTran = new SerializedObject(_item.transform);
             position.Unbind();
             position.BindProperty(sTran.FindProperty("m_LocalPosition"));
-            position.label = "position";
             
             centerOffset.Unbind();
             centerOffset.BindProperty(sItem.FindProperty(nameof(InteractableItem.offset)));
-            centerOffset.label = "center";
 
             //maxDrag.BindProperty(sItem.FindProperty(InteractableItem.MaxDrag));
-            radiusRange.Unbind();
-            radiusRange.BindProperty(sItem.FindProperty(nameof(InteractableItem.RadiusRange)));
-            radiusRange.label = "radius";
+            radiusRange.Bind(sItem.FindProperty(nameof(InteractableItem.RadiusRange)));
+
+            modelField.UnregisterValueChangedCallback(MeshChanged);
+            modelField.value = _item.GetComponent<MeshFilter>().sharedMesh;
+            modelField.RegisterValueChangedCallback(MeshChanged);
 
 
             startRotation.Unbind();
             startRotation.BindProperty(sItem.FindProperty(nameof(InteractableItem.startRotation)));
-            startRotation.label = "start rotation";
-
 
             BindStaticToggle();
+        }
+
+        void MeshChanged(ChangeEvent<UnityEngine.Object> evt)
+        {
+            Mesh mesh = evt.newValue as Mesh;
+            Material[] materials = FBXMeshMaterialMapper.GetMeshMaterials(mesh);
+            _item.GetComponent<MeshFilter>().sharedMesh = mesh;
+            _item.GetComponent<MeshRenderer>().sharedMaterials = materials;
+
+            EditorUtility.SetDirty(_item);
+            EditorSceneManager.SaveScene(EditorSceneManager.GetSceneByPath(_roomList.RoomScene));
         }
 
         private void UpdateGOName(ChangeEvent<string> evt)

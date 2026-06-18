@@ -35,16 +35,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b4873aa927b1bf6408f378936d1695fe
-    m_Address: Assets/Scenes/Room Scenes/Prototype
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cb08c75ecbd40694f94980cce6e40330
-    m_Address: Assets/Models/Human/Chunk.fbx
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cce481c706f8eaf4bab2a10e7a7246b1
     m_Address: Prototype
     m_ReadOnly: 0

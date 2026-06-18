@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.UIElements;
+using UnityEngine.XR.Interaction.Toolkit.Locomotion.Gravity;
 
 namespace Assets.Scripts.UI.MainMenu
 {
@@ -108,6 +109,7 @@ namespace Assets.Scripts.UI.MainMenu
             if (useVR)
             {
                 Camera.main.cullingMask = -1;
+                GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<GravityProvider>().enabled = true;
             }
             GameObject.FindGameObjectWithTag("Player").transform.position 
                 = Rooms.Room.StartingRoom.SpawnPoint.transform.position;
