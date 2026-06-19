@@ -1,7 +1,10 @@
 ﻿using Assets.Scripts.Interactable_Items.Rooms;
 using Assets.Scripts.UI.MainMenu;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.ResourceLocations;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
@@ -18,9 +21,16 @@ public class LevelSelector : MonoBehaviour
 
     [SerializeField] GameObject mainCamera;
 
+    [SerializeField] List<LevelData> levels;
     private void Awake()
     {
-        ShowUI();
+        levels = new();
+        Addressables.LoadAssetsAsync<LevelData>(
+            "Levels", 
+            (data) => levels.Add(data)).Completed += (_) =>
+            {
+                ShowUI();
+            };
     }
 
     void ShowUI()

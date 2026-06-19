@@ -1,4 +1,5 @@
-﻿using Items;
+﻿using Assets.Scripts.Interactable_Items.SO;
+using Items;
 using System;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -15,7 +16,7 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
     }
     public partial class ItemEditor : Foldout
     {
-        RoomList _roomList;
+        RoomEditor _roomEditor;
         ObjectField itemField;
 
         EnumField itemType;
@@ -35,9 +36,9 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
         InteractableItem _item;
         public ItemEditor()
         { }
-        public ItemEditor(RoomList roomList)
+        public ItemEditor(RoomEditor roomList)
         {
-            _roomList = roomList;
+            _roomEditor = roomList;
             Add(itemField = new ObjectField() 
             { 
                 enabledSelf = false 
@@ -45,7 +46,7 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
 
             Add(itemName = new TextField() { label = "Item Name"});
             Add(itemType = new EnumField() { label = "Type"});
-            Add(itemData = new ObjectField() { label = "Data"});
+            Add(itemData = new ObjectField() { label = "Data", objectType = typeof(ItemData)});
             Add(modelField = new ObjectField() { label = "Item Name", objectType = typeof(Mesh)});
 
             Add(radiusRange = new CustomMinMaxSlider("Radius"));
@@ -105,12 +106,12 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
         void MeshChanged(ChangeEvent<UnityEngine.Object> evt)
         {
             Mesh mesh = evt.newValue as Mesh;
-            Material[] materials = FBXMeshMaterialMapper.GetMeshMaterials(mesh);
+            Material[] materials = FBXMeshMaterialMapper.GetMeshMaterials(mesh).materials;
             _item.GetComponent<MeshFilter>().sharedMesh = mesh;
             _item.GetComponent<MeshRenderer>().sharedMaterials = materials;
 
             EditorUtility.SetDirty(_item);
-            EditorSceneManager.SaveScene(EditorSceneManager.GetSceneByPath(_roomList.RoomScene));
+            EditorSceneManager.SaveScene(EditorSceneManager.GetSceneByPath(_roomEditor.RoomScene));
         }
 
         private void UpdateGOName(ChangeEvent<string> evt)

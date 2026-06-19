@@ -32,16 +32,19 @@ namespace Assets.UI_Toolkit.Editor.Levels
         Button saveButton;
         Button loadButton;
 
+        Vector3Field spawnField;
+
         TextField levelName;
 
-        RoomList roomList;
+        public RoomEditor roomEditor;
+
         public SceneList() { }
         public SceneList(LevelList list)
         {
             levelList = list;
-            InitScenesView();
             InitLevelInspect();
-            Add(roomList = new RoomList(this));
+            InitScenesView();
+            Add(roomEditor = new RoomEditor(this));
 
             style.display = DisplayStyle.None;
             style.borderTopColor = Color.gray;
@@ -66,6 +69,10 @@ namespace Assets.UI_Toolkit.Editor.Levels
             sceneList.RefreshItems();
 
             sceneList.selectedIndex = -1;
+
+            spawnField.Unbind();
+            SerializedObject lData = new SerializedObject(selectedLevel);
+            spawnField.BindProperty(lData.FindProperty(nameof(LevelData.spawn)));
         }
 
         private void InitScenesView()
@@ -73,13 +80,49 @@ namespace Assets.UI_Toolkit.Editor.Levels
             Add(sceneList = new());
             sceneList.InitStyles("Rooms");
 
-            sceneList.makeItem = () => new ObjectField("scene asset:") { objectType = typeof(SceneAsset) };
+            sceneList.makeItem = () => 
+            {
+                VisualElement el = new() 
+                { 
+                    style = 
+                    { 
+                        flexDirection = FlexDirection.Row, 
+                        paddingLeft = 15, 
+                        paddingRight = 5, 
+                        justifyContent = Justify.SpaceBetween
+                    }
+                };
+                ObjectField field = new ObjectField() 
+                { 
+                    objectType = typeof(SceneAsset), 
+                    style = 
+                    { 
+                        flexGrow = 1, 
+                        marginRight = 35
+                    } 
+                };
+                Toggle toggle = new("");
+                el.Add(field);
+                el.Add(toggle);
+                return el;
+            };
             sceneList.bindItem = (e, i) =>
             {
+                ObjectField obj = (e[0] as ObjectField);
                 string path = $"{LevelEditor.LevelEditor.LEVEL_SCENE_PATH}{selectedLevel.WorldName}/{selectedLevel.scenes[i]}.unity";
-                (e as ObjectField).value = AssetDatabase.LoadAssetAtPath<SceneAsset>(path);
-                (e as ObjectField).userData = i;
-                (e as ObjectField).RegisterValueChangedCallback(SceneChanged);
+                obj.userData = i;
+                obj.UnregisterValueChangedCallback(SceneChanged);
+                obj.SetValueWithoutNotify(AssetDatabase.LoadAssetAtPath<SceneAsset>(path));
+                obj.RegisterValueChangedCallback(SceneChanged);/*
+                obj.UnregisterCallback<FocusInEvent>(RoomFocus);
+                obj.RegisterCallback<FocusInEvent>(RoomFocus);*/
+
+                Toggle toggle = (e[1] as Toggle);
+                toggle.UnregisterValueChangedCallback(ToggleMainRoom);
+                toggle.SetValueWithoutNotify(selectedLevel.initScene == i);
+                toggle.userData = i;
+
+                toggle.RegisterValueChangedCallback(ToggleMainRoom);
             };
             sceneList.unbindItem = (e, i) =>
             {
@@ -94,14 +137,14 @@ namespace Assets.UI_Toolkit.Editor.Levels
                 string scenePath = System.IO.Path.Combine(LevelEditor.LevelEditor.LEVEL_SCENE_PATH, editedLevel.WorldName, $"{assetName}.unity");
                 SceneTemplateService.Instantiate(
                     LevelEditor.LevelEditor.SceneTemplate,
-                    false,
+                    true,
                     scenePath);
 
                 editedLevel.scenes.Add(assetName);
 
                 EditorUtility.SetDirty(editedLevel);
                 AssetDatabase.SaveAssets();
-                levelList.RefreshItems();
+                sceneList.RefreshItems();
             };
 
             sceneList.onRemove = (_) =>
@@ -112,14 +155,14 @@ namespace Assets.UI_Toolkit.Editor.Levels
 
                 selectedLevel.scenes.RemoveAt(i);
                 EditorUtility.SetDirty(selectedLevel);
-                levelList.RefreshItems();
+                sceneList.RefreshItems();
             };
 
             sceneList.selectionChanged += (_) => 
             {
                 if (sceneList.selectedIndex == -1)
                 {
-                    roomList.ClearItem();
+                    roomEditor.ClearItem();
                     return;
                 }
                 string name = selectedLevel.scenes[sceneList.selectedIndex];
@@ -127,14 +170,34 @@ namespace Assets.UI_Toolkit.Editor.Levels
                 Scene s = EditorSceneManager.GetSceneByPath(path);
                 if (s == null || s.isLoaded == false)
                     Load();
-                roomList.LoadSceneItems(name,
-                    EditorSceneManager.GetSceneByPath(path)
+
+                Room selectedRoom = EditorSceneManager.GetSceneByPath(path)
                     .GetRootGameObjects()[0]
-                    .GetComponent<Room>());
+                    .GetComponent<Room>();
+                roomEditor.LoadSceneItems(name, selectedRoom);
+                Selection.activeGameObject = selectedRoom.gameObject;
             };
         }
+/*
+        private void RoomFocus(FocusInEvent evt)
+        {
+            VisualElement elem = evt.currentTarget as VisualElement;
+            int x = (int)elem.userData;
+            sceneList.selectedIndex = x;
+        }*/
 
-        private void SceneChanged(ChangeEvent<UnityEngine.Object> evt)
+        void ToggleMainRoom(ChangeEvent<bool> evt)
+        {
+            Toggle toggle = evt.target as Toggle;
+            int x = (int)toggle.userData;
+            int prev = selectedLevel.initScene;
+            selectedLevel.initScene = x;
+            EditorUtility.SetDirty(selectedLevel);
+            sceneList.RefreshItem(x);
+            sceneList.RefreshItem(prev);
+        }
+
+        void SceneChanged(ChangeEvent<UnityEngine.Object> evt)
         {
             int i = (int)(evt.target as ObjectField).userData;
             LevelData data = selectedLevel;
@@ -177,6 +240,9 @@ namespace Assets.UI_Toolkit.Editor.Levels
             
             Add(loadButton = new() { text = "Load" });
             loadButton.clicked += Load;
+
+
+            Add(spawnField = new Vector3Field("SpawnPosition"));
         }
         void Load()
         {

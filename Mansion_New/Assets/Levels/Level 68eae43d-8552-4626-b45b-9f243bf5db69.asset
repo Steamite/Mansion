@@ -17,3 +17,14 @@ MonoBehaviour:
   scenes:
   - Room1
   - Room2
+  - Room3
+  - Room4
+  - Room5
+  - Room6
+  - Room7
+  - Room8
+  - Room9
+  - Room10
+  - Room11
+  spawn: {x: -11.922421, y: -1.4944408, z: -12.936431}
+  initScene: 10

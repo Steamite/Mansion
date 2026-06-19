@@ -10,5 +10,7 @@ namespace Assets.Scripts.Interactable_Items.Rooms
         public string WorldName = "";
         public bool active = true;
         public List<string> scenes = new();
+        public Vector3 spawn;
+        public int initScene;
     }
 }

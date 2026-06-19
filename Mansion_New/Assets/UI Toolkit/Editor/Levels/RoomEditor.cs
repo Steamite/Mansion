@@ -12,23 +12,30 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using static FBXMeshMaterialMapper;
 
 namespace Assets.UI_Toolkit.Editor.Levels
 {
     [UxmlElement]
-    public partial class RoomList : VisualElement
+    public partial class RoomEditor : VisualElement
     {
         SceneList _sceneExplorer;
         
         Room selectedRoom;
+        public Room SelectedRoom => selectedRoom;
+        public InteractableItem SelectedItem => 
+            view.selectedIndex > - 1 && view.selectedIndex < itemsOnScene.Count 
+                ? itemsOnScene[view.selectedIndex] 
+                : null;
+
         string openedScene;
         public string RoomScene => $"{LevelEditor.LevelEditor.LEVEL_SCENE_PATH}{_sceneExplorer.SelectedLevel}/{openedScene}.unity";
 
         List<InteractableItem> itemsOnScene;
         ListView view;
 
-        public RoomList(){}
-        public RoomList(SceneList sceneExplorer)
+        public RoomEditor(){}
+        public RoomEditor(SceneList sceneExplorer)
         {
             _sceneExplorer = sceneExplorer;
             
@@ -61,7 +68,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
         {
             Add(view = new());
             view.InitStyles("Interactables");
-            view.fixedItemHeight = 250;
+            view.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
             view.makeItem = () => new ItemEditor(this);
             view.bindItem = (e, i) => (e as ItemEditor).Bind(itemsOnScene[i]);
             view.onAdd = (_) =>
@@ -112,12 +119,12 @@ namespace Assets.UI_Toolkit.Editor.Levels
             view.RefreshItems();
 
             roomName.UnregisterValueChangedCallback(TextChange);
-            roomName.value = selectedRoom.name;
+            roomName.SetValueWithoutNotify(selectedRoom.name);
             roomName.RegisterValueChangedCallback(TextChange);
 
             
             meshField.UnregisterValueChangedCallback(MeshChanged);
-            meshField.value = selectedRoom.GetComponent<MeshFilter>().sharedMesh;
+            meshField.SetValueWithoutNotify(selectedRoom.GetComponent<MeshFilter>().sharedMesh);
             meshField.RegisterValueChangedCallback(MeshChanged);
         }
 
@@ -154,10 +161,13 @@ namespace Assets.UI_Toolkit.Editor.Levels
         void MeshChanged(ChangeEvent<UnityEngine.Object> evt)
         {
             Mesh mesh = evt.newValue as Mesh;
-            Material[] materials = FBXMeshMaterialMapper.GetMeshMaterials(mesh);
+            MeshObjectData meshObject = FBXMeshMaterialMapper.GetMeshMaterials(mesh);
+            if (meshObject.meshObject == null)
+                return;
             selectedRoom.GetComponent<MeshFilter>().sharedMesh = mesh;
-            selectedRoom.GetComponent<MeshRenderer>().sharedMaterials = materials;
-            
+            selectedRoom.GetComponent<MeshRenderer>().sharedMaterials = meshObject.materials;
+            selectedRoom.transform.position = meshObject.meshObject.transform.localPosition;
+
             EditorUtility.SetDirty(selectedRoom);
             EditorSceneManager.SaveScene(EditorSceneManager.GetSceneByPath(RoomScene));
         }

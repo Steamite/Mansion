@@ -19,9 +19,23 @@ public partial class CustomMinMaxSlider : VisualElement
         Add(new Label(name));
         VisualElement element = new() { style = { flexDirection = FlexDirection.Row} };
         Add(element);
-        element.Add(minField = new());
+        element.Add(minField = new() 
+        { 
+            style = 
+            {
+                minWidth = new Length(10, LengthUnit.Percent), 
+                maxWidth = new Length(10, LengthUnit.Percent)
+            }
+        });
         element.Add(radiusSlider = new() { style = {flexGrow = 1}});
-        element.Add(maxField = new());
+        element.Add(maxField = new()
+        {
+            style =
+            {
+                minWidth = new Length(10, LengthUnit.Percent),
+                maxWidth = new Length(10, LengthUnit.Percent)
+            }
+        });
 
         radiusSlider.lowLimit = 0f;
         radiusSlider.highLimit = 5f;

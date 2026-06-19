@@ -16,12 +16,15 @@ namespace Assets.UI_Toolkit.Editor.Levels
     [UxmlElement]
     public partial class LevelList : VisualElement
     {
-
         List<LevelData> levelData;
-        LevelData selectedLevel => levelData[levelView.selectedIndex];
+        public LevelData SelectedLevel => 
+            (levelView.selectedIndex > -1 && levelData.Count > levelView.selectedIndex )
+                ? levelData[levelView.selectedIndex] 
+                : null;
         ListView levelView;
 
-        SceneList scenelist;
+        public SceneList scenelist;
+
         public LevelList()
         {
             InitList();
