@@ -23,16 +23,12 @@ namespace Assets.UI_Toolkit.Editor.Levels
         
         Room selectedRoom;
         public Room SelectedRoom => selectedRoom;
-        public InteractableItem SelectedItem => 
-            view.selectedIndex > - 1 && view.selectedIndex < itemsOnScene.Count 
-                ? itemsOnScene[view.selectedIndex] 
-                : null;
+        
 
         string openedScene;
-        public string RoomScene => $"{LevelEditor.LevelEditor.LEVEL_SCENE_PATH}{_sceneExplorer.SelectedLevel}/{openedScene}.unity";
+        public string RoomScene => $"{LevelData.LEVEL_SCENE_PATH}{_sceneExplorer.SelectedLevel}/{openedScene}.unity";
 
-        List<InteractableItem> itemsOnScene;
-        ListView view;
+        ItemList itemList;
 
         public RoomEditor(){}
         public RoomEditor(SceneList sceneExplorer)
@@ -45,7 +41,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
             style.paddingTop = 10;
 
             RoomInfo();
-            InteractableList();
+            Add(itemList = new(this));
         }
 
 
@@ -63,44 +59,6 @@ namespace Assets.UI_Toolkit.Editor.Levels
             Add(meshField = new() { label = "Mesh", objectType = typeof(Mesh)});
         }
 
-
-        void InteractableList()
-        {
-            Add(view = new());
-            view.InitStyles("Interactables");
-            view.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
-            view.makeItem = () => new ItemEditor(this);
-            view.bindItem = (e, i) => (e as ItemEditor).Bind(itemsOnScene[i]);
-            view.onAdd = (_) =>
-            {
-                GameObject item = new(
-                    "", 
-                    typeof(MeshFilter), typeof(MeshRenderer), 
-                    typeof(TextItem), typeof(BoxCollider));
-                item.transform.parent = selectedRoom.Interactables;
-                item.transform.SetLocalPositionAndRotation(
-                    new(0, 0, 0), 
-                    Quaternion.Euler(0, 0, 0));
-
-                EditorSceneManager.SaveScene(
-                    EditorSceneManager.GetSceneByPath(RoomScene));
-
-                Reload();
-            };
-
-            view.onRemove = (_) =>
-            {
-                int i = view.selectedIndex;
-                if (i < 0 || i > itemsOnScene.Count)
-                    return;
-
-                selectedRoom.Interactables.GetChild(i).gameObject.SetActive(false);
-                EditorSceneManager.SaveScene(
-                    EditorSceneManager.GetSceneByPath(RoomScene));
-                Reload();
-            };
-        }
-
         public void LoadSceneItems(string sceneName, Room room)
         {
             openedScene = sceneName;
@@ -111,12 +69,9 @@ namespace Assets.UI_Toolkit.Editor.Levels
 
         void Reload()
         {
-            itemsOnScene = selectedRoom.Interactables
+            itemList.Load(selectedRoom.Interactables
                 .GetComponentsInChildren<InteractableItem>()
-                .ToList();
-
-            view.itemsSource = itemsOnScene;
-            view.RefreshItems();
+                .ToList());
 
             roomName.UnregisterValueChangedCallback(TextChange);
             roomName.SetValueWithoutNotify(selectedRoom.name);
@@ -149,7 +104,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
             EditorUtility.SetDirty(selectedRoom);
             EditorSceneManager.SaveScene(EditorSceneManager.GetSceneByPath(RoomScene));
 
-            string path = $"{LevelEditor.LevelEditor.LEVEL_SCENE_PATH}{_sceneExplorer.SelectedLevel.WorldName}/{openedScene}.unity";
+            string path = $"{LevelData.LEVEL_SCENE_PATH}{_sceneExplorer.SelectedLevel.WorldName}/{openedScene}.unity";
 
             AssetDatabase.RenameAsset(path, $"{val}.unity");
 

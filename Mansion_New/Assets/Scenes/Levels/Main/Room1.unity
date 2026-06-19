@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 763165097}
   - component: {fileID: 763165096}
   - component: {fileID: 763165095}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rolup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ Transform:
   m_GameObject: {fileID: 763165093}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.692849, y: -1.1766764, z: 2.81083}
+  m_LocalPosition: {x: -8.54, y: -1.1766764, z: 2.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -362,12 +362,12 @@ MonoBehaviour:
   ItemName: Rolup
   RadiusRange: {x: 1.7108744, y: 2.4389257}
   sourceObject:
-    m_AssetGUID: 
+    m_AssetGUID: f597b1ba796c1524d84a38ac1932705c
     m_SubObjectName: 
     m_SubObjectType: 
     m_SubObjectGUID: 
     m_EditorAssetChanged: 0
-  SourceObjectName: 
+  SourceObjectName: t
   startRotation: {x: 0, y: 0}
   offset: {x: 0, y: 0.2, z: 0}
   rotationVR: {x: 0, y: 0, z: 0}
@@ -476,8 +476,8 @@ GameObject:
   - component: {fileID: 1151650890}
   - component: {fileID: 1151650889}
   - component: {fileID: 1151650888}
-  m_Layer: 0
-  m_Name: 
+  m_Layer: 7
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -492,7 +492,7 @@ Transform:
   m_GameObject: {fileID: 1151650886}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -7.08, y: -0.868, z: 2.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -531,8 +531,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa5ccc1ab7c167a459e0f866b26f0467, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Interactables::Items.TextItem
-  ItemName: 
-  RadiusRange: {x: 0, y: 0}
+  ItemName: Right
+  RadiusRange: {x: 2.2916667, y: 3.0439816}
   sourceObject:
     m_AssetGUID: 
     m_SubObjectName: 
@@ -568,7 +568,9 @@ MeshRenderer:
   m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials: []
+  m_Materials:
+  - {fileID: -2754633952974397232, guid: b271c024dbfcb0947b45f7527b025a47, type: 3}
+  - {fileID: -4973734387028869240, guid: b271c024dbfcb0947b45f7527b025a47, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -599,7 +601,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1151650886}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -7970208977325566158, guid: b271c024dbfcb0947b45f7527b025a47, type: 3}
 --- !u!1 &1176160615
 GameObject:
   m_ObjectHideFlags: 0

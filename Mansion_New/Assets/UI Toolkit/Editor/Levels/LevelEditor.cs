@@ -26,9 +26,7 @@ namespace LevelEditor
     public class LevelEditor : EditorWindow
     {
         static LevelEditor instance;
-        public const string LEVEL_DATA_PATH = "Assets/Levels/";
-        public const string LEVEL_SCENE_PATH = "Assets/Scenes/Levels/";
-
+        
         public static SceneTemplateAsset LightTemplate 
             => AssetDatabase.LoadAssetAtPath<SceneTemplateAsset>("Assets/Scenes/Template/Lighting.scenetemplate");
         public static SceneTemplateAsset SceneTemplate 
@@ -81,19 +79,7 @@ namespace LevelEditor
 
         private void FakeOnSceneGUI(SceneView sceneView)
         {
-            if (levelList.scenelist.roomEditor.SelectedItem != null)
-            {
-                Transform tran = levelList.scenelist.roomEditor.SelectedItem.transform;
-                Vector3 vec = Handles.PositionHandle(
-                    tran.position,
-                    Quaternion.identity);
-
-                if (vec != tran.position)
-                {
-                    tran.position = vec;
-                }
-            }
-            else if (levelList?.SelectedLevel != null)
+            if (levelList?.SelectedLevel != null)
             {
                 SerializedObject obj = new SerializedObject(levelList.SelectedLevel);
 

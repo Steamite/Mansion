@@ -109,7 +109,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
             sceneList.bindItem = (e, i) =>
             {
                 ObjectField obj = (e[0] as ObjectField);
-                string path = $"{LevelEditor.LevelEditor.LEVEL_SCENE_PATH}{selectedLevel.WorldName}/{selectedLevel.scenes[i]}.unity";
+                string path = $"{LevelData.LEVEL_SCENE_PATH}{selectedLevel.WorldName}/{selectedLevel.scenes[i]}.unity";
                 obj.userData = i;
                 obj.UnregisterValueChangedCallback(SceneChanged);
                 obj.SetValueWithoutNotify(AssetDatabase.LoadAssetAtPath<SceneAsset>(path));
@@ -134,7 +134,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
                 LevelData editedLevel = selectedLevel;
 
                 string assetName = $"scene {Guid.NewGuid()}";
-                string scenePath = System.IO.Path.Combine(LevelEditor.LevelEditor.LEVEL_SCENE_PATH, editedLevel.WorldName, $"{assetName}.unity");
+                string scenePath = System.IO.Path.Combine(LevelData.LEVEL_SCENE_PATH, editedLevel.WorldName, $"{assetName}.unity");
                 SceneTemplateService.Instantiate(
                     LevelEditor.LevelEditor.SceneTemplate,
                     true,
@@ -166,7 +166,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
                     return;
                 }
                 string name = selectedLevel.scenes[sceneList.selectedIndex];
-                string path = $"{LevelEditor.LevelEditor.LEVEL_SCENE_PATH}{selectedLevel.WorldName}/{name}.unity";
+                string path = $"{LevelData.LEVEL_SCENE_PATH}{selectedLevel.WorldName}/{name}.unity";
                 Scene s = EditorSceneManager.GetSceneByPath(path);
                 if (s == null || s.isLoaded == false)
                     Load();
@@ -230,7 +230,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
             {
                 string val = levelName.value;
                 AssetDatabase.RenameAsset(
-                    $"{LevelEditor.LevelEditor.LEVEL_SCENE_PATH}{selectedLevel.WorldName}", 
+                    $"{LevelData.LEVEL_SCENE_PATH}{selectedLevel.WorldName}", 
                     val);
 
                 selectedLevel.WorldName = val;
@@ -247,7 +247,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
         void Load()
         {
             EditorSceneManager.SaveOpenScenes();
-            string FolderPath = $"{LevelEditor.LevelEditor.LEVEL_SCENE_PATH}{selectedLevel.WorldName}/";
+            string FolderPath = $"{LevelData.LEVEL_SCENE_PATH}{selectedLevel.WorldName}/";
             EditorSceneManager.OpenScene($"{FolderPath}Lightning.unity");
             foreach (string sceneToLoad in selectedLevel.scenes)
             {

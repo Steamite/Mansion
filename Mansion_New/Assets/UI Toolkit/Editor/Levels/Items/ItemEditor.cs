@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 
 namespace Assets.UI_Toolkit.Editor.Levels.Items
@@ -57,13 +58,10 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
             Add(centerOffset = new Vector3Field() { label = "Center Offset"});
 
             Add(zoomTo = new Button() { text = "Show" });
-            zoomTo.clicked += () =>
-            {
-                Selection.activeTransform = _item.transform;
-                SceneView.lastActiveSceneView.FrameSelected();
-            };
+            zoomTo.clicked += () => _item.Zoom();
             Add(staticObject = new Toggle() { text = "Static" });
         }
+
 
         public void Bind(InteractableItem item)
         {
@@ -73,13 +71,15 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
             text = _item.ItemName;
             SerializedObject sItem = new(_item);
             itemName.Unbind();
-            itemName.BindProperty(sItem.FindProperty(nameof(InteractableItem.ItemName)));
             itemName.UnregisterValueChangedCallback(UpdateGOName);
+            itemName.BindProperty(sItem.FindProperty(nameof(InteractableItem.ItemName)));
             itemName.RegisterValueChangedCallback(UpdateGOName);
 
-            itemData.value = _item.SourceObject.Asset;
+            itemData.UnregisterValueChangedCallback(UpdateSourceData);
+            itemData.SetValueWithoutNotify(_item.SourceObject.editorAsset);
+            itemData.RegisterValueChangedCallback(UpdateSourceData);
 
-            itemType.value = (_item is PDFItem) ? ItemTypeEdit.Pdf : ItemTypeEdit.Text;
+            itemType.SetValueWithoutNotify((_item is PDFItem) ? ItemTypeEdit.Pdf : ItemTypeEdit.Text);
             itemType.enabledSelf = false;
 
             SerializedObject sTran = new SerializedObject(_item.transform);
@@ -101,6 +101,16 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
             startRotation.BindProperty(sItem.FindProperty(nameof(InteractableItem.startRotation)));
 
             BindStaticToggle();
+        }
+
+        void UpdateSourceData(ChangeEvent<UnityEngine.Object> evt)
+        {
+            ItemData data = (ItemData)evt.newValue;
+            var guid = AssetDatabase.GUIDFromAssetPath(AssetDatabase.GetAssetPath(data));
+            var assetRef = new AssetReference(guid.ToString());
+
+            _item.SetSource(assetRef, data.name);
+            EditorUtility.SetDirty(_item);
         }
 
         void MeshChanged(ChangeEvent<UnityEngine.Object> evt)

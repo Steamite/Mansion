@@ -48,9 +48,16 @@ namespace Assets.UI_Toolkit.Editor.Levels
                 string name = $"Level {Guid.NewGuid()}";
                 newLevel.WorldName = name;
                 newLevel.name = name;
-                AssetDatabase.CreateAsset(newLevel, Path.Combine(LevelEditor.LevelEditor.LEVEL_DATA_PATH, $"{name}.asset"));
-                AssetDatabase.CreateFolder(LevelEditor.LevelEditor.LEVEL_SCENE_PATH, name);
-                SceneTemplateService.Instantiate(LevelEditor.LevelEditor.LightTemplate, false, Path.Combine(LevelEditor.LevelEditor.LEVEL_SCENE_PATH, name, "Lightning.unity"));
+                AssetDatabase.CreateAsset(newLevel, Path.Combine(LevelData.LEVEL_DATA_PATH, $"{name}.asset"));
+                AssetDatabase.CreateFolder(LevelData.LEVEL_SCENE_PATH, name);
+                SceneTemplateService.Instantiate(
+                    LevelEditor.LevelEditor.LightTemplate, 
+                    true, 
+                    Path.Combine(
+                        LevelData.LEVEL_SCENE_PATH,
+                        name, 
+                        "Lightning.unity")
+                    );
                 LoadData();
             };
 
@@ -70,7 +77,8 @@ namespace Assets.UI_Toolkit.Editor.Levels
 
         public void LoadData()
         {
-            string[] _levels = Directory.GetFiles(LevelEditor.LevelEditor.LEVEL_DATA_PATH, "*.asset");
+            string[] _levels = 
+                Directory.GetFiles(LevelData.LEVEL_DATA_PATH, "*.asset");
             levelData = new();
             foreach (var item in _levels)
             {

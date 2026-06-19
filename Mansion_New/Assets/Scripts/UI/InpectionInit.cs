@@ -109,7 +109,7 @@ namespace UI.Inspect
             yield return new WaitUntil(() => brain.ActiveBlend == null);
 
             CinemachinePanTilt panTilt = cam.GetComponent<CinemachinePanTilt>();
-            panTilt.enabled = item.IsStatic;
+            panTilt.enabled = !item.IsStatic;
             
             canvas.GetComponent<InspectMenu>().Init(asset, item);
         }

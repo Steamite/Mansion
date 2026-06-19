@@ -2,64 +2,36 @@
 using Assets.Scripts.UI.VRMenu;
 using Items;
 using Player;
+using System;
+using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.UIElements;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Gravity;
 
-namespace Assets.Scripts.UI.MainMenu
+namespace Assets.Scripts.UI.MainMenu.SceneLoader
 {
-    internal class LoadingScreen : MonoBehaviour
+    public abstract class BaseLoadingScreen : MonoBehaviour
     {
+        [SerializeField] protected UIDocument loadingScreen;
+        protected bool canExit = false;
 
-        [SerializeField] UIDocument loadingScreen;
-        bool canExit = false;
-
-        [SerializeField] bool useVR = false;
+        [SerializeField] protected bool useVR = false;
         public bool UseVR => useVR;
-        [SerializeField] VRInteractionInit vrInteractabeInitPrefab;
+        [SerializeField] protected VRInteractionInit vrInteractabeInitPrefab;
 
-        [SerializeField] InputAction useAction;
+        [SerializeField] protected InputAction useAction;
 
-        void ShowControls()
+        protected void ShowControls()
         {
             VisualElement controls = loadingScreen.rootVisualElement.Q<VisualElement>("ContolsOverview");
             KeybindOverview a;
             controls.Add(a = new KeybindOverview());
             a.LoadKeybinds();
         }
-
-        public void StartRoomLoad(string sceneName)
-        {
-            AddressableSceneManager.UseVR = useVR;
-
-            if (useVR)
-            {
-                if (VRManagerLink.VRManager == null)
-                {
-                    VRInteractionInit vrManager = Instantiate(vrInteractabeInitPrefab);
-                    VRManagerLink.VRManager = vrManager;
-                    DontDestroyOnLoad(vrManager);
-                }
-            }
-            else
-            {
-                VRManagerLink.DestroyManager();
-            }
-
-            loadingScreen.enabled = true;
-            ShowControls();
-
-            ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
-            AddressableSceneManager.LoadScene(
-                sceneName,
-                SceneType.Room,
-                (percent) => progressBar.value = percent / 2,
-                LoadPlayer);
-        }
-
-        void LoadPlayer(SceneInstance scene)
+        protected void LoadPlayer(SceneInstance scene)
         {
             ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
             if (!useVR)
@@ -76,7 +48,7 @@ namespace Assets.Scripts.UI.MainMenu
             }
         }
 
-        void FinishLoadVisual(SceneInstance _)
+        protected void FinishLoadVisual(SceneInstance _)
         {
             ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
             progressBar.value = 1;
@@ -90,15 +62,15 @@ namespace Assets.Scripts.UI.MainMenu
 
             canExit = true;
             useAction.Enable();
-            useAction.performed += (_) => UnloadMainMenu();;
+            useAction.performed += (_) => UnloadMainMenu(); ;
         }
 
-        void TextFlashingTransitionToggle(VisualElement l)
+        protected void TextFlashingTransitionToggle(VisualElement l)
         {
             l.ToggleInClassList("disabledText");
         }
 
-        private void UnloadMainMenu()
+        protected void UnloadMainMenu()
         {
             if (canExit == false)
                 return;
@@ -111,11 +83,12 @@ namespace Assets.Scripts.UI.MainMenu
                 Camera.main.cullingMask = -1;
                 GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<GravityProvider>().enabled = true;
             }
-            GameObject.FindGameObjectWithTag("Player").transform.position 
+            GameObject.FindGameObjectWithTag("Player").transform.position
                 = Rooms.Room.StartingRoom.SpawnPoint.transform.position;
 
             AddressableSceneManager.UnloadScene("Main Menu");
             PlayerMovement.Activate();
         }
+        public abstract void StartRoomLoad(object sceneToload);
     }
 }

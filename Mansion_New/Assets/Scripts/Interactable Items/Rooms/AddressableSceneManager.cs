@@ -16,6 +16,7 @@ namespace Assets.Scripts.Interactable_Items.Rooms
         Menu,
         Player,
         Room,
+        Lighting,
     }
 
     public class AddressableSceneManager : MonoBehaviour
@@ -91,7 +92,10 @@ namespace Assets.Scripts.Interactable_Items.Rooms
                         break;
                     case SceneType.Room:
                         Room loadedRoom = instance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
-                        loadedRoom.FinishLoad(loadedScenes.Count(q=> q.Value.type == SceneType.Room) == 1);
+                        loadedRoom.FinishLoad(loadedScenes.Count(q => q.Value.type == SceneType.Room) == 1);
+                        break;
+                    case SceneType.Lighting:
+                        SceneManager.SetActiveScene(instance.Scene);
                         break;
                 }
 

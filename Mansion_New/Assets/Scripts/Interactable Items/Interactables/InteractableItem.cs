@@ -1,5 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Unity.Cinemachine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Serialization;
@@ -68,5 +72,13 @@ namespace Items
         {
             Gizmos.DrawSphere(transform.position + Offset, 0.2f);
         }
+
+#if UNITY_EDITOR
+        public void Zoom()
+        {
+            Selection.activeTransform = transform;
+            SceneView.lastActiveSceneView.FrameSelected();
+        }
+#endif
     }
 }
