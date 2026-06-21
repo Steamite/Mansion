@@ -4,12 +4,12 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CustomEditor(typeof(Room))]
+//[CustomEditor(typeof(Room))]
 public class RoomEditor : Editor
 {
     Room room;
 
-    public override VisualElement CreateInspectorGUI()
+    /*public override VisualElement CreateInspectorGUI()
     {
         room = (Room)target;
         VisualElement element = new();
@@ -57,13 +57,13 @@ public class RoomEditor : Editor
         element.Add(listView);
         listView.itemsSource = room.AdjacentRooms;
 
-        /*TextField roomNameField = new("Name");
+        *//*TextField roomNameField = new("Name");
         roomNameField.BindProperty(serializedObject.FindProperty(nameof(Room.name)));
         element.Add(roomNameField);*/
 /*
         ObjectField spawnPointField = new("SpawnPoint");
         spawnPointField.BindProperty(serializedObject.FindProperty(nameof(Room.sp)));
-        element.Add(spawnPointField);*/
+        element.Add(spawnPointField);*//*
 
         return element;
     }
@@ -80,5 +80,5 @@ public class RoomEditor : Editor
 
         room.AdjacentRooms[i] = obj.name;
         EditorUtility.SetDirty(room);
-    }
+    }*/
 }

@@ -31,6 +31,37 @@ namespace UI
             }
         }
 
+
+        Sprite circleSprite;
+        [UxmlAttribute]
+        Sprite CircleSprite
+        {
+            get => circleSprite;
+            set
+            {
+                circleSprite = value;
+                VisualElement element = this.Q<VisualElement>("Center");
+                element.style.backgroundImage = new(circleSprite);
+
+            }
+        }
+
+        Sprite visorSprite;
+        [UxmlAttribute]
+        Sprite VisorSprite
+        {
+            get => visorSprite;
+            set
+            {
+                visorSprite = value;
+                VisualElement element = this.Q<VisualElement>("Visor");
+                element.style.backgroundImage = new(visorSprite);
+            }
+        }
+
+
+
+
         /// <summary>World to image ration.</summary>
         float ratio;
         /// <summary>Map zoom.</summary>
@@ -54,8 +85,8 @@ namespace UI
             Add(map);
 
             #region Image
-            VisualElement element = new();
-            element.name = "MapImage";
+            VisualElement mapImage = new();
+            mapImage.name = "MapImage";
             if (movement)
             {
                 #region Map Zoom
@@ -67,7 +98,7 @@ namespace UI
                     zoom = f * ratio;
                     return _scale;
                 });
-                element.SetBinding("style.scale", binding);
+                mapImage.SetBinding("style.scale", binding);
                 #endregion
 
                 #region Map Position
@@ -79,8 +110,8 @@ namespace UI
                     return new StyleTranslate(new Translate(pos.x, pos.y));
                 });
 
-                element.SetBinding("style.translate", binding);
-                element.dataSource = movement;
+                mapImage.SetBinding("style.translate", binding);
+                mapImage.dataSource = movement;
                 #endregion
 
                 #region Room Label
@@ -97,28 +128,41 @@ namespace UI
                 Add(keyBindLabel);
                 #endregion
             }
-            map.Add(element);
+            map.Add(mapImage);
             #endregion
 
             #region Visor
-            element = new();
-            element.name = "VisorContainer";
-            element.Add(new());
-            element.ElementAt(0).name = "Visor";
+            VisualElement visorContainer = new();
+            visorContainer.name = "VisorContainer";
+            visorContainer.style.position = Position.Absolute;
+            visorContainer.style.width = Length.Percent(100);
+            visorContainer.style.height = Length.Percent(100);
+
+            VisualElement visor = new();
+            visor.name = "Visor";
+            visor.style.backgroundImage = new(visorSprite);
+            visorContainer.Add(visor);
+
             if (cam)
             {
                 DataBinding binding = BindingUtil.CreateBinding(nameof(PlayerCamera.horizontalRot));
                 binding.sourceToUiConverters.AddConverter((ref float f) => new StyleRotate(new Rotate(f)));
-                element.SetBinding("style.rotate", binding);
-                element.dataSource = cam;
+                visorContainer.SetBinding("style.rotate", binding);
+                visorContainer.dataSource = cam;
             }
-            map.Add(element);
+            map.Add(visorContainer);
+            visorContainer.BringToFront();
             #endregion
 
+            #region Center Dot
+            VisualElement center = new();
+            center.name = "Center";
+            center.style.backgroundImage = new(circleSprite);
 
-            element = new();
-            element.name = "Center";
-            map.Add(element);
+            center.style.position = Position.Absolute;
+            map.Add(center);
+            center.BringToFront();
+            #endregion
         }
     }
 }

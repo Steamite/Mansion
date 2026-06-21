@@ -15,20 +15,8 @@ MonoBehaviour:
   m_GroupName: Levels
   m_GUID: 3d21cc8d81972a64e882cde3a9c3c96c
   m_SerializeEntries:
-  - m_GUID: 89c2cf42dbfc2c449aa6d3c7f7ddf1ca
-    m_Address: Level 68eae43d-8552-4626-b45b-9f243bf5db69
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Levels
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8db4d36a48d4a2b4590f57ab9b647f14
-    m_Address: Level ce32fa04-a2c5-4dda-9091-acf8a9236165
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Levels
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dd2a87f2ddce37e489e7d26e68faccbd
-    m_Address: Level 6b554f65-8c45-47f1-88b2-869661d345c3
+  - m_GUID: cc5bc82c63ba6e049888e4d849ec6ae5
+    m_Address: Assets/Levels
     m_ReadOnly: 0
     m_SerializedLabels:
     - Levels

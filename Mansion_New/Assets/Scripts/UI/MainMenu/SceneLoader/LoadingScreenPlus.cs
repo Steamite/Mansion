@@ -1,6 +1,9 @@
 ﻿using Assets.Scripts.Interactable_Items.Rooms;
 using Assets.Scripts.UI.VRMenu;
+using ImageMagick;
 using Items;
+using Player;
+using Rooms;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,8 +17,8 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
     {
         public override void StartRoomLoad(object lData)
         {
-            LevelData levelData = (LevelData)lData;
-            AddressableSceneManager.UseVR = useVR;
+            LevelData level = (LevelData)lData;
+            AddressableSceneManager.Init(level, useVR);
 
             if (useVR)
             {
@@ -30,16 +33,17 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
             {
                 VRManagerLink.DestroyManager();
             }
-            mainRoom = default;
+            PlayerMovement.mainRoom = default;
             loadingScreen.enabled = true;
             ShowControls();
             ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
-            int sceneNumber = levelData.scenes.Count + 1;
+            int sceneNumber = level.scenes.Count + 1;
             AddressableSceneManager.LoadScene(
-                levelData.LightPath, 
-                SceneType.Lighting, 
+                level.LightPath,
+                SceneType.Lighting,
                 (percent) => progressBar.value = percent / sceneNumber,
-                (_) => LoadScenePart(levelData, 0, sceneNumber, progressBar));
+                (_) => LoadPath(level, progressBar));//LoadScenePart(levelData, 0, sceneNumber, progressBar));
+
             /*AddressableSceneManager.LoadScene();
             AddressableSceneManager.LoadScene(
                 sceneName,
@@ -47,25 +51,49 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
                 (percent) => progressBar.value = percent / 2,
                 LoadPlayer);*/
         }
-        SceneInstance mainRoom;
-        void LoadScenePart(LevelData levelData, int i, int sceneNumber, ProgressBar progressBar)
+        SceneInstance mainScene;
+
+        void LoadPath(LevelData levelData, ProgressBar progressBar)
         {
-            float percentBase = (i+1) * (1 / sceneNumber);
+            spawnPosition = levelData.spawn;
+            int i = levelData.initScene;
+
             AddressableSceneManager.LoadScene(
-                levelData.GetRoomPath(i), 
-                SceneType.Room, 
-                (percent) => progressBar.value = percentBase + percent / sceneNumber,
+                levelData.GetRoomPath(i),
+                SceneType.MainRoom,
+                (percent) => progressBar.value = 0.5f + percent / 2,
                 (scene) =>
                 {
-                    if (i == levelData.initScene)
-                        mainRoom = scene;
+                    mainScene = scene;
 
-                    i++;
-                    if (i < levelData.scenes.Count)
-                        LoadScenePart(levelData, i, sceneNumber, progressBar);
-                    else
-                        LoadPlayer(mainRoom);
+                    /*List<string> rooms = scene.Scene
+                        .GetRootGameObjects()[0]
+                        .GetComponent<Room>().AdjacentRooms;
+
+                    if (rooms.Count > 0)
+                        LoadScenePart(levelData, 0, rooms, progressBar);
+                    else*/
+                        LoadPlayer(mainScene);
                 });
         }
+
+        /*void LoadScenePart(LevelData levelData, int i, List<string> scenesToLoad, ProgressBar progressBar)
+        {
+            float percentBase = i * (1 / scenesToLoad.Count);
+
+            string path = levelData.GetRoomPath(scenesToLoad[i]);
+            AddressableSceneManager.LoadScene(
+                path,
+                SceneType.Room, 
+                (percent) => progressBar.value = percentBase + percent / scenesToLoad.Count,
+                (scene) =>
+                {
+                    i++;
+                    if (i < scenesToLoad.Count)
+                        LoadScenePart(levelData, i, scenesToLoad, progressBar);
+                    else
+                        LoadPlayer(mainScene);
+                });
+        }*/
     }
 }

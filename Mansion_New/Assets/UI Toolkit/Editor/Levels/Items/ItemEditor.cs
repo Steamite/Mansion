@@ -35,8 +35,7 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
 
         Button zoomTo;
         InteractableItem _item;
-        public ItemEditor()
-        { }
+        public ItemEditor() { }
         public ItemEditor(RoomEditor roomList)
         {
             _roomEditor = roomList;
@@ -93,7 +92,7 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
             radiusRange.Bind(sItem.FindProperty(nameof(InteractableItem.RadiusRange)));
 
             modelField.UnregisterValueChangedCallback(MeshChanged);
-            modelField.value = _item.GetComponent<MeshFilter>().sharedMesh;
+            modelField.SetValueWithoutNotify(_item.GetComponent<MeshFilter>().sharedMesh);
             modelField.RegisterValueChangedCallback(MeshChanged);
 
 
@@ -134,18 +133,13 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
         void BindStaticToggle()
         {
             staticObject.Unbind();
-            SerializedObject sObj = new SerializedObject(_item.gameObject);
-            SerializedProperty staticFlagsProp = sObj.FindProperty("m_StaticEditorFlags");
-
-            staticObject.value = _item.gameObject.isStatic;
+            SerializedObject sObj = new SerializedObject(_item);
+            SerializedProperty isStatic = sObj.FindProperty(nameof(InteractableItem.isStatic));
+            staticObject.BindProperty(isStatic);
 
             staticObject.UnregisterValueChangedCallback(ToggleStatic);
+            staticObject.SetValueWithoutNotify(_item.gameObject.isStatic);
             staticObject.RegisterValueChangedCallback(ToggleStatic);
-
-            staticObject.TrackPropertyValue(staticFlagsProp, prop =>
-            {
-                staticObject.SetValueWithoutNotify(_item.gameObject.isStatic);
-            });
         }
         private void ToggleStatic(ChangeEvent<bool> evt)
         {

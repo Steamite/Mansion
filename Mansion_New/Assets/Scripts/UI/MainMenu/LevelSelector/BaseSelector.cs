@@ -42,8 +42,6 @@ namespace Assets.Scripts.UI.MainMenu.New
                     {
                         GameObject[] objs = scene.Scene.GetRootGameObjects();
                         Camera.main.cullingMask = LayerMask.GetMask("UI", "Ignore Raycast");// LayerMask.NameToLayer("UI");
-                        objs[1].transform.GetChild(0)
-                            .GetComponent<SpriteRenderer>().enabled = false;
                     });
             }
             else

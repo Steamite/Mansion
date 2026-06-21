@@ -12,13 +12,14 @@ using System.Xml;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
+using UnityEditor.SceneManagement;
 using UnityEditor.SceneTemplate;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
-namespace LevelEditor
+namespace LevelExplorer
 {
     /// <summary>
     /// Custom Editor window for managing streaming assets. 
@@ -37,7 +38,12 @@ namespace LevelEditor
         #region Variables
         AddressableAssetSettings settings;
         LevelList levelList;
-
+        public static LevelData LevelData => instance.levelList.SelectedLevel;
+        public static void SaveScenes() 
+        {
+            if(!Application.isPlaying)
+                EditorSceneManager.SaveOpenScenes(); 
+        }
         #endregion
         #region Init
         [MenuItem("Custom Editors/Levels _2")]
@@ -85,18 +91,18 @@ namespace LevelEditor
 
                 Handles.color = Color.red;
                 Handles.Button(
-                    obj.FindProperty(nameof(LevelData.spawn)).vector3Value, 
+                    obj.FindProperty(nameof(Assets.Scripts.Interactable_Items.Rooms.LevelData.spawn)).vector3Value,
                     Quaternion.identity, 
                     0.5f, 
-                    0.5f, 
+                    0.5f,
                     Handles.SphereHandleCap);
 
                 Vector3 vec = Handles.PositionHandle(
-                    obj.FindProperty(nameof(LevelData.spawn)).vector3Value, 
+                    obj.FindProperty(nameof(Assets.Scripts.Interactable_Items.Rooms.LevelData.spawn)).vector3Value,
                     Quaternion.identity);
-                if (vec != obj.FindProperty(nameof(LevelData.spawn)).vector3Value)
+                if (vec != obj.FindProperty(nameof(Assets.Scripts.Interactable_Items.Rooms.LevelData.spawn)).vector3Value)
                 {
-                    obj.FindProperty(nameof(LevelData.spawn)).vector3Value 
+                    obj.FindProperty(nameof(Assets.Scripts.Interactable_Items.Rooms.LevelData.spawn)).vector3Value 
                         = vec;
                     obj.ApplyModifiedProperties();
                 }

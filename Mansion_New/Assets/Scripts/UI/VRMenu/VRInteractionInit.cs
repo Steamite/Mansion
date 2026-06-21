@@ -21,10 +21,10 @@ namespace Assets.Scripts.UI.VRMenu
             XRBaseInteractable xRBase;
             if(item.IsStatic)
                 xRBase = item.gameObject
-                .AddComponent<XRGrabInteractable>();
+                .AddComponent<XRSimpleInteractable>();
             else
                 xRBase = item.gameObject
-                .AddComponent<XRSimpleInteractable>();
+                    .AddComponent<XRGrabInteractable>();
 
             FillListeners(item, xRBase);
         }

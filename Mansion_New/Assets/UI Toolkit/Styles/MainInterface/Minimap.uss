@@ -47,6 +47,7 @@
     width: 150px;
     height: 150px;
     background-image: url("project://database/Assets/Sprites/Artboard%201@5x.png?fileID=2800000&guid=8616aad909a2758438862602bf308582&type=3#Artboard 1@5x");
+    position: absolute;
 }
 
 #Minimap > #Center {
@@ -57,14 +58,13 @@
     -unity-background-image-tint-color: rgb(5, 0, 255);
     align-content: stretch;
     justify-content: center;
+    position: absolute;
 }
 
 #MinimapContainer {
-    width: 15%;
     position: absolute;
     top: 0;
     right: 0;
-    height: 100%;
 }
 
 #MinimapContainer > Label {

@@ -26,7 +26,8 @@ namespace Items
       //  public Vector2 MaxDrag { get => maxDrag; set => maxDrag = value; }
         public Vector2 StartRotation { get => startRotation; set => startRotation = value; }
         public Vector3 Offset { get => offset; set => offset = value; }
-        public bool IsStatic => gameObject.isStatic;
+        public bool isStatic;
+        public bool IsStatic { get => isStatic; set => isStatic = value; }
 
         [SerializeField] AssetReference sourceObject;
 

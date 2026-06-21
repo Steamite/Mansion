@@ -6,6 +6,7 @@ using Unity.Properties;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.InputSystem;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.UIElements;
 
 namespace Player
@@ -38,6 +39,9 @@ namespace Player
         InputAction mapZoomAction;
         #endregion
 
+
+        public static Room mainRoom = null;
+
         #region Binding Properies
         /// <summary>Character position for moving minimap.</summary>
         [CreateProperty] public Vector2 Position = new();
@@ -54,6 +58,7 @@ namespace Player
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         static void Clear()
         {
+            mainRoom = null;
             instance = null;
         }
 
@@ -88,7 +93,10 @@ namespace Player
 
         IEnumerator InitInput()
         {
-            ActiveRoom = FindAnyObjectByType<Room>();
+            yield return new WaitForSeconds(0.2f);
+            controller.Move(new(0, 0, 0));
+            yield return new WaitForSeconds(0.2f);
+            ActiveRoom = mainRoom;
             ActiveRoom.EnterRoom(null);
 
             propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
@@ -98,7 +106,7 @@ namespace Player
             propertyChanged?.Invoke(this, new(nameof(Position)));
 
             asset.Enable();
-            yield break;
+            GetComponent<IMenu>().CanMove = true;
         }
         #endregion
 
@@ -158,6 +166,7 @@ namespace Player
         {
             if (hit.gameObject.CompareTag("Entrance"))
             {
+                Debug.Log("TEST: " + hit.gameObject.scene.name);
                 Room newRoom = hit.transform.parent.parent.GetComponent<Room>();
                 newRoom.EnterRoom(ActiveRoom);
 
@@ -172,17 +181,13 @@ namespace Player
         /// </summary>
         private void FixedUpdate()
         {
-            /*if (transform.position.y > 0)
-                transform.position = new(transform.position.x, 1, transform.position.z);*/
-            /*if ()
+            if (controller.isGrounded == false)
             {
-                gravity.y = 0;
+                gravity.y += Physics.gravity.y * Time.fixedDeltaTime;
+                controller.Move(gravity);
             }
             else
-            {
-                gravity.y -= 9.8f * Time.fixedDeltaTime;
-                controller.Move(gravity);
-            }*/
+                gravity.y = 0;
         }
     }
 }

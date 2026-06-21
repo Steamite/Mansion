@@ -26,5 +26,5 @@ MonoBehaviour:
   - Room9
   - Room10
   - Room11
-  spawn: {x: -11.922421, y: -1.4944408, z: -12.936431}
-  initScene: 10
+  spawn: {x: -4.183731, y: -1, z: -6.2919736}
+  initScene: 0

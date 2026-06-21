@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Interactable_Items.Rooms;
-using LevelEditor;
+using LevelExplorer;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -51,7 +51,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
                 AssetDatabase.CreateAsset(newLevel, Path.Combine(LevelData.LEVEL_DATA_PATH, $"{name}.asset"));
                 AssetDatabase.CreateFolder(LevelData.LEVEL_SCENE_PATH, name);
                 SceneTemplateService.Instantiate(
-                    LevelEditor.LevelEditor.LightTemplate, 
+                    LevelExplorer.LevelEditor.LightTemplate, 
                     true, 
                     Path.Combine(
                         LevelData.LEVEL_SCENE_PATH,

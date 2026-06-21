@@ -16,6 +16,7 @@ namespace Assets.Scripts.Interactable_Items.Rooms
         Menu,
         Player,
         Room,
+        MainRoom,
         Lighting,
     }
 
@@ -38,17 +39,25 @@ namespace Assets.Scripts.Interactable_Items.Rooms
         public static bool UseVR { get; set; }
         static AddressableSceneManager instance;
 
+        public static LevelData ActiveLevel
+        {
+            get;
+            private set;
+        }
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         static void Clear()
         {
             instance = null;
             UseVR = false;
+            ActiveLevel = null;
         }
 
         private void Awake()
         {
             instance = this;
             loadedScenes = new();
+            ActiveLevel = null;
             DontDestroyOnLoad(gameObject);
         }
 
@@ -62,9 +71,63 @@ namespace Assets.Scripts.Interactable_Items.Rooms
                     )
                 );
 
+        public static void LoadRooms(List<string> scenes, Action onFinish = null)
+        {
+            if (scenes.Count == 0)
+            {
+                onFinish?.Invoke();
+                return;
+            }
+            LoadPart(scenes, 0, onFinish);
+        }
+
+        static void LoadPart(List<string> scenes, int i, Action onFinish = null)
+        {
+            LoadScene(scenes[i], SceneType.Room, null, (_) =>
+            {
+                i++;
+                if (i == scenes.Count)
+                    onFinish?.Invoke();
+                else
+                {
+                    LoadPart(scenes, i, onFinish);
+                }
+            });
+        }
+
+        public static void UnloadRooms(List<string> scenes, Action onFinish = null)
+        {
+            if(scenes.Count == 0)
+            {
+                onFinish?.Invoke();
+                return;
+            }
+
+            UnloadPart(scenes, 0, onFinish);
+        }
+
+        static void UnloadPart(List<string> scenes, int i, Action onFinish = null)
+        {
+            UnloadRoomScene(scenes[i], () =>
+            {
+                i++;
+                if (i == scenes.Count)
+                    onFinish?.Invoke();
+                else
+                {
+                    UnloadPart(scenes, i, onFinish);
+                }
+            });
+        }
+
+
+
         IEnumerator WaitForSceneLoad(string sceneToLoad, SceneType sceneType, Action<float> proggressAction = null, Action<SceneInstance> onFinish = null)
         {
             Debug.Log(loadedScenes.Count);
+
+            if (sceneType == SceneType.Room)
+                sceneToLoad = ActiveLevel.GetRoomPath(sceneToLoad);
 
             AsyncOperationHandle<SceneInstance> loadHandle =
                     Addressables.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive, false);
@@ -83,6 +146,8 @@ namespace Assets.Scripts.Interactable_Items.Rooms
                 yield return loadHandle.Result.ActivateAsync();
                 SceneInstance instance = loadHandle.Result;
 
+
+                Room loadedRoom;
                 switch (sceneType)
                 {
                     case SceneType.Menu:
@@ -91,8 +156,12 @@ namespace Assets.Scripts.Interactable_Items.Rooms
 
                         break;
                     case SceneType.Room:
-                        Room loadedRoom = instance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
-                        loadedRoom.FinishLoad(loadedScenes.Count(q => q.Value.type == SceneType.Room) == 1);
+                        loadedRoom = instance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
+                        loadedRoom.FinishLoad(false);
+                        break;
+                    case SceneType.MainRoom:
+                        loadedRoom = instance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
+                        loadedRoom.FinishLoad(true);
                         break;
                     case SceneType.Lighting:
                         SceneManager.SetActiveScene(instance.Scene);
@@ -113,8 +182,15 @@ namespace Assets.Scripts.Interactable_Items.Rooms
         public static void UnloadScene(string sceneName, Action onUnload = null)
             => instance.StartCoroutine(instance.WaitForSceneUnLoad(sceneName, onUnload));
 
+        public static void UnloadRoomScene(string sceneName, Action onUnload = null)
+        {
+            sceneName = ActiveLevel.GetRoomPath(sceneName);
+            instance.StartCoroutine(instance.WaitForSceneUnLoad(sceneName, onUnload));
+        }
+
         IEnumerator WaitForSceneUnLoad(string roomName, Action onUnload = null)
         {
+
             AsyncOperationHandle<SceneInstance> unloadHandle = Addressables.UnloadSceneAsync(loadedScenes[roomName].handle);
             yield return unloadHandle;
 
@@ -140,6 +216,12 @@ namespace Assets.Scripts.Interactable_Items.Rooms
                 yield return handle;
             }
             Debug.Log(loadedScenes.Count);
+        }
+
+        public static void Init(LevelData lData, bool useVR)
+        {
+            ActiveLevel = lData;
+            UseVR = useVR;
         }
     }
 }

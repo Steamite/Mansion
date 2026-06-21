@@ -1,5 +1,5 @@
 ﻿using Assets.Scripts.Interactable_Items.Rooms;
-using LevelEditor;
+using LevelExplorer;
 using NUnit.Framework;
 using Rooms;
 using System;
@@ -136,7 +136,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
                 string assetName = $"scene {Guid.NewGuid()}";
                 string scenePath = System.IO.Path.Combine(LevelData.LEVEL_SCENE_PATH, editedLevel.WorldName, $"{assetName}.unity");
                 SceneTemplateService.Instantiate(
-                    LevelEditor.LevelEditor.SceneTemplate,
+                    LevelExplorer.LevelEditor.SceneTemplate,
                     true,
                     scenePath);
 
@@ -246,7 +246,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
         }
         void Load()
         {
-            EditorSceneManager.SaveOpenScenes();
+            LevelEditor.SaveScenes();// EditorSceneManager.SaveOpenScenes();
             string FolderPath = $"{LevelData.LEVEL_SCENE_PATH}{selectedLevel.WorldName}/";
             EditorSceneManager.OpenScene($"{FolderPath}Lightning.unity");
             foreach (string sceneToLoad in selectedLevel.scenes)

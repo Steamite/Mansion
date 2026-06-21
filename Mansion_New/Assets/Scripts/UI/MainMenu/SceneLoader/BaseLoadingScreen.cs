@@ -1,7 +1,9 @@
 ﻿using Assets.Scripts.Interactable_Items.Rooms;
+using Assets.Scripts.Player;
 using Assets.Scripts.UI.VRMenu;
 using Items;
 using Player;
+using Rooms;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,6 +26,8 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
 
         [SerializeField] protected InputAction useAction;
 
+        protected Vector3 spawnPosition;
+
         protected void ShowControls()
         {
             VisualElement controls = loadingScreen.rootVisualElement.Q<VisualElement>("ContolsOverview");
@@ -31,20 +35,20 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
             controls.Add(a = new KeybindOverview());
             a.LoadKeybinds();
         }
-        protected void LoadPlayer(SceneInstance scene)
+        protected void LoadPlayer(SceneInstance instance)
         {
+            PlayerMovement.mainRoom = instance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
+
             ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
             if (!useVR)
                 AddressableSceneManager.LoadScene(
                     "Player",
                     SceneType.Player,
                     (percent) => progressBar.value = 0.5f + percent / 2,
-                    FinishLoadVisual
-                    );
+                    FinishLoadVisual);
             else
             {
-
-                FinishLoadVisual(new());
+                FinishLoadVisual(default);
             }
         }
 
@@ -62,7 +66,7 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
 
             canExit = true;
             useAction.Enable();
-            useAction.performed += (_) => UnloadMainMenu(); ;
+            useAction.performed += (_) => UnloadMainMenu();
         }
 
         protected void TextFlashingTransitionToggle(VisualElement l)
@@ -78,16 +82,21 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
             canExit = false;
             useAction.Disable();
 
+            Transform playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+            playerTransform.position
+                = spawnPosition;
+
             if (useVR)
             {
                 Camera.main.cullingMask = -1;
-                GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<GravityProvider>().enabled = true;
+                playerTransform.GetComponentInChildren<GravityProvider>().enabled = true;
+                PlayerMovement.mainRoom.EnterRoom(null);
             }
-            GameObject.FindGameObjectWithTag("Player").transform.position
-                = Rooms.Room.StartingRoom.SpawnPoint.transform.position;
-
+            else
+            {
+                PlayerMovement.Activate();
+            }
             AddressableSceneManager.UnloadScene("Main Menu");
-            PlayerMovement.Activate();
         }
         public abstract void StartRoomLoad(object sceneToload);
     }

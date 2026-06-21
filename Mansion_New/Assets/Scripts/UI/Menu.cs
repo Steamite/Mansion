@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts.Interactable_Items.Rooms;
+using Player;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,14 +10,19 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 namespace Assets.Scripts.Player
 {
-    public class Menu : MonoBehaviour
+    public class Menu : MonoBehaviour, IMenu
     {
         [SerializeField] InputAction showMainMenu;
         bool canMove = false;
+
+        public bool CanMove 
+        { 
+            get => canMove; 
+            set => canMove = value; 
+        }
+
         private void Awake()
         {
-            showMainMenu.Enable();
-            canMove = true;
 /*
             showMainMenu.performed -= Transition;
             showMainMenu.performed += Transition;*/

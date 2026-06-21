@@ -36,18 +36,24 @@ namespace Rooms
     {
         public List<string> AdjacentRooms = new();
         
-        Transform Entrances => transform.GetChild(2).transform;
-        public Transform SpawnPoint => transform.GetChild(4).transform;
-        public static Room StartingRoom { private set; get; }
         public Transform Interactables => transform.GetChild(0);
+
+        public Transform Colliders => transform.GetChild(1);
+        public Transform Walls => Colliders.childCount > 0 
+            ? Colliders.GetChild(0) 
+            : null;
+        public Transform Floors => Colliders.childCount > 1 
+            ? Colliders.GetChild(1) 
+            : null;
+
+        public Transform Entrances => transform.GetChild(2);
+        public Transform SpawnPoint => transform.GetChild(4);
+        public Vector3 centerOffset;
 
         public void FinishLoad(bool startingRoom)
         {
             ToggleEntrances(!startingRoom);
             VRManagerLink.OnRoomLoad(transform);
-
-            if (startingRoom)
-                StartingRoom = this;
         }
 
         /// <summary>
@@ -61,37 +67,25 @@ namespace Rooms
             if (previousRoom)
             {
                 List<string> roomsToUnload = previousRoom.AdjacentRooms.Where(q => !AdjacentRooms.Contains(q) && q != name).ToList();
-                previousRoom.ExitRoom(roomsToUnload);
-                List<string> roomsToLoad = AdjacentRooms.Where(loadRoom => !previousRoom.AdjacentRooms.Contains(loadRoom) && loadRoom != previousRoom.gameObject.scene.name).ToList();
-                foreach (string asset in roomsToLoad)
+                previousRoom.ToggleEntrances(true);
+                AddressableSceneManager.UnloadRooms(roomsToUnload, () =>
                 {
-                    AddressableSceneManager.LoadScene(asset, SceneType.Room);
-                }
+                    List<string> roomsToLoad = AdjacentRooms.Where(
+                        loadRoom =>
+                        !previousRoom.AdjacentRooms.Contains(loadRoom) &&
+                        loadRoom != previousRoom.name
+                        ).ToList();
+
+                    AddressableSceneManager.LoadRooms(roomsToLoad,
+                        () => ToggleEntrances(false));
+                });
             }
             else
             {
-                foreach (string asset in AdjacentRooms)
-                {
-                    AddressableSceneManager.LoadScene(asset, SceneType.Room);
-                }
+                AddressableSceneManager.LoadRooms(AdjacentRooms, () => ToggleEntrances(false));
             }
-
-            //Disable all entrances and wall colliders
-            ToggleEntrances(false);
         }
 
-        /// <summary>
-        /// Unloads unnedded scenes and enables it's own entrances.
-        /// </summary>
-        /// <param name="RoomsToUnload">Scenes to unload</param>
-        void ExitRoom(IEnumerable<string> RoomsToUnload)
-        {
-            foreach (string roomName in RoomsToUnload)
-            {
-                AddressableSceneManager.UnloadScene(roomName);
-            }
-            ToggleEntrances(true);
-        }
 
         /// <summary>
         /// Toggles states of entrances.

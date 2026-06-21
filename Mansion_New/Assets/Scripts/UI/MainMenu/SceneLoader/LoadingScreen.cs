@@ -38,7 +38,7 @@ namespace Assets.Scripts.UI.MainMenu
             ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
             AddressableSceneManager.LoadScene(
                 sceneName,
-                SceneType.Room,
+                SceneType.MainRoom,
                 (percent) => progressBar.value = percent / 2,
                 LoadPlayer);
         }

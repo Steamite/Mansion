@@ -99,8 +99,6 @@ namespace UI.Inspect
 
 
             CinemachineBrain brain = Camera.main.GetComponent<CinemachineBrain>();
-            /*while (brain.ActiveBlend == null)
-                yield return null;*/
 
             //wait for the blend to activate
             yield return new WaitUntil(() => brain.ActiveBlend != null);

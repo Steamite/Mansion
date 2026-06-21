@@ -2,6 +2,7 @@ using Assets.Scripts.Interactable_Items.Rooms;
 using Assets.Scripts.UI.MainMenu;
 using Assets.Scripts.UI.MainMenu.New;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
@@ -16,7 +17,7 @@ public class LevelSelectorPlus : BaseSelector
         levels = new();
         Addressables.LoadAssetsAsync<LevelData>(
             "Levels",
-            (data) => levels.Add(data)).Completed += (_) =>
+            (data) => {if (data.active) { levels.Add(data); } }).Completed += (_) =>
             {
                 ShowUI();
             };

@@ -12,6 +12,7 @@ namespace Assets.Scripts.Interactable_Items.Rooms
         public string SceneFolderPath => LEVEL_SCENE_PATH + WorldName+"/";
         public string LightPath => SceneFolderPath + "Lightning.unity";
         public string GetRoomPath(int i) => SceneFolderPath + $"{scenes[i]}.unity";
+        public string GetRoomPath(string scene) => SceneFolderPath + $"{scene}.unity";
 
         public string WorldName = "";
         public bool active = true;

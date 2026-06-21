@@ -16,3 +16,5 @@ MonoBehaviour:
   active: 1
   scenes:
   - Room5
+  spawn: {x: -1.4969064, y: -1.1272066, z: 0.19302341}
+  initScene: 0

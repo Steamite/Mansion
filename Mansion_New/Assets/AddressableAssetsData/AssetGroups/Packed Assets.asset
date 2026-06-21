@@ -15,8 +15,8 @@ MonoBehaviour:
   m_GroupName: Packed Assets
   m_GUID: ae4c8d0760ed6504fa84697b2ff60a0b
   m_SerializeEntries:
-  - m_GUID: f0076264ef50afe49a8cb38ba73bed06
-    m_Address: Assets/Scenes/Levels/Main
+  - m_GUID: 376db5dbafde97440bdf218b549106ca
+    m_Address: Assets/Scenes/Levels
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
