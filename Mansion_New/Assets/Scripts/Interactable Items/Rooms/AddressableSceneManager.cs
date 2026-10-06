@@ -92,8 +92,14 @@ namespace Assets.Scripts.Interactable_Items.Rooms
                 item.Release();
             }
             loadedScenes.Clear();
-
-            await Resources.UnloadUnusedAssets();
+            try 
+            { 
+                await Resources.UnloadUnusedAssets();
+            }
+            catch(Exception e)
+            {
+                Debug.LogError(e);
+            }
         }
 
         private void Awake()
@@ -124,9 +130,17 @@ namespace Assets.Scripts.Interactable_Items.Rooms
 
         public static async Awaitable UnloadRooms(List<string> scenes)
         {
-            foreach (var item in scenes)
+            try
             {
-                await UnloadScene(item);
+                foreach (var item in scenes)
+                {
+                    await UnloadScene(item);
+                }
+
+            }
+            catch(Exception e)
+            {
+                Debug.LogError(e);
             }
         }
 
