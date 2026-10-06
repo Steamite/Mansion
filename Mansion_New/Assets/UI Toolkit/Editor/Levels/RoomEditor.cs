@@ -158,6 +158,11 @@ namespace Assets.UI_Toolkit.Editor.Levels
             if(selectedRoom.TryGetComponent<MeshFilter>(out MeshFilter filter))
             {
                 Mesh mesh = filter.sharedMesh;
+                if(mesh == null)
+                {
+                    Debug.Log("No room Mesh");
+                    return;
+                }
                 MoveCollider(selectedRoom.Walls, "Walls");
                 MoveCollider(selectedRoom.Floors, "Floor");
                 CreateFloor(mesh);
@@ -185,6 +190,11 @@ namespace Assets.UI_Toolkit.Editor.Levels
 
         void CreateFloor(Mesh mesh)
         {
+            if (mesh == null)
+            {
+                Debug.Log("No mesh");
+                return;
+            }
             Transform floor = selectedRoom.Floors;
             if(floor != null)
             {

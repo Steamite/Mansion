@@ -3,7 +3,117 @@ guid: ff9c6aa4f2268a84aa817997c807cfa5
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: b4f5c3c06921b6b43ba95061225e59b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: b96b1e18dee2bc44ab09b96af533877e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material5
+    second: {fileID: 2100000, guid: b78045fe9f70b564f83ada4bf644a152, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny10
+    second: {fileID: 2100000, guid: d7b4ab4c943f4504382a1bb41ecb3c47, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny2.002
+    second: {fileID: 2100000, guid: 7a8230ccd9a21f04fabc59ab74bb75b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny3
+    second: {fileID: 2100000, guid: 4df426596640660498b1c5c5abb22521, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny4
+    second: {fileID: 2100000, guid: 7a2a77d9a297da94ea495249bf8448ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny6
+    second: {fileID: 2100000, guid: 78a9803389591a14b88f6a0b220696ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny7
+    second: {fileID: 2100000, guid: 20565b195c20be848b05fbcbd47ad2d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny8
+    second: {fileID: 2100000, guid: 602386842e7e6cf4781c55c7ed1f8f8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: steny9
+    second: {fileID: 2100000, guid: e5433cab2417dbd4eb94a5e3e532fce6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stenyChodby
+    second: {fileID: 2100000, guid: 62668b79b9b0a794dbe2155767e4982e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop1
+    second: {fileID: 2100000, guid: 8451eb2503cc3554ab64df5915345d8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop10
+    second: {fileID: 2100000, guid: f9253fc31cc56af4596d22af7147ad8c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop3
+    second: {fileID: 2100000, guid: f2b9e3d2b63cc1f4599f561f3e623bb8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop4
+    second: {fileID: 2100000, guid: c8e5e24349e4bbd4f82692c18d97948d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop5
+    second: {fileID: 2100000, guid: 674369b856f16c7428f55736407e4225, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop6
+    second: {fileID: 2100000, guid: 50e67ff2c7213fd488e93d5478d7f98e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop7
+    second: {fileID: 2100000, guid: 2ca833b41b2a3584db2438fa7a329977, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop8
+    second: {fileID: 2100000, guid: f44d713c778fc514f92a285bd92a18e1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: strop9
+    second: {fileID: 2100000, guid: bd0e8250145fbde4e8958cde2ff59747, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stropChodby
+    second: {fileID: 2100000, guid: b2965d1cc70612747ae655b8d766b988, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -62,8 +172,8 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15.000001
-    secondaryUVHardAngle: 88
+    secondaryUVAreaDistortion: 15
+    secondaryUVHardAngle: 83
     secondaryUVMarginMethod: 1
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1

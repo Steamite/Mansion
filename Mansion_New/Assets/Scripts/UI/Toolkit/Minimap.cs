@@ -1,4 +1,5 @@
-﻿using Player;
+﻿using Assets.Scripts.Player.RoomEntrance;
+using Player;
 using Rooms;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -116,11 +117,11 @@ namespace UI
 
                 #region Room Label
                 locationLabel = new();
-                binding = BindingUtil.CreateBinding(nameof(PlayerMovement.ActiveRoom));
+                binding = BindingUtil.CreateBinding(nameof(EntranceDetector.ActiveRoom));
                 binding.sourceToUiConverters.AddConverter((ref Room r) => r?.name);
-
                 locationLabel.SetBinding("text", binding);
-                locationLabel.dataSource = movement;
+
+                locationLabel.dataSource = movement.GetComponent<EntranceDetector>();
                 Add(locationLabel);
 
                 Label keyBindLabel = new(

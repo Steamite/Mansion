@@ -72,6 +72,8 @@ namespace Items
         private void OnDrawGizmosSelected()
         {
             Gizmos.DrawSphere(transform.position + Offset, 0.2f);
+            Gizmos.DrawWireSphere(transform.position + Offset, RadiusRange.x);
+            Gizmos.DrawWireSphere(transform.position + Offset, RadiusRange.y);
         }
 
 #if UNITY_EDITOR

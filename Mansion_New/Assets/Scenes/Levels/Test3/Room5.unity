@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Interactables::Items.TextItem
   ItemName: test
   RadiusRange: {x: 0.8435191, y: 3.3224225}
+  isStatic: 0
   sourceObject:
     m_AssetGUID: 
     m_SubObjectName: 
@@ -283,7 +284,7 @@ Transform:
   m_GameObject: {fileID: 34173097}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.14, z: 0}
+  m_LocalPosition: {x: 0, y: -1.3083851, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

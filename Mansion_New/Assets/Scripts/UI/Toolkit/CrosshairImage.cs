@@ -12,9 +12,22 @@ namespace UI
     {
 #pragma warning restore UDR0001 // Domain Reload Analyzer
 
+        Sprite centerImage;
+        [UxmlAttribute]
+        Sprite VisorSprite
+        {
+            get => centerImage;
+            set
+            {
+                centerImage = value;
+                style.backgroundImage = new(centerImage);
+                this[0].style.backgroundImage = new(centerImage);
+            }
+        }
+
         public CrosshairImage()
         {
-            Add(new());
+            Add(new() { style = {backgroundImage = new(centerImage) }});
         }
 
         /// <summary>Transitions to active state</summary>

@@ -25,6 +25,7 @@ public class LevelSelectorPlus : BaseSelector
 
     protected override void ShowUI()
     {
+        levels = levels.OrderBy(q => q.WorldName).ToList();
         base.ShowUI();
         Debug.Log("Opened Main Menu");
         ListView menuList = document.rootVisualElement.Q<ListView>("List");

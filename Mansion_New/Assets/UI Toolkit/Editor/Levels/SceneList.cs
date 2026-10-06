@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Rooms;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -247,12 +248,17 @@ namespace Assets.UI_Toolkit.Editor.Levels
         void Load()
         {
             LevelEditor.SaveScenes();// EditorSceneManager.SaveOpenScenes();
-            string FolderPath = $"{LevelData.LEVEL_SCENE_PATH}{selectedLevel.WorldName}/";
-            EditorSceneManager.OpenScene($"{FolderPath}Lightning.unity");
+            string folderPath = Path.Combine(LevelData.LEVEL_SCENE_PATH, selectedLevel.WorldName);
+            string filePath = Path.Combine(folderPath, "Lightning.unity");
+            if (!File.Exists(filePath))
+                LevelEditor.CreateLightScene(selectedLevel.WorldName);
+            else
+                EditorSceneManager.OpenScene(filePath);
+
             foreach (string sceneToLoad in selectedLevel.scenes)
             {
                 EditorSceneManager.OpenScene(
-                    $"{FolderPath}{sceneToLoad}.unity",
+                    Path.Combine(folderPath, $"{sceneToLoad}.unity"),
                     OpenSceneMode.Additive);
             }
         }

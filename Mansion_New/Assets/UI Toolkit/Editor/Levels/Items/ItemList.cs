@@ -56,12 +56,15 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
             };
             selectionChanged += (_) =>
             {
+                if (selectedIndex == -1)
+                    return;
                 itemsInRoom[selectedIndex].Zoom();
             };
         }
 
         public void Load(List<InteractableItem> _interactableItems)
         {
+            selectedIndex = -1;
             itemsInRoom = _interactableItems;
             itemsSource = itemsInRoom;
             RefreshItems();

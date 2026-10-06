@@ -16,5 +16,5 @@ MonoBehaviour:
   active: 1
   scenes:
   - Prototype
-  spawn: {x: -18.01659, y: 1.1531694, z: -9.943408}
+  spawn: {x: -17.9, y: 1.6604277, z: -9.466719}
   initScene: 0

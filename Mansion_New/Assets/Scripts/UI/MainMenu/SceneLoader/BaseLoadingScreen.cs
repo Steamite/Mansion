@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Interactable_Items.Rooms;
 using Assets.Scripts.Player;
+using Assets.Scripts.Player.RoomEntrance;
 using Assets.Scripts.UI.VRMenu;
 using Items;
 using Player;
@@ -37,7 +38,7 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
         }
         protected void LoadPlayer(SceneInstance instance)
         {
-            PlayerMovement.mainRoom = instance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
+            EntranceDetector.mainRoom = instance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
 
             ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
             if (!useVR)
@@ -82,15 +83,14 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
             canExit = false;
             useAction.Disable();
 
-            Transform playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-            playerTransform.position
-                = spawnPosition;
+            Transform playerTransform = EntranceDetector.Activate(); // GameObject.FindGameObjectWithTag("Player").transform;
+            playerTransform.position = spawnPosition;
 
             if (useVR)
             {
                 Camera.main.cullingMask = -1;
                 playerTransform.GetComponentInChildren<GravityProvider>().enabled = true;
-                PlayerMovement.mainRoom.EnterRoom(null);
+
             }
             else
             {

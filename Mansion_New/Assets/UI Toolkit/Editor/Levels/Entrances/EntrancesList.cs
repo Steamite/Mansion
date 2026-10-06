@@ -60,6 +60,7 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
 
         public void Bind(Room _room, LevelData levelData)
         {
+            selectedIndex = -1;
             room = _room;
             data = levelData;
             choices = levelData.scenes;

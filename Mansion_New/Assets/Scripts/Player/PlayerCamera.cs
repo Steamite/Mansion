@@ -85,9 +85,14 @@ namespace Player
             }
         }
 
+        [SerializeField] Light inspectLight;
+
+        public static PlayerCamera instance;
+
         #region Init
         void Awake()
         {
+            instance = this;
             VerticalRot = 0;
             InputActionMap inputMap = asset.actionMaps[0];
             interactAction = inputMap.FindAction("Interact");
@@ -236,12 +241,14 @@ namespace Player
         {
             crosshairImage.Toggle(false);
             asset.actionMaps[0].Disable();
-            AddressableSceneManager.LoadScene("Interact", SceneType.Player, null,
-                (sceneInstance) =>
-                {
-                    IInspectionInit init = sceneInstance.Scene.GetRootGameObjects()[0].transform.GetChild(0).GetComponent<IInspectionInit>();
-                    init.Init(item.transform, asset);
-                });
+            AddressableSceneManager.LoadScene("Interact", SceneType.Player, null, AfterLoad);
+        }
+        void AfterLoad(SceneInstance instance)
+        {
+            IInspectionInit init = instance.Scene
+                .GetRootGameObjects()[0].transform.GetChild(0)
+                .GetComponent<IInspectionInit>();
+            init.Init(item.transform, asset);
         }
 
         /// <summary>
@@ -258,6 +265,12 @@ namespace Player
             if (item)
                 hasItem = false;
             RayCastUpdate();
+            ToggleLight(false);
+        }
+
+        public void ToggleLight(bool enable)
+        {
+            inspectLight.enabled = enable;
         }
     }
 

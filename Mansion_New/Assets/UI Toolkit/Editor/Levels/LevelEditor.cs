@@ -30,6 +30,15 @@ namespace LevelExplorer
         
         public static SceneTemplateAsset LightTemplate 
             => AssetDatabase.LoadAssetAtPath<SceneTemplateAsset>("Assets/Scenes/Template/Lighting.scenetemplate");
+        public static SceneAsset CreateLightScene(string levelName)
+            => SceneTemplateService.Instantiate(
+                    LightTemplate,
+                    true,
+                    Path.Combine(
+                        LevelData.LEVEL_SCENE_PATH,
+                        levelName,
+                        "Lightning.unity")
+                    ).sceneAsset;
         public static SceneTemplateAsset SceneTemplate 
             => AssetDatabase.LoadAssetAtPath<SceneTemplateAsset>("Assets/Scenes/Template/Room.scenetemplate");
         

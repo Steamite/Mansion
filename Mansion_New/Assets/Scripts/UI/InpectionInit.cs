@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.UI;
 using Items;
+using Player;
 using System.Collections;
 using Unity.Cinemachine;
 using Unity.Collections;
@@ -44,6 +45,8 @@ namespace UI.Inspect
                     break;
                 _item = _item.parent;
             }
+            if (_item.TryGetComponent<Rigidbody>(out Rigidbody rigid))
+                rigid.isKinematic = true;
 
             asset = _asset;
 
@@ -73,6 +76,8 @@ namespace UI.Inspect
             Camera.main.cullingMask = 96;
             canvas.worldCamera = Camera.main;
 
+            PlayerCamera.instance.ToggleLight(true);
+
             CinemachinePositionComposer composer = cam.GetComponent<CinemachinePositionComposer>();
             composer.TargetOffset = item.Offset;
             composer.CameraDistance = (item.RadiusRange.x + item.RadiusRange.y) / 2;
@@ -87,17 +92,6 @@ namespace UI.Inspect
         }
         IEnumerator WaitForBlend()
         {
-            /* CinemachineOrbitalFollow orbit = cam.GetComponent<CinemachineOrbitalFollow>();
-
-             orbit.Orbits.Top.Height = item.top;
-             orbit.Orbits.Center.Height = item.center;
-             orbit.Orbits.Bottom.Height = item.bottom;
-             orbit.TargetOffset = item.offset;
-
-             orbit.HorizontalAxis.Value = Camera.main.transform.rotation.eulerAngles.y;
-             orbit.RadialAxis.Range = item.RadiusRange;*/
-
-
             CinemachineBrain brain = Camera.main.GetComponent<CinemachineBrain>();
 
             //wait for the blend to activate

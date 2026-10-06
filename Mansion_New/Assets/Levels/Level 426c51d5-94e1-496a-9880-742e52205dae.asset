@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42aafec1172a2e5488287fdab716db1e, type: 3}
+  m_Name: Level 426c51d5-94e1-496a-9880-742e52205dae
+  m_EditorClassIdentifier: Interactables::Assets.Scripts.Interactable_Items.Rooms.LevelData
+  WorldName: Probe Test
+  active: 1
+  scenes:
+  - Room
+  spawn: {x: 0, y: 1.4221611, z: 0.9429053}
+  initScene: 0

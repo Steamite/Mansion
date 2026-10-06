@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level ce32fa04-a2c5-4dda-9091-acf8a9236165
   m_EditorClassIdentifier: Interactables::Assets.Scripts.Interactable_Items.Rooms.LevelData
   WorldName: Test3
-  active: 1
+  active: 0
   scenes:
   - Room5
   spawn: {x: -1.4969064, y: -1.1272066, z: 0.19302341}

@@ -101,6 +101,9 @@ namespace UI.Inspect
         /// </summary>
         void EndInteract()
         {
+            if (item.TryGetComponent<Rigidbody>(out Rigidbody rigid))
+                rigid.isKinematic = false;
+
             asset.actionMaps[2].Disable();
             if (item)
             {

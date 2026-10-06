@@ -1,3 +1,4 @@
+using Assets.Scripts.Player.RoomEntrance;
 using Rooms;
 using System;
 using System.Collections;
@@ -40,13 +41,10 @@ namespace Player
         #endregion
 
 
-        public static Room mainRoom = null;
 
         #region Binding Properies
         /// <summary>Character position for moving minimap.</summary>
         [CreateProperty] public Vector2 Position = new();
-        /// <summary>Active room for displayText under the minimap.</summary>
-        [CreateProperty] public Room ActiveRoom;
         /// <summary>Current zoom level.</summary>
         [CreateProperty] public float mapZoom = 1;
 
@@ -58,7 +56,6 @@ namespace Player
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
         static void Clear()
         {
-            mainRoom = null;
             instance = null;
         }
 
@@ -79,8 +76,7 @@ namespace Player
 
         public static void Activate()
         {
-            if (instance)
-                instance.Init();
+            instance?.Init();
         }
 
         [ContextMenu("Enable")]
@@ -96,10 +92,7 @@ namespace Player
             yield return new WaitForSeconds(0.2f);
             controller.Move(new(0, 0, 0));
             yield return new WaitForSeconds(0.2f);
-            ActiveRoom = mainRoom;
-            ActiveRoom.EnterRoom(null);
 
-            propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
 
             Position.x = -transform.position.x;
             Position.y = transform.position.z;
@@ -148,32 +141,7 @@ namespace Player
             #endregion
         }
 
-        /// <summary>
-        /// Checks for entering different rooms.
-        /// </summary>
-        /// <param name="hit">The object that was hit.</param>
-        private void OnControllerColliderHit(ControllerColliderHit hit)
-        {
-            if (hit.gameObject.CompareTag("Entrance"))
-            {
-                ActiveRoom = hit.transform.parent.parent.GetComponent<Room>();
-                ActiveRoom.EnterRoom(ActiveRoom);
-
-                propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
-            }
-        }
-        private void OnTriggerEnter(Collider hit)
-        {
-            if (hit.gameObject.CompareTag("Entrance"))
-            {
-                Debug.Log("TEST: " + hit.gameObject.scene.name);
-                Room newRoom = hit.transform.parent.parent.GetComponent<Room>();
-                newRoom.EnterRoom(ActiveRoom);
-
-                ActiveRoom = newRoom;
-                propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
-            }
-        }
+        
 
 
         /// <summary>

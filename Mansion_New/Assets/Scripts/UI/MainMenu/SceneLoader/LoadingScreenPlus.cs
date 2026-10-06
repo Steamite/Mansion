@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Interactable_Items.Rooms;
+using Assets.Scripts.Player.RoomEntrance;
 using Assets.Scripts.UI.VRMenu;
 using ImageMagick;
 using Items;
@@ -33,7 +34,8 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
             {
                 VRManagerLink.DestroyManager();
             }
-            PlayerMovement.mainRoom = default;
+            EntranceDetector.mainRoom = null;
+
             loadingScreen.enabled = true;
             ShowControls();
             ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();

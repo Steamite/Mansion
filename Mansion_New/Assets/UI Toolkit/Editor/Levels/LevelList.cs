@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using UnityEditor;
 using UnityEditor.SceneTemplate;
@@ -50,14 +51,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
                 newLevel.name = name;
                 AssetDatabase.CreateAsset(newLevel, Path.Combine(LevelData.LEVEL_DATA_PATH, $"{name}.asset"));
                 AssetDatabase.CreateFolder(LevelData.LEVEL_SCENE_PATH, name);
-                SceneTemplateService.Instantiate(
-                    LevelExplorer.LevelEditor.LightTemplate, 
-                    true, 
-                    Path.Combine(
-                        LevelData.LEVEL_SCENE_PATH,
-                        name, 
-                        "Lightning.unity")
-                    );
+                LevelEditor.CreateLightScene(name);
                 LoadData();
             };
 
