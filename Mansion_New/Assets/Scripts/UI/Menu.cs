@@ -59,7 +59,8 @@ namespace Assets.Scripts.Player
                     interactor.enabled = false;
                 }
             }
-            AddressableSceneManager.UnloadAll("Main Menu", SceneType.Menu);
+            
+            AddressableSceneManager.LoadScene("Main Menu", SceneType.Menu);
         }
     }
 }

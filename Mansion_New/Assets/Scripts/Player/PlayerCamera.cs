@@ -237,18 +237,20 @@ namespace Player
         /// <summary>
         /// Starts interaction process by loading the interact scene.
         /// </summary>
-        void Interact()
+        async Awaitable Interact()
         {
             crosshairImage.Toggle(false);
             asset.actionMaps[0].Disable();
-            AddressableSceneManager.LoadScene("Interact", SceneType.Player, null, AfterLoad);
-        }
-        void AfterLoad(SceneInstance instance)
-        {
-            IInspectionInit init = instance.Scene
+            SceneInstance sceneToLoad = await AddressableSceneManager.LoadScene("Interact", SceneType.Player, null);
+
+            IInspectionInit init = sceneToLoad.Scene
                 .GetRootGameObjects()[0].transform.GetChild(0)
                 .GetComponent<IInspectionInit>();
             init.Init(item.transform, asset);
+        }
+        void AfterLoad(SceneInstance instance)
+        {
+            
         }
 
         /// <summary>

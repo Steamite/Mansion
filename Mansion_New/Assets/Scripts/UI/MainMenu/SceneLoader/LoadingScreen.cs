@@ -13,7 +13,7 @@ namespace Assets.Scripts.UI.MainMenu
 {
     public class LoadingScreen : BaseLoadingScreen
     {
-        public override void StartRoomLoad(object sceneToLoad)
+        public override async Awaitable StartRoomLoad(object sceneToLoad)
         {
             string sceneName = (string)sceneToLoad;
             AddressableSceneManager.UseVR = useVR;
@@ -36,11 +36,11 @@ namespace Assets.Scripts.UI.MainMenu
             ShowControls();
 
             ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
-            AddressableSceneManager.LoadScene(
+            var a = await AddressableSceneManager.LoadScene(
                 sceneName,
                 SceneType.MainRoom,
-                (percent) => progressBar.value = percent / 2,
-                LoadPlayer);
+                (percent) => progressBar.value = percent / 2);
+            await LoadPlayer(a);
         }
     }
 }

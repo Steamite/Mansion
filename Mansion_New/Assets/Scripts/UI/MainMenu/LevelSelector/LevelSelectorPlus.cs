@@ -12,21 +12,22 @@ public class LevelSelectorPlus : BaseSelector
 {
     [SerializeField] List<LevelData> levels;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    async Awaitable Start()
     {
         levels = new();
-        Addressables.LoadAssetsAsync<LevelData>(
-            "Levels",
-            (data) => {if (data.active) { levels.Add(data); } }).Completed += (_) =>
-            {
-                ShowUI();
-            };
+        var data = await Addressables.LoadAssetsAsync<LevelData>("Levels").Task;
+        for (int i = 0; i < data.Count; i++)
+        {
+            if (data[i].active)
+                levels.Add(data[i]);
+        }
+        await ShowUI();
     }
 
-    protected override void ShowUI()
+    protected override async Awaitable ShowUI()
     {
         levels = levels.OrderBy(q => q.WorldName).ToList();
-        base.ShowUI();
+        await base.ShowUI();
         Debug.Log("Opened Main Menu");
         ListView menuList = document.rootVisualElement.Q<ListView>("List");
 

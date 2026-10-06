@@ -12,20 +12,16 @@ public class Init : MonoBehaviour
     [SerializeField] string mainMenu = "Main Menu";
     [SerializeField] bool gameInit = true;
 
-    void Awake()
+
+    private async Awaitable Start()
     {
-        AddressableSceneManager.LoadScene(
-            mainMenu, 
-            SceneType.Menu, 
-            null, 
-            async (scene) =>
-            {
-                LevelSelector menu = scene.Scene.GetRootGameObjects()[1].GetComponent<LevelSelector>();
-                if(!gameInit)
-                {
-                    menu.LoadGame();
-                }
-                await SceneManager.UnloadSceneAsync(0);
-            });
+        SceneInstance scene = await AddressableSceneManager.LoadScene(mainMenu, SceneType.Menu, null);
+
+        LevelSelector menu = scene.Scene.GetRootGameObjects()[1].GetComponent<LevelSelector>();
+        if (!gameInit)
+        {
+            menu.LoadGame();
+        }
+        await SceneManager.UnloadSceneAsync(0);
     }
 }

@@ -14,14 +14,14 @@ using Cursor = UnityEngine.Cursor;
 public class LevelSelector : BaseSelector
 {
     [SerializeField] List<string> loadableScenes;
-    private void Awake()
+    private async Awaitable Start()
     {
-        ShowUI();    
+        await ShowUI();
     }
 
-    protected override void ShowUI()
+    protected override async Awaitable ShowUI()
     {
-        base.ShowUI();
+        await base.ShowUI();
         Debug.Log("Opened Main Menu");
         
         ListView menuList = document.rootVisualElement.Q<ListView>("List");

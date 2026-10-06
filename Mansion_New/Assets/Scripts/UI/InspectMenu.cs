@@ -123,20 +123,20 @@ namespace UI.Inspect
         /// Unloads interaction scene and resets player camera.
         /// </summary>
         /// <returns></returns>
-        IEnumerator EnableMovement()
+        async Awaitable EnableMovement()
         {
             PlayerCamera playerCam = FindAnyObjectByType<PlayerCamera>();
             playerCam.crosshairImage.Toggle(true);
-            yield return new();
+
+            await Awaitable.NextFrameAsync();
+
             Camera.main.cullingMask = -1;
             gameObject.SetActive(false);
             // TODO
-            AddressableSceneManager.UnloadScene(
-                "Interact", () =>
-            {
-                asset.actionMaps[0].Enable();
-                playerCam.EndIteract();
-            });
+            await AddressableSceneManager.UnloadScene("Interact");
+            
+            asset.actionMaps[0].Enable();
+            playerCam.EndIteract();
         }
         #endregion
 

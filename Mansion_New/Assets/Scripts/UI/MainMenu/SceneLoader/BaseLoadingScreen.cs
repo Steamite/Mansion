@@ -36,17 +36,20 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
             controls.Add(a = new KeybindOverview());
             a.LoadKeybinds();
         }
-        protected void LoadPlayer(SceneInstance instance)
+        protected async Awaitable LoadPlayer(SceneInstance instance)
         {
             EntranceDetector.mainRoom = instance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
 
             ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
             if (!useVR)
-                AddressableSceneManager.LoadScene(
+            {
+                var scene = await AddressableSceneManager.LoadScene(
                     "Player",
                     SceneType.Player,
-                    (percent) => progressBar.value = 0.5f + percent / 2,
-                    FinishLoadVisual);
+                    (percent) => progressBar.value = 0.5f + percent / 2);
+                FinishLoadVisual(scene);
+            }
+
             else
             {
                 FinishLoadVisual(default);
@@ -75,7 +78,7 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
             l.ToggleInClassList("disabledText");
         }
 
-        protected void UnloadMainMenu()
+        async protected Awaitable UnloadMainMenu()
         {
             if (canExit == false)
                 return;
@@ -83,7 +86,7 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
             canExit = false;
             useAction.Disable();
 
-            Transform playerTransform = EntranceDetector.Activate(); // GameObject.FindGameObjectWithTag("Player").transform;
+            Transform playerTransform = await EntranceDetector.Activate(); // GameObject.FindGameObjectWithTag("Player").transform;
             playerTransform.position = spawnPosition;
 
             if (useVR)
@@ -96,8 +99,9 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
             {
                 PlayerMovement.Activate();
             }
-            AddressableSceneManager.UnloadScene("Main Menu");
+            await AddressableSceneManager.UnloadScene("Main Menu");
         }
-        public abstract void StartRoomLoad(object sceneToload);
+
+        public abstract Awaitable StartRoomLoad(object sceneToload);
     }
 }

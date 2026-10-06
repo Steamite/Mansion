@@ -8,6 +8,7 @@ using Rooms;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -16,7 +17,7 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
 {
     public class LoadingScreenPlus : BaseLoadingScreen
     {
-        public override void StartRoomLoad(object lData)
+        public override async Awaitable StartRoomLoad(object lData)
         {
             LevelData level = (LevelData)lData;
             AddressableSceneManager.Init(level, useVR);
@@ -39,63 +40,36 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
             loadingScreen.enabled = true;
             ShowControls();
             ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
-            int sceneNumber = level.scenes.Count + 1;
-            AddressableSceneManager.LoadScene(
-                level.LightPath,
-                SceneType.Lighting,
-                (percent) => progressBar.value = percent / sceneNumber,
-                (_) => LoadPath(level, progressBar));//LoadScenePart(levelData, 0, sceneNumber, progressBar));
+            try
+            {
+                await LoadLevel(level, progressBar);
+                await LoadPlayer(mainScene);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+            }
 
-            /*AddressableSceneManager.LoadScene();
-            AddressableSceneManager.LoadScene(
-                sceneName,
-                SceneType.Room,
-                (percent) => progressBar.value = percent / 2,
-                LoadPlayer);*/
         }
         SceneInstance mainScene;
 
-        void LoadPath(LevelData levelData, ProgressBar progressBar)
+        async Awaitable LoadLevel(LevelData levelData, ProgressBar progressBar)
         {
+            int sceneNumber = levelData.scenes.Count + 1;
+
+            await AddressableSceneManager.LoadScene(
+                levelData.LightPath,
+                SceneType.Lighting,
+                (percent) => progressBar.value = percent / sceneNumber);
+
+
             spawnPosition = levelData.spawn;
             int i = levelData.initScene;
 
-            AddressableSceneManager.LoadScene(
+            mainScene = await AddressableSceneManager.LoadScene(
                 levelData.GetRoomPath(i),
                 SceneType.MainRoom,
-                (percent) => progressBar.value = 0.5f + percent / 2,
-                (scene) =>
-                {
-                    mainScene = scene;
-
-                    /*List<string> rooms = scene.Scene
-                        .GetRootGameObjects()[0]
-                        .GetComponent<Room>().AdjacentRooms;
-
-                    if (rooms.Count > 0)
-                        LoadScenePart(levelData, 0, rooms, progressBar);
-                    else*/
-                        LoadPlayer(mainScene);
-                });
+                (percent) => progressBar.value = 0.5f + percent / 2);
         }
-
-        /*void LoadScenePart(LevelData levelData, int i, List<string> scenesToLoad, ProgressBar progressBar)
-        {
-            float percentBase = i * (1 / scenesToLoad.Count);
-
-            string path = levelData.GetRoomPath(scenesToLoad[i]);
-            AddressableSceneManager.LoadScene(
-                path,
-                SceneType.Room, 
-                (percent) => progressBar.value = percentBase + percent / scenesToLoad.Count,
-                (scene) =>
-                {
-                    i++;
-                    if (i < scenesToLoad.Count)
-                        LoadScenePart(levelData, i, scenesToLoad, progressBar);
-                    else
-                        LoadPlayer(mainScene);
-                });
-        }*/
     }
 }

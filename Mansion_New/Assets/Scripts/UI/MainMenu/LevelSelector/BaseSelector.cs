@@ -17,7 +17,7 @@ namespace Assets.Scripts.UI.MainMenu.New
 
         [SerializeField] GameObject mainCamera;
 
-        protected virtual void ShowUI()
+        protected virtual async Awaitable ShowUI()
         {
             if (loadingScreen.UseVR)
             {
@@ -34,15 +34,13 @@ namespace Assets.Scripts.UI.MainMenu.New
                 doc.worldSpaceSizeMode = UIDocument.WorldSpaceSizeMode.Fixed;
                 doc.enabled = false;
 
-                AddressableSceneManager.LoadScene(
+                var scene = await AddressableSceneManager.LoadScene(
                     "Player VR",
                     SceneType.Player,
-                    null,
-                    (scene) =>
-                    {
-                        GameObject[] objs = scene.Scene.GetRootGameObjects();
-                        Camera.main.cullingMask = LayerMask.GetMask("UI", "Ignore Raycast");// LayerMask.NameToLayer("UI");
-                    });
+                    null);
+
+                GameObject[] objs = scene.Scene.GetRootGameObjects();
+                Camera.main.cullingMask = LayerMask.GetMask("UI", "Ignore Raycast");
             }
             else
             {

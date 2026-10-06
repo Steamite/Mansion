@@ -61,28 +61,28 @@ namespace Rooms
         /// </summary>
         /// <param name="previousRoom">Previous active room, null if leaving the starting location.</param>
         /// <returns>itself</returns>
-        public void EnterRoom(Room previousRoom)
+        public async Awaitable EnterRoom(Room previousRoom)
         {
             Debug.Log("enter room");
             if (previousRoom)
             {
                 List<string> roomsToUnload = previousRoom.AdjacentRooms.Where(q => !AdjacentRooms.Contains(q) && q != name).ToList();
                 previousRoom.ToggleEntrances(true);
-                AddressableSceneManager.UnloadRooms(roomsToUnload, () =>
-                {
-                    List<string> roomsToLoad = AdjacentRooms.Where(
+                await AddressableSceneManager.UnloadRooms(roomsToUnload);
+
+                List<string> roomsToLoad = AdjacentRooms.Where(
                         loadRoom =>
                         !previousRoom.AdjacentRooms.Contains(loadRoom) &&
                         loadRoom != previousRoom.name
                         ).ToList();
 
-                    AddressableSceneManager.LoadRooms(roomsToLoad,
-                        () => ToggleEntrances(false));
-                });
+                await AddressableSceneManager.LoadRooms(roomsToLoad);
+                ToggleEntrances(false);
             }
             else
             {
-                AddressableSceneManager.LoadRooms(AdjacentRooms, () => ToggleEntrances(false));
+                await AddressableSceneManager.LoadRooms(AdjacentRooms);
+                ToggleEntrances(false);
             }
         }
 

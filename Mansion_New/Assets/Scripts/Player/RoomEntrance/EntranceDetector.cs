@@ -30,15 +30,15 @@ namespace Assets.Scripts.Player.RoomEntrance
             instance = this;
         }
 
-        public static Transform Activate()
-            => instance.Init();
+        public static async Awaitable<Transform> Activate()
+            => await instance.Init();
 
-        Transform Init()
+        async Awaitable<Transform> Init()
         {
             ActiveRoom = mainRoom;
             propertyChanged?.Invoke(this, new(nameof(ActiveRoom)));
 
-            ActiveRoom.EnterRoom(null);
+            await ActiveRoom.EnterRoom(null);
             return transform;
         }
         /// <summary>

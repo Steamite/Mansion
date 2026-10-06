@@ -53,6 +53,49 @@ namespace Assets.Scripts.Interactable_Items.Rooms
             ActiveLevel = null;
         }
 
+        private void OnApplicationQuit()
+        {
+            if (loadedScenes == null) return;
+
+            SceneManager.LoadScene(0, LoadSceneMode.Additive);
+
+            // Safely drop the reference counts instantly without awaiting frames
+            foreach (var item in loadedScenes.Values)
+            {
+                if (item.handle.IsValid())
+                {
+                    Addressables.Release(item.handle);
+                }
+            }
+            loadedScenes.Clear();
+        }
+
+        async Awaitable ClearRooms()
+        {
+            if (loadedScenes == null)
+                return;
+            List<AsyncOperationHandle> awaitables = new();
+            foreach (var item in loadedScenes)
+            {
+                awaitables.Add(Addressables.UnloadSceneAsync(
+                    item.Value.handle,
+                    UnloadSceneOptions.UnloadAllEmbeddedSceneObjects,
+                    false));
+            }
+
+            foreach (var item in awaitables)
+            {
+                while (!item.IsDone)
+                {
+                    await Awaitable.EndOfFrameAsync();
+                }
+                item.Release();
+            }
+            loadedScenes.Clear();
+
+            await Resources.UnloadUnusedAssets();
+        }
+
         private void Awake()
         {
             instance = this;
@@ -61,81 +104,54 @@ namespace Assets.Scripts.Interactable_Items.Rooms
             DontDestroyOnLoad(gameObject);
         }
 
-        public static void LoadScene(string sceneToLoad, SceneType sceneType, Action<float> proggressAction = null, Action<SceneInstance> onFinish = null) 
-            => instance.StartCoroutine(
-                instance.WaitForSceneLoad(
-                    sceneToLoad, 
-                    sceneType, 
-                    proggressAction, 
-                    onFinish
-                    )
-                );
+        public static async Awaitable<SceneInstance> LoadScene(
+            string sceneToLoad,
+            SceneType sceneType,
+            Action<float> proggressAction = null)
+            => await instance.WaitForSceneLoad(
+                    sceneToLoad,
+                    sceneType,
+                    proggressAction
+                    );
 
-        public static void LoadRooms(List<string> scenes, Action onFinish = null)
+        public static async Awaitable LoadRooms(List<string> scenes)
         {
-            if (scenes.Count == 0)
+            foreach (var item in scenes)
             {
-                onFinish?.Invoke();
-                return;
+                await LoadScene(item, SceneType.Room);
             }
-            LoadPart(scenes, 0, onFinish);
         }
 
-        static void LoadPart(List<string> scenes, int i, Action onFinish = null)
+        public static async Awaitable UnloadRooms(List<string> scenes)
         {
-            LoadScene(scenes[i], SceneType.Room, null, (_) =>
+            foreach (var item in scenes)
             {
-                i++;
-                if (i == scenes.Count)
-                    onFinish?.Invoke();
-                else
-                {
-                    LoadPart(scenes, i, onFinish);
-                }
-            });
-        }
-
-        public static void UnloadRooms(List<string> scenes, Action onFinish = null)
-        {
-            if(scenes.Count == 0)
-            {
-                onFinish?.Invoke();
-                return;
+                await UnloadScene(item);
             }
-
-            UnloadPart(scenes, 0, onFinish);
-        }
-
-        static void UnloadPart(List<string> scenes, int i, Action onFinish = null)
-        {
-            UnloadRoomScene(scenes[i], () =>
-            {
-                i++;
-                if (i == scenes.Count)
-                    onFinish?.Invoke();
-                else
-                {
-                    UnloadPart(scenes, i, onFinish);
-                }
-            });
         }
 
 
 
-        IEnumerator WaitForSceneLoad(string sceneToLoad, SceneType sceneType, Action<float> proggressAction = null, Action<SceneInstance> onFinish = null)
+        async Awaitable<SceneInstance> WaitForSceneLoad(
+            string sceneToLoad, 
+            SceneType sceneType, 
+            Action<float> proggressAction = null)
         {
             Debug.Log(loadedScenes.Count);
 
             if (sceneType == SceneType.Room)
                 sceneToLoad = ActiveLevel.GetRoomPath(sceneToLoad);
+            else if (sceneType == SceneType.Menu)
+                await ClearRooms();
+
 
             AsyncOperationHandle<SceneInstance> loadHandle =
                     Addressables.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive, false);
-
+            
             while (!loadHandle.IsDone)
             {
                 proggressAction?.Invoke(loadHandle.PercentComplete);
-                yield return null;
+                await Awaitable.NextFrameAsync();
             }
 
 
@@ -143,8 +159,8 @@ namespace Assets.Scripts.Interactable_Items.Rooms
             {
                 loadedScenes.Add(sceneToLoad, new (sceneType, loadHandle));
                 
-                yield return loadHandle.Result.ActivateAsync();
-                SceneInstance instance = loadHandle.Result;
+                await loadHandle.Result.ActivateAsync();
+                SceneInstance sceneInstance = loadHandle.Result;
 
 
                 Room loadedRoom;
@@ -153,69 +169,43 @@ namespace Assets.Scripts.Interactable_Items.Rooms
                     case SceneType.Menu:
                         break;
                     case SceneType.Player:
-
                         break;
                     case SceneType.Room:
-                        loadedRoom = instance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
+                        loadedRoom = sceneInstance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
                         loadedRoom.FinishLoad(false);
                         break;
                     case SceneType.MainRoom:
-                        loadedRoom = instance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
+                        loadedRoom = sceneInstance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
                         loadedRoom.FinishLoad(true);
                         break;
                     case SceneType.Lighting:
-                        SceneManager.SetActiveScene(instance.Scene);
+                        SceneManager.SetActiveScene(sceneInstance.Scene);
                         break;
                 }
 
                 Debug.Log($"Loaded Scene: {sceneToLoad}");
-
-                // Invoke custom action (allows async chaining)
-                onFinish?.Invoke(instance);
+                return sceneInstance;
             }
             else
             {
                 Debug.LogError($"Failed to load Scene: {sceneToLoad}");
+                return default;
             }
         }
 
-        public static void UnloadScene(string sceneName, Action onUnload = null)
-            => instance.StartCoroutine(instance.WaitForSceneUnLoad(sceneName, onUnload));
+        public static async Awaitable UnloadScene(string sceneName)
+            => await instance.WaitForSceneUnLoad(sceneName);
+        
 
-        public static void UnloadRoomScene(string sceneName, Action onUnload = null)
+        async Awaitable WaitForSceneUnLoad(string sceneName)
         {
-            sceneName = ActiveLevel.GetRoomPath(sceneName);
-            instance.StartCoroutine(instance.WaitForSceneUnLoad(sceneName, onUnload));
-        }
+            if (loadedScenes[sceneName].type == SceneType.Room)
+                sceneName = ActiveLevel.GetRoomPath(sceneName);
 
-        IEnumerator WaitForSceneUnLoad(string roomName, Action onUnload = null)
-        {
-
-            AsyncOperationHandle<SceneInstance> unloadHandle = Addressables.UnloadSceneAsync(loadedScenes[roomName].handle);
-            yield return unloadHandle;
-
-            loadedScenes.Remove(roomName);
-            onUnload?.Invoke();
-        }
-
-        public static void UnloadAll(string newScene, SceneType type)
-        {
-            instance.StartCoroutine(instance.UnloadScenes(newScene,type));
-        }
-
-        IEnumerator UnloadScenes(string newScene, SceneType type)
-        {
-            Dictionary<string, HandleDetails> toUnload = loadedScenes;
-            loadedScenes = new();
-
-            yield return WaitForSceneLoad(newScene, type);
-            foreach (var roomName in toUnload.Values)
-            {
-                var handle = Addressables.UnloadSceneAsync(roomName.handle);
-
-                yield return handle;
-            }
-            Debug.Log(loadedScenes.Count);
+            AsyncOperationHandle<SceneInstance> unloadHandle = Addressables.UnloadSceneAsync(loadedScenes[sceneName].handle, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects, false);
+            loadedScenes.Remove(sceneName);
+            await unloadHandle.Task;
+            unloadHandle.Release();
         }
 
         public static void Init(LevelData lData, bool useVR)
