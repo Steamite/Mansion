@@ -20,5 +20,5 @@ public interface IInspectMenu
 
 public interface IInspectionInit
 {
-    public void Init(Transform _item, InputActionAsset _asset) { }
+    public async Awaitable Init(Transform _item, InputActionAsset _asset) { }
 }

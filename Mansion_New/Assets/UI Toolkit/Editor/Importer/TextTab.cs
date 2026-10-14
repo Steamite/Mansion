@@ -1,3 +1,4 @@
+using Assets.Scripts.Interactable_Items.SO;
 using Items;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -18,7 +20,7 @@ namespace Importer.Tabs
 
         TextField textField;
         public ListView textList;
-
+        ObjectField audioField;
 
         public int selectedIndex, cursorIndex;
 
@@ -33,12 +35,15 @@ namespace Importer.Tabs
             InitTextButtons(_doc, _win);
         }
 
+        SerializedObject selectedItem;
+
         /// <summary>
         /// Adds items source and callbacks to <see cref="textList"/>.
         /// </summary>
         /// <param name="doc">Root of the document.</param>
         void InitTextList(VisualElement _doc, VisualElement _win, Action<int> choicesUpdate)
         {
+            audioField = _doc.Q<ObjectField>("AudioText");
             textField = _doc.Q<TextField>("TextContent");
             textList = _doc.Q<Tab>("Text").Q<ListView>("List");
             ReloadData();
@@ -111,10 +116,15 @@ namespace Importer.Tabs
             {
                 if (textList.selectedIndex > -1)
                 {
-                    textField.value = AssetDatabase.LoadAssetAtPath<TextData>((string)textList.selectedItem).content;
+                    TextData data = AssetDatabase.LoadAssetAtPath<TextData>((string)textList.selectedItem);
+                    textField.value = data.content;
                     choicesUpdate(0);
+                    selectedItem = new SerializedObject(data);
+                    audioField.BindProperty(selectedItem.FindProperty(nameof(ItemData.audioClip)));
                 }
             };
+
+
         }
 
 

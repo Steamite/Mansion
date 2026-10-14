@@ -56,8 +56,15 @@ namespace Assets.Scripts.Interactable_Items.Rooms
         private void OnApplicationQuit()
         {
             if (loadedScenes == null) return;
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            DeleteAll();
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+        }
 
-            SceneManager.LoadScene(0, LoadSceneMode.Additive);
+        async Awaitable DeleteAll()
+        {
+            await SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
 
             // Safely drop the reference counts instantly without awaiting frames
             foreach (var item in loadedScenes.Values)
@@ -72,6 +79,9 @@ namespace Assets.Scripts.Interactable_Items.Rooms
 
         async Awaitable ClearRooms()
         {
+            await SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(1));
+
             if (loadedScenes == null)
                 return;
             List<AsyncOperationHandle> awaitables = new();
@@ -152,16 +162,22 @@ namespace Assets.Scripts.Interactable_Items.Rooms
             Action<float> proggressAction = null)
         {
             Debug.Log(loadedScenes.Count);
+            AsyncOperationHandle<SceneInstance> loadHandle;
+            switch (sceneType)
+            {
+                case SceneType.Room:
+                    loadHandle = Addressables.LoadSceneAsync(ActiveLevel.GetRoomPath(sceneToLoad), LoadSceneMode.Additive, false);
+                    break;
+                case SceneType.Menu:
+                    await ClearRooms();
+                    loadHandle = Addressables.LoadSceneAsync(sceneToLoad, LoadSceneMode.Single, false);
+                    break;
+                default:
+                    loadHandle = Addressables.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive, false);
+                    break;
+            }
 
-            if (sceneType == SceneType.Room)
-                sceneToLoad = ActiveLevel.GetRoomPath(sceneToLoad);
-            else if (sceneType == SceneType.Menu)
-                await ClearRooms();
-
-
-            AsyncOperationHandle<SceneInstance> loadHandle =
-                    Addressables.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive, false);
-            
+            proggressAction?.Invoke(loadHandle.PercentComplete);
             while (!loadHandle.IsDone)
             {
                 proggressAction?.Invoke(loadHandle.PercentComplete);

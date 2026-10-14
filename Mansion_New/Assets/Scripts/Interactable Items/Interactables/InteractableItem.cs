@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Assets.Scripts.Interactable_Items.SO;
+using System;
 using System.Collections;
+using System.Threading;
 using Unity.Cinemachine;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -29,6 +31,8 @@ namespace Items
         public bool isStatic;
         public bool IsStatic { get => isStatic; set => isStatic = value; }
 
+        protected CancellationTokenSource tokenSource;
+
         [SerializeField] AssetReference sourceObject;
 
         [SerializeField] public string SourceObjectName;
@@ -38,20 +42,14 @@ namespace Items
         [SerializeField] public Vector3 offset;
         [SerializeField] public Vector3 rotationVR;
         public Vector3 OffsetVR;
+        public bool playedAudio;
 
-#if UNITY_EDITOR
-        public void SetSource(AssetReference reference, string objectName)
-        {
-            SourceObject = reference;
-            SourceObjectName = objectName;
-        }
-#endif
         public void Clear() => StopAllCoroutines();
         /// <summary>
-        /// Each type of Item must has it's own implementation for dowloading and viewing content.
+        /// Each type of Item must has it's own implementation for dowloading.
         /// </summary>
         /// <param name="element">Content element.</param>
-        public abstract void LoadContent(VisualElement element);
+        public abstract Awaitable LoadContent();
 
         public abstract void Unload(VisualElement visualElement);
 
@@ -59,7 +57,20 @@ namespace Items
         /// Loads what it needs to using addressables and then executes the callback
         /// </summary>
         /// <returns></returns>
-        protected abstract IEnumerator GetContent(VisualElement element);
+        protected abstract Awaitable GetContent(CancellationToken token);
+        /// <summary>
+        /// Each type of Item must has it's own implementation  and viewing content
+        /// </summary>
+        /// <param name="element"></param>
+        public abstract void FillUI(VisualElement element);
+
+
+#if UNITY_EDITOR
+        public void SetSource(AssetReference reference, string objectName)
+        {
+            SourceObject = reference;
+            SourceObjectName = objectName;
+        }
 
         public void Clone(InteractableItem item)
         {
@@ -76,7 +87,6 @@ namespace Items
             Gizmos.DrawWireSphere(transform.position + Offset, RadiusRange.y);
         }
 
-#if UNITY_EDITOR
         public void Zoom()
         {
             Selection.activeTransform = transform;

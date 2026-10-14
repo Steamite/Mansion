@@ -183,6 +183,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0.9, z: 0}
   rotationVR: {x: 0, y: 0, z: 0}
   OffsetVR: {x: 0, y: 0, z: 0}
+  playedAudio: 0
   pdfPath: 
 --- !u!65 &7404388
 BoxCollider:
@@ -1730,6 +1731,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0.9, z: 0}
   rotationVR: {x: 0, y: 0, z: 0}
   OffsetVR: {x: 0, y: 0, z: 0}
+  playedAudio: 0
   pdfPath: 
 --- !u!65 &517961247
 BoxCollider:
@@ -2122,6 +2124,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0.9, z: 0}
   rotationVR: {x: 0, y: 0, z: 0}
   OffsetVR: {x: 0, y: 0, z: 0}
+  playedAudio: 0
   pdfPath: 
 --- !u!65 &689721153
 BoxCollider:
@@ -2265,6 +2268,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0.9, z: 0}
   rotationVR: {x: 0, y: 0, z: 0}
   OffsetVR: {x: 0, y: 0, z: 0}
+  playedAudio: 0
   pdfPath: 
 --- !u!65 &695196074
 BoxCollider:
@@ -2587,6 +2591,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0.9, z: 0}
   rotationVR: {x: 0, y: 0, z: 0}
   OffsetVR: {x: 0, y: 0, z: 0}
+  playedAudio: 0
   pdfPath: 
 --- !u!65 &1041483832
 BoxCollider:
@@ -2783,6 +2788,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0.9, z: 0}
   rotationVR: {x: 0, y: 0, z: 0}
   OffsetVR: {x: 0, y: 0, z: 0}
+  playedAudio: 0
   pdfPath: 
 --- !u!65 &1059647698
 BoxCollider:
@@ -4173,6 +4179,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0.9, z: 0}
   rotationVR: {x: 0, y: 0, z: 0}
   OffsetVR: {x: 0, y: 0, z: 0}
+  playedAudio: 0
   pdfPath: 
 --- !u!65 &1983103433
 BoxCollider:

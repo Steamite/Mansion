@@ -7,5 +7,6 @@ namespace Assets.Scripts.Interactable_Items.SO
 {
     public class ItemData : ScriptableObject
     {
+        public AudioClip audioClip;
     }
 }

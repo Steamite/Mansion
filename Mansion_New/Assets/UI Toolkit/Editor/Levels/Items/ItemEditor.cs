@@ -107,6 +107,29 @@ namespace Assets.UI_Toolkit.Editor.Levels.Items
             ItemData data = (ItemData)evt.newValue;
             var guid = AssetDatabase.GUIDFromAssetPath(AssetDatabase.GetAssetPath(data));
             var assetRef = new AssetReference(guid.ToString());
+            
+            if(data.GetType() == typeof(PDFData))
+            {
+                if(_item.GetType() != typeof(PDFItem))
+                {
+                    PDFItem item = _item.gameObject.AddComponent<PDFItem>();
+                    item.Clone(_item);
+                    GameObject.DestroyImmediate(_item);
+                    _item = item;
+                    itemField.value = _item;
+                }
+            }
+            else
+            {
+                if (_item.GetType() != typeof(TextItem))
+                {
+                    TextItem item = _item.gameObject.AddComponent<TextItem>();
+                    item.Clone(_item);
+                    GameObject.DestroyImmediate(_item);
+                    _item = item;
+                    itemField.value = _item;
+                }
+            }
 
             _item.SetSource(assetRef, data.name);
             EditorUtility.SetDirty(_item);

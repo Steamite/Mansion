@@ -53,6 +53,11 @@ namespace Rooms
         public void FinishLoad(bool startingRoom)
         {
             ToggleEntrances(!startingRoom);
+            InteractableItem[] interactableItems = Interactables.GetComponentsInChildren<InteractableItem>();
+            foreach (var item in interactableItems)
+            {
+                item.LoadContent();
+            }
             VRManagerLink.OnRoomLoad(transform);
         }
 

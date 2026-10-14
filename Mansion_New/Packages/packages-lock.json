@@ -80,16 +80,6 @@
       "source": "builtin",
       "dependencies": {}
     },
-    "com.unity.feature.vr": {
-      "version": "1.0.1",
-      "depth": 0,
-      "source": "builtin",
-      "dependencies": {
-        "com.unity.xr.interaction.toolkit": "3.4.1",
-        "com.unity.xr.oculus": "4.5.4",
-        "com.unity.xr.openxr": "1.16.1"
-      }
-    },
     "com.unity.ide.visualstudio": {
       "version": "2.0.27",
       "depth": 0,
@@ -326,7 +316,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.hands": {
-      "version": "1.8.0",
+      "version": "1.7.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -340,7 +330,7 @@
     },
     "com.unity.xr.interaction.toolkit": {
       "version": "3.4.1",
-      "depth": 1,
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.ugui": "1.0.0",
@@ -377,7 +367,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.meta-openxr": {
-      "version": "2.5.0",
+      "version": "2.5.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -386,16 +376,6 @@
         "com.unity.xr.management": "4.4.0",
         "com.unity.xr.arfoundation": "6.5.0",
         "com.unity.xr.compositionlayers": "2.4.0"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.xr.oculus": {
-      "version": "4.5.4",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.xr.management": "4.4.0",
-        "com.unity.modules.androidjni": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },

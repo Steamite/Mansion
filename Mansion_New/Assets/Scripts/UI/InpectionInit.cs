@@ -2,6 +2,7 @@
 using Items;
 using Player;
 using System.Collections;
+using System.Threading.Tasks;
 using Unity.Cinemachine;
 using Unity.Collections;
 using UnityEngine;
@@ -37,15 +38,15 @@ namespace UI.Inspect
         /// </summary>
         /// <param name="_item">Item for inspection</param>
         /// <param name="_asset">Asset containging actions.</param>
-        public void Init(Transform _item, InputActionAsset _asset)
+        public async Awaitable Init(Transform _item, InputActionAsset _asset)
         {
             while (_item != null)
             {
-                if (_item.TryGetComponent<InteractableItem>(out item))
+                if (_item.TryGetComponent(out item))
                     break;
                 _item = _item.parent;
             }
-            if (_item.TryGetComponent<Rigidbody>(out Rigidbody rigid))
+            if (_item.TryGetComponent(out Rigidbody rigid))
                 rigid.isKinematic = true;
 
             asset = _asset;
@@ -62,7 +63,8 @@ namespace UI.Inspect
             
 
             Debug.Log("got the screenshot");
-            GetComponent<BlurTexture>().Blur(SetupCameras);
+            Sprite s = await GetComponent<BlurTexture>().Blur();
+            SetupCameras(s);
         }
 
         
@@ -87,18 +89,20 @@ namespace UI.Inspect
             panTilt.TiltAxis.Value = item.StartRotation.y;
 
 
-            cam.Priority = 3;
             StartCoroutine(WaitForBlend());
         }
+
         IEnumerator WaitForBlend()
         {
+            cam.Priority = 3;
             CinemachineBrain brain = Camera.main.GetComponent<CinemachineBrain>();
 
             //wait for the blend to activate
             yield return new WaitUntil(() => brain.ActiveBlend != null);
 
+            yield return new WaitForSeconds(brain.ActiveBlend.Duration);/*
             //wait for the blend to end
-            yield return new WaitUntil(() => brain.ActiveBlend == null);
+            yield return new WaitUntil(() => brain.ActiveBlend == null);*/
 
             CinemachinePanTilt panTilt = cam.GetComponent<CinemachinePanTilt>();
             panTilt.enabled = !item.IsStatic;

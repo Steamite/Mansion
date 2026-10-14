@@ -158,7 +158,7 @@ namespace UI.Inspect
                 ((Label)doc.rootVisualElement.Q<VisualElement>(DESCRIPTION_OPTION).ElementAt(2)).text = "Zavřít popis";
                 doc.rootVisualElement.Q<VisualElement>(HOME_OPTION).style.display = DisplayStyle.None;// "Zavřít popis";
 
-                item.LoadContent(
+                item.FillUI(
                     doc.rootVisualElement.Q<ScrollView>(DESCRIPTION)
                         .Q<VisualElement>("unity-content-container"));
 
@@ -167,7 +167,7 @@ namespace UI.Inspect
             }
             else
             {
-                WebUtil.CancelDownloads();
+                //WebUtil.CancelDownloads();
                 UnityEngine.Cursor.visible = false;
                 UnityEngine.Cursor.lockState = CursorLockMode.Locked;
                 cam.GetComponent<CinemachineInputAxisController>().enabled = true;

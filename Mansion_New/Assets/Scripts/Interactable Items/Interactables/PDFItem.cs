@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -14,116 +16,109 @@ namespace Items
     {
         const string PDF_LOCATION = "/PDF/";
         public string pdfPath;
-        public override void LoadContent(VisualElement displayElem)
+        public override async Awaitable LoadContent()
         {
             if (SourceObject == null || SourceObject.AssetGUID == "")
                 return;
+            sprites = new();
 
-            StartCoroutine(GetContent(displayElem));
+            tokenSource?.Cancel();
+            tokenSource = new();
+
+            await GetContent(tokenSource.Token);
         }
+        List<AsyncOperationHandle<Texture2D>> sprites = null;
+        AsyncOperationHandle<PDFData> pdfHandle;
 
-        protected override IEnumerator GetContent(VisualElement displayElem)
+        protected override async Awaitable GetContent(CancellationToken token)
         {
-            Label _text = displayElem.Q<Label>("Label");
-
-            _text.text = "Downloading images...";
-            _text.style.display = DisplayStyle.Flex;
+            sprites = new();
 
             for (int i = 0; i < 3; i++)
             {
-                AsyncOperationHandle<PDFData> pdfHandle = Addressables.LoadAssetAsync<PDFData>(SourceObject);
-                yield return pdfHandle;
+                pdfHandle = Addressables.LoadAssetAsync<PDFData>(SourceObject);
+                if (!pdfHandle.IsDone)
+                    await pdfHandle.Task;
 
                 if (pdfHandle.Status == AsyncOperationStatus.Succeeded)
                 {
-                    _text.style.display = DisplayStyle.None;
                     pdfPath = Application.streamingAssetsPath + PDF_LOCATION + pdfHandle.Result.pdfName + ".pdf";
 
-                    if (displayElem == null)
-                        yield break;
                     // Menu button
-                    VisualElement t = displayElem.panel.visualTree.Q<VisualElement>("T");
-                    if(t != null)
-                    {
-                        t.style.display = DisplayStyle.Flex;
-                        ((Label)t.ElementAt(2)).text = "Otevřít pdf";
-                    }
+                    
 
                     AsyncOperationHandle<Texture2D> spriteHandle;
-                    Label label = new Label("Loading...");
-                    if (displayElem == null)
-                        yield break;
 
-                    VisualElement imagesElement = displayElem.Q<VisualElement>("Images");
                     foreach (AssetReference image in pdfHandle.Result.images)
                     {
-                        imagesElement.Add(label);
+                        if (token.IsCancellationRequested)
+                            return;
                         spriteHandle = Addressables.LoadAssetAsync<Texture2D>(image);
-                        yield return spriteHandle;
+                        if (!spriteHandle.IsDone)
+                            await spriteHandle.Task;
+
                         if (spriteHandle.Status == AsyncOperationStatus.Succeeded)
-                        {
-                            imagesElement.Remove(label);
-                            VisualElement imgElem = new();
-                            imgElem.style.backgroundImage = spriteHandle.Result;
-                            imagesElement.Add(imgElem);
-                            imgElem.style.width = spriteHandle.Result.width;
-                            imgElem.style.height = spriteHandle.Result.height;
+                        {;
+                            sprites.Add(spriteHandle);
                         }
                         else
                         {
-                            _text.text = "ERROR";
-                            _text.style.display = DisplayStyle.Flex;
                             break;
                         }
 
                     }
-                    pdfHandle.Release();
-
-                    yield break;
+                    return;
                 }
             }
-            _text.text = "ERROR";
-            _text.style.display = DisplayStyle.Flex;
         }
-        /*
-		void GetImages(VisualElement displayElem)
-		{
-			VisualElement imgGroup = displayElem.Q<VisualElement>("Images");
 
-			for (int i = 0; i < sprites.Length; i++)
-			{
-				VisualElement elementImg = new();
-				imgGroup.Add(elementImg);
-				if (sprites[i] == null)
-				{
-					elementImg.Add(new Label($"Downloading image {i}"));
+        public override void FillUI(VisualElement element)
+        {
+            /*Label _text = element.Q<Label>("Label");
 
-					var x = i;
-					WebUtil.GetImageFromServer(
-						PDF_LOCATION + SourcePath + $"/img{i}.png",
-						(source_img) =>
-						{
-							if (source_img == null)
-								return;
-							elementImg.RemoveAt(0);
-							sprites[x] = source_img;
-							elementImg.style.width = source_img.width;
-							elementImg.style.height = source_img.height;
-							elementImg.style.backgroundImage = source_img;
-						});
-				}
-				else
-				{
-					elementImg.style.width = sprites[i].width;
-					elementImg.style.height = sprites[i].height;
-					elementImg.style.backgroundImage = sprites[i];
-				}
-			}
-		}*/
+            _text.text = "loading images...";
+            _text.style.display = DisplayStyle.Flex;
+
+            _text.style.display = DisplayStyle.None;*/
+
+            VisualElement t = element.panel.visualTree.Q<VisualElement>("T");
+            if (t != null)
+            {
+                t.style.display = DisplayStyle.Flex;
+                ((Label)t.ElementAt(2)).text = "Otevřít pdf";
+            }
+
+            VisualElement imagesElement = element.Q<VisualElement>("Images");
+            foreach (var item in sprites)
+            {
+                Texture2D tex = item.Result;
+                VisualElement imgElem = new();
+                imgElem.style.backgroundImage = tex;
+                imagesElement.Add(imgElem);
+                imgElem.style.width  = tex.width;
+                imgElem.style.height = tex.height;
+            }
+/*
+            _text.text = "ERROR";
+            _text.style.display = DisplayStyle.Flex;*/
+        }
+
+        private void OnDestroy()
+        {
+            if (sprites == null)
+                return;
+
+            foreach (var item in sprites)
+            {
+                item.Release();
+            }
+            tokenSource.Cancel();
+        }
 
         public override void Unload(VisualElement displayElem)
         {
-            StopAllCoroutines();
+            tokenSource.Cancel();
+
             VisualElement el = displayElem.Q<VisualElement>("Images");
 
             for (int i = el.childCount - 1; i > -1; i--)

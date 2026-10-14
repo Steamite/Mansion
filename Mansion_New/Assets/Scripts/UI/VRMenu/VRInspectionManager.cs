@@ -52,7 +52,7 @@ namespace Assets.Scripts.UI.VRMenu
 
             hoverRoot.style.display = DisplayStyle.Flex;
             hoverRoot.Q<Label>(TITLE_LABEL).text = item.ItemName;
-            item.LoadContent(hoverDocument.rootVisualElement);
+            item.FillUI(hoverDocument.rootVisualElement);
         }
         public void EndHover(HoverExitEventArgs hoverExit)
         {
@@ -80,7 +80,7 @@ namespace Assets.Scripts.UI.VRMenu
                 .GetComponent<InteractableItem>();
 
             openRoot.Q<Label>("Title").text = item.ItemName;
-            item.LoadContent(openRoot);
+            item.FillUI(openRoot);
         }
     }
 }

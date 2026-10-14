@@ -241,16 +241,14 @@ namespace Player
         {
             crosshairImage.Toggle(false);
             asset.actionMaps[0].Disable();
-            SceneInstance sceneToLoad = await AddressableSceneManager.LoadScene("Interact", SceneType.Player, null);
+            SceneInstance sceneToLoad = 
+                await AddressableSceneManager.LoadScene("Interact", SceneType.Player, null);
 
             IInspectionInit init = sceneToLoad.Scene
                 .GetRootGameObjects()[0].transform.GetChild(0)
                 .GetComponent<IInspectionInit>();
-            init.Init(item.transform, asset);
-        }
-        void AfterLoad(SceneInstance instance)
-        {
-            
+
+            await init.Init(item.transform, asset);
         }
 
         /// <summary>

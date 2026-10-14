@@ -1,3 +1,4 @@
+using Assets.Scripts.Interactable_Items.SO;
 using Assets.UI_Toolkit.Editor.Importer.PDF;
 using ImageMagick;
 using Items;
@@ -8,6 +9,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEditor.AddressableAssets.Settings;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.UIElements;
@@ -23,7 +25,7 @@ namespace Importer.Tabs
         readonly PDFConversion conversion;
         /// <summary>ListView for pdf elements.</summary>
         public ListView pdfList;
-
+        ObjectField audioField;
         public PDFTab(VisualElement doc, Action<int> choicesUpdate)
         {
             settings = AddressableAssetSettingsDefaultObject.Settings;
@@ -41,6 +43,8 @@ namespace Importer.Tabs
         /// <param name="doc">Root of the document.</param>
         void InitPDFList(VisualElement doc, Action<int> choicesUpdate)
         {
+            audioField = doc.Q<ObjectField>("AudioPDF");
+
             pdfList = doc.Q<Tab>("PDF").Q<ListView>("List");
 
             pdfList.onAdd = async (view) =>
@@ -93,7 +97,8 @@ namespace Importer.Tabs
                 view.Clear();
                 if ((string)pdfList.selectedItem != null)
                 {
-                    foreach (AssetReference imgRef in AssetDatabase.LoadAssetAtPath<PDFData>((string)pdfList.selectedItem).images)
+                    PDFData data = AssetDatabase.LoadAssetAtPath<PDFData>((string)pdfList.selectedItem);
+                    foreach (AssetReference imgRef in data.images)
                     {
                         VisualElement element = new();
                         element.name = "IMG";
@@ -105,6 +110,8 @@ namespace Importer.Tabs
                         view.Add(element);
                     }
                     choicesUpdate(1);
+                    SerializedObject selectedItem = new(data);
+                    audioField.BindProperty(selectedItem.FindProperty(nameof(ItemData.audioClip)));
                 }
             };
             pdfList.parent.Q<Button>("ShowPDF").RegisterCallback<ClickEvent>(

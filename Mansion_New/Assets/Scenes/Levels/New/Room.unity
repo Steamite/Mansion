@@ -658,6 +658,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   rotationVR: {x: 0, y: 0, z: 0}
   OffsetVR: {x: 0, y: 0, z: 0}
+  playedAudio: 0
 --- !u!23 &769121593
 MeshRenderer:
   m_ObjectHideFlags: 0

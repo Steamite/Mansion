@@ -20,7 +20,7 @@ namespace Assets.Scripts.UI
         int width;
         int height;
 
-        public void Blur(Action<Sprite> onFinish)
+        public async Awaitable<Sprite> Blur()
         {
             width = Screen.width;
             height = Screen.height;
@@ -32,7 +32,7 @@ namespace Assets.Scripts.UI
             c.targetTexture = screenShot;
 
             c.Render();
-            StartCoroutine(WaitOnPostRender(onFinish));
+            return await WaitOnPostRender();
         }
 
         /// <summary>
@@ -41,11 +41,10 @@ namespace Assets.Scripts.UI
         /// <param name="_item">Item for inspection</param>
         /// <param name="_asset">Asset containging actions.</param>
         /// <returns></returns>
-        IEnumerator WaitOnPostRender(Action<Sprite> onFinish)
+        async Awaitable<Sprite> WaitOnPostRender()
         {
             // Create the picture
-            yield return new WaitForEndOfFrame();
-
+            await Awaitable.EndOfFrameAsync();
             RenderTexture renH = RenderTexture.GetTemporary(width, height);
 
             horizontalMaterial.SetFloat("_BlurSize", Radial);
@@ -56,21 +55,46 @@ namespace Assets.Scripts.UI
             RenderTexture.ReleaseTemporary(renH);
 
             Debug.Log("Shaded");
-            CreateSprite(onFinish);
+            return await CreateSprite();
         }
 
-        async void CreateSprite(Action<Sprite> onFinish)
+        async Awaitable<Sprite> CreateSprite()
         {
-            NativeArray<byte> tempvar = new NativeArray<byte>(screenShot.width * screenShot.height * 16, Allocator.Persistent, NativeArrayOptions.UninitializedMemory);
-            var req = AsyncGPUReadback.RequestIntoNativeArrayAsync(ref tempvar, screenShot);
-            await req;
+            NativeArray<byte> bytArr = 
+                new NativeArray<byte>(
+                    screenShot.width * screenShot.height * 16, 
+                    Allocator.Persistent, 
+                    NativeArrayOptions.UninitializedMemory);
+            Texture2D blurTexture;
+            try
+            {
 
-            Texture2D blurTexture = new Texture2D(screenShot.width, screenShot.height);
-            blurTexture.LoadRawTextureData(tempvar);
-            blurTexture.Apply();
+                await AsyncGPUReadback.RequestIntoNativeArrayAsync(
+                    ref bytArr,
+                    screenShot);
 
-            Sprite finalBlur = Sprite.Create(blurTexture, new(0, 0, blurTexture.width, blurTexture.height), new(0, 0));
-            onFinish?.Invoke(finalBlur);
+                blurTexture = new Texture2D(
+                    screenShot.width,
+                    screenShot.height);
+
+                blurTexture.LoadRawTextureData(bytArr);
+                blurTexture.Apply();
+                Debug.Log("Texture created");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                return null;
+            }
+            finally
+            {
+                bytArr.Dispose();
+            }
+
+            return Sprite.Create(
+                blurTexture,
+                new(0, 0, blurTexture.width, blurTexture.height),
+                new(0, 0));
         }
     }
 }
