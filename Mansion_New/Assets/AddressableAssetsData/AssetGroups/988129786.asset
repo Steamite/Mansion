@@ -1,0 +1,358 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: 988129786
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: 988129786
+  m_GUID: 47b3d5be229e44b478ae49c8f30791b0
+  m_SerializeEntries:
+  - m_GUID: 134936e609c4d144cb1a2eb1bd3cd308
+    m_Address: Assets/Models/Hotovo/Tex/mistnost6_steny6_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19c09733db2836c40af25a0ab85dfe59
+    m_Address: Assets/Models/Hotovo/Tex/strop2_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 19cfaf653bfa86b4eadc85efbf434012
+    m_Address: Assets/Models/Hotovo/Tex/mistnost7_steny7_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d7f293946057b74981c01cc0947c6a8
+    m_Address: Assets/Models/Hotovo/Tex/steny2_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 20565b195c20be848b05fbcbd47ad2d9
+    m_Address: Assets/Models/Hotovo/Materials/steny7.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 227535b47df704b4c92b9dca5f2bcece
+    m_Address: Assets/Models/Hotovo/Tex/mistnost10_strop10_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 26849d929986f3d48a3d1bef6830bdcb
+    m_Address: Assets/Models/Hotovo/Tex/mistnost5_strop5_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ca833b41b2a3584db2438fa7a329977
+    m_Address: Assets/Models/Hotovo/Materials/strop7.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 304674d499a166d449d973f5a4b0e63b
+    m_Address: Assets/Models/Hotovo/Tex/mistnsot2_strop1_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3177ed653cee75048a350c27423c10eb
+    m_Address: Assets/Models/Hotovo/Tex/mistnost3_steny3_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a4f691f5b9246f40b1396fd681e98d0
+    m_Address: Assets/Models/Hotovo/Tex/mistnost7_strop7_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3bb2476240e0ebd4e8d5fd3118af51a4
+    m_Address: Assets/Models/Hotovo/Tex/mistnsot2_strop1_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3efa9e283faae214d9b3d50a1c2a0c7f
+    m_Address: Assets/Models/Hotovo/Tex/mistnost8_strop8_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4beb5ed1ad171ee49978d3f40065c2c0
+    m_Address: Assets/Models/Hotovo/Tex/mistnost8_strop8_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4df426596640660498b1c5c5abb22521
+    m_Address: Assets/Models/Hotovo/Materials/steny3.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 50e67ff2c7213fd488e93d5478d7f98e
+    m_Address: Assets/Models/Hotovo/Materials/strop6.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5510d3fca06583143a983f70b2279ebe
+    m_Address: Assets/Models/Hotovo/Tex/mistnost5_strop5_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 602386842e7e6cf4781c55c7ed1f8f8a
+    m_Address: Assets/Models/Hotovo/Materials/steny8.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62668b79b9b0a794dbe2155767e4982e
+    m_Address: Assets/Models/Hotovo/Materials/stenyChodby.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6425ac60549d8624095deeff449c04ba
+    m_Address: Assets/Models/Hotovo/Tex/mistnost6_strop6_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6578be451f4daaa4b96d0165d5b862d9
+    m_Address: Assets/Models/Hotovo/Tex/mistnost6_strop6_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 674369b856f16c7428f55736407e4225
+    m_Address: Assets/Models/Hotovo/Materials/strop5.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f87d437bba04244b8ccb0d39e6935a5
+    m_Address: Assets/Models/Hotovo/Tex/chodby_stropChodby_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73cddb8068c35cb45b9e5a4e4ff21f61
+    m_Address: Assets/Models/Hotovo/Tex/mistnost10_steny10_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78a9803389591a14b88f6a0b220696ff
+    m_Address: Assets/Models/Hotovo/Materials/steny6.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a2a77d9a297da94ea495249bf8448ff
+    m_Address: Assets/Models/Hotovo/Materials/steny4.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7a8230ccd9a21f04fabc59ab74bb75b3
+    m_Address: Assets/Models/Hotovo/Materials/steny2.002.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8451eb2503cc3554ab64df5915345d8a
+    m_Address: Assets/Models/Hotovo/Materials/strop1.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93d0337495d879443a8c9e1f41475960
+    m_Address: Assets/Models/Hotovo/Tex/mistnost6_steny6_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9968fd35916bc7748a699ecde97abbbe
+    m_Address: Assets/Models/Hotovo/Tex/chodby_stenyChodby_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99c9d19e30e343b429996b2c0d378715
+    m_Address: Assets/Models/Hotovo/Tex/mistnost8_steny8_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9afbd5ad54cb6a940b66bb932b8691da
+    m_Address: Assets/Models/Hotovo/Tex/mistnost5_Material5_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b35a9b21010c9f4a92d3c43d67a6245
+    m_Address: Assets/Models/Hotovo/Tex/mistnost4_strop4_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a1fa8b22a9813634b8911cf2488dd1d3
+    m_Address: Assets/Models/Hotovo/Tex/mistnost5_Material5_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a775a181251b7d04bb312ec4c1ec6c68
+    m_Address: Assets/Models/Hotovo/Tex/mistnost7_strop7_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa21b73190c240144808ad211eec04f4
+    m_Address: Assets/Models/Hotovo/Tex/mistnost8_steny8_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ab1abf324c31c174ea16bdf6df924c37
+    m_Address: Assets/Models/Hotovo/Tex/mistnsot2_steny1_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aceba50852b53544081b19c1e6a2ba1a
+    m_Address: Assets/Models/Hotovo/Tex/mistnost9_steny9_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: afbeee51287e3db4487081c68b6ca4db
+    m_Address: Assets/Models/Hotovo/Tex/mistnost10_strop10_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2965d1cc70612747ae655b8d766b988
+    m_Address: Assets/Models/Hotovo/Materials/stropChodby.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4f5c3c06921b6b43ba95061225e59b9
+    m_Address: Assets/Models/Hotovo/Materials/1.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b4fbea2eb2edb514fae3d9c23499b1c0
+    m_Address: Assets/Models/Hotovo/Tex/mistnost3_strop3_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b561a8a153e295344a9ac4d7468287e1
+    m_Address: Assets/Models/Hotovo/Tex/chodby_stropChodby_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b711fc7f401713243914992fbc23516f
+    m_Address: Assets/Models/Hotovo/Tex/mistnost9_strop9_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b78045fe9f70b564f83ada4bf644a152
+    m_Address: Assets/Models/Hotovo/Materials/Material5.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b96b1e18dee2bc44ab09b96af533877e
+    m_Address: Assets/Models/Hotovo/Materials/2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd0e8250145fbde4e8958cde2ff59747
+    m_Address: Assets/Models/Hotovo/Materials/strop9.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c144af34c37172d4e8628f3f4beb83f6
+    m_Address: Assets/Models/Hotovo/Tex/mistnost9_strop9_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2c640b4a37d73841ba811f4487deb76
+    m_Address: Assets/Models/Hotovo/Tex/chodby_stenyChodby_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c390157fed962e644bfba97aea7f5378
+    m_Address: Assets/Models/Hotovo/Tex/mistnost4_steny4_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c3d0979de81da5543b6d3287873fc8a4
+    m_Address: Assets/Models/Hotovo/Tex/mistnost3_strop3_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c50b02678e0f2124bbff385be7c0eebd
+    m_Address: Assets/Models/Hotovo/Tex/mistnsot2_steny1_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8e5e24349e4bbd4f82692c18d97948d
+    m_Address: Assets/Models/Hotovo/Materials/strop4.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c96e8e1cab83b4440be1a6468ef33743
+    m_Address: Assets/Models/Hotovo/Tex/mistnost4_steny4_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cbe49fc0471905049be6e21fc011852b
+    m_Address: Assets/Models/Hotovo/Tex/mistnost9_steny9_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6bafd20281243e42a3c65e7ca06670c
+    m_Address: Assets/Models/Hotovo/Tex/steny2_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7b4ab4c943f4504382a1bb41ecb3c47
+    m_Address: Assets/Models/Hotovo/Materials/steny10.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e3befcda72a333748b85a3d8c7004577
+    m_Address: Assets/Models/Hotovo/Tex/mistnost10_steny10_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5433cab2417dbd4eb94a5e3e532fce6
+    m_Address: Assets/Models/Hotovo/Materials/steny9.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f0996eb653399c34baad4d58c012816f
+    m_Address: Assets/Models/Hotovo/Tex/mistnost3_steny3_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f27fa28dc5b5b2b4dbc24303329527e5
+    m_Address: Assets/Models/Hotovo/Tex/strop2_BaseColor.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2b9e3d2b63cc1f4599f561f3e623bb8
+    m_Address: Assets/Models/Hotovo/Materials/strop3.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f44d713c778fc514f92a285bd92a18e1
+    m_Address: Assets/Models/Hotovo/Materials/strop8.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9253fc31cc56af4596d22af7147ad8c
+    m_Address: Assets/Models/Hotovo/Materials/strop10.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fac004a8bc5d8ec4aaac581df3688148
+    m_Address: Assets/Models/Hotovo/Tex/mistnost7_steny7_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff6081e2d38811e4eac72f370317520f
+    m_Address: Assets/Models/Hotovo/Tex/mistnost4_strop4_Normal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff9c6aa4f2268a84aa817997c807cfa5
+    m_Address: Hotovo3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 9980c3d426a66384d87cc728d4832707, type: 2}
+    - {fileID: 11400000, guid: e82a93d158116554abb25659c69dcb3f, type: 2}

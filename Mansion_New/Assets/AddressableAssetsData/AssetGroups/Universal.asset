@@ -14,42 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GroupName: Universal
   m_GUID: 5528967dd38a89d4f9f97de074978318
-  m_SerializeEntries:
-  - m_GUID: 087f5250581f1cc4e997336a7012dddf
-    m_Address: ProjectUSS
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 35845fe01580c41289b024647b1d1c53
-    m_Address: Action map
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8b334b482a0d970409e99bdb9e62d520
-    m_Address: Panel Settings
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 933532a4fcc9baf4fa0491de14d08ed7
-    m_Address: Lit
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d4f37c281ecc6f24ba4924d6dce859ef
-    m_Address: UnityDefaultRuntimeTheme
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: db63ed6ef943581489595a91faccf9ec
-    m_Address: UITK Text Settings
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dd6ddf05538e97540aff284d316098f3
-    m_Address: MouseIcon
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
   m_SchemaSet:

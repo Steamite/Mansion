@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+
+#if ENABLE_VR && !PLATFORM_WEBGL
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 namespace Assets.Scripts.UI.VRMenu
@@ -49,3 +51,15 @@ namespace Assets.Scripts.UI.VRMenu
         }
     }
 }
+
+
+#else
+namespace Assets.Scripts.UI.VRMenu
+{
+    public class VRInteractionInit : MonoBehaviour
+    {
+
+    }
+}
+#endif
+

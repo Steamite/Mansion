@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: 520365777
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: 520365777
+  m_GUID: 06c4ccfe82a08c04fa910569baf04967
+  m_SerializeEntries:
+  - m_GUID: 181d9bdcad5804146950d51d1fe9a5c2
+    m_Address: Assets/Scenes/Levels/New/Lightning/Lightmap-1_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2753c344a5f61f74584ea231c8e696ca
+    m_Address: Assets/Scenes/Levels/New/Lightning.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a1cff286e07a2b40a1055aef5c7bbd9
+    m_Address: Assets/Scenes/Levels/New/Room.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ea28fd35da43d34b8363bb74e488549
+    m_Address: Assets/Scenes/Levels/New/Lightning/Lightmap-0_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 687c4723199610c4b8fe7859b7854921
+    m_Address: Assets/Scenes/Levels/New/Lightning/New Lighting Settings.lighting
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 827232391cd8b0745a22e90f77f1634e
+    m_Address: Assets/Scenes/Levels/New/Lightning/Lightmap-1_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ad4150b605ee1d9418fd13ff0b44d5cb
+    m_Address: Assets/Scenes/Levels/New/Lightning/LightingData.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1cedbb3e5b0cef4994f9130e97265f3
+    m_Address: Assets/Scenes/Levels/New/Lightning/Lightmap-0_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d19f9b96a7c45e3419e35575525dd775
+    m_Address: Assets/Scenes/Levels/New/Room 2.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 031136db5234d934785dbb62488c82aa, type: 2}
+    - {fileID: 11400000, guid: 1a23236976c5dd94d8a94849b6a9c126, type: 2}

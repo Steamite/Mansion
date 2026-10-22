@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: -349516825
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: -349516825
+  m_GUID: 036ebe8314ddc9e479933df573b4efbd
+  m_SerializeEntries:
+  - m_GUID: 0aab9f6856f434d4a89c0ec59a382a9c
+    m_Address: Assets/Scenes/Master/Player/Effects Profile.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ddf4f22ecc46574297fbad7c9d71c5b
+    m_Address: Assets/Scenes/Room Scenes/Prototype/Lightmap-0_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51fa4ec9601b35042beb32f03591df99
+    m_Address: Assets/Scenes/Room Scenes/Prototype/LightingData.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67a8b6893887d6949b225f509a6988ce
+    m_Address: Player
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d06cbae1d2553049b0468bdd8bc6671
+    m_Address: MainInterface
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78e2dc6fb7f06ba43b18e67310113e1c
+    m_Address: Assets/UI Toolkit/Styles/MainInterface/Minimap.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f1bbeaf5a9bc844184ccbd8535a6083
+    m_Address: Assets/Audio/Mixer.mixer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 85b0ca6de761ec24d87cdfeefccfb875
+    m_Address: Assets/Animation/Cam Blend.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8616aad909a2758438862602bf308582
+    m_Address: Assets/Sprites/Artboard 1@5x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87c99ab3d8b4bbd4d8d1a7bf50175826
+    m_Address: Assets/Scenes/Room Scenes/Prototype/Lightmap-0_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e9157bf92654f14685b72652fc8461e
+    m_Address: Assets/Sprites/Circle.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bfcd9577e1735ba43b5959f54f5ea5e3
+    m_Address: Assets/UI Toolkit/Styles/MainInterface/Crosshair.uss
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cce481c706f8eaf4bab2a10e7a7246b1
+    m_Address: Assets/Scenes/Room Scenes/Prototype.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 239aa7c79538d18428ebb1711708a36d, type: 2}
+    - {fileID: 11400000, guid: a7abc3c07a4dc35419fb725e44e13557, type: 2}

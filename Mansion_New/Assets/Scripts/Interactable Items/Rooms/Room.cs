@@ -35,7 +35,16 @@ namespace Rooms
     public class Room : MonoBehaviour
     {
         public List<string> AdjacentRooms = new();
-        
+
+        /// <summary>
+        /// Oneshot audio
+        /// </summary>
+        public AudioClip enterAudio;
+        /// <summary>
+        /// Loop - edit 
+        /// </summary>
+        public AudioClip ambientAudio;
+
         public Transform Interactables => transform.GetChild(0);
 
         public Transform Colliders => transform.GetChild(1);
@@ -58,9 +67,36 @@ namespace Rooms
             {
                 item.LoadContent();
             }
+
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+            Debug.Log("Start sound Load" + name);
+            PreLoadAudio(ambientAudio);
+            PreLoadAudio(enterAudio);
+            Debug.Log("Sound Load finished" + name);
+
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+#if !WEB
             VRManagerLink.OnRoomLoad(transform);
+#endif 
+        }
+        async Awaitable PreLoadAudio(AudioClip clip)
+        {
+            if (clip.loadState != AudioDataLoadState.Loaded)
+            {
+                clip.LoadAudioData();
+            }
         }
 
+        private void OnDestroy()
+        {
+            if (ambientAudio != null)
+                ambientAudio.UnloadAudioData();
+            if (enterAudio != null)
+                enterAudio.UnloadAudioData();
+        }
+
+
+        public bool entered = false;
         /// <summary>
         /// Loads new rooms and unloads the old ones that are not needed.
         /// </summary>
@@ -69,6 +105,12 @@ namespace Rooms
         public async Awaitable EnterRoom(Room previousRoom)
         {
             Debug.Log("enter room");
+
+
+            SoundManager.instance.EnterRoom(enterAudio, ambientAudio, entered);
+            entered = true;
+
+
             if (previousRoom)
             {
                 List<string> roomsToUnload = previousRoom.AdjacentRooms.Where(q => !AdjacentRooms.Contains(q) && q != name).ToList();
@@ -89,6 +131,7 @@ namespace Rooms
                 await AddressableSceneManager.LoadRooms(AdjacentRooms);
                 ToggleEntrances(false);
             }
+            
         }
 
 

@@ -4,10 +4,7 @@ using Assets.Scripts.UI.VRMenu;
 using Items;
 using Player;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.UIElements;
-using UnityEngine.XR.Interaction.Toolkit.Locomotion.Gravity;
 
 namespace Assets.Scripts.UI.MainMenu
 {
@@ -16,21 +13,17 @@ namespace Assets.Scripts.UI.MainMenu
         public override async Awaitable StartRoomLoad(object sceneToLoad)
         {
             string sceneName = (string)sceneToLoad;
-            AddressableSceneManager.UseVR = useVR;
 
-            if (useVR)
+#if WEB
+            //VRManagerLink.DestroyManager();
+#else
+            if (VRManagerLink.VRManager == null)
             {
-                if (VRManagerLink.VRManager == null)
-                {
-                    VRInteractionInit vrManager = Instantiate(vrInteractabeInitPrefab);
-                    VRManagerLink.VRManager = vrManager;
-                    DontDestroyOnLoad(vrManager);
-                }
+                VRInteractionInit vrManager = Instantiate(vrInteractabeInitPrefab);
+                VRManagerLink.VRManager = vrManager;
+                DontDestroyOnLoad(vrManager);
             }
-            else
-            {
-                VRManagerLink.DestroyManager();
-            }
+#endif
 
             loadingScreen.enabled = true;
             ShowControls();

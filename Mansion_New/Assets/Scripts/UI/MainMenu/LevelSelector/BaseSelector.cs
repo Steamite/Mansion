@@ -19,39 +19,37 @@ namespace Assets.Scripts.UI.MainMenu.New
 
         protected virtual async Awaitable ShowUI()
         {
-            if (loadingScreen.UseVR)
-            {
-                mainCamera.SetActive(false);
+#if WEB
 
-                document.enabled = false;
-                document.panelSettings = worldSettings;
-                //document.worldSpaceSize = new(1920, 1080); TEST
-                document.enabled = true;
+            mainCamera.SetActive(true);
 
-                UIDocument doc = loadingScreen.transform.parent.GetComponent<UIDocument>();
-                doc.enabled = true;
-                doc.panelSettings = worldSettings;
-                doc.worldSpaceSizeMode = UIDocument.WorldSpaceSizeMode.Fixed;
-                doc.enabled = false;
+            document.panelSettings = screenSettings;
+            loadingScreen.transform.parent.GetComponent<UIDocument>().panelSettings = screenSettings;
 
-                var scene = await AddressableSceneManager.LoadScene(
-                    "Player VR",
-                    SceneType.Player,
-                    null);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+#else
+            mainCamera.SetActive(false);
 
-                GameObject[] objs = scene.Scene.GetRootGameObjects();
-                Camera.main.cullingMask = LayerMask.GetMask("UI", "Ignore Raycast");
-            }
-            else
-            {
-                mainCamera.SetActive(true);
+            document.enabled = false;
+            document.panelSettings = worldSettings;
+            //document.worldSpaceSize = new(1920, 1080); TEST
+            document.enabled = true;
 
-                document.panelSettings = screenSettings;
-                loadingScreen.transform.parent.GetComponent<UIDocument>().panelSettings = screenSettings;
+            UIDocument doc = loadingScreen.transform.parent.GetComponent<UIDocument>();
+            doc.enabled = true;
+            doc.panelSettings = worldSettings;
+            doc.worldSpaceSizeMode = WorldSpaceSizeMode.Fixed;
+            doc.enabled = false;
 
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
+            var scene = await AddressableSceneManager.LoadScene(
+                "Player VR",
+                SceneType.Player,
+                null);
+
+            GameObject[] objs = scene.Scene.GetRootGameObjects();
+            Camera.main.cullingMask = LayerMask.GetMask("UI", "Ignore Raycast");
+#endif
         }
     }
 }

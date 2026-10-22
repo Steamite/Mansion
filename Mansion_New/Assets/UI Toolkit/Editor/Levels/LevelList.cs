@@ -15,7 +15,7 @@ using UnityEngine.UIElements;
 namespace Assets.UI_Toolkit.Editor.Levels
 {
     [UxmlElement]
-    public partial class LevelList : VisualElement
+    public partial class LevelList : ScrollView
     {
         List<LevelData> levelData;
         public LevelData SelectedLevel => 

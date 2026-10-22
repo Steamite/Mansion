@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: 777403293
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: 777403293
+  m_GUID: a84bbb9448af9c645a70a3c9b5a7a789
+  m_SerializeEntries:
+  - m_GUID: 72832d8df2adbe5499b107b8b56ae012
+    m_Address: Assets/Models/Blend/rusty_metal_04_diff_4k.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bcc5e89ef5ab2b14fad17e104e439f25
+    m_Address: Assets/Models/Blend/rusty_metal_04_4k_RealBlendMaskMap.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d82d4b8a82433ad4a9a0246448d46afe
+    m_Address: Assets/Models/Blend/rusty_metal_04_nor_dx_4k.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 4ed2aafb32718c942a783a6f35395141, type: 2}
+    - {fileID: 11400000, guid: be6a1061e1a19ee49b20a176f06f7fe2, type: 2}

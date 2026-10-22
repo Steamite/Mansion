@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: 871351020
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: 871351020
+  m_GUID: 0bbc66a623a8bb847b351c2c18c32549
+  m_SerializeEntries:
+  - m_GUID: 4ca500a46477e0241a5418e0185753b1
+    m_Address: Assets/Scenes/Levels/Prototype/Lightning/Light settings.lighting
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 606b61b974beb1a4c8a1ee2cb48e115c
+    m_Address: Assets/Scenes/Levels/Prototype/Lightning/LightingData.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c7520f5c739de2a47abd7338ed7c008f
+    m_Address: Assets/Scenes/Levels/Prototype/Lightning.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6a4c10430212b642a8dfca40b387221
+    m_Address: Assets/Scenes/Levels/Prototype/Lightning/Lightmap-0_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f13888597f0680445ac5b1b88dd6514c
+    m_Address: Assets/Scenes/Levels/Prototype/Lightning/Lightmap-0_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fe8af55cc4c2eb343bf21dc1299cda98
+    m_Address: Assets/Scenes/Levels/Prototype/Prototype.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 95a9be6927654744babd33001d0948bc, type: 2}
+    - {fileID: 11400000, guid: 6c891a742153e2f41b9a451cb7c0f8b3, type: 2}

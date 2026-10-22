@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: -1991490090
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: -1991490090
+  m_GUID: 111b3487060fb9e40846a533ec13c63b
+  m_SerializeEntries:
+  - m_GUID: 0f906c94e2aa0c3488832acc1db04295
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Filters/AnyGazedAtTeleportAnchorFilter.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1392f805216c47742996d4742c80721c
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Prefabs/Controllers/XR Controller Left.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 147ae308eec018b40a7b312ae58f44c7
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Models/UniversalController.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27024f5809f4a4347b9cd7f26a1bdf93
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Prefabs/Interactors/Poke Interactor.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27b7629e54b332449bfa3a4065ffe17a
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Models/BlinkVisual.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3df3e1220f2164f448701a6de8084f92
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Prefabs/Interactors/Left_NearFarInteractor.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f3d696f7c3365846b6dc2402afb3d3e
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Materials/UI-NoZTest.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 893219773891c784ab469a39151879b4
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Prefabs/Teleport/Directional Teleport Reticle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 91ff3830fc4055a4fb0d0d2be32101a7
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Materials/Flat Blue.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f3369e30fbd31f4bb596b1a99babe83
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Prefabs/Controllers/XR Controller Right.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3fde713df4d99042a0403c4be9eea32
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Prefabs/Teleport/Blocking Teleport Reticle.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a661e7516de55c047905f40ca76fe701
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Shaders/UI-NoZTest.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a85d80c1edb5d2f458d42e79f78055b9
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/DemoAssets/Sprites/LegibilityMask.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae1968658b9687b47976fe86c062168f
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Prefabs/Teleport/Climb Teleport Arrow.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b200f6587d118224eba8467281481800
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Prefabs/Interactors/Right_NearFarInteractor.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b84cd05e1160fe34cab2585022c8cd99
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Prefabs/Interactors/Gaze Interactor.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb91fcbcb3cc896468b372b1c762bfab
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Prefabs/Affordances/PokePointerAffordance.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be2911572dc3afa448d24b4e97edc5f1
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Models/Reticle_Torus.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c1800acf6366418a9b5f610249000331
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Prefabs/Interactors/Teleport Interactor.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db6239f7ccb29ca4aac63126c6a35e7d
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Animations/Climb Teleport Arrow.controller
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e053b8fbc416ba349b4a58a26410bba2
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Models/Pinch_Pointer_LOD0.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebfa13455423c254e943b87bf6e1f310
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Animations/ArrowBounce.anim
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6336ac4ac8b4d34bc5072418cdc62a0
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Prefabs/XR Origin (XR Rig).prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8ecc54972abacc46a93f671b0602139
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/DemoAssets/Sprites/Forward.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc690d1505c48cb4696838b71abd2ca0
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/AffordanceThemes/PokeSphereColor.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 889b8af8e2de4eb48bfacc9b2f8cbb63, type: 2}
+    - {fileID: 11400000, guid: 3d412d5be647e5b4e86938e9563e3207, type: 2}

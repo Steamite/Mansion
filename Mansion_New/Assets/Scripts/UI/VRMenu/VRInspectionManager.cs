@@ -3,6 +3,8 @@ using System;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UIElements;
+
+#if !WEB
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Assets.Scripts.UI.VRMenu
@@ -84,3 +86,13 @@ namespace Assets.Scripts.UI.VRMenu
         }
     }
 }
+#else
+
+namespace Assets.Scripts.UI.VRMenu
+{
+    public class VRInspectionManager : MonoBehaviour
+    {
+
+    }
+}
+#endif

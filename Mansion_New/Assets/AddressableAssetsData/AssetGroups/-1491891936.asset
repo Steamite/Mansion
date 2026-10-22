@@ -1,0 +1,303 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: -1491891936
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: -1491891936
+  m_GUID: a813bb341ee1e3e4a8c8d19b2c860ffc
+  m_SerializeEntries:
+  - m_GUID: 031b388fd3c78724ebe653ab6026663d
+    m_Address: Assets/Scenes/Levels/Main/Room2.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0a6a783a7f659ee4585956ec2f3c47d9
+    m_Address: Assets/Models/Human/Material.023.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c74f9c60e0bfc2489a67e01c86d6e14
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-6_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e49cddcd4ae240428a7869c03ab4b99
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-0_comp_shadowmask.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c9d51e06ad037f4d9a8f171e65926ff
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-5_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2312e949da64aaa49ac50687e03b70d9
+    m_Address: Assets/Scenes/Levels/Main/Room8.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2f3efef54e6fa3f478118e09cc1a8d8e
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-2_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33361e25aeed0d340b93d0ac429f63c1
+    m_Address: Assets/Scenes/Levels/Main/Room6.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 374aef1d5341e014e98ed9919dd5d04f
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightning Baking Set-Default.CellOptionalData.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4573983d679905a4fbf0e26fd610f85b
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-4_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5731c5778511df54eb00bb5243db76c2
+    m_Address: Assets/Scenes/Levels/Main/Room1.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5f88370699e72254bbf108c789250985
+    m_Address: Assets/Scenes/Levels/Main/Room4.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 606c89bf70a11c64cb8c8e9ca989a8a8
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-4_comp_shadowmask.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6155e3c657a86a646ae8af01a8eac2eb
+    m_Address: Assets/Audio/SFX/dragon-studio-freezing-winter-wind-499654.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6416a33a9b6883549b8ec4d8f2a7c907
+    m_Address: Assets/Scenes/Levels/Main/Room3.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 64a0e360e1226e047a5932bb1ba8a0bb
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-7_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6503c428f1bc77b42b6dedf5d51c898e
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-0_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f62fdfa6971fa94bb230b79a3b416b5
+    m_Address: Assets/Scenes/Levels/Main/Lightning/LightingData.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73522738e4192bc49906156dd3d88512
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-1_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76d9285e84ea25c4e963f05ed70203fc
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-3_comp_shadowmask.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 826fa40690eb72149a02f8df6735a390
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-3_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 835bc01c83414bd449cd263b8c748ba9
+    m_Address: Assets/Audio/Voices/ElevenLabs_2026-10-11T19_04_15_Mirek - Slow and Flowy Storyteller_pvc_sp100_s50_sb75_v4.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 863ef7ae6a8ca4947878a40759970b3b
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-4_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 86592427e05cd884a95f81ed4e267ebe
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightning Baking Set-Default.CellData.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8c868651699a9b04b9f1e8663222d3ed
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-6_comp_shadowmask.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9637b2d2258461b4ab05c538fdd0deb9
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightning Baking Set.CellBricksData.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98915e63e1a7f834e96eb7c42700445d
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-2_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 992086fcb5cdfde458e847c18443bb37
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-1_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b8a15190679c5b408eb67d2ef06e370
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-7_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9dbfeccad7b8b0e488efd36c3ff1c5d1
+    m_Address: Assets/Scenes/Levels/Main/Room10.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f2a72244de6e9c4fb8513768bff157a
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-7_comp_shadowmask.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a201ef788b36f2e48acf32e9e8284d91
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-0_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a43c90347adcf98499218ee86de8ec85
+    m_Address: Assets/Scenes/Levels/Main/Lightning.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6060e385dc9e2946a6bbf561b7fb403
+    m_Address: Assets/Scenes/Levels/Main/Room7.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a9d1641cb7b316b43b68e1377ddc759f
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-8_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac9f43c18f2565d4898126c07937d3cc
+    m_Address: Assets/Models/Revive/Menu.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ae8d50d8921725f418202b1cef2b6437
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-5_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b241f787faed3f5448945b31a8c27575
+    m_Address: Assets/Scenes/Levels/Main/Room9.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b2bb54042739008448a1465fed64e083
+    m_Address: Assets/Models/Human/Material.026.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3849ee70f407134eb9b2086564a9d8d
+    m_Address: Assets/Scenes/Levels/Main/Room11.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bbbea8730a7691a40adda60d50a91eb6
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-5_comp_shadowmask.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bbe9eb673b43aca4990d4350fe861278
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-3_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c57641360f0080449ae11037dc08957e
+    m_Address: Assets/Audio/SFX/freesound_community-jazz-loop-7163.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb08c75ecbd40694f94980cce6e40330
+    m_Address: Assets/Models/Human/Chunk.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d767a9936a9b42a4aa74d9fdd347e314
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-1_comp_shadowmask.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7fd36d910895154fbca1f1525337662
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-6_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc5d70c70449a3142807d262638b2a4d
+    m_Address: Assets/RealBlend/New Lighting Settings.lighting
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df5b34b3344d10346ab499ee32dcbc1c
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightning Baking Set.CellSharedData.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed2bd252182a01a409562befa97ec5c7
+    m_Address: Assets/Scenes/Levels/Main/Room5.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef3fd7538bea07d4a87bd6826aabe0ce
+    m_Address: Assets/Audio/SFX/soundreality-morse-code-408794.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f204c4890d3f25b4284cbdf6f5e02b3b
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-2_comp_shadowmask.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6af9287b44ba9f4fb04565f50a708b5
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightning Baking Set-Default.CellProbeOcclusionData.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb3277421f18ea447aa3802c79ab4eac
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-8_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: febb0157d1b3f8840b2946dff61f50a3
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightning Baking Set.CellSupportData.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fedccc4d2e6c83e4c9d29190bd6cef74
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightmap-8_comp_shadowmask.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff07409622dbc044f9e1be718b10e902
+    m_Address: Assets/Scenes/Levels/Main/Lightning/Lightning Baking Set.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: cf808430224fe8445ae1b90667d2dd4d, type: 2}
+    - {fileID: 11400000, guid: ab3b9245192a89b41a7f073122228be6, type: 2}

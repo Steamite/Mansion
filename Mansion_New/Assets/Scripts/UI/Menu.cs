@@ -1,12 +1,7 @@
 ﻿using Assets.Scripts.Interactable_Items.Rooms;
 using Player;
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 namespace Assets.Scripts.Player
 {
@@ -47,19 +42,17 @@ namespace Assets.Scripts.Player
 
         public void Transition(/*InputAction.CallbackContext callbackContext*/)
         {
-            if (AddressableSceneManager.UseVR)
-            {
-                // Find all interactors in the scene (or keep a reference to your player's hands)
-                var interactors = GetComponentsInChildren<XRBaseInteractor>();
+#if !WEB
+            // Find all interactors in the scene (or keep a reference to your player's hands)
+            var interactors = GetComponentsInChildren<XRBaseInteractor>();
 
-                foreach (var interactor in interactors)
-                {
-                    // Disabling the component forces it to drop anything it is holding
-                    // and stops its Update loop from looking for the destroyed object.
-                    interactor.enabled = false;
-                }
+            foreach (var interactor in interactors)
+            {
+                // Disabling the component forces it to drop anything it is holding
+                // and stops its Update loop from looking for the destroyed object.
+                interactor.enabled = false;
             }
-            
+#endif      
             AddressableSceneManager.LoadScene("Main Menu", SceneType.Menu);
         }
     }

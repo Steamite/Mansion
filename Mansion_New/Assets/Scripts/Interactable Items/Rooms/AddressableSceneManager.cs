@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -36,7 +37,6 @@ namespace Assets.Scripts.Interactable_Items.Rooms
 
         Dictionary<string, HandleDetails> loadedScenes;
 
-        public static bool UseVR { get; set; }
         static AddressableSceneManager instance;
 
         public static LevelData ActiveLevel
@@ -49,7 +49,6 @@ namespace Assets.Scripts.Interactable_Items.Rooms
         static void Clear()
         {
             instance = null;
-            UseVR = false;
             ActiveLevel = null;
         }
 
@@ -174,6 +173,7 @@ namespace Assets.Scripts.Interactable_Items.Rooms
                     break;
                 default:
                     loadHandle = Addressables.LoadSceneAsync(sceneToLoad, LoadSceneMode.Additive, false);
+                    sceneToLoad = Path.GetFileNameWithoutExtension(sceneToLoad);
                     break;
             }
 
@@ -229,19 +229,15 @@ namespace Assets.Scripts.Interactable_Items.Rooms
 
         async Awaitable WaitForSceneUnLoad(string sceneName)
         {
-            if (loadedScenes[sceneName].type == SceneType.Room)
-                sceneName = ActiveLevel.GetRoomPath(sceneName);
-
             AsyncOperationHandle<SceneInstance> unloadHandle = Addressables.UnloadSceneAsync(loadedScenes[sceneName].handle, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects, false);
             loadedScenes.Remove(sceneName);
             await unloadHandle.Task;
             unloadHandle.Release();
         }
 
-        public static void Init(LevelData lData, bool useVR)
+        public static void Init(LevelData lData)
         {
             ActiveLevel = lData;
-            UseVR = useVR;
         }
     }
 }

@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: 1859958199
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: 1859958199
+  m_GUID: e3ebf65ac091b0b4aacaaf7a93494e04
+  m_SerializeEntries:
+  - m_GUID: 19288c17362a5cc40a0221ec0d1748a3
+    m_Address: Assets/Scenes/Levels/New/Lightning/Lightning Baking Set.CellSharedData.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4660c676edc3d6c40a7448c4f03857f7
+    m_Address: Assets/Scenes/Levels/New/Lightning/Lightning Baking Set-Default.CellProbeOcclusionData.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4df71ee6fcd04df4d81522edf20299ae
+    m_Address: Assets/Scenes/Levels/New/Lightning/Lightning Baking Set.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 811fd3db42c4e354c9f75a09943f8716
+    m_Address: Assets/Scenes/Levels/New/Lightning/Lightning Baking Set-Default.CellData.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 988e93e2129b05843919c47050244ab4
+    m_Address: Assets/Scenes/Levels/New/Lightning/Lightning Baking Set-Default.CellOptionalData.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eeb9b817255705741bdc022b06046e73
+    m_Address: Assets/Scenes/Levels/New/Lightning/Lightning Baking Set.CellBricksData.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f73b692cfa433674c8cbb9cc59a7b609
+    m_Address: Assets/Scenes/Levels/New/Lightning/Lightning Baking Set.CellSupportData.bytes
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 62dc449e1536970478a0d1953d1082bc, type: 2}
+    - {fileID: 11400000, guid: d59c2f5eb12f6c344bb86b8274a9bd85, type: 2}

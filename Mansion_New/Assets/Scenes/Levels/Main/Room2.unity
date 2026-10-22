@@ -638,7 +638,10 @@ MonoBehaviour:
   AdjacentRooms:
   - Room11
   - Room10
+  enterAudio: {fileID: 8300000, guid: 835bc01c83414bd449cd263b8c748ba9, type: 3}
+  ambientAudio: {fileID: 8300000, guid: 6155e3c657a86a646ae8af01a8eac2eb, type: 3}
   centerOffset: {x: 0, y: -0.42, z: 0}
+  entered: 0
 --- !u!4 &383624987
 Transform:
   m_ObjectHideFlags: 0

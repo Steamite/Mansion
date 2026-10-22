@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: -1856946851
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: -1856946851
+  m_GUID: ee8667ef98fd9a749abeca4ca97cbdf6
+  m_SerializeEntries:
+  - m_GUID: 16fba6d30ed741d4a9fdd6e79ee2f3ac
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/DemoAssets/Audio/Button Pop.wav
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: fd578e9c3c3d42a4f9736c9e7d58fa8b, type: 2}
+    - {fileID: 11400000, guid: 3ca234ff2a8899c4ba0e2c16d105bcd4, type: 2}

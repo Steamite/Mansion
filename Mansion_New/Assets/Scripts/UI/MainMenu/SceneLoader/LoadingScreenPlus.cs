@@ -20,21 +20,19 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
         public override async Awaitable StartRoomLoad(object lData)
         {
             LevelData level = (LevelData)lData;
-            AddressableSceneManager.Init(level, useVR);
+            AddressableSceneManager.Init(level);
 
-            if (useVR)
+#if WEB
+            //VRManagerLink.DestroyManager();
+
+#else
+            if (VRManagerLink.VRManager == null)
             {
-                if (VRManagerLink.VRManager == null)
-                {
-                    VRInteractionInit vrManager = Instantiate(vrInteractabeInitPrefab);
-                    VRManagerLink.VRManager = vrManager;
-                    DontDestroyOnLoad(vrManager);
-                }
+                VRInteractionInit vrManager = Instantiate(vrInteractabeInitPrefab);
+                VRManagerLink.VRManager = vrManager;
+                DontDestroyOnLoad(vrManager);
             }
-            else
-            {
-                VRManagerLink.DestroyManager();
-            }
+#endif
             EntranceDetector.mainRoom = null;
 
             loadingScreen.enabled = true;

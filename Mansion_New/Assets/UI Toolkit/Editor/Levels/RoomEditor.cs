@@ -53,6 +53,9 @@ namespace Assets.UI_Toolkit.Editor.Levels
         Button saveButton;
         Vector3Field centerOffset;
 
+        ObjectField enterAudio;
+        ObjectField ambientAudio;
+
         void RoomInfo()
         {
             VisualElement row = new() { style = { flexDirection = FlexDirection.Row } };
@@ -66,6 +69,9 @@ namespace Assets.UI_Toolkit.Editor.Levels
 
             Add(meshFixButton = new() { text = "Fix Colliders" });
             meshFixButton.clicked += () => FixColliders();
+
+            Add(enterAudio = new() { label = "enter Audio", objectType = typeof(AudioClip) });
+            Add(ambientAudio = new() { label = "ambient Audio", objectType = typeof(AudioClip) });
 
         }
 
@@ -87,7 +93,7 @@ namespace Assets.UI_Toolkit.Editor.Levels
                 SelectedRoom,
                 LevelExplorer.LevelEditor.LevelData);
 
-
+            SerializedObject roomObject = new(selectedRoom);
             roomName.UnregisterValueChangedCallback(TextChange);
             roomName.SetValueWithoutNotify(selectedRoom.name);
             roomName.RegisterValueChangedCallback(TextChange);
@@ -102,12 +108,15 @@ namespace Assets.UI_Toolkit.Editor.Levels
 
             SerializedObject room = new(selectedRoom);
             centerOffset.Unbind();
-            centerOffset.UnregisterValueChangedCallback(MoveCenter);
-            centerOffset.BindProperty(room.FindProperty(nameof(Room.centerOffset)));
-            centerOffset.RegisterValueChangedCallback(MoveCenter);
+            var a = room.FindProperty(nameof(Room.centerOffset));
+            centerOffset.BindProperty(a);
+            centerOffset.TrackPropertyValue(a, MoveCenter);
+
+            enterAudio.BindProperty(room.FindProperty(nameof(Room.enterAudio)));
+            ambientAudio.BindProperty(room.FindProperty(nameof(Room.ambientAudio)));
         }
 
-        private void MoveCenter(ChangeEvent<Vector3> evt) => Center(evt.newValue);
+        private void MoveCenter(SerializedProperty evt) => Center(evt.vector3Value);
         void Center(Vector3 center) => selectedRoom.Colliders.transform.localPosition = center;
 
         private void TextChange(ChangeEvent<string> evt)

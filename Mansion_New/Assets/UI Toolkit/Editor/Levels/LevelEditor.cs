@@ -90,6 +90,7 @@ namespace LevelExplorer
             // ALWAYS unhook when the window closes to prevent memory leaks 
             // and ghost handles left behind in the Scene View
             SceneView.duringSceneGui -= FakeOnSceneGUI;
+
         }
 
         private void FakeOnSceneGUI(SceneView sceneView)

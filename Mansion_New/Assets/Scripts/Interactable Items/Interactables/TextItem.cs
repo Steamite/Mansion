@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Threading;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;

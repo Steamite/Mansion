@@ -5,14 +5,10 @@ using Assets.Scripts.UI.VRMenu;
 using Items;
 using Player;
 using Rooms;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.UIElements;
-using UnityEngine.XR.Interaction.Toolkit.Locomotion.Gravity;
 
 namespace Assets.Scripts.UI.MainMenu.SceneLoader
 {
@@ -20,9 +16,9 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
     {
         [SerializeField] protected UIDocument loadingScreen;
         protected bool canExit = false;
-
-        [SerializeField] protected bool useVR = false;
+        /*[SerializeField] protected bool useVR = false;
         public bool UseVR => useVR;
+*/
         [SerializeField] protected VRInteractionInit vrInteractabeInitPrefab;
 
         [SerializeField] protected InputAction useAction;
@@ -41,19 +37,16 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
             EntranceDetector.mainRoom = instance.Scene.GetRootGameObjects()[0].GetComponent<Room>();
 
             ProgressBar progressBar = loadingScreen.rootVisualElement.Q<ProgressBar>();
-            if (!useVR)
-            {
-                var scene = await AddressableSceneManager.LoadScene(
-                    "Player",
-                    SceneType.Player,
-                    (percent) => progressBar.value = 0.5f + percent / 2);
-                FinishLoadVisual(scene);
-            }
+#if WEB
+            var scene = await AddressableSceneManager.LoadScene(
+                "Player",
+                SceneType.Player,
+                (percent) => progressBar.value = 0.5f + percent / 2);
+            FinishLoadVisual(scene);
 
-            else
-            {
+#else
                 FinishLoadVisual(default);
-            }
+#endif
         }
 
         protected void FinishLoadVisual(SceneInstance _)
@@ -89,16 +82,13 @@ namespace Assets.Scripts.UI.MainMenu.SceneLoader
             Transform playerTransform = await EntranceDetector.Activate(); // GameObject.FindGameObjectWithTag("Player").transform;
             playerTransform.position = spawnPosition;
 
-            if (useVR)
-            {
-                Camera.main.cullingMask = -1;
-                playerTransform.GetComponentInChildren<GravityProvider>().enabled = true;
+#if WEB
+            PlayerMovement.Activate();
+#else
 
-            }
-            else
-            {
-                PlayerMovement.Activate();
-            }
+            Camera.main.cullingMask = -1;
+            playerTransform.GetComponentInChildren<GravityProvider>().enabled = true;
+#endif
             await AddressableSceneManager.UnloadScene("Main Menu");
         }
 

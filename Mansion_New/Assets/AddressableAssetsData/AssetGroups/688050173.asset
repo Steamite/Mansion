@@ -1,0 +1,223 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: 688050173
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: 688050173
+  m_GUID: 3d4a54d333beadb4aba3e0122b9a2277
+  m_SerializeEntries:
+  - m_GUID: 0105847cd65f7414a8c9ec842832c1c0
+    m_Address: Assets/Materials/Textures/Floor/red_brick_pavement_7_diffuse.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0262954fc34d5714d961b6d6a7e60775
+    m_Address: Assets/Materials/Textures/Okno/wood_table_worn_nor_gl_2k.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 02a5f182c37d3734bb26a9981e0605bf
+    m_Address: Assets/Materials/Textures/Wall/wall.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0614b915b5da2114d85e1a1cda3fc802
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66490(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 06c4b18a193b832498c3d65ee26b40b6
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66490(Clone)(Clone)(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 09090e7e1ed1c464bb44dd0aec4532bc
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66496(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0e5c526cf8d4d3e4f88da0d1a72c1747
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66490(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 148735f03c7549240bf7d60c92abd75a
+    m_Address: Assets/Materials/Textures/Okno/wood_table_worn_diff_2k.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16a155fa1fc2dac47a194fca0e7d4f97
+    m_Address: Assets/Materials/Textures/Rollups/roll-up7.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1771cbe6aad5abe4e9275cfdda75674c
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66496(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 18a2f5fc54bcc6b47b4ce89b4db2f5a2
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66478(Clone)(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c5e12f3a699b7e4f803615539ad2be7
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66478(Clone)(Clone)(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1c671cd0ac315944e9bdc18e4ae7775a
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66496(Clone)(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c8fd49a6bf278244ad2a71eb2e762cc
+    m_Address: Assets/Materials/Textures/Rollups/Materials/roll-up7.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33257e2b5223e6d4294ca400d2d938d2
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66484(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3dfb708f7ee99d647abfe0216361ec9d
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66484(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4bf2f0b0be335a044a5d3f3f3024134d
+    m_Address: "Assets/Models/Room A 2.0 - Final, Final/M\xEDstnost \u010D.2 (2).fbx"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6506a0824b664e74eb7a8c9ffc95e41a
+    m_Address: "Assets/Materials/Textures/Door/Dve\u0159e.mat"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a7fae6761d65fc40894ccf81d104428
+    m_Address: Assets/Models/Rollup/RollUp-mat.fbx
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f881ddb624ec3b44915a19ec65afddd
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66496(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 76baf934cd1ef8e45b330269c74e0d70
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66484(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 773b86669f7ba8d4b9c8678ec68b0f34
+    m_Address: Assets/Materials/Textures/Wall/zed_normal.bmp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 79fc95eb50dc1854f8448bedb535a29f
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66496(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c11ebca8690c6a43aa45dddf3f2a605
+    m_Address: Assets/Materials/Textures/Rollups/roll-up6.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 888d85cb959390d499d70435623005e0
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66490(Clone)(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 946ca4f180b07a943bf5082b73919157
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66490(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99b996cba2197fd458676b91e2986f89
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66478(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a4ca4f5963c36b240a81b5386b2c2546
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66496(Clone)(Clone)(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5c1265c5708cbf4eb6dec908f7b7ae5
+    m_Address: Assets/Materials/Textures/Okno/Material.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b84e0226ebf4a3545984ac4d2cf00be9
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66490(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bae989aece0f7ec4dbd46dd692b9ca55
+    m_Address: Assets/Materials/Textures/Floor/red_brick_pavement_7_normal.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c45e23c7ced011a4591247ff4f4794a7
+    m_Address: Assets/Materials/Textures/Rollups/Materials/roll-up6.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c95d2eb3c25bb9843bb880ebdbe86def
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66484(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c9a2b979a9c727f4d8685d0cd0f103a0
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66478(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dcc1d651f92adf1489290df7b61dd277
+    m_Address: Assets/Materials/Textures/Door/photo-1630579083524-e3ac854edb46.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb5e044fd6bddba4cab93a38c78d87bd
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66478(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef12956895ea9d64eae866651bdb88f2
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66478(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ef7ba28159b58134686763f386f072e6
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66484(Clone)(Clone)(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f073f34ba9b141f4f8d4671f42b16eb4
+    m_Address: Assets/Materials/Textures/Floor/Podlaha.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f325d208ceae741438936c01d027a3a1
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/ProBuilder Meshes/pb_Mesh-66484(Clone)(Clone)(Clone)(Clone)(Clone).asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 57ef9e6584ccb69489be4de976a5b7ff, type: 2}
+    - {fileID: 11400000, guid: 81fbe40e7b697d44c999809b0fbc9b13, type: 2}

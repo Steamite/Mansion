@@ -1,4 +1,5 @@
-﻿using Rooms;
+﻿using Player;
+using Rooms;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -67,6 +68,7 @@ namespace Assets.Scripts.Player.RoomEntrance
         async Awaitable EntranceEnter(Transform entranceTransform)
         {
             Room newRoom = entranceTransform.parent.parent.GetComponent<Room>();
+
             await newRoom.EnterRoom(ActiveRoom);
 
             ActiveRoom = newRoom;

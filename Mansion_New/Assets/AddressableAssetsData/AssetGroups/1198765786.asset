@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: 1198765786
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: 1198765786
+  m_GUID: be81129b4d52c1b49b661f03f8c2620b
+  m_SerializeEntries:
+  - m_GUID: 0601e6d9314e4f8479d40fb58d2ab0f5
+    m_Address: Assets/Materials/Textures/LightCookies/gam_cl1002_rl_12_three_panel_french_window_1356974425_908281.jpg
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0cf070e892bac324cbf414ed32d22f4e
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/Lightmap-0_comp_dir.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2acbbddd7e7ceda41b37fce7a2a54fba
+    m_Address: void
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71e12d6a8ef0a4f47b0765c7dda112f6
+    m_Address: Room A 2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f6a6a87a9fd8594aad87572153f83e4
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/Lightmap-0_comp_light.exr
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b57f377eb99762e42935279221ed108f
+    m_Address: Assets/Scenes/Room Scenes/Room A 2.0/LightingData.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1bfbae9a1d813de4cbe06bc0cbe72641, type: 2}
+    - {fileID: 11400000, guid: 507f2cc2e29f0b14aacf163f102e99a3, type: 2}

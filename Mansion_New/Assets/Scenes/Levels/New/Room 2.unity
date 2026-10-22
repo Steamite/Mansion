@@ -93,7 +93,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: a8feca6bb5213a144accfd5073ef5ebc, type: 2}
+  m_LightingDataAsset: {fileID: 112000004, guid: ad4150b605ee1d9418fd13ff0b44d5cb, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -151,7 +151,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Interactables::Rooms.Room
   AdjacentRooms: []
+  enterAudio: {fileID: 0}
+  ambientAudio: {fileID: 0}
   centerOffset: {x: 0, y: 0, z: 0}
+  entered: 0
 --- !u!4 &383624987
 Transform:
   m_ObjectHideFlags: 0

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: -2100827027
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: -2100827027
+  m_GUID: 809d27a56e99ca740a63086f70506a85
+  m_SerializeEntries:
+  - m_GUID: 85e675893a909864d9c237e20202651b
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Textures/DefaultMaterial_AO.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99685157b02e4d446bbecb015645e5e8
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Materials/Controller_Grey.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9f12d299d16099343a3c5c0d7285822a
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Materials/Controller_White.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f5ccd52dc494e054fbe7d7161dcabe25
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/Materials/FresnelHighlight.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 5868cec9e800eb1419fd5669e8943b5e, type: 2}
+    - {fileID: 11400000, guid: 0d58692edf205cb458a60c6aec427efb, type: 2}

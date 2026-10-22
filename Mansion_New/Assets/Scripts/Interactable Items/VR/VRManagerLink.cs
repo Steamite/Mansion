@@ -11,6 +11,7 @@ namespace Items
 
     public static class VRManagerLink
     {
+        #if !WEB
         static IVRInteractionInit vrManager;
         public static IVRInteractionInit VRManager { set => vrManager = value; get => vrManager; }
 
@@ -37,5 +38,6 @@ namespace Items
                 vrManager.SetupItem(item);
             }
         }
+    #endif
     }
 }

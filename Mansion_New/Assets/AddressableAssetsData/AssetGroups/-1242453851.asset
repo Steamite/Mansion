@@ -1,0 +1,278 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: -1242453851
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: -1242453851
+  m_GUID: e97df28e001486540888bc016651d50f
+  m_SerializeEntries:
+  - m_GUID: 03307529d9f01459599263d114b1ba47
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Rotate/RightRotate@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 065d9dcc5f44f4313a79886e9c40ea06
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Rotate/LeftRotate@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0865850a3ad58456a88bbd9a574129fd
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Controller/ControllerLeft.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 10965b4049d944e82bf6a78d4c23cfe6
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Hands/LeftHandOutlineThin@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 10dc4b76fedda43bc9f45737b47e2a35
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Controller/RightControllerOutline@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1a452a6a86d684a7ba39272e4e14a1d6
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Highlight/highlight_head.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1f7ec93f6b8c84f5981db5008b5859cd
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/XR Interaction Hand Controls.inputactions
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 208b7cba2773646428c0a2fe8c31d4e4
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/General/SwitchIcon.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 269338fb8e448438b9e9667d6d1cea81
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Highlight/highlight_rect_vertical.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c7c6caedfd0a43e3a614236a83aa148
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/Hand Expressions/Grab Expression Capture.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a2050912ec71479899c69612c0af028
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/Hand Expressions/Resting Expression Capture.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 45cf9a9247ff14898b4edee9ea72ebf2
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Rotate/RotateUpArrow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 45d5d868f6ac7433db8072bb252ca290
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Hands/Pinch.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46c27b4ffbe1f4c92b44af023b7ee228
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Translate/TranslateUp.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ed93528617394a9fa8e25193e497fee
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Hands/Grab.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f305c7c25f0148cd8a3b2707827b5b7
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Modes/MirrorMode@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 51dbca003875e4a13a6aa29047489e85
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Hands/Hands.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 58d0a4ac86f2348deb02f3880c71378e
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/XR Interaction Simulator.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 63f1aa62d6de546b8833c6b66b8a6dd8
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Hands/RightHandOutlineThin@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72c39edbc5fea456ab30a2ef2ea6d4d0
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/Hand Expressions/Pinch Expression Capture.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7bccab66a397c492c93ab84fb87d8fcb
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Translate/TranslateLeft@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ea145a784214457f9e6950f55d58b34
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/Hand Expressions/Open Expression Capture.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7f59cc19636f04d5cbbc64e77a20787f
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/XR Interaction Simulator Controls.inputactions
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8511a3a1d58364d7da8521c56be3feaa
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Hands/Poke.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 86ad78bcde32c40de86c59ef68e8c525
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Controller/LeftControllerOutline@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87805fa2e196d415b84396f8e984abcf
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Controller/BothControllers.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac5d39631059b48e7adac17367aa3908
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/Hand Expressions/Poke Expression Capture.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b121d7be9654e4d019fe207d5efebed7
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Headset/HeadsetOutline@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b658f477a2ba14f238604081771bf274
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Hands/LeftHandOutline@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6d5c44ebe3244b7692e81ae8265eb22
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/XR Interaction Controller Controls.inputactions
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6f90cafdbfff47a4933a026c7bd32c1
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Rotate/ForwardRotate@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b8da6254ca32341d6b80019659732616
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/Hand Expressions/Thumb Expression Capture.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be0c86f67bf3f46659373b3776d9ecbb
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/XR Interaction Simulator UI.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2bc09e4357ee4c6bbb9d0e8ccf7f21d
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Controller/LeftController.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c4d8b8565bef1451b94058ebfcab985d
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Hands/Hand_Right.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cbd1e2a1a972644eea7bfae3d6f2b979
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Controller/RightController.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da36ec1117e4c49f8890a4c5234522ef
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Rotate/RotateDownArrow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db211eab80abe447b865ccff41592e0e
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Rotate/BackRotate@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd8fd94bee0954b82adaf33046ec980d
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Highlight/highlight_rect_horizontal.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e0fd4b1a727e94e57832e369a6bcaebd
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Translate/TranslateDown.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e1be5a83864ad4b0eb0031e575739dc0
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Translate/TranslateForward@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e1e3a07825d874ec2be9136fdfb7ab51
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Translate/TranslateBack@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e49c8945f20a44825a5c383e704bdd4d
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Rotate/RotateLeftArrow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6eb07daf4cc52449a15922f0b93851d
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Highlight/RoundedHighlight.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e854b252bbd914e019576e0089dfc2d6
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Controller/ControllerRight.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb5a85b675ed34acf9efd6d574df4ceb
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Translate/TranslateRight@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4ae9f38f5d3b410f84c02c1486c64eb
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Hands/Hand_Left.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f9cb67e576d274c29bfa90e7bd16ba32
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Headset/HeadsetOutline.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa004868963da45f6a2e6520cfd82522
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/Hand Expressions/Fist Expression Capture.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: facc8619d91ad4608b3af66d3e3432db
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Rotate/RotateRightArrow.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fd446dd001ea5485bb654a52817c3e96
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/XR Interaction Simulator/UI/Hands/RightHandOutline@2x.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: e78b51bde84781547a54aae76f7b9d7c, type: 2}
+    - {fileID: 11400000, guid: 2b4a3f144b92ad844ab485434facc508, type: 2}

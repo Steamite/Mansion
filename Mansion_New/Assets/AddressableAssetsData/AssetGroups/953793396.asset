@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: 953793396
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: 953793396
+  m_GUID: 07ceca2b3cc26494a85ebc2474c566a6
+  m_SerializeEntries:
+  - m_GUID: cdebec39dbf81a14688e1de8d12897b4
+    m_Address: Assets/Samples/XR Interaction Toolkit/3.4.1/Starter Assets/DemoAssets/Textures/Concrete_Normal.tif
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ce46b87c182b2244eb775db13bd0d539, type: 2}
+    - {fileID: 11400000, guid: 8d85543a41ccb9f4c9ce6b4a8c182df0, type: 2}

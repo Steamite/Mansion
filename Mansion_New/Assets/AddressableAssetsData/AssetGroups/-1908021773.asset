@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: -1908021773
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: -1908021773
+  m_GUID: 485da3ea4f8b4134e8340c5836e2ec96
+  m_SerializeEntries:
+  - m_GUID: 07559cb2cb9300e4098841ad232902d0
+    m_Address: Assets/Materials/Textures/Rollups/roll-up3.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ca6dca7396eb48e5849247ffd444914
+    m_Address: Packages/com.unity.render-pipelines.universal/Shaders/BakedLit.shader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 11bcc115704c77c489f4877077d0a551
+    m_Address: Assets/Materials/Textures/Rollups/Materials/roll-up1.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ba32e02fde56664495c4cd0a68ab488
+    m_Address: Assets/Materials/Textures/Rollups/Materials/roll-up3.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e489683a3faa1945a6377e8a283eae5
+    m_Address: Assets/Materials/Textures/Rollups/Materials/roll-up5.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54d370e9ce61c1f4b8c37cfad48e5348
+    m_Address: Assets/Materials/Textures/Rollups/roll-up1.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a6aa45b36695ab41a4b62b296485f88
+    m_Address: Assets/Materials/Textures/Rollups/roll-up2.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f6245a569cc57c42a40bedc764feb4e
+    m_Address: Assets/Materials/Textures/Rollups/roll-up5.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a0075d354df76047adb827c4635be67
+    m_Address: Assets/Materials/Textures/Rollups/Materials/roll-up4.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f76f85c320dc65847abd26a37e40b178
+    m_Address: Assets/Materials/Textures/Rollups/Materials/roll-up2.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: f9a19ebdf4e924f43ad35918578f1c3f, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 67c1d5b501642a242a21dd9836dc73cf, type: 2}
+    - {fileID: 11400000, guid: 8163ca2d420c10643b72df837edbb63c, type: 2}
